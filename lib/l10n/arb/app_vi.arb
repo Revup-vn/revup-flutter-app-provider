@@ -1,0 +1,7 @@
+{
+    "@@locale": "vi",
+    "revupAppBarTitle": "Revup",
+    "@revupAppBarTitle": {
+        "description": "Text se xuat hien o appbar khi vao trang dau tien"
+    }
+}

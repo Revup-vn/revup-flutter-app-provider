@@ -1,0 +1,7 @@
+{
+    "@@locale": "en",
+    "revupAppBarTitle": "Revup",
+    "@revupAppBarTitle": {
+        "description": "Text shown in the AppBar of the first page"
+    }
+}
