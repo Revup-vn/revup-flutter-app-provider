@@ -26,13 +26,17 @@ analyze:
 	@flutter analyze lib test
 
 coverage:  ##run test and gen coverage report
-	@very_good test --coverage --exclude-coverage '**/{*.{g,freezed},*_{page,providers}}.dart' --min-coverage 100 || true
+	@very_good test --coverage --exclude-coverage '{**/{*.{g,freezed,gen,u},*_{page,providers,observer}}.dart,lib/l10n/l10n.dart}' --min-coverage 100 || true
 	@lcov --remove coverage/lcov.info -o coverage/exclude.info \
     '**/*.g.dart' \
+    '**/*.gen.dart' \
 	'**/*.freezed.dart' \
     '**/*.gr.dart' \
 	'**/*_page.dart' \
-	'**/*_providers.dart'
+	'**/*_providers.dart' \
+	'lib/l10n/l10n.dart' \
+	'**/*_observer.dart' \
+	'**/*.u.dart'
 	@genhtml coverage/exclude.info -o coverage
 
 
