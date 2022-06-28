@@ -7,13 +7,17 @@ import 'package:bloc/bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
-  void onChange(BlocBase bloc, Change change) {
+  Future<void> onChange(BlocBase<dynamic> bloc, Change<dynamic> change) async {
     super.onChange(bloc, change);
     log('onChange(${bloc.runtimeType}, $change)');
   }
 
   @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+  Future<void> onError(
+    BlocBase<dynamic> bloc,
+    Object error,
+    StackTrace stackTrace,
+  ) async {
     log('onError(${bloc.runtimeType}, $error, $stackTrace)');
     super.onError(bloc, error, stackTrace);
   }
