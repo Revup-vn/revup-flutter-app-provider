@@ -10,7 +10,7 @@ dependencies:
   auto_route: ^4.0.1
   bloc: ^8.0.3
   build_runner: ^2.1.11
-  connectivity_plus: ^2.3.0
+  connectivity_plus: ^2.3.5
   dartz: ^0.10.1
   dio: ^4.0.1
   flutter:
