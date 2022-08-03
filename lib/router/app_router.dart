@@ -13,26 +13,14 @@ import '../splash/splash.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
-    ),
-    AdaptiveRoute<void>(
-      page: LoginPage,
-    ),
-    AdaptiveRoute<void>(
-      page: DetailServiceRequestPage,
-    ),
-    AdaptiveRoute<void>(
-      page: InfoRequestPage,
-    ),
-    AdaptiveRoute<void>(
-      page: RepairCompeletePage,
-    ),
-    AdaptiveRoute<void>(
-      page: SelectOptionCompletePage,
-    ),
-    AdaptiveRoute<void>(
-      page: AddService,
       initial: true,
     ),
+    AdaptiveRoute<void>(page: LoginPage),
+    AdaptiveRoute<void>(page: DetailServiceRequestPage),
+    AdaptiveRoute<void>(page: InfoRequestPage),
+    AdaptiveRoute<void>(page: RepairCompeletePage),
+    AdaptiveRoute<void>(page: SelectOptionCompletePage),
+    AdaptiveRoute<void>(page: AddService),
   ],
 )
 class $AppRouter {}

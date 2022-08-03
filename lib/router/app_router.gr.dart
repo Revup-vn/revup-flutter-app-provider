@@ -11,14 +11,9 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-import 'package:flutter/material.dart' as _i9;
-
 import 'package:auto_route/auto_route.dart' as _i8;
-
+import 'package:flutter/material.dart' as _i9;
 import 'package:revup_provider/login/view/login_page.dart' as _i2;
-import 'package:revup_provider/splash/splash.dart' as _i1;
-
 import 'package:revup_provider/request/detail_service_request/view/detail_service_request_page.u.dart'
     as _i3;
 import 'package:revup_provider/request/info_request/view/info_request_page.u.dart'
@@ -29,6 +24,7 @@ import 'package:revup_provider/request/select_option_complete/view/select_option
     as _i6;
 import 'package:revup_provider/service/add-service/view/add_service_view.u.dart'
     as _i7;
+import 'package:revup_provider/splash/splash.dart' as _i1;
 
 class AppRouter extends _i8.RootStackRouter {
   AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
@@ -68,7 +64,7 @@ class AppRouter extends _i8.RootStackRouter {
 
   @override
   List<_i8.RouteConfig> get routes => [
-        _i8.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i8.RouteConfig(SplashRoute.name, path: '/'),
         _i8.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i8.RouteConfig(DetailServiceRequestRoute.name,
             path: '/detail-service-request-page'),
@@ -77,14 +73,14 @@ class AppRouter extends _i8.RootStackRouter {
             path: '/repair-compelete-page'),
         _i8.RouteConfig(SelectOptionCompleteRoute.name,
             path: '/select-option-complete-page'),
-        _i8.RouteConfig(AddService.name, path: '/')
+        _i8.RouteConfig(AddService.name, path: '/add-service')
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i8.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -138,7 +134,7 @@ class SelectOptionCompleteRoute extends _i8.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.AddService]
 class AddService extends _i8.PageRouteInfo<void> {
-  const AddService() : super(AddService.name, path: '/');
+  const AddService() : super(AddService.name, path: '/add-service');
 
   static const String name = 'AddService';
 }
