@@ -1,13 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:revup_provider/app/app.dart';
-import 'package:revup_provider/test/test.dart';
+import 'package:revup_provider/login/view/login_page.dart';
 
 void main() {
   group('App', () {
-    testWidgets('renders CounterPage', (tester) async {
-      await tester.pumpWidget(const App());
-      expect(find.byType(TestPage), findsOneWidget);
+    testWidgets('renders Login', (tester) async {
+      await tester.pumpWidget(const LoginPage());
+      expect(find.byType(LoginPage), findsOneWidget);
     });
   });
 }
