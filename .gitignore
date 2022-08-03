@@ -138,3 +138,11 @@ lib/generated/intl/messages_all.dart
 
 # Injected Packages
 packages/injected/**
+android/app/google-services.json
+ios/GoogleService-Info.plist
+lib/configs/firebase_options.dart
+lib/configs/video_call_config.dart
+lib/configs/.mapbox
+android/app/src/main/res/values/developer-config.xml
+
+desiredFileName.txt
