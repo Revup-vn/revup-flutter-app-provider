@@ -7,19 +7,41 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  auto_route: ^4.0.1
-  bloc: ^8.0.3
+  auto_route: ^4.2.1
+  auto_size_text: ^3.0.0
+  cached_network_image: ^3.2.1
+  card_swiper: ^2.0.4
   dartz: ^0.10.1
+  dotted_border: ^2.0.0+2
+  firebase_core: ^1.20.0
+  flash: ^2.0.3+3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_form_builder: ^7.3.1
   flutter_form_field_validator: ^1.0.0
+  flutter_html: ^3.0.0-alpha.5
   flutter_localizations:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
+  flutter_svg: ^1.1.0
+  form_builder_validators: ^8.3.0
   freezed_annotation: ^2.0.3
+  hive: ^2.2.3
+  image_picker: ^0.8.5+3
   intl: ^0.17.0
-  json_annotation: ^4.5.0
+  introduction_screen: ^3.0.1
+  json_annotation: ^4.6.0
+  loader_overlay: ^2.0.9
+  modal_bottom_sheet: ^2.1.0
+  pin_code_fields: ^7.4.0
+  revup_core:
+    git:
+      url: https://github.com/Revup-vn/revup-core.git
+      ref: main
+      version: ^2.4.0-dev
+  shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
 
 dev_dependencies:
   auto_route_generator: ^4.0.0
@@ -38,14 +60,9 @@ dev_dependencies:
 
 flutter_gen:
   output: lib/gen/
-  assets:
-    enabled: true
-  fonts:
-    enabled: true
-  colors:
-    enabled: true
-    inputs:
-      - assets/color/colors.xml
+  integrations:
+    flutter_svg: true
+
 import_sorter:
   comments: false
 
@@ -53,4 +70,4 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/
+    - assets/screens/
