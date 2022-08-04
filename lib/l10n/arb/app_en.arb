@@ -156,5 +156,14 @@
   "messagesCheckInformation": "Partners please double check the information, the images above are correct, then slide to complete the application.",
   "fixAgainLabel": "Fix again",
   "selectCompletedItemLabel": "Select completed item",
-  "messagesSelectItemLabel": "The partner selects the completed item and sends it to the customer, then wait a bit for the customer to confirm"
+  "messagesSelectItemLabel": "The partner selects the completed item and sends it to the customer, then wait a bit for the customer to confirm",
+  "addNewServiceLabel": "Add new service",
+  "servicePhotoLabel": "Service photo",
+  "enterServiceNameLabel": "Enter service name",
+  "serviceFeeLabel": "Service fee",
+  "enterMountLabel": "Enter the amount",
+  "priceUnitLabel": "Price unit",
+  "enterShortDescriptionLabel": "Enter a short description",
+  "completeLabel": "Complete",
+  "saveLabel": "Save"
 }

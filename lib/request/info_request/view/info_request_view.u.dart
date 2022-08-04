@@ -185,17 +185,16 @@ class InfoRequestView extends StatelessWidget {
                         const SizedBox(height: 10),
                         AutoSizeText(
                           l10n.messagesCallForCustomersLabel,
-                          style:
-                              Theme.of(context).textTheme.labelMedium?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurfaceVariant,
-                                      ) ??
-                                  TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
+                          style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                  ) ??
+                              TextStyle(
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
                         ),
                       ],
                     ),

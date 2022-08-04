@@ -17,17 +17,21 @@ class BuildIconAction extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: const Color(0xFF7D5700),
-          boxShadow: const [
+          color: Theme.of(context).colorScheme.primary,
+          boxShadow: [
             BoxShadow(
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.outline,
               spreadRadius: 0.5,
               blurRadius: 0.1,
-              offset: Offset(2, 2),
+              offset: const Offset(2, 2),
             ),
           ],
         ),
-        child: Icon(iconData, color: Colors.white, size: 16),
+        child: Icon(
+          iconData,
+          color: Theme.of(context).colorScheme.onPrimary,
+          size: 16,
+        ),
       ),
     );
   }

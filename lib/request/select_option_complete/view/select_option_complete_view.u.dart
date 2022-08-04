@@ -143,7 +143,12 @@ class SelectOptionCompleteView extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.labelLarge,
                                   ),
-                                  Checkbox(value: false, onChanged: (value) {})
+                                  Checkbox(
+                                    value: false,
+                                    onChanged: (value) {
+                                      // TODO(namngoc231): select service
+                                    },
+                                  ),
                                 ],
                               ),
                             );
@@ -219,7 +224,12 @@ class SelectOptionCompleteView extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.labelLarge,
                                   ),
-                                  Checkbox(value: false, onChanged: (value) {})
+                                  Checkbox(
+                                    value: false,
+                                    onChanged: (value) {
+                                      // TODO(namngoc231): select service
+                                    },
+                                  ),
                                 ],
                               ),
                             );

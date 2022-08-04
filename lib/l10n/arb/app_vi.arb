@@ -156,7 +156,14 @@
   "messagesCheckInformation": "Đối tác vui lòng kiểm tra lại thông tin, hình ảnh bên trên đều chính xác, sau đó trượt để hoàn thành đơn.",
   "fixAgainLabel": "Sửa lại",
   "selectCompletedItemLabel": "Chọn hạng mục hoàn thành",
-  "messagesSelectItemLabel": "Đối tác chọn hạng mục hoàn thành gửi đến khách hàng, rồi chờ xíu để khách hàng xác nhận nhé"
-
-
+  "messagesSelectItemLabel": "Đối tác chọn hạng mục hoàn thành gửi đến khách hàng, rồi chờ xíu để khách hàng xác nhận nhé",
+  "addNewServiceLabel": "Thêm mới dịch vụ",
+  "servicePhotoLabel": "Ảnh dịch vụ",
+  "enterServiceNameLabel": "Nhập tên dịch vụ",
+  "serviceFeeLabel": "Tiền công dịch vụ",
+  "enterMountLabel": "Nhập số tiền",
+  "priceUnitLabel": "Đơn vị tính giá",
+  "enterShortDescriptionLabel": "Nhập mô tả ngắn",
+  "completeLabel": "Hoàn thành",
+  "saveLabel": "Lưu"
 }

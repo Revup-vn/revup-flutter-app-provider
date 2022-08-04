@@ -22,7 +22,7 @@ import 'package:revup_provider/request/repair_completed/view/repair_completed_pa
     as _i5;
 import 'package:revup_provider/request/select_option_complete/view/select_option_complete_page.u.dart'
     as _i6;
-import 'package:revup_provider/service/add-service/view/add_service_view.u.dart'
+import 'package:revup_provider/service/add-service/view/add_service_page.u.dart'
     as _i7;
 import 'package:revup_provider/splash/splash.dart' as _i1;
 
@@ -56,15 +56,15 @@ class AppRouter extends _i8.RootStackRouter {
       return _i8.AdaptivePage<void>(
           routeData: routeData, child: const _i6.SelectOptionCompletePage());
     },
-    AddService.name: (routeData) {
+    AddServiceRoute.name: (routeData) {
       return _i8.AdaptivePage<void>(
-          routeData: routeData, child: const _i7.AddService());
+          routeData: routeData, child: const _i7.AddServicePage());
     }
   };
 
   @override
   List<_i8.RouteConfig> get routes => [
-        _i8.RouteConfig(SplashRoute.name, path: '/'),
+        _i8.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i8.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i8.RouteConfig(DetailServiceRequestRoute.name,
             path: '/detail-service-request-page'),
@@ -73,14 +73,14 @@ class AppRouter extends _i8.RootStackRouter {
             path: '/repair-compelete-page'),
         _i8.RouteConfig(SelectOptionCompleteRoute.name,
             path: '/select-option-complete-page'),
-        _i8.RouteConfig(AddService.name, path: '/add-service')
+        _i8.RouteConfig(AddServiceRoute.name, path: '/')
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i8.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -132,9 +132,9 @@ class SelectOptionCompleteRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.AddService]
-class AddService extends _i8.PageRouteInfo<void> {
-  const AddService() : super(AddService.name, path: '/add-service');
+/// [_i7.AddServicePage]
+class AddServiceRoute extends _i8.PageRouteInfo<void> {
+  const AddServiceRoute() : super(AddServiceRoute.name, path: '/');
 
-  static const String name = 'AddService';
+  static const String name = 'AddServiceRoute';
 }

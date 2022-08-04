@@ -1,161 +1,180 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import '../widgets/base_textfield.u.dart';
+import '../../../l10n/l10n.dart';
 
-class AddService extends StatelessWidget {
-  const AddService({
+class AddServiceView extends StatelessWidget {
+  const AddServiceView({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController();
-    final priceController = TextEditingController();
-    final descriptionController = TextEditingController();
+    final l10n = context.l10n;
+    const value = '1';
 
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          'Thêm mới dịch vụ',
+          l10n.addNewServiceLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AutoSizeText(
-                  'Ảnh dịch vụ',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium!
-                      .copyWith(color: const Color(0xFFA8A6A9)),
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: 96,
-                    width: 96,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Icon(Icons.add_photo_alternate_outlined),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                AutoSizeText(
-                  'Thông tin dịch vụ',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium!
-                      .copyWith(color: const Color(0xFFA8A6A9)),
-                ),
-                const SizedBox(height: 10),
-                AutoSizeText(
-                  'Tên dịch vụ',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(height: 5),
-                BaseTextField(
-                  controller: nameController,
-                  hintText: 'Nhập tên dịch vụ',
-                  borderType: BorderType.OUTLINE,
-                  onChange: (value) {},
-                  suffixIcon: nameController.text.isNotEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: IconButton(
-                            icon: const Icon(Icons.clear_outlined),
-                            onPressed: () {},
-                          ),
-                        )
-                      : null,
-                ),
-                const SizedBox(height: 10),
-                AutoSizeText(
-                  'Tiền công dịch vụ',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(height: 5),
-                BaseTextField(
-                  controller: priceController,
-                  hintText: 'Nhập số tiền',
-                  borderType: BorderType.OUTLINE,
-                  onChange: (value) {},
-                  suffixIcon: priceController.text.isNotEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: IconButton(
-                            icon: const Icon(Icons.clear_outlined),
-                            onPressed: () {},
-                          ),
-                        )
-                      : null,
-                ),
-                const SizedBox(height: 10),
-                AutoSizeText(
-                  'Đơn vị tính giá',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(height: 5),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: DropdownButton(
-                    //value: value,
-                    isExpanded: true,
-                    items: const [
-                      DropdownMenuItem(
-                        value: '1',
-                        child: Text('Cái'),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 8,
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AutoSizeText(
+                        l10n.servicePhotoLabel,
+                        style: Theme.of(context).textTheme.headline5?.copyWith(
+                                  color: Theme.of(context).colorScheme.outline,
+                                ) ??
+                            TextStyle(
+                              color: Theme.of(context).colorScheme.outline,
+                            ),
                       ),
-                      DropdownMenuItem(
-                        value: '2',
-                        child: Text('Hộp'),
+                      const SizedBox(height: 10),
+                      Center(
+                        child: Container(
+                          height: 96,
+                          width: 96,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.outline,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: const Icon(Icons.add_photo_alternate_outlined),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      AutoSizeText(
+                        l10n.serviceInforLabel,
+                        style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.outline,
+                                ) ??
+                            TextStyle(
+                              color: Theme.of(context).colorScheme.outline,
+                            ),
+                      ),
+                      const SizedBox(height: 10),
+                      AutoSizeText(
+                        l10n.serviceNameLabel,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      const SizedBox(height: 5),
+                      FormBuilderTextField(
+                        name: '',
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: l10n.enterServiceNameLabel,
+                        ),
+                        style: Theme.of(context).textTheme.labelLarge,
+                        keyboardType: TextInputType.multiline,
+                      ),
+                      const SizedBox(height: 10),
+                      AutoSizeText(
+                        l10n.serviceFeeLabel,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      const SizedBox(height: 5),
+                      FormBuilderTextField(
+                        name: '',
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: l10n.enterMountLabel,
+                        ),
+                        style: Theme.of(context).textTheme.labelLarge,
+                        keyboardType: TextInputType.multiline,
+                      ),
+                      const SizedBox(height: 10),
+                      AutoSizeText(
+                        l10n.priceUnitLabel,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      const SizedBox(height: 5),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: DropdownButton(
+                          value: value,
+                          isExpanded: true,
+                          items: const [
+                            DropdownMenuItem(
+                              value: '1',
+                              child: Text('Cái'),
+                            ),
+                            DropdownMenuItem(
+                              value: '2',
+                              child: Text('Hộp'),
+                            ),
+                          ],
+                          //onChanged: null,
+                          onChanged: (String? value) {
+                            value = value;
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      AutoSizeText(
+                        l10n.serviceDescriptionLabel,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      const SizedBox(height: 5),
+                      FormBuilderTextField(
+                        name: '',
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: l10n.enterShortDescriptionLabel,
+                        ),
+                        style: Theme.of(context).textTheme.labelLarge,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 5,
+                        maxLength: 100,
                       ),
                     ],
-                    onChanged: null,
                   ),
                 ),
-                const SizedBox(height: 10),
-                AutoSizeText(
-                  'Mô tả (tối đá 100 ký tự)',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(height: 5),
-                BaseTextField(
-                  controller: descriptionController,
-                  hintText: 'Nhập mô tả ngắn',
-                  borderType: BorderType.OUTLINE,
-                  minLines: 3,
-                  maxLines: 3,
-                  onChange: (value) {},
-                  suffixIcon: descriptionController.text.isNotEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: IconButton(
-                            icon: const Icon(Icons.clear_outlined),
-                            onPressed: () {},
-                          ),
-                        )
-                      : null,
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(color: Theme.of(context).cardColor),
+              child: ElevatedButton(
+                onPressed: () {
+                  // TODO(namngoc231): Complete
+                },
+                style: Theme.of(context).elevatedButtonTheme.style,
+                child: AutoSizeText(
+                  l10n.saveLabel,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

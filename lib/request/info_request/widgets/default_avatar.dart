@@ -20,8 +20,12 @@ class DefaultAvatar extends StatelessWidget {
           Align(
             child: AutoSizeText(
               userName[0].toUpperCase(),
-              style: textSize!
-                  .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              style: textSize?.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ) ??
+                  TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
             ),
           ),
         ],

@@ -1,5 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
@@ -36,9 +37,14 @@ class RepairCompeleteView extends StatelessWidget {
                             AutoSizeText(
                               l10n.completeRepairLabel,
                               style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall!
-                                  .copyWith(fontWeight: FontWeight.bold),
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ) ??
+                                  const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                             const SizedBox(height: 10),
                             Column(
@@ -47,9 +53,18 @@ class RepairCompeleteView extends StatelessWidget {
                                 AutoSizeText(
                                   l10n.pictureLabel,
                                   style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(color: const Color(0xFFA8A6A9)),
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .outline,
+                                          ) ??
+                                      TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ),
                                 ),
                                 const SizedBox(height: 10),
                                 Row(
@@ -57,13 +72,21 @@ class RepairCompeleteView extends StatelessWidget {
                                     Container(
                                       padding: const EdgeInsets.all(12),
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF8EFE7),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondaryContainer,
                                         borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Colors.grey),
+                                        border: Border.all(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .outline,
+                                        ),
                                       ),
-                                      child: const Icon(
+                                      child: Icon(
                                         Icons.add_photo_alternate,
-                                        color: Colors.grey,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
                                       ),
                                     ),
                                     const SizedBox(width: 10),
@@ -84,7 +107,7 @@ class RepairCompeleteView extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -94,9 +117,18 @@ class RepairCompeleteView extends StatelessWidget {
                                 AutoSizeText(
                                   l10n.collectMoneyCustomersLabel,
                                   style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(color: const Color(0xFFA8A6A9)),
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .outline,
+                                          ) ??
+                                      TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ),
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -106,9 +138,12 @@ class RepairCompeleteView extends StatelessWidget {
                                       repairCompletedState.collectMoneyCustomers
                                           .toString(),
                                       style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
+                                              .textTheme
+                                              .bodyLarge
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ) ??
+                                          const TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
@@ -141,9 +176,18 @@ class RepairCompeleteView extends StatelessWidget {
                                 AutoSizeText(
                                   l10n.vehicleTypeLabel,
                                   style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(color: const Color(0xFFA8A6A9)),
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .outline,
+                                          ) ??
+                                      TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ),
                                 ),
                                 const SizedBox(height: 5),
                                 Row(
@@ -153,25 +197,15 @@ class RepairCompeleteView extends StatelessWidget {
                                     AutoSizeText(
                                       repairCompletedState.vehicleType,
                                       style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
+                                              .textTheme
+                                              .bodyLarge
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ) ??
+                                          const TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
-                                    // GestureDetector(
-                                    //   onTap: () {},
-                                    //   child: AutoSizeText(
-                                    //     '',
-                                    //     style: Theme.of(context)
-                                    //         .textTheme
-                                    //         .labelLarge!
-                                    //         .copyWith(
-                                    //           color: const Color(0xFF7D5700),
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ],
@@ -183,9 +217,18 @@ class RepairCompeleteView extends StatelessWidget {
                                 AutoSizeText(
                                   l10n.completedItemLabel,
                                   style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(color: const Color(0xFFA8A6A9)),
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .outline,
+                                          ) ??
+                                      TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ),
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -194,9 +237,12 @@ class RepairCompeleteView extends StatelessWidget {
                                     AutoSizeText(
                                       '''${l10n.totalLabel} ${repairCompletedState.totalService}${l10n.categoriesLabel}''',
                                       style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
+                                              .textTheme
+                                              .bodyLarge
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ) ??
+                                          const TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
                                     ),
@@ -226,9 +272,17 @@ class RepairCompeleteView extends StatelessWidget {
                             AutoSizeText(
                               l10n.messagesCheckInformation,
                               style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium!
-                                  .copyWith(color: const Color(0xFFA8A6A9)),
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ) ??
+                                  TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                  ),
                             ),
                           ],
                         ),
@@ -251,7 +305,7 @@ class RepairCompeleteView extends StatelessWidget {
                 },
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: AutoSizeText(
-                  'Hoàn thành',
+                  l10n.completeLabel,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),

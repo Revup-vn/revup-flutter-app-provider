@@ -49,17 +49,16 @@ class DetailServiceRequestView extends StatelessWidget {
                       children: <Widget>[
                         AutoSizeText(
                           l10n.serviceRequestLabel,
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurfaceVariant,
-                                      ) ??
-                                  TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
+                          style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                  ) ??
+                              TextStyle(
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
                         ),
                       ],
                     ),
@@ -123,17 +122,16 @@ class DetailServiceRequestView extends StatelessWidget {
                       children: <Widget>[
                         AutoSizeText(
                           l10n.bonusServicesLabel,
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurfaceVariant,
-                                      ) ??
-                                  TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
+                          style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                  ) ??
+                              TextStyle(
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
                         ),
                       ],
                     ),
