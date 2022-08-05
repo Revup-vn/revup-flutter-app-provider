@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../l10n/l10n.dart';
@@ -51,8 +50,7 @@ class AddServiceView extends StatelessWidget {
                           height: 96,
                           width: 96,
                           decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
+                            color: Theme.of(context).colorScheme.outline,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: const Icon(Icons.add_photo_alternate_outlined),

@@ -619,7 +619,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1+1"
+    version: "1.1.2"
   flutter_switch:
     dependency: "direct main"
     description:
@@ -748,7 +748,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.4"
+    version: "0.13.5"
   http_multi_server:
     dependency: transitive
     description:
@@ -965,14 +965,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   path_provider:
     dependency: transitive
     description:
@@ -1021,7 +1021,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   pedantic:
     dependency: transitive
     description:
@@ -1104,10 +1104,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b260221ac6595e80d109a58d0e39252709136cdc
+      resolved-ref: fe354dd9f7d63fa26d5a5c0cf459ce93fbc48dc9
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "3.4.2-dev"
+    version: "3.4.5-dev"
   rxdart:
     dependency: transitive
     description:

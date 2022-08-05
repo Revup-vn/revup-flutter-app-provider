@@ -1,6 +1,6 @@
 name: revup_provider
 description: A very good app
-version: 1.0.0+1
+version: 1.0.0+2-dev
 publish_to: none
 
 environment:
@@ -15,11 +15,10 @@ dependencies:
   dotted_border: ^2.0.0+2
   firebase_core: ^1.20.0
   flash: ^2.0.3+3
-
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
-  flutter_form_builder: ^7.3.1
+  flutter_form_builder: ^7.5.0
   flutter_form_field_validator: ^1.0.0
   flutter_html: ^3.0.0-alpha.5
   flutter_localizations:
@@ -28,7 +27,6 @@ dependencies:
   flutter_svg: ^1.1.0
   flutter_switch: ^0.3.2
   form_builder_validators: ^8.3.0
-
   freezed_annotation: ^2.0.3
   hive: ^2.2.3
   image_picker: ^0.8.5+3
