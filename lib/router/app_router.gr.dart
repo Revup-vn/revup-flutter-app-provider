@@ -11,9 +11,14 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i8;
+
 import 'package:flutter/material.dart' as _i9;
+
+import 'package:auto_route/auto_route.dart' as _i8;
+
 import 'package:revup_provider/login/view/login_page.dart' as _i2;
+import 'package:revup_provider/splash/splash.dart' as _i1;
+
 import 'package:revup_provider/request/detail_service_request/view/detail_service_request_page.u.dart'
     as _i3;
 import 'package:revup_provider/request/info_request/view/info_request_page.u.dart'
@@ -24,7 +29,6 @@ import 'package:revup_provider/request/select_option_complete/view/select_option
     as _i6;
 import 'package:revup_provider/service/add-service/view/add_service_page.u.dart'
     as _i7;
-import 'package:revup_provider/splash/splash.dart' as _i1;
 
 class AppRouter extends _i8.RootStackRouter {
   AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])

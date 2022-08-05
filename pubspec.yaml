@@ -1,6 +1,6 @@
 name: revup_provider
 description: A very good app
-version: 1.0.0+1
+version: 1.0.0+2-dev
 publish_to: none
 
 environment:
@@ -26,22 +26,17 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.0
   form_builder_validators: ^8.3.0
-
   freezed_annotation: ^2.0.3
-  hive: ^2.2.3
   image_picker: ^0.8.5+3
   intl: ^0.17.0
-  introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
   loader_overlay: ^2.0.9
-  modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
       version: ^2.4.0-dev
-  shared_preferences: ^2.0.15
   shimmer: ^2.0.0
 
 dev_dependencies:
