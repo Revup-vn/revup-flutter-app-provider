@@ -51,7 +51,8 @@ class AddServiceView extends StatelessWidget {
                           height: 96,
                           width: 96,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.outline,
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: const Icon(Icons.add_photo_alternate_outlined),

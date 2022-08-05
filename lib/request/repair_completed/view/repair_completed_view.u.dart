@@ -86,7 +86,7 @@ class RepairCompeleteView extends StatelessWidget {
                                         Icons.add_photo_alternate,
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .outline,
+                                            .onInverseSurface,
                                       ),
                                     ),
                                     const SizedBox(width: 10),
