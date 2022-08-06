@@ -128,7 +128,8 @@ class CardReview extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 child: AutoSizeText(
-                  '${DateTime.now().difference(data.commentedData).toString()} ngày trước',
+                  '${DateTime.now().difference(data.commentedData).toString()}'
+                  ' ngày trước',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),

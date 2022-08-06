@@ -13,7 +13,10 @@ class AddServiceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    const value = '1';
+
+    // TODO(tcmhoang): Intl this view screen and fields in this
+    // file need to parameterlized
+    const value = '1'; // Do not understand this variable purposed in this form
 
     return Scaffold(
       appBar: AppBar(

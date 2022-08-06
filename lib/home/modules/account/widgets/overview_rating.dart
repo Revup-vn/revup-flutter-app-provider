@@ -4,10 +4,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class OverviewRating extends StatelessWidget {
   const OverviewRating({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.rating,
-  }) : super(key: key);
+  });
 
   final VoidCallback onTap;
   final double rating;

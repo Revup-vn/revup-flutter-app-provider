@@ -4,13 +4,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 import '../widgets/card_service_detail.u.dart';
 
-class DetailServicePage extends StatelessWidget {
-  const DetailServicePage({
+class DetailServiceView extends StatelessWidget {
+  const DetailServiceView({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    // TODO(tcmhoang): Intl this file and parametalized
+    // all the harded code value
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(

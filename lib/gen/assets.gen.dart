@@ -15,9 +15,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 class $AssetsScreensGen {
   const $AssetsScreensGen();
 
-  /// File path: assets/screens/ball.png
-  AssetGenImage get ball => const AssetGenImage('assets/screens/ball.png');
-
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');

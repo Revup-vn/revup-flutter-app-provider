@@ -1,15 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 
 import '../home/home.dart';
-import '../home/modules/history/history_provider_detail/view/history_detail_provider_page.u.dart';
 import '../login/view/login_page.dart';
-import '../my_review/view/my_review_view.u.dart';
+import '../my_review/my_review.dart';
+import '../repair_service/repair_service.dart';
 import '../request/modules/modules.dart';
-import '../service/add-service/view/add_service_page.u.dart';
-import '../service/detail_service/view/detail_service_page.u.dart';
-import '../service/list_service/view/list_service_page.u.dart';
 import '../splash/splash.dart';
-import '../vendor_authentication/view/vendor_authentication_page.u.dart';
+import '../vendor_authentication/vender_authentication.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -21,7 +18,7 @@ import '../vendor_authentication/view/vendor_authentication_page.u.dart';
     AdaptiveRoute<void>(page: RepairCompletePage),
     AdaptiveRoute<void>(page: SelectOptionCompletePage),
     AdaptiveRoute<void>(page: AddServicePage),
-    AdaptiveRoute<void>(page: MyReviewView),
+    AdaptiveRoute<void>(page: MyReviewPage),
     AdaptiveRoute<void>(page: VendorAuthenticationPage),
     AdaptiveRoute<void>(page: ListServicePage),
     AdaptiveRoute<void>(page: DetailServicePage),
