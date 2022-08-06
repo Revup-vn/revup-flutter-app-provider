@@ -12,6 +12,7 @@ class UserModel with _$UserModel {
     required DateTime date,
     required String address,
     required String urlImage,
+    required bool onlineStatus,
   }) = _UserModel;
   factory UserModel.fromDto(AppUser user) => UserModel(
         name: '${user.firstName} ${user.lastName}',
@@ -20,5 +21,9 @@ class UserModel with _$UserModel {
         date: user.dob,
         address: user.addr,
         urlImage: user.avatarUrl,
+        onlineStatus: user.maybeMap(
+          orElse: () => false,
+          provider: (value) => value.online,
+        ),
       );
 }

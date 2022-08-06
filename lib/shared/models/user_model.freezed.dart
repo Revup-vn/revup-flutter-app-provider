@@ -22,6 +22,7 @@ mixin _$UserModel {
   DateTime get date => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get urlImage => throw _privateConstructorUsedError;
+  bool get onlineStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserModelCopyWith<UserModel> get copyWith =>
@@ -38,7 +39,8 @@ abstract class $UserModelCopyWith<$Res> {
       String phone,
       DateTime date,
       String address,
-      String urlImage});
+      String urlImage,
+      bool onlineStatus});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? date = freezed,
     Object? address = freezed,
     Object? urlImage = freezed,
+    Object? onlineStatus = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -83,6 +86,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _value.urlImage
           : urlImage // ignore: cast_nullable_to_non_nullable
               as String,
+      onlineStatus: onlineStatus == freezed
+          ? _value.onlineStatus
+          : onlineStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -99,7 +106,8 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String phone,
       DateTime date,
       String address,
-      String urlImage});
+      String urlImage,
+      bool onlineStatus});
 }
 
 /// @nodoc
@@ -120,6 +128,7 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? date = freezed,
     Object? address = freezed,
     Object? urlImage = freezed,
+    Object? onlineStatus = freezed,
   }) {
     return _then(_$_UserModel(
       name: name == freezed
@@ -146,6 +155,10 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
           ? _value.urlImage
           : urlImage // ignore: cast_nullable_to_non_nullable
               as String,
+      onlineStatus: onlineStatus == freezed
+          ? _value.onlineStatus
+          : onlineStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -159,7 +172,8 @@ class _$_UserModel implements _UserModel {
       required this.phone,
       required this.date,
       required this.address,
-      required this.urlImage});
+      required this.urlImage,
+      required this.onlineStatus});
 
   @override
   final String name;
@@ -173,10 +187,12 @@ class _$_UserModel implements _UserModel {
   final String address;
   @override
   final String urlImage;
+  @override
+  final bool onlineStatus;
 
   @override
   String toString() {
-    return 'UserModel(name: $name, email: $email, phone: $phone, date: $date, address: $address, urlImage: $urlImage)';
+    return 'UserModel(name: $name, email: $email, phone: $phone, date: $date, address: $address, urlImage: $urlImage, onlineStatus: $onlineStatus)';
   }
 
   @override
@@ -189,7 +205,9 @@ class _$_UserModel implements _UserModel {
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.urlImage, urlImage));
+            const DeepCollectionEquality().equals(other.urlImage, urlImage) &&
+            const DeepCollectionEquality()
+                .equals(other.onlineStatus, onlineStatus));
   }
 
   @override
@@ -200,7 +218,8 @@ class _$_UserModel implements _UserModel {
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(urlImage));
+      const DeepCollectionEquality().hash(urlImage),
+      const DeepCollectionEquality().hash(onlineStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +234,8 @@ abstract class _UserModel implements UserModel {
       required final String phone,
       required final DateTime date,
       required final String address,
-      required final String urlImage}) = _$_UserModel;
+      required final String urlImage,
+      required final bool onlineStatus}) = _$_UserModel;
 
   @override
   String get name;
@@ -229,6 +249,8 @@ abstract class _UserModel implements UserModel {
   String get address;
   @override
   String get urlImage;
+  @override
+  bool get onlineStatus;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

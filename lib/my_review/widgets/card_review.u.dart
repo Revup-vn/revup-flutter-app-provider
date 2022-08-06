@@ -3,20 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:revup_core/core.dart';
 
-import '../../request/info_request/widgets/default_avatar.dart';
+import '../../shared/shared.dart';
+import '../models/models.dart';
 
 class CardReview extends StatelessWidget {
   const CardReview({
     super.key,
-    required this.user,
-    required this.ratingStar,
-    required this.comment,
+    required this.data,
   });
-  final AppUser user;
-  final double ratingStar;
-  final String comment;
+
+  final ReviewModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +38,8 @@ class CardReview extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
+                            Container(
+                              padding: const EdgeInsets.only(top: 10),
                               height: 50,
                               width: 50,
                               child: ClipRRect(
@@ -54,14 +49,13 @@ class CardReview extends StatelessWidget {
                                       const Duration(milliseconds: 50),
                                   fadeOutDuration:
                                       const Duration(milliseconds: 50),
-                                  imageUrl: user.avatarUrl,
+                                  imageUrl: data.user.urlImage,
                                   placeholder: (context, url) {
                                     return DefaultAvatar(
                                       textSize: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
-                                      userName:
-                                          '''${user.firstName} ${user.lastName}''',
+                                      userName: data.user.name,
                                     );
                                   },
                                   errorWidget: (context, url, dynamic error) {
@@ -69,8 +63,7 @@ class CardReview extends StatelessWidget {
                                       textSize: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
-                                      userName:
-                                          '''${user.firstName} ${user.lastName}''',
+                                      userName: data.user.name,
                                     );
                                   },
                                   height: 64,
@@ -89,7 +82,7 @@ class CardReview extends StatelessWidget {
                               Row(
                                 children: [
                                   AutoSizeText(
-                                    '${user.firstName} ${user.lastName}',
+                                    data.user.name,
                                     style:
                                         Theme.of(context).textTheme.labelLarge,
                                   ),
@@ -98,7 +91,7 @@ class CardReview extends StatelessWidget {
                               Row(
                                 children: [
                                   RatingBar.builder(
-                                    initialRating: ratingStar,
+                                    initialRating: data.rating.toDouble(),
                                     itemSize: 20,
                                     allowHalfRating: true,
                                     itemBuilder: (context, _) => Icon(
@@ -124,7 +117,7 @@ class CardReview extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         AutoSizeText(
-                          comment,
+                          data.comment,
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ],
@@ -135,7 +128,7 @@ class CardReview extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 child: AutoSizeText(
-                  '2 ngày trước',
+                  '${DateTime.now().difference(data.commentedData).toString()} ngày trước',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),

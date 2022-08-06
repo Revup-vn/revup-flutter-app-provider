@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
-class MyReviewtItem extends StatelessWidget {
-  const MyReviewtItem({
+class MyReviewItem extends StatelessWidget {
+  const MyReviewItem({
     super.key,
     required this.numberOfStars,
     required this.callback,
