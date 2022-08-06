@@ -1,5 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -18,10 +19,10 @@ class HomePage extends StatelessWidget {
       uuid: '1a',
       firstName: 'Nam',
       lastName: 'Ngoc',
-      phone: '0866199497',
+      phone: 'XXX-XXX-XXXX',
       dob: DateTime.now(),
       addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
+      email: 'huyxam@huyxam.cm',
       active: true,
       avatarUrl:
           'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',

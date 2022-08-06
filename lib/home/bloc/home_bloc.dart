@@ -12,7 +12,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const _Initial()) {
     on<HomeEvent>(_onEvent);
   }
-  //final imageList = IVector<String>.emptyVector();
   final imageList = IVector.from([
     'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
     'https://e-magazine.asiamedia.vn/wp-content/uploads/2021/07/top-10-hang-dau-nhot-noi-tieng-nhat-tai-viet-nam-21.jpg',

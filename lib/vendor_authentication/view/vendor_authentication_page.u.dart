@@ -1,13 +1,13 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../account/model/user_model.dart';
-import '../../account/widgets/avatar.dart';
+import '../../shared/shared.dart';
 
 class VendorAuthenticationPage extends StatelessWidget {
   const VendorAuthenticationPage({
@@ -22,10 +22,10 @@ class VendorAuthenticationPage extends StatelessWidget {
       uuid: '1a',
       firstName: 'Nam',
       lastName: 'Ngoc',
-      phone: '0866199497',
+      phone: 'XXX-XXX-XXXX',
       dob: DateTime.now(),
       addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
+      email: 'huyxam@huyxam.cm',
       active: true,
       avatarUrl:
           'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
@@ -39,6 +39,9 @@ class VendorAuthenticationPage extends StatelessWidget {
       ),
     );
     final user = UserModel.fromDto(userApp);
+
+    // TODO(tcmhoang): Get datformat from LanguageCubit
+    final formatter = DateFormat();
 
     return Scaffold(
       appBar: AppBar(
@@ -207,7 +210,7 @@ class VendorAuthenticationPage extends StatelessWidget {
                         style: Theme.of(context).textTheme.labelLarge,
                         name: 'date',
                         inputType: InputType.date,
-                        format: DateFormat('dd-MM-yyyy'),
+                        format: formatter,
                         decoration: InputDecoration(
                           labelText: l10n.dateLabel,
                           labelStyle: Theme.of(context)

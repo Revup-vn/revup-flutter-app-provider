@@ -15,19 +15,14 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return ListTile(
       onTap: callback,
-      child: ListTile(
-        title: AutoSizeText(
-          accountName,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        leading: accountIcon,
-        trailing: const IconButton(
-          icon: Icon(Icons.arrow_forward_ios),
-          onPressed: null,
-        ),
+      title: AutoSizeText(
+        accountName,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
+      leading: accountIcon,
+      trailing: const Icon(Icons.arrow_forward_ios),
     );
   }
 }

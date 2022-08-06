@@ -19,6 +19,8 @@ class NotificationProviderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    // TODO(tcmhoang): Get datformat from LanguageCubit
     final formatterDate = DateFormat('dd/MM/yyyy hh:mm');
 
     return Column(

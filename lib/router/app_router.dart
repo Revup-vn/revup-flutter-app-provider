@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 
 import '../account/view/account_page.u.dart';
-import '../history_provider/view/history_detail_provider_page.u.dart';
-import '../history_provider/view/history_provider_page.u.dart';
+import '../history/history_provider/view/history_provider_page.u.dart';
+import '../history/history_provider_detail/view/history_detail_provider_page.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
 import '../login/view/login_page.dart';

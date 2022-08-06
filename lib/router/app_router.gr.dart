@@ -14,10 +14,10 @@
 import 'package:auto_route/auto_route.dart' as _i18;
 import 'package:flutter/material.dart' as _i19;
 import 'package:revup_provider/account/view/account_page.u.dart' as _i17;
-import 'package:revup_provider/history_provider/view/history_detail_provider_page.u.dart'
-    as _i12;
-import 'package:revup_provider/history_provider/view/history_provider_page.u.dart'
+import 'package:revup_provider/history/history_provider/view/history_provider_page.u.dart'
     as _i15;
+import 'package:revup_provider/history/history_provider_detail/view/history_detail_provider_page.u.dart'
+    as _i12;
 import 'package:revup_provider/home/view/home_page.u.dart' as _i13;
 import 'package:revup_provider/home/widgets/home_body_page.u.dart' as _i14;
 import 'package:revup_provider/login/view/login_page.dart' as _i2;
