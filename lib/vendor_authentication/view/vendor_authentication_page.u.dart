@@ -43,6 +43,14 @@ class VendorAuthenticationPage extends StatelessWidget {
     // TODO(tcmhoang): Get datformat from LanguageCubit
     final formatter = DateFormat();
 
+    const confirmation = 'Xác nhận';
+    const serviceProviderAuthentication = 'Xác thực nhà cung cấp dịch vụ';
+    const portrait = 'Ảnh chân dung';
+    const basicInformation = 'Thông tin cơ bản';
+    const imgCard = 'Ảnh CMT/CMND';
+    const imgBefore = 'Mặt trước';
+    const imgAfter = 'Mặt sau';
+
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
@@ -56,7 +64,7 @@ class VendorAuthenticationPage extends StatelessWidget {
             onPressed: () {
               // TODO(namngoc231): cancel
             },
-            child: const Text('Xác nhận'),
+            child: const Text(confirmation),
           ),
         ],
       ),
@@ -68,7 +76,7 @@ class VendorAuthenticationPage extends StatelessWidget {
               Row(
                 children: <Widget>[
                   AutoSizeText(
-                    'Xác thực nhà cung cấp dịch vụ',
+                    serviceProviderAuthentication,
                     style: Theme.of(context)
                             .textTheme
                             .titleLarge
@@ -85,7 +93,7 @@ class VendorAuthenticationPage extends StatelessWidget {
               Row(
                 children: <Widget>[
                   AutoSizeText(
-                    'Ảnh chân dung',
+                    portrait,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: Theme.of(context).colorScheme.outline,
                             ) ??
@@ -108,7 +116,7 @@ class VendorAuthenticationPage extends StatelessWidget {
               Row(
                 children: <Widget>[
                   AutoSizeText(
-                    'Thông tin cơ bản',
+                    basicInformation,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: Theme.of(context).colorScheme.outline,
                             ) ??
@@ -256,7 +264,7 @@ class VendorAuthenticationPage extends StatelessWidget {
               Row(
                 children: <Widget>[
                   AutoSizeText(
-                    'Ảnh CMT/CMND',
+                    imgCard,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: Theme.of(context).colorScheme.outline,
                             ) ??
@@ -275,7 +283,7 @@ class VendorAuthenticationPage extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       AutoSizeText(
-                        'Mặt trước',
+                        imgBefore,
                         style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
@@ -291,7 +299,7 @@ class VendorAuthenticationPage extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       AutoSizeText(
-                        'Mặt sau',
+                        imgAfter,
                         style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
