@@ -14,7 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 import 'package:revup_provider/home/home.dart' as _i8;
-import 'package:revup_provider/login/view/login_page.dart' as _i2;
+import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
 import 'package:revup_provider/my_review/my_review.dart' as _i6;
 import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
     as _i5;
@@ -110,7 +110,7 @@ class AppRouter extends _i9.RootStackRouter {
 
   @override
   List<_i9.RouteConfig> get routes => [
-        _i9.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i9.RouteConfig(SplashRoute.name, path: '/'),
         _i9.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i9.RouteConfig(DetailServiceRequestRoute.name,
             path: '/detail-service-request-page'),
@@ -123,7 +123,8 @@ class AppRouter extends _i9.RootStackRouter {
         _i9.RouteConfig(DetailServiceView.name, path: '/detail-service-view'),
         _i9.RouteConfig(ListServiceView.name, path: '/list-service-view'),
         _i9.RouteConfig(MyReviewRoute.name, path: '/my-review-page'),
-        _i9.RouteConfig(VendorAuthenticationRoute.name, path: '/'),
+        _i9.RouteConfig(VendorAuthenticationRoute.name,
+            path: '/vendor-authentication-page'),
         _i9.RouteConfig(ListServiceRoute.name, path: '/list-service-page'),
         _i9.RouteConfig(DetailServiceRoute.name, path: '/detail-service-page'),
         _i9.RouteConfig(HistoryProviderDetailRoute.name,
@@ -144,7 +145,7 @@ class AppRouter extends _i9.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i9.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -234,7 +235,8 @@ class MyReviewRoute extends _i9.PageRouteInfo<void> {
 /// [_i7.VendorAuthenticationPage]
 class VendorAuthenticationRoute extends _i9.PageRouteInfo<void> {
   const VendorAuthenticationRoute()
-      : super(VendorAuthenticationRoute.name, path: '/');
+      : super(VendorAuthenticationRoute.name,
+            path: '/vendor-authentication-page');
 
   static const String name = 'VendorAuthenticationRoute';
 }

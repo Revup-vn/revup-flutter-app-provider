@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:revup_provider/login/view/login_page.dart';
+import 'package:revup_provider/login/view/login_page.u.dart';
 
 void main() {
   group('App', () {
