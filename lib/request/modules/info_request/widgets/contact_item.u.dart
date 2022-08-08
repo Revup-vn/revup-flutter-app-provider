@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:revup_core/core.dart';
 
-import '../../../../shared/widgets/default_avatar.dart';
+import '../../../../shared/shared.dart';
 import 'build_icon_action.u.dart';
 
 class ContactItem extends StatelessWidget {
@@ -12,7 +11,7 @@ class ContactItem extends StatelessWidget {
     super.key,
     required this.user,
   });
-  final AppUser user;
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,17 +24,17 @@ class ContactItem extends StatelessWidget {
             child: CachedNetworkImage(
               fadeInDuration: const Duration(milliseconds: 50),
               fadeOutDuration: const Duration(milliseconds: 50),
-              imageUrl: user.firstName + user.lastName,
+              imageUrl: user.urlImage,
               placeholder: (context, url) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.titleLarge,
-                  userName: user.firstName + user.lastName,
+                  userName: user.name,
                 );
               },
               errorWidget: (context, url, dynamic error) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.titleLarge,
-                  userName: user.firstName + user.lastName,
+                  userName: user.name,
                 );
               },
               height: 64,
@@ -46,7 +45,7 @@ class ContactItem extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         AutoSizeText(
-          '''${user.firstName} ${user.lastName}''',
+          user.name,
           style: Theme.of(context)
                   .textTheme
                   .titleMedium

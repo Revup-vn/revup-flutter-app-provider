@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../widgets/additional_costs_item.u.dart';
-import '../widgets/bonus_service_item.u.dart';
-import '../widgets/service_request_item.u.dart';
-import '../widgets/total_service_price_item.u.dart';
+import '../widgets/widgets.dart';
 
 class DetailServiceRequestView extends StatelessWidget {
   const DetailServiceRequestView({

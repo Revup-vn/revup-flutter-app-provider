@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../bloc/info_request_bloc.dart';
-import '../widgets/build_row_item_info_request.u.dart';
-import '../widgets/contact_item.u.dart';
+import '../widgets/widgets.dart';
 
 class InfoRequestView extends StatelessWidget {
   const InfoRequestView({

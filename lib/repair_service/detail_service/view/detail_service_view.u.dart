@@ -25,7 +25,9 @@ class DetailServiceView extends StatelessWidget {
     const addNew = 'Thêm mới';
     const productTypeName = 'Lốp xe Lead';
     const unit = 'cái';
-    const image = 'assets/screens/tire.png';
+    // TODO(tcmhoang): change this asset to a more general image
+    // and Use `Assets` class instead of using a path
+    const image = '';
 
     return Scaffold(
       appBar: AppBar(

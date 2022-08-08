@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../widgets/select_bonus_service_item.u.dart';
-import '../widgets/select_service_request_item.u.dart';
+import '../widgets/widgets.dart';
 
 class SelectOptionCompleteView extends StatelessWidget {
   const SelectOptionCompleteView({

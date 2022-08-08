@@ -22,7 +22,10 @@ class ListServiceView extends StatelessWidget {
     const nameService = 'Thay lốp';
     const priceRangeStart = '100.000';
     const priceRangeEnd = '300.000';
-    const image = 'assets/screens/tire.png';
+
+    // TODO(tcmhoang): change this asset to a more general image
+    // and Use `Assets` class instead of using a path
+    const image = '';
 
     return Scaffold(
       appBar: AppBar(

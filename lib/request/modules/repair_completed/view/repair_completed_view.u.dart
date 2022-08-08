@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../bloc/repair_completed_bloc.dart';
-import '../widgets/build_row_repair_completed.u.dart';
-import '../widgets/upload_photos_item.u.dart';
+import '../widgets/widgets.dart';
 
 class RepairCompleteView extends StatelessWidget {
   const RepairCompleteView({

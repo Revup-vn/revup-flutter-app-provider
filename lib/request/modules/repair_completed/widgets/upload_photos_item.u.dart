@@ -50,7 +50,9 @@ class UploadPhotosItem extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Image.asset(
-                      'assets/screens/tire.png',
+                      // TODO(tcmhoang): Get a more
+                      // general image for place holder
+                      '',
                       height: 50,
                       width: 50,
                     );
