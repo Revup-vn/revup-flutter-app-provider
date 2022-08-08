@@ -15,8 +15,14 @@ class AddServiceView extends StatelessWidget {
     final l10n = context.l10n;
 
     // TODO(tcmhoang): Intl this view screen and fields in this
-    // file need to parameterlized
-    const value = '1'; // Do not understand this variable purposed in this form
+
+    // Initial Selected Value
+    var dropdownvalue = 'Unit';
+    // List of items in our dropdown menu
+    final items = [
+      'Unit',
+      'Box',
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -118,21 +124,22 @@ class AddServiceView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: DropdownButton(
-                          value: value,
+                          // Initial Value
+                          value: dropdownvalue,
                           isExpanded: true,
-                          items: const [
-                            DropdownMenuItem(
-                              value: '1',
-                              child: Text('Cái'),
-                            ),
-                            DropdownMenuItem(
-                              value: '2',
-                              child: Text('Hộp'),
-                            ),
-                          ],
-                          //onChanged: null,
-                          onChanged: (String? value) {
-                            value = value;
+                          // Down Arrow Icon
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          // Array list of items
+                          items: items.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (String? newValue) {
+                            dropdownvalue = newValue!;
                           },
                         ),
                       ),
@@ -159,8 +166,7 @@ class AddServiceView extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
+          Expanded(
             child: Container(
               padding: const EdgeInsets.all(16),
               width: MediaQuery.of(context).size.width,

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../bloc/repair_completed_bloc.dart';
+import '../widgets/widgets.dart';
 
 class RepairCompleteView extends StatelessWidget {
   const RepairCompleteView({
@@ -49,226 +50,27 @@ class RepairCompleteView extends StatelessWidget {
                                   ),
                             ),
                             const SizedBox(height: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AutoSizeText(
-                                  l10n.pictureLabel,
-                                  style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .outline,
-                                          ) ??
-                                      TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .outline,
-                                      ),
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondaryContainer,
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .outline,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.add_photo_alternate,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onInverseSurface,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 64,
-                                        child: ListView.builder(
-                                          itemCount: 2,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, index) {
-                                            return Image.asset(
-                                              'assets/screens/ball.png',
-                                              height: 50,
-                                              width: 50,
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                            const UploadPhotosItem(),
                             const SizedBox(height: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AutoSizeText(
-                                  l10n.collectMoneyCustomersLabel,
-                                  style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .outline,
-                                          ) ??
-                                      TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .outline,
-                                      ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AutoSizeText(
-                                      repairCompletedState.collectMoneyCustomers
-                                          .toString(),
-                                      style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ) ??
-                                          const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    GestureDetector(
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                        onPressed: () {
-                                          // TODO(namngoc231): detail
-                                        },
-                                        child: Text(
-                                          l10n.detailLabel,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            BuildRowRepairCompletedItem(
+                              title: l10n.collectMoneyCustomersLabel,
+                              content: repairCompletedState
+                                  .collectMoneyCustomers
+                                  .toString(),
+                              textButtonName: l10n.detailLabel,
                             ),
                             const SizedBox(height: 5),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AutoSizeText(
-                                  l10n.vehicleTypeLabel,
-                                  style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .outline,
-                                          ) ??
-                                      TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .outline,
-                                      ),
-                                ),
-                                const SizedBox(height: 5),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AutoSizeText(
-                                      repairCompletedState.vehicleType,
-                                      style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ) ??
-                                          const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            BuildRowRepairCompletedItem(
+                              title: l10n.vehicleTypeLabel,
+                              content: repairCompletedState.vehicleType,
+                              textButtonName: '',
                             ),
                             const SizedBox(height: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AutoSizeText(
-                                  l10n.completedItemLabel,
-                                  style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .outline,
-                                          ) ??
-                                      TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .outline,
-                                      ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AutoSizeText(
-                                      '''${l10n.totalLabel} ${repairCompletedState.totalService}${l10n.categoriesLabel}''',
-                                      style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ) ??
-                                          const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    GestureDetector(
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                        onPressed: () {
-                                          // TODO(namngoc231): fix again
-                                        },
-                                        child: Text(
-                                          l10n.fixAgainLabel,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            BuildRowRepairCompletedItem(
+                              title: l10n.completedItemLabel,
+                              content:
+                                  '''${l10n.totalLabel} ${repairCompletedState.totalService}${l10n.categoriesLabel}''',
+                              textButtonName: l10n.fixAgainLabel,
                             ),
                             const SizedBox(height: 30),
                             AutoSizeText(

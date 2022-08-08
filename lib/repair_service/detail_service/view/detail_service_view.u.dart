@@ -13,10 +13,26 @@ class DetailServiceView extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO(tcmhoang): Intl this file and parametalized
     // all the harded code value
+
+    const serviceDetails = 'Chi tiết dịch vụ';
+    const edit = 'Chỉnh sửa';
+    const nameService = 'Thay lốp';
+    const wage = 'Tiền công';
+    const price = '50.000';
+    const lastEdit = 'Chỉnh sửa cuối';
+    const date = '25/6/2022';
+    const productType = 'Loại sản phẩm';
+    const addNew = 'Thêm mới';
+    const productTypeName = 'Lốp xe Lead';
+    const unit = 'cái';
+    // TODO(tcmhoang): change this asset to a more general image
+    // and Use `Assets` class instead of using a path
+    const image = '';
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          'Chi tiết dịch vụ',
+          serviceDetails,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -33,7 +49,7 @@ class DetailServiceView extends StatelessWidget {
             onPressed: () {
               // TODO(namngoc231): cancel
             },
-            child: const Text('Chỉnh sửa'),
+            child: const Text(edit),
           ),
         ],
       ),
@@ -61,7 +77,7 @@ class DetailServiceView extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(48),
                               child: Image.asset(
-                                'assets/screens/ball.png',
+                                image,
                                 height: 50,
                                 width: 50,
                               ),
@@ -79,7 +95,7 @@ class DetailServiceView extends StatelessWidget {
                         Row(
                           children: [
                             AutoSizeText(
-                              'Thay lốp',
+                              nameService,
                               style: Theme.of(context)
                                       .textTheme
                                       .titleMedium
@@ -98,7 +114,7 @@ class DetailServiceView extends StatelessWidget {
                         Row(
                           children: [
                             AutoSizeText(
-                              'Tiền công: 20.000đ',
+                              '$wage: $priceđ',
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ],
@@ -109,7 +125,7 @@ class DetailServiceView extends StatelessWidget {
                         Row(
                           children: [
                             AutoSizeText(
-                              'Chỉnh sửa cuối: 25/6/2022',
+                              '$lastEdit: $date',
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ],
@@ -127,7 +143,7 @@ class DetailServiceView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AutoSizeText(
-                      'Loại sản phẩm',
+                      productType,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ) ??
@@ -150,7 +166,7 @@ class DetailServiceView extends StatelessWidget {
                     onPressed: () {
                       // TODO(namngoc231): quote
                     },
-                    child: const Text('Thêm mới'),
+                    child: const Text(addNew),
                   ),
                 ],
               ),
@@ -159,30 +175,30 @@ class DetailServiceView extends StatelessWidget {
               ),
               CartDetailServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Lốp xe Jupiter',
-                priceRange: '80.000đ / cái',
+                serviceName: productTypeName,
+                priceRange: '$priceđ / $unit',
               ),
               CartDetailServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Lốp xe Lead',
-                priceRange: '180.000đ / cái',
+                serviceName: productTypeName,
+                priceRange: '$priceđ / $unit',
               ),
               CartDetailServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Lốp xe Wave RSX',
-                priceRange: '280.000đ / cái',
+                serviceName: productTypeName,
+                priceRange: '$priceđ / $unit',
               ),
             ],
           ),

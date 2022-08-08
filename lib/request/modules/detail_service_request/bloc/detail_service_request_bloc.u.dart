@@ -36,26 +36,6 @@ class DetailServiceRequestBloc
             name: 'Thay săm',
             price: 170000,
           ),
-          const RequestServiceModel(
-            name: 'Thay săm',
-            price: 170000,
-          ),
-          const RequestServiceModel(
-            name: 'Thay săm',
-            price: 170000,
-          ),
-          const RequestServiceModel(
-            name: 'Thay săm',
-            price: 170000,
-          ),
-          const RequestServiceModel(
-            name: 'Thay săm',
-            price: 170000,
-          ),
-          const RequestServiceModel(
-            name: 'Thay săm',
-            price: 170000,
-          ),
         ];
         final bonusServiceModel = [
           const BonusServicesModel(

@@ -37,7 +37,7 @@ class HistoryProviderDetailView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  if (data.isComplete == true) ...[
+                  if (data.isComplete) ...[
                     OrderStatusItem(
                       orderNumber: data.orderNumber,
                       orderStatusNotification: l10n.completedOrderLabel,
