@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../../l10n/l10n.dart';
 import '../widgets/card_service_detail.u.dart';
 
 class DetailServiceView extends StatelessWidget {
@@ -13,16 +14,11 @@ class DetailServiceView extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO(tcmhoang): Intl this file and parametalized
     // all the harded code value
+    final l10n = context.l10n;
 
-    const serviceDetails = 'Chi tiết dịch vụ';
-    const edit = 'Chỉnh sửa';
     const nameService = 'Thay lốp';
-    const wage = 'Tiền công';
     const price = '50.000';
-    const lastEdit = 'Chỉnh sửa cuối';
     const date = '25/6/2022';
-    const productType = 'Loại sản phẩm';
-    const addNew = 'Thêm mới';
     const productTypeName = 'Lốp xe Lead';
     const unit = 'cái';
     // TODO(tcmhoang): change this asset to a more general image
@@ -32,7 +28,7 @@ class DetailServiceView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          serviceDetails,
+          l10n.serviceDetailsAppBarTitle,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -49,7 +45,7 @@ class DetailServiceView extends StatelessWidget {
             onPressed: () {
               // TODO(namngoc231): cancel
             },
-            child: const Text(edit),
+            child: Text(l10n.editProfileLabel),
           ),
         ],
       ),
@@ -114,7 +110,7 @@ class DetailServiceView extends StatelessWidget {
                         Row(
                           children: [
                             AutoSizeText(
-                              '$wage: $priceđ',
+                              '${l10n.wageLabel}: $priceđ',
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ],
@@ -125,7 +121,7 @@ class DetailServiceView extends StatelessWidget {
                         Row(
                           children: [
                             AutoSizeText(
-                              '$lastEdit: $date',
+                              '${l10n.lastEditLabel}: $date',
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ],
@@ -143,7 +139,7 @@ class DetailServiceView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AutoSizeText(
-                      productType,
+                      l10n.productTypeLabel,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ) ??
@@ -166,7 +162,7 @@ class DetailServiceView extends StatelessWidget {
                     onPressed: () {
                       // TODO(namngoc231): quote
                     },
-                    child: const Text(addNew),
+                    child: Text(l10n.addLabel),
                   ),
                 ],
               ),

@@ -11,16 +11,20 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i9;
+
 import 'package:flutter/material.dart' as _i10;
+
+import 'package:auto_route/auto_route.dart' as _i9;
+
 import 'package:revup_provider/home/home.dart' as _i8;
 import 'package:revup_provider/login/view/login_page.dart' as _i2;
 import 'package:revup_provider/my_review/my_review.dart' as _i6;
-import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
-    as _i5;
 import 'package:revup_provider/repair_service/repair_service.dart' as _i4;
 import 'package:revup_provider/request/modules/modules.dart' as _i3;
 import 'package:revup_provider/splash/splash.dart' as _i1;
+
+import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
+    as _i5;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
     as _i7;
 
@@ -123,12 +127,13 @@ class AppRouter extends _i9.RootStackRouter {
         _i9.RouteConfig(DetailServiceView.name, path: '/detail-service-view'),
         _i9.RouteConfig(ListServiceView.name, path: '/list-service-view'),
         _i9.RouteConfig(MyReviewRoute.name, path: '/my-review-page'),
-        _i9.RouteConfig(VendorAuthenticationRoute.name, path: '/'),
+        _i9.RouteConfig(VendorAuthenticationRoute.name,
+            path: '/vendor-authentication-page'),
         _i9.RouteConfig(ListServiceRoute.name, path: '/list-service-page'),
         _i9.RouteConfig(DetailServiceRoute.name, path: '/detail-service-page'),
         _i9.RouteConfig(HistoryProviderDetailRoute.name,
             path: '/history-provider-detail-page'),
-        _i9.RouteConfig(HomeRoute.name, path: '/home-page', children: [
+        _i9.RouteConfig(HomeRoute.name, path: '/', children: [
           _i9.RouteConfig(HomePrimaryRoute.name,
               path: 'home-primary-page', parent: HomeRoute.name),
           _i9.RouteConfig(HistoryProviderRoute.name,
@@ -234,7 +239,8 @@ class MyReviewRoute extends _i9.PageRouteInfo<void> {
 /// [_i7.VendorAuthenticationPage]
 class VendorAuthenticationRoute extends _i9.PageRouteInfo<void> {
   const VendorAuthenticationRoute()
-      : super(VendorAuthenticationRoute.name, path: '/');
+      : super(VendorAuthenticationRoute.name,
+            path: '/vendor-authentication-page');
 
   static const String name = 'VendorAuthenticationRoute';
 }
@@ -271,7 +277,7 @@ class HistoryProviderDetailRoute extends _i9.PageRouteInfo<void> {
 /// [_i8.HomePage]
 class HomeRoute extends _i9.PageRouteInfo<void> {
   const HomeRoute({List<_i9.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
+      : super(HomeRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }

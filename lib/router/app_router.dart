@@ -22,12 +22,13 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: DetailServiceView),
     AdaptiveRoute<void>(page: ListServiceView),
     AdaptiveRoute<void>(page: MyReviewPage),
-    AdaptiveRoute<void>(page: VendorAuthenticationPage, initial: true),
+    AdaptiveRoute<void>(page: VendorAuthenticationPage),
     AdaptiveRoute<void>(page: ListServicePage),
     AdaptiveRoute<void>(page: DetailServicePage),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(
       page: HomePage,
+      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomePrimaryPage),
         AdaptiveRoute<void>(page: HistoryProviderPage),

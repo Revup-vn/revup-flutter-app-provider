@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 import '../models/models.dart';
 
@@ -17,6 +18,8 @@ class CardReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return InkWell(
       onTap: () {
         // TODO(namngoc231): Go to card detail
@@ -128,8 +131,7 @@ class CardReview extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 child: AutoSizeText(
-                  '${DateTime.now().difference(data.commentedData).toString()}'
-                  ' ngày trước',
+                  '''${DateTime.now().difference(data.commentedData).toString()} ${l10n.yesterdayLabel}''',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
