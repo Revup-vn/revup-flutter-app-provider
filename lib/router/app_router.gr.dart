@@ -123,8 +123,7 @@ class AppRouter extends _i9.RootStackRouter {
         _i9.RouteConfig(DetailServiceView.name, path: '/detail-service-view'),
         _i9.RouteConfig(ListServiceView.name, path: '/list-service-view'),
         _i9.RouteConfig(MyReviewRoute.name, path: '/my-review-page'),
-        _i9.RouteConfig(VendorAuthenticationRoute.name,
-            path: '/vendor-authentication-page'),
+        _i9.RouteConfig(VendorAuthenticationRoute.name, path: '/'),
         _i9.RouteConfig(ListServiceRoute.name, path: '/list-service-page'),
         _i9.RouteConfig(DetailServiceRoute.name, path: '/detail-service-page'),
         _i9.RouteConfig(HistoryProviderDetailRoute.name,
@@ -235,8 +234,7 @@ class MyReviewRoute extends _i9.PageRouteInfo<void> {
 /// [_i7.VendorAuthenticationPage]
 class VendorAuthenticationRoute extends _i9.PageRouteInfo<void> {
   const VendorAuthenticationRoute()
-      : super(VendorAuthenticationRoute.name,
-            path: '/vendor-authentication-page');
+      : super(VendorAuthenticationRoute.name, path: '/');
 
   static const String name = 'VendorAuthenticationRoute';
 }
