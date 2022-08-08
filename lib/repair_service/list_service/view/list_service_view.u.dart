@@ -15,10 +15,22 @@ class ListServiceView extends StatelessWidget {
     // TODO(tcmhoang): Intl this file and parametalized
     // all the harded code value
 
+    const myService = 'Dịch vụ của tôi';
+    const addNew = 'Thêm mới';
+    const motorcycle = 'Xe máy';
+    const car = 'Ô tô';
+    const nameService = 'Thay lốp';
+    const priceRangeStart = '100.000';
+    const priceRangeEnd = '300.000';
+
+    // TODO(tcmhoang): change this asset to a more general image
+    // and Use `Assets` class instead of using a path
+    const image = '';
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          'Dịch vụ của tôi',
+          myService,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -35,7 +47,7 @@ class ListServiceView extends StatelessWidget {
             onPressed: () {
               // TODO(namngoc231): cancel
             },
-            child: const Text('Thêm mới'),
+            child: const Text(addNew),
           ),
         ],
       ),
@@ -50,7 +62,7 @@ class ListServiceView extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
                     VehicleTypeItem(
-                      vehicleName: 'Xe máy',
+                      vehicleName: motorcycle,
                       iconVehicle: Icon(
                         Icons.motorcycle,
                         size: 20,
@@ -61,7 +73,7 @@ class ListServiceView extends StatelessWidget {
                       },
                     ),
                     VehicleTypeItem(
-                      vehicleName: 'Ô tô',
+                      vehicleName: car,
                       iconVehicle: Icon(
                         Icons.local_taxi,
                         size: 20,
@@ -79,75 +91,48 @@ class ListServiceView extends StatelessWidget {
               ),
               CartServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
+                serviceName: nameService,
+                priceRange: '$priceRangeStartđ - $priceRangeEndđ',
               ),
               CartServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
+                serviceName: nameService,
+                priceRange: '$priceRangeStartđ - $priceRangeEndđ',
               ),
               CartServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
+                serviceName: nameService,
+                priceRange: '$priceRangeStartđ - $priceRangeEndđ',
               ),
               CartServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
+                serviceName: nameService,
+                priceRange: '$priceRangeStartđ - $priceRangeEndđ',
               ),
               CartServiceReview(
                 img: Image.asset(
-                  'assets/screens/ball.png',
+                  image,
                   height: 50,
                   width: 50,
                 ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
-              ),
-              CartServiceReview(
-                img: Image.asset(
-                  'assets/screens/ball.png',
-                  height: 50,
-                  width: 50,
-                ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
-              ),
-              CartServiceReview(
-                img: Image.asset(
-                  'assets/screens/ball.png',
-                  height: 50,
-                  width: 50,
-                ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
-              ),
-              CartServiceReview(
-                img: Image.asset(
-                  'assets/screens/ball.png',
-                  height: 50,
-                  width: 50,
-                ),
-                serviceName: 'Thay lốp',
-                priceRange: '100.000đ - 300.000đ',
+                serviceName: nameService,
+                priceRange: '$priceRangeStartđ - $priceRangeEndđ',
               ),
             ],
           ),

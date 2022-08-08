@@ -1,6 +1,6 @@
 name: revup_provider
 description: A very good app
-version: 1.0.0+6-dev
+version: 1.0.0+7-dev
 publish_to: none
 
 environment:
@@ -24,7 +24,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
-  flutter_svg: ^1.1.0
+  flutter_svg: ^1.1.3
   flutter_switch: ^0.3.2
   form_builder_validators: ^8.3.0
   freezed_annotation: ^2.0.3
@@ -40,7 +40,7 @@ dependencies:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^2.4.0-dev
+      version: ^4.1.0-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
 

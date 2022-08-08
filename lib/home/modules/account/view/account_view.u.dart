@@ -45,6 +45,9 @@ class AccountView extends StatelessWidget {
             OverviewRating(
               onTap: () {
                 // TODO(tcmhoang): need to implement
+                context.router.push(
+                  const MyReviewRoute(),
+                );
               },
               rating: 4.5,
             ),

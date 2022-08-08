@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
+import '../../../../shared/models/models.dart';
 import '../models/models.dart';
 
 part 'info_request_bloc.freezed.dart';
@@ -24,24 +25,26 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
         emit(const InfoRequestState.loading());
 
         final infoRequestModel = InfoRequestModel(
-          user: AppUser.consumer(
-            uuid: '1a',
-            firstName: 'Nam',
-            lastName: 'Ngoc',
-            phone: 'XXX-XXX-XXXX',
-            dob: DateTime.now(),
-            addr: 'Ninh Binh',
-            email: 'huyxam@huyxam.cm',
-            active: true,
-            avatarUrl:
-                'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-            createdTime: DateTime.now(),
-            lastUpdatedTime: DateTime.now(),
-            vac: const VideoCallAccount(
-              id: '',
-              username: '',
-              pwd: '',
-              email: '',
+          user: UserModel.fromDto(
+            AppUser.consumer(
+              uuid: '1a',
+              firstName: 'Nam',
+              lastName: 'Ngoc',
+              phone: 'XXX-XXX-XXXX',
+              dob: DateTime.now(),
+              addr: 'Ninh Binh',
+              email: 'huyxam@huyxam.cm',
+              active: true,
+              avatarUrl:
+                  'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
+              createdTime: DateTime.now(),
+              lastUpdatedTime: DateTime.now(),
+              vac: const VideoCallAccount(
+                id: '',
+                username: '',
+                pwd: '',
+                email: '',
+              ),
             ),
           ),
           distance: 2.7,

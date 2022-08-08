@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$InfoRequestModel {
-  AppUser get user => throw _privateConstructorUsedError;
+  UserModel get user => throw _privateConstructorUsedError;
   double get distance => throw _privateConstructorUsedError;
   int get feeTransport => throw _privateConstructorUsedError;
   String get vehicleType => throw _privateConstructorUsedError;
@@ -34,14 +34,14 @@ abstract class $InfoRequestModelCopyWith<$Res> {
           InfoRequestModel value, $Res Function(InfoRequestModel) then) =
       _$InfoRequestModelCopyWithImpl<$Res>;
   $Res call(
-      {AppUser user,
+      {UserModel user,
       double distance,
       int feeTransport,
       String vehicleType,
       String message,
       int totalService});
 
-  $AppUserCopyWith<$Res> get user;
+  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$InfoRequestModelCopyWithImpl<$Res>
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
+              as UserModel,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class _$InfoRequestModelCopyWithImpl<$Res>
   }
 
   @override
-  $AppUserCopyWith<$Res> get user {
-    return $AppUserCopyWith<$Res>(_value.user, (value) {
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -106,7 +106,7 @@ abstract class _$$_InfoRequestModelCopyWith<$Res>
       __$$_InfoRequestModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {AppUser user,
+      {UserModel user,
       double distance,
       int feeTransport,
       String vehicleType,
@@ -114,7 +114,7 @@ abstract class _$$_InfoRequestModelCopyWith<$Res>
       int totalService});
 
   @override
-  $AppUserCopyWith<$Res> get user;
+  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -141,7 +141,7 @@ class __$$_InfoRequestModelCopyWithImpl<$Res>
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
+              as UserModel,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ class _$_InfoRequestModel implements _InfoRequestModel {
       required this.totalService});
 
   @override
-  final AppUser user;
+  final UserModel user;
   @override
   final double distance;
   @override
@@ -229,7 +229,7 @@ class _$_InfoRequestModel implements _InfoRequestModel {
 
 abstract class _InfoRequestModel implements InfoRequestModel {
   const factory _InfoRequestModel(
-      {required final AppUser user,
+      {required final UserModel user,
       required final double distance,
       required final int feeTransport,
       required final String vehicleType,
@@ -237,7 +237,7 @@ abstract class _InfoRequestModel implements InfoRequestModel {
       required final int totalService}) = _$_InfoRequestModel;
 
   @override
-  AppUser get user;
+  UserModel get user;
   @override
   double get distance;
   @override
