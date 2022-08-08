@@ -4,7 +4,7 @@ import 'package:revup_core/core.dart';
 
 import 'configs/firebase_options_pub.dart';
 import 'l10n/l10n.dart';
-import 'router/router.dart';
+import 'router/app_router.gr.dart';
 
 void main() {
   final appRouter = AppRouter();
