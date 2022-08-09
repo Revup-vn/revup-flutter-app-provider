@@ -3,19 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
+
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
+
 import 'package:revup_core/core.dart';
 
-import '../../configs/video_call_config.dart';
-import '../../l10n/l10n.dart';
-import '../../shared/widgets/avatar.dart';
-import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/signup_bloc.dart';
 import 'signup_view.u.dart';
 

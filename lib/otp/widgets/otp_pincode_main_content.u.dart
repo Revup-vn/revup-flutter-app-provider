@@ -9,7 +9,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 class OTPCode extends StatelessWidget {
   const OTPCode(this.phoneNumber, this.completer, {super.key});
   final String phoneNumber;
-  final Completer completer;
+  final Completer<String> completer;
 
   @override
   Widget build(BuildContext context) {

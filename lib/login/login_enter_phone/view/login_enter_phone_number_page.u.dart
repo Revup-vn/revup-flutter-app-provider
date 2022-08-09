@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../bloc/login_bloc.dart';
 import 'login_enter_phone_number_view.u.dart';
@@ -16,7 +17,7 @@ class LoginEnterPhonePage extends StatelessWidget {
     this.email, {
     super.key,
   });
-  final Completer completer;
+  final Completer<AppUser> completer;
   final String phoneNumber;
   final String photoURL;
   final String uid;

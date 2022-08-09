@@ -19,7 +19,7 @@ class LoginSuccess extends StatelessWidget {
       const Duration(seconds: 3),
       () => context.router.pushAndPopUntil(
         // HomeRoute(user: type.user),
-        HomeRoute(),
+        const HomeRoute(),
         predicate: (dynamic _) => false,
       ),
     );

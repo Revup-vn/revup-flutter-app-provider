@@ -8,7 +8,6 @@ import '../repair_service/detail_service/view/detail_service_view.u.dart';
 import '../repair_service/repair_service.dart';
 import '../request/modules/modules.dart';
 import '../signup/view/signup_page.u.dart';
-import '../signup/widgets/signup_content.u.dart';
 import '../splash/splash.dart';
 import '../vendor_authentication/vender_authentication.dart';
 

@@ -27,7 +27,7 @@ class LoginEnterPhoneView extends StatelessWidget {
   final String photoURL;
   final String uid;
   final String email;
-  final Completer completer;
+  final Completer<AppUser> completer;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

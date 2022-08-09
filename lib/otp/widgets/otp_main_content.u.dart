@@ -13,7 +13,7 @@ import 'otp_pincode_main_content.u.dart';
 
 class OTPMainContent extends StatelessWidget {
   const OTPMainContent(this.phoneNumber, this.completer, {super.key});
-  final Completer completer;
+  final Completer<String> completer;
   final String phoneNumber;
   @override
   Widget build(BuildContext context) {
