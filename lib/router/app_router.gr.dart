@@ -114,7 +114,7 @@ class AppRouter extends _i9.RootStackRouter {
 
   @override
   List<_i9.RouteConfig> get routes => [
-        _i9.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i9.RouteConfig(SplashRoute.name, path: '/'),
         _i9.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i9.RouteConfig(DetailServiceRequestRoute.name,
             path: '/detail-service-request-page'),
@@ -133,7 +133,7 @@ class AppRouter extends _i9.RootStackRouter {
         _i9.RouteConfig(DetailServiceRoute.name, path: '/detail-service-page'),
         _i9.RouteConfig(HistoryProviderDetailRoute.name,
             path: '/history-provider-detail-page'),
-        _i9.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i9.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i9.RouteConfig(HomePrimaryRoute.name,
               path: 'home-primary-page', parent: HomeRoute.name),
           _i9.RouteConfig(HistoryProviderRoute.name,
@@ -149,7 +149,7 @@ class AppRouter extends _i9.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i9.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -277,7 +277,7 @@ class HistoryProviderDetailRoute extends _i9.PageRouteInfo<void> {
 /// [_i8.HomePage]
 class HomeRoute extends _i9.PageRouteInfo<void> {
   const HomeRoute({List<_i9.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/', initialChildren: children);
+      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
