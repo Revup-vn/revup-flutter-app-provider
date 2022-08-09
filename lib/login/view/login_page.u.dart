@@ -88,7 +88,7 @@ class LoginPage extends StatelessWidget {
               );
 
               return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(HomeRoute());
+                context.router.push(const HomeRoute());
               });
             },
             orElse: () => false,
@@ -138,27 +138,27 @@ class LoginPage extends StatelessWidget {
             phoneNumber: '+84$phoneNumber',
             onSubmitOTP: () async {
               final completer = Completer<String>();
-              // await context.router.push(
-              //   OTPRoute(
-              //     phoneNumber: phoneNumber,
-              //     completer: completer,
-              //   ),
-              // );
+              await context.router.push(
+                OTPRoute(
+                  phoneNumber: phoneNumber,
+                  completer: completer,
+                ),
+              );
 
               return completer.future;
             },
             onSignUpSubmit: (user) async {
               context.loaderOverlay.show();
               final completer = Completer<AppUser>();
-              // await context.router.push(
-              //   Signup6Route(
-              //     completer: completer,
-              //     phoneNumber: user.phoneNumber ?? '',
-              //     photoURL: user.photoURL ?? '',
-              //     uid: user.uid,
-              //     email: user.email ?? '',
-              //   ),
-              // );
+              await context.router.push(
+                SignupRoute(
+                  completer: completer,
+                  phoneNumber: user.phoneNumber ?? '',
+                  photoURL: user.photoURL ?? '',
+                  uid: user.uid,
+                  email: user.email ?? '',
+                ),
+              );
 
               return completer.future;
             },
@@ -224,27 +224,27 @@ class LoginPage extends StatelessWidget {
             onSubmitOTP: () async {
               final completer = Completer<String>();
 
-              // await context.router.push(
-              //   OTPRoute(
-              //     phoneNumber: phone,
-              //     completer: completer,
-              //   ),
-              // );
+              await context.router.push(
+                OTPRoute(
+                  phoneNumber: phone,
+                  completer: completer,
+                ),
+              );
 
               return completer.future;
             },
             onSignUpSubmit: (user) async {
               context.loaderOverlay.show();
               final completer = Completer<AppUser>();
-              // await context.router.push(
-              //   Signup6Route(
-              //     completer: completer,
-              //     phoneNumber: user.phoneNumber ?? '',
-              //     photoURL: user.photoURL ?? '',
-              //     uid: user.uid,
-              //     email: user.email ?? '',
-              //   ),
-              // );
+              await context.router.push(
+                SignupRoute(
+                  completer: completer,
+                  phoneNumber: user.phoneNumber ?? '',
+                  photoURL: user.photoURL ?? '',
+                  uid: user.uid,
+                  email: user.email ?? '',
+                ),
+              );
 
               return completer.future;
             },

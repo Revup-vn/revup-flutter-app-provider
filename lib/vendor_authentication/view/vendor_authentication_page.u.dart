@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -107,7 +109,9 @@ class VendorAuthenticationPage extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
                 child: Avatar(
-                  user: user,
+                  localImg: File(''),
+                  urlImage: user.urlImage,
+                  userName: user.name,
                   callback: () {
                     // TODO(namngoc231): Go to photo selection method
                   },

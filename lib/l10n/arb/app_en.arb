@@ -171,5 +171,8 @@
   "loginSuccessLabel": "Login successfully",
   "unknowIssuesLabel" : "Something went wrong, we are working on this problem",
   "enterPhoneNumberLabel": "Enter your phone number to continue",
-  "toomanyReqLabel" : "You request OTP too many time, please wait before retry"
+  "toomanyReqLabel" : "You request OTP too many time, please wait before retry",
+  "idCardLabel": "ID Card Number",
+  "imageCardLabel": "ID Card Image",
+  "bioLabel": "Your slogan"
 }

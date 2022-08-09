@@ -171,5 +171,8 @@
   "loginSuccessLabel": "Đăng nhập thành công",
   "unknowIssuesLabel" : "Đã có lỗi không xác định, chúng tôi đang cố gắng sửa lỗi này",
   "enterPhoneNumberLabel": "Nhập số điện thoại của bạn để tiếp tục",
-  "toomanyReqLabel" : "Bạn đã yêu cầu gửi OTP quá nhiều lần, vui lòng đợi thêm"
+  "toomanyReqLabel" : "Bạn đã yêu cầu gửi OTP quá nhiều lần, vui lòng đợi thêm",
+  "idCardLabel": "Số cmnd hoặc cccd",
+  "imageCardLabel": "Ảnh cmnd hoặc cccd",
+  "bioLabel": "Câu nói yêu thích của bạn"
 }
