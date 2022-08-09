@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../l10n/l10n.dart';
 import '../models/models.dart';
 import '../widgets/card_review.u.dart';
 import '../widgets/rating_start_item.u.dart';
@@ -18,10 +19,12 @@ class MyReviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO(tcmhoang): Intl this page
+    final l10n = context.l10n;
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          'Đánh giá của tôi',
+          l10n.myRatingLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -39,7 +42,7 @@ class MyReviewView extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
                     MyReviewItem(
-                      numberOfStars: 'Tất cả',
+                      numberOfStars: l10n.allRatingLabel,
                       callback: () {
                         // TODO(namngoc231): Go to list rating all start
                       },

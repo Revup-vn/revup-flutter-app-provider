@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
+import '../../../../l10n/l10n.dart';
 import '../../../../shared/shared.dart';
 
 class HomePrimaryView extends StatelessWidget {
@@ -11,9 +12,11 @@ class HomePrimaryView extends StatelessWidget {
     required this.user,
   });
   final UserModel user;
+
   @override
   Widget build(BuildContext context) {
     // TODO(tcmhoang): Intl this page
+    final l10n = context.l10n;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -23,7 +26,7 @@ class HomePrimaryView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AutoSizeText(
-                'Xin chào, ${user.name}',
+                '${l10n.hiLabel}, ${user.name}',
                 style: Theme.of(context)
                         .textTheme
                         .headlineSmall
@@ -58,7 +61,7 @@ class HomePrimaryView extends StatelessWidget {
                   ),
                   const Spacer(),
                   AutoSizeText(
-                    'Trạng thái hoạt động',
+                    l10n.operationStatusLabel,
                     style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -81,7 +84,7 @@ class HomePrimaryView extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               AutoSizeText(
-                'Đơn hàng gần đây',
+                l10n.recentOrdersLabel,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               Container(
@@ -91,7 +94,7 @@ class HomePrimaryView extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               AutoSizeText(
-                'Thời tiết hôm nay',
+                l10n.weatherLabel,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               Container(
@@ -101,7 +104,7 @@ class HomePrimaryView extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               AutoSizeText(
-                'Dịch vụ của tôi',
+                l10n.serviceAccountLabel,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               Container(

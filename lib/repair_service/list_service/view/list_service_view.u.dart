@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../../l10n/l10n.dart';
 import '../widgets/card_service.u.dart';
 import '../widgets/vehicle_type_item.u.dart';
 
@@ -14,11 +15,7 @@ class ListServiceView extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO(tcmhoang): Intl this file and parametalized
     // all the harded code value
-
-    const myService = 'Dịch vụ của tôi';
-    const addNew = 'Thêm mới';
-    const motorcycle = 'Xe máy';
-    const car = 'Ô tô';
+    final l10n = context.l10n;
     const nameService = 'Thay lốp';
     const priceRangeStart = '100.000';
     const priceRangeEnd = '300.000';
@@ -30,7 +27,7 @@ class ListServiceView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          myService,
+          l10n.serviceAccountLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -47,7 +44,7 @@ class ListServiceView extends StatelessWidget {
             onPressed: () {
               // TODO(namngoc231): cancel
             },
-            child: const Text(addNew),
+            child: Text(l10n.addLabel),
           ),
         ],
       ),
@@ -62,7 +59,7 @@ class ListServiceView extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
                     VehicleTypeItem(
-                      vehicleName: motorcycle,
+                      vehicleName: l10n.motorcycleLabel,
                       iconVehicle: Icon(
                         Icons.motorcycle,
                         size: 20,
@@ -73,7 +70,7 @@ class ListServiceView extends StatelessWidget {
                       },
                     ),
                     VehicleTypeItem(
-                      vehicleName: car,
+                      vehicleName: l10n.carLabel,
                       iconVehicle: Icon(
                         Icons.local_taxi,
                         size: 20,
