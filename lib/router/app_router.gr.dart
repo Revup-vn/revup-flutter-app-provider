@@ -11,25 +11,21 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'dart:async' as _i13;
 
-import 'package:flutter/material.dart' as _i12;
-
 import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 import 'package:revup_core/core.dart' as _i14;
-
 import 'package:revup_provider/home/home.dart' as _i8;
 import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
 import 'package:revup_provider/my_review/my_review.dart' as _i6;
 import 'package:revup_provider/otp/view/otp_page.u.dart' as _i10;
+import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
+    as _i5;
 import 'package:revup_provider/repair_service/repair_service.dart' as _i4;
 import 'package:revup_provider/request/modules/modules.dart' as _i3;
 import 'package:revup_provider/signup/view/signup_page.u.dart' as _i9;
 import 'package:revup_provider/splash/splash.dart' as _i1;
-
-import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
-    as _i5;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
     as _i7;
 
@@ -349,7 +345,7 @@ class SignupRouteArgs {
 class OTPRoute extends _i11.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i13.Completer<dynamic> completer,
+      required _i13.Completer<String> completer,
       _i12.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
@@ -365,7 +361,7 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i13.Completer<dynamic> completer;
+  final _i13.Completer<String> completer;
 
   final _i12.Key? key;
 
