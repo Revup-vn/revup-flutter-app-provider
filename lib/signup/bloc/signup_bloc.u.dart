@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';
-part 'signup_bloc.freezed.dart';
+part 'signup_bloc.u.freezed.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   SignupBloc(this._imagePicker) : super(const _Initial()) {

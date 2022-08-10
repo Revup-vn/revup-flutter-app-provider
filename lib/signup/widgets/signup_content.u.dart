@@ -21,8 +21,8 @@ import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 import '../../shared/widgets/loading.u.dart';
-import '../bloc/signup_bloc.dart';
-import '../cubit/signup_cubit.dart';
+import '../bloc/signup_bloc.u.dart';
+import '../cubit/signup_cubit.u.dart';
 import 'background_view.u.dart';
 import 'id_image.u.dart';
 

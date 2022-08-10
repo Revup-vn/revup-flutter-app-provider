@@ -1,4 +1,4 @@
-part of 'signup_bloc.dart';
+part of 'signup_bloc.u.dart';
 
 @freezed
 class SignupState with _$SignupState {

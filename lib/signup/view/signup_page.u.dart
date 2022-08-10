@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
 
-import '../bloc/signup_bloc.dart';
-import '../cubit/signup_cubit.dart';
+import '../bloc/signup_bloc.u.dart';
+import '../cubit/signup_cubit.u.dart';
 import 'signup_view.u.dart';
 
 class SignupPage extends StatelessWidget {

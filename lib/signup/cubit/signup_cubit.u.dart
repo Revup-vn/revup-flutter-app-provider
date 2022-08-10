@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
 part 'signup_cubit_state.dart';
-part 'signup_cubit.freezed.dart';
+part 'signup_cubit.u.freezed.dart';
 
 class SignupCubit extends Cubit<SignupCubitState> {
   SignupCubit(this._storageBloc) : super(const SignupCubitState.initial());
