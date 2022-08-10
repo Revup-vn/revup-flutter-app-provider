@@ -17,7 +17,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
 
-import '../../configs/video_call_config.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 import '../../shared/widgets/loading.u.dart';
