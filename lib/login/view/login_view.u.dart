@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -11,7 +12,7 @@ import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
-
+import '../../router/router.dart';
 import '../bloc/login_bloc.dart';
 import 'login_sso_item.u.dart';
 
@@ -159,12 +160,12 @@ class LoginView extends StatelessWidget {
                                         phoneNumber: '+84$phoneNumber',
                                         onSubmitOTP: () async {
                                           final completer = Completer<String>();
-                                          // await context.router.push(
-                                          //   OTPRoute(
-                                          //     phoneNumber: phoneNumber,
-                                          //     completer: completer,
-                                          //   ),
-                                          // );
+                                          await context.router.push(
+                                            OTPRoute(
+                                              phoneNumber: phoneNumber,
+                                              completer: completer,
+                                            ),
+                                          );
 
                                           return completer.future;
                                         },
@@ -173,7 +174,7 @@ class LoginView extends StatelessWidget {
                                           final completer =
                                               Completer<AppUser>();
                                           // await context.router.push(
-                                          //   Signup6Route(
+                                          //   SignupRoute(
                                           //     completer: completer,
                                           //     phoneNumber:
                                           //         user.phoneNumber ?? '',
@@ -223,15 +224,15 @@ class LoginView extends StatelessWidget {
                             final completer = Completer<AppUser>();
                             if (user.phoneNumber == null ||
                                 user.phoneNumber == '') {
-                              // await context.router.push(
-                              //   LoginEnterPhoneRoute(
-                              //     completer: completer,
-                              //     email: user.email ?? '',
-                              //     phoneNumber: user.phoneNumber ?? '',
-                              //     photoURL: user.photoURL ?? '',
-                              //     uid: user.uid,
-                              //   ),
-                              // );
+                              await context.router.push(
+                                LoginEnterPhoneRoute(
+                                  completer: completer,
+                                  email: user.email ?? '',
+                                  phoneNumber: user.phoneNumber ?? '',
+                                  photoURL: user.photoURL ?? '',
+                                  uid: user.uid,
+                                ),
+                              );
                             } else {
                               completer.complete(
                                 AppUser.consumer(

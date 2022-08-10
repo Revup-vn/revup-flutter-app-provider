@@ -33,14 +33,14 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
-  loader_overlay: ^2.0.9
+  loader_overlay: ^2.0.10
   modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^5.1.0-dev
+      version: ^5.1.1-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
 

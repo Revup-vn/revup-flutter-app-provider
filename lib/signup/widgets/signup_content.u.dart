@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -12,13 +13,16 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
 
 import '../../configs/video_call_config.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/signup_bloc.dart';
+import '../cubit/signup_cubit.dart';
 import 'background_view.u.dart';
 import 'id_image.u.dart';
 
@@ -30,11 +34,10 @@ class SignUpContent extends StatelessWidget {
     required this.photoURL,
     required this.uid,
     required this.email,
-    required this.list,
   });
 
   final Completer<AppUser> completer;
-  final List<File> list;
+
   final String phoneNumber;
   final String photoURL;
   final String uid;
@@ -42,8 +45,15 @@ class SignUpContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<SignupCubit>();
+    final state = cubit.state;
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
+    var list = <File>[
+      File(''),
+      File(''),
+      File(''),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -54,29 +64,62 @@ class SignUpContent extends StatelessWidget {
               .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
+        leading: BackButton(
+          onPressed: () {
+            if (context.loaderOverlay.visible) context.loaderOverlay.hide();
+            context.router.pop();
+          },
+        ),
       ),
       body: ListView(
         children: <Widget>[
           Container(
             alignment: Alignment.center,
-            child: Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: [
-                BackGroundView(
-                  200,
-                  list[1],
-                  () => _showModalButtonSheet(context, 1),
+            child: BlocBuilder<SignupBloc, SignupState>(
+              builder: (context, state) => state.when(
+                initial: () => Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
+                  children: [
+                    BackGroundView(
+                      200,
+                      File(''),
+                      () => _showModalButtonSheet(context, 1, list),
+                    ),
+                    Avatar(
+                      localImg: File(''),
+                      urlImage: photoURL,
+                      userName: 'Revup',
+                      callback: () {
+                        _showModalButtonSheet(context, 0, list);
+                      },
+                    ),
+                  ],
                 ),
-                Avatar(
-                  localImg: list[0],
-                  urlImage: list[0].path.isEmpty ? photoURL : list[0].path,
-                  userName: 'Revup',
-                  callback: () {
-                    _showModalButtonSheet(context, 0);
-                  },
-                ),
-              ],
+                choosePhotoSuccess: (file) {
+                  list = file;
+
+                  return Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: [
+                      BackGroundView(
+                        200,
+                        file[1],
+                        () => _showModalButtonSheet(context, 1, list),
+                      ),
+                      Avatar(
+                        localImg: file[0],
+                        urlImage: photoURL,
+                        userName: 'Revup',
+                        callback: () {
+                          _showModalButtonSheet(context, 0, list);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
           DismissKeyboard(
@@ -160,10 +203,6 @@ class SignUpContent extends StatelessWidget {
                         FormBuilderValidators.required(
                           errorText: l10n.emptyLabel,
                         ),
-                        FormBuilderValidators.match(
-                          r'^0?(3|5|7|8|9){1}([0-9]{8})$',
-                          errorText: l10n.invalidFormatLabel,
-                        ),
                       ]),
                     ),
                     FormBuilderDateTimePicker(
@@ -236,7 +275,7 @@ class SignUpContent extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       name: 'idcardNum',
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(
@@ -258,6 +297,7 @@ class SignUpContent extends StatelessWidget {
                           .labelLarge
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
+                    const SizedBox(height: 16),
                     Row(
                       children: [
                         Container(
@@ -272,11 +312,9 @@ class SignUpContent extends StatelessWidget {
                           child: Center(
                             child: IconButton(
                               onPressed: () {
-                                _showModalButtonSheet(context, 2);
+                                _showModalButtonSheet(context, 2, list);
                               },
-                              icon: const Icon(
-                                Icons.add_a_photo_outlined,
-                              ),
+                              icon: const Icon(Icons.photo_camera),
                             ),
                           ),
                         ),
@@ -292,15 +330,27 @@ class SignUpContent extends StatelessWidget {
                           ),
                           width: 40,
                           height: 40,
-                          child: Center(
-                            child: list[2].path.isEmpty
-                                ? const IconButton(
-                                    onPressed: null,
-                                    icon: Icon(
-                                      Icons.photo,
-                                    ),
-                                  )
-                                : IdImage(40, list[2]),
+                          child: BlocBuilder<SignupBloc, SignupState>(
+                            builder: (context, state) => state.when(
+                              initial: () => const Center(
+                                child: IconButton(
+                                  onPressed: null,
+                                  icon: Icon(
+                                    Icons.photo,
+                                  ),
+                                ),
+                              ),
+                              choosePhotoSuccess: (file) => Center(
+                                child: file[2].path.isEmpty
+                                    ? const IconButton(
+                                        onPressed: null,
+                                        icon: Icon(
+                                          Icons.photo,
+                                        ),
+                                      )
+                                    : IdImage(40, file[2]),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -310,60 +360,122 @@ class SignUpContent extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        _formKey.currentState?.saveAndValidate();
-                        final data = _formKey.currentState?.value;
-                        final fName =
-                            data?['fullName'].toString().split(' ')[0];
-                        final lName =
-                            data?['fullName'].toString().split(fName ?? '')[1];
-                        var phoneNumber = data?['phone'].toString();
-                        if (phoneNumber?.substring(0, 3) == '+84') {
-                          phoneNumber = phoneNumber?.substring(
-                            3,
-                            phoneNumber.length,
-                          );
-                        }
-                        if (phoneNumber?.substring(0, 1) == '0') {
-                          phoneNumber = phoneNumber?.substring(
-                            1,
-                            phoneNumber.length,
-                          );
-                        }
-                        final ilistFile = ilist(list);
-                        final ilistStorageFile = ilistFile.map<StorageFile>(
-                          (a) => StorageFile.profile(file: a),
-                        );
-
-                        context.read<StorageBloc>().add(
-                              StorageEvent.uploadMany(files: ilistStorageFile),
+                        context.loaderOverlay.show();
+                        if (_formKey.currentState!.saveAndValidate()) {
+                          final data = _formKey.currentState?.value;
+                          final fName =
+                              data?['fullName'].toString().split(' ')[0];
+                          final lName = data?['fullName']
+                              .toString()
+                              .split(fName ?? '')[1];
+                          var phoneNumber = data?['phone'].toString();
+                          if (phoneNumber?.substring(0, 3) == '+84') {
+                            phoneNumber = phoneNumber?.substring(
+                              3,
+                              phoneNumber.length,
                             );
-
-                        BlocSelector<StorageBloc, StorageState, IList<String>>(
-                          selector: (state) => state.maybeWhen(
-                            success: (eitherFailuresOrUrls) {
-                              final tmp =
-                                  eitherFailuresOrUrls.map<Option<String>>(
-                                (a) => a.fold(
-                                  (l) => none(),
-                                  some,
-                                ),
+                          }
+                          if (phoneNumber?.substring(0, 1) == '0') {
+                            phoneNumber = phoneNumber?.substring(
+                              1,
+                              phoneNumber.length,
+                            );
+                          }
+                          final ilistFile = ilist(list);
+                          final ilistStorageFile = ilistFile
+                              .map<Option<StorageFile>>(
+                                (a) {
+                                  if (a.path.isNotEmpty) {
+                                    return some(StorageFile.profile(file: a));
+                                  } else {
+                                    return none();
+                                  }
+                                },
+                              )
+                              .filter((a) => a.isSome())
+                              .map(
+                                (a) =>
+                                    a.getOrElse(() => throw NullThrownError()),
                               );
+                          if (ilistStorageFile.length() != 0) {
+                            await cubit.uploadImg(files: ilistStorageFile);
+                            state.when(
+                              initial: Loading.new,
+                              uploadImageSuccess: (eitherFailuresOrUrls) {
+                                final tmp =
+                                    eitherFailuresOrUrls.map<Option<String>>(
+                                  (a) => a.fold(
+                                    (l) => none(),
+                                    some,
+                                  ),
+                                );
 
-                              return tmp.filter((a) => a.isSome()).map(
-                                    (a) => a.getOrElse(
-                                      () => throw NullThrownError(),
+                                final listLink =
+                                    tmp.filter((a) => a.isSome()).map(
+                                          (a) => a.getOrElse(
+                                            () => throw NullThrownError(),
+                                          ),
+                                        );
+                                final List<String> list;
+                                if (listLink.length() == 3) {
+                                  list = listLink.toList();
+                                } else {
+                                  final tmp =
+                                      List<String>.from(listLink.toList());
+                                  for (var i = listLink.length(); i < 3; i++) {
+                                    tmp.add('');
+                                  }
+                                  list = tmp.toList();
+                                }
+
+                                completer.complete(
+                                  AppUser.provider(
+                                    backgroundUrl: list[1],
+                                    bio: data?['bio'].toString() ?? '',
+                                    idCardImage: list[2],
+                                    idCardNum:
+                                        data?['idcardNum'].toString() ?? '',
+                                    online: true,
+                                    curLocation: GeoFirePoint(1, 1),
+                                    uuid: uid,
+                                    firstName: fName ?? '',
+                                    lastName: lName ?? '',
+                                    phone: '+84$phoneNumber',
+                                    dob: DateTime.parse(
+                                      data?['date'].toString().split(' ')[0] ??
+                                          '',
                                     ),
-                                  );
-                            },
-                            orElse: () => ilist(['']),
-                          ),
-                          builder: (context, state) {
-                            final list = state.toList();
+                                    addr: data?['address'].toString() ?? '',
+                                    email: data?['email'].toString() ?? '',
+                                    active: true,
+                                    avatarUrl:
+                                        list[0].isEmpty ? photoURL : list[0],
+                                    createdTime: DateTime.now(),
+                                    lastUpdatedTime: DateTime.now(),
+                                    vac: VideoCallAccount(
+                                      id: uid,
+                                      username: '+84$phoneNumber',
+                                      pwd: DEFAULT_PASS,
+                                      email: data?['email'].toString() ?? '',
+                                    ),
+                                  ),
+                                );
+                                log('completed');
+                                context.router.pop();
+
+                                return;
+                              },
+                              failure: () {
+                                // TODO(wamynobe): implement failure screen
+                              },
+                              running: Loading.new,
+                            );
+                          } else {
                             completer.complete(
                               AppUser.provider(
-                                backgroundUrl: list[1],
+                                backgroundUrl: '',
                                 bio: data?['bio'].toString() ?? '',
-                                idCardImage: list[2],
+                                idCardImage: '',
                                 idCardNum: data?['idcardNum'].toString() ?? '',
                                 online: true,
                                 curLocation: GeoFirePoint(1, 1),
@@ -377,7 +489,7 @@ class SignUpContent extends StatelessWidget {
                                 addr: data?['address'].toString() ?? '',
                                 email: data?['email'].toString() ?? '',
                                 active: true,
-                                avatarUrl: list[3].isEmpty ? photoURL : list[3],
+                                avatarUrl: photoURL,
                                 createdTime: DateTime.now(),
                                 lastUpdatedTime: DateTime.now(),
                                 vac: VideoCallAccount(
@@ -389,11 +501,9 @@ class SignUpContent extends StatelessWidget {
                               ),
                             );
 
-                            return Container();
-                          },
-                        );
-
-                        await context.router.pop();
+                            await context.router.pop();
+                          }
+                        }
                       },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
@@ -411,7 +521,11 @@ class SignUpContent extends StatelessWidget {
     );
   }
 
-  void _showModalButtonSheet(BuildContext context, int type) {
+  void _showModalButtonSheet(
+    BuildContext context,
+    int type,
+    List<File> list,
+  ) {
     final bloc = context.read<SignupBloc>();
     showMaterialModalBottomSheet<Widget>(
       context: context,
