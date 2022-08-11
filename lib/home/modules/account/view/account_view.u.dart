@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -27,7 +29,9 @@ class AccountView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Avatar(
-              user: user,
+              localImg: File(''),
+              userName: user.name,
+              urlImage: user.urlImage,
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },

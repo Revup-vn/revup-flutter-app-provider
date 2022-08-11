@@ -87,7 +87,6 @@
   "loginPageLabel": "Login / Register revup account now",
   "loginPageTitle": "Welcome to revup!",
   "logoutLabel": "Logout",
-  "messagesCallForCustomersLabel": "Đối tác có thể trao đổi qua tin nhắn và cuộc gọi video với khách hàng để có sự chuẩn bị tốt nhất nhé!",
   "messagesCheckInformation": "Partners please double check the information, the images above are correct, then slide to complete the application.",
   "messagesForCustomersLabel": "Partners can exchange via text messages and video calls with customers for the best preparation!",
   "messagesSelectItemLabel": "The partner selects the completed item and sends it to the customer, then wait a bit for the customer to confirm",
@@ -185,5 +184,14 @@
   "yesterdayLabel": "yesterday",
   "yourFeedbackLabel": "Your feedback",
   "zaloPayLabel": "ZaloPay",
-  "zaloPaymentLabel": "Pay with Zalo Pay"
+  "zaloPaymentLabel": "Pay with Zalo Pay",
+  "otpCodeExpiredLabel": "Your otp code has been expired. We are sending you a new OTP code",
+  "invalidOTPLabel": "Invalid OTP code. Please enter again!",
+  "loginSuccessLabel": "Login successfully",
+  "unknowIssuesLabel" : "Something went wrong, we are working on this problem",
+  "enterPhoneNumberLabel": "Enter your phone number to continue",
+  "toomanyReqLabel" : "You request OTP too many time, please wait before retry",
+  "idCardLabel": "ID Card Number",
+  "imageCardLabel": "ID Card Image",
+  "bioLabel": "Your slogan"
 }
