@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +19,7 @@ class HomePrimaryView extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO(tcmhoang): Intl this page
     final l10n = context.l10n;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -79,17 +78,15 @@ class HomePrimaryView extends StatelessWidget {
                       initial: (_) => FlutterSwitch(
                         value: user.maybeMap(
                           provider: (value) {
-                            final tmp = value.online;
-                            log(tmp.toString());
-                            return tmp;
+                            return value.online;
                           },
                           orElse: () => false,
                         ),
                         width: 45,
                         height: 25,
-                        activeColor: Theme.of(context).colorScheme.primary,
-                        inactiveColor:
+                        activeColor:
                             Theme.of(context).colorScheme.inversePrimary,
+                        inactiveColor: Theme.of(context).colorScheme.outline,
                         onToggle: (value) {
                           context.read<HomeBloc>().add(
                                 HomeEvent.changeActiveStatus(
@@ -104,9 +101,9 @@ class HomePrimaryView extends StatelessWidget {
                         value: data.status,
                         width: 45,
                         height: 25,
-                        activeColor: Theme.of(context).colorScheme.primary,
-                        inactiveColor:
+                        activeColor:
                             Theme.of(context).colorScheme.inversePrimary,
+                        inactiveColor: Theme.of(context).colorScheme.outline,
                         onToggle: (value) {
                           context.read<HomeBloc>().add(
                                 HomeEvent.changeActiveStatus(

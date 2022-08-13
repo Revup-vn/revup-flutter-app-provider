@@ -54,9 +54,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 online: status,
                 loc: value.loc,
               );
-
+              final newProvider =
+                  AppUserDummy.dummyProvider(providerID).maybeMap(
+                orElse: () => throw NullThrownError(),
+                provider: (value) => value.copyWith(online: status),
+              );
               final t = await _userRepos.updateFields(
-                AppUserDummy.dummyProvider(providerID).copyWith(active: status),
+                newProvider,
                 ilist(
                   [
                     AppUserDummy.field(AppUserFields.Online),
