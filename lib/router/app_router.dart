@@ -4,6 +4,7 @@ import '../home/home.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../my_review/my_review.dart';
+import '../new_request/view/new_request_page.dart';
 import '../otp/view/otp_page.u.dart';
 import '../repair_service/detail_service/view/detail_service_view.u.dart';
 import '../repair_service/repair_service.dart';
@@ -15,7 +16,7 @@ import '../vendor_authentication/vender_authentication.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage, initial: true),
+    AdaptiveRoute<void>(page: SplashPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: DetailServiceRequestPage),
     AdaptiveRoute<void>(page: InfoRequestPage),
@@ -32,6 +33,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
+    AdaptiveRoute<void>(page: NewRequestPage, initial: true),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
