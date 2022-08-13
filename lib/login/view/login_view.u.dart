@@ -173,16 +173,16 @@ class LoginView extends StatelessWidget {
                                           context.loaderOverlay.show();
                                           final completer =
                                               Completer<AppUser>();
-                                          // await context.router.push(
-                                          //   SignupRoute(
-                                          //     completer: completer,
-                                          //     phoneNumber:
-                                          //         user.phoneNumber ?? '',
-                                          //     photoURL: user.photoURL ?? '',
-                                          //     uid: user.uid,
-                                          //     email: user.email ?? '',
-                                          //   ),
-                                          // );
+                                          await context.router.push(
+                                            SignupRoute(
+                                              completer: completer,
+                                              phoneNumber:
+                                                  user.phoneNumber ?? '',
+                                              photoURL: user.photoURL ?? '',
+                                              uid: user.uid,
+                                              email: user.email ?? '',
+                                            ),
+                                          );
 
                                           return completer.future;
                                         },

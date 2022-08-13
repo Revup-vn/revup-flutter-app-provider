@@ -193,5 +193,6 @@
   "toomanyReqLabel" : "Bạn đã yêu cầu gửi OTP quá nhiều lần, vui lòng đợi thêm",
   "idCardLabel": "Số cmnd hoặc cccd",
   "imageCardLabel": "Ảnh cmnd hoặc cccd",
-  "bioLabel": "Câu nói yêu thích của bạn"
+  "bioLabel": "Câu nói yêu thích của bạn",
+  "idImgRequiredLabel": "Bạn hãy chụp ảnh mặt trước cmnd hoặc cccd của bạn"
 }

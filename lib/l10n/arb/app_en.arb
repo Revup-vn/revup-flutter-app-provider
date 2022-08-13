@@ -102,7 +102,7 @@
   "onboardPageFirstTitle": "Professional car repair service",
   "onboardPageSecondTitle": "Always on duty on all roads",
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
-  "operationStatusLabel": "Operation status",
+  "operationStatusLabel": "Active status",
   "orderDetailLabel": "Order details",
   "orderInformationLabel": "Order Information",
   "organizationLabel": "Organization account",
@@ -193,5 +193,6 @@
   "toomanyReqLabel" : "You request OTP too many time, please wait before retry",
   "idCardLabel": "ID Card Number",
   "imageCardLabel": "ID Card Image",
-  "bioLabel": "Your slogan"
+  "bioLabel": "Your slogan",
+  "idImgRequiredLabel": "You have to take a photo of your font id card"
 }

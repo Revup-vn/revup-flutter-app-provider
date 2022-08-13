@@ -120,12 +120,15 @@ class AppRouter extends _i12.RootStackRouter {
               key: args.key));
     },
     HomeRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeRouteArgs>();
       return _i12.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.HomePage());
+          routeData: routeData, child: _i8.HomePage(args.user, key: args.key));
     },
     HomePrimaryRoute.name: (routeData) {
+      final args = routeData.argsAs<HomePrimaryRouteArgs>();
       return _i12.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.HomePrimaryPage());
+          routeData: routeData,
+          child: _i8.HomePrimaryPage(args.user, key: args.key));
     },
     HistoryProviderRoute.name: (routeData) {
       return _i12.AdaptivePage<void>(
@@ -440,20 +443,54 @@ class LoginEnterPhoneRouteArgs {
 
 /// generated route for
 /// [_i8.HomePage]
-class HomeRoute extends _i12.PageRouteInfo<void> {
-  const HomeRoute({List<_i12.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
+class HomeRoute extends _i12.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute(
+      {required _i15.AppUser user,
+      _i13.Key? key,
+      List<_i12.PageRouteInfo>? children})
+      : super(HomeRoute.name,
+            path: '/home-page',
+            args: HomeRouteArgs(user: user, key: key),
+            initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
+class HomeRouteArgs {
+  const HomeRouteArgs({required this.user, this.key});
+
+  final _i15.AppUser user;
+
+  final _i13.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{user: $user, key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i8.HomePrimaryPage]
-class HomePrimaryRoute extends _i12.PageRouteInfo<void> {
-  const HomePrimaryRoute()
-      : super(HomePrimaryRoute.name, path: 'home-primary-page');
+class HomePrimaryRoute extends _i12.PageRouteInfo<HomePrimaryRouteArgs> {
+  HomePrimaryRoute({required _i15.AppUser user, _i13.Key? key})
+      : super(HomePrimaryRoute.name,
+            path: 'home-primary-page',
+            args: HomePrimaryRouteArgs(user: user, key: key));
 
   static const String name = 'HomePrimaryRoute';
+}
+
+class HomePrimaryRouteArgs {
+  const HomePrimaryRouteArgs({required this.user, this.key});
+
+  final _i15.AppUser user;
+
+  final _i13.Key? key;
+
+  @override
+  String toString() {
+    return 'HomePrimaryRouteArgs{user: $user, key: $key}';
+  }
 }
 
 /// generated route for
