@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
@@ -88,7 +87,7 @@ class LoginPage extends StatelessWidget {
               );
 
               return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(const HomeRoute());
+                context.router.push(HomeRoute(user: authType.user));
               });
             },
             orElse: () => false,
@@ -217,7 +216,9 @@ class LoginPage extends StatelessWidget {
         );
       },
     );
-
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(context, rootNavigator: true).pop();
+    });
     context.read<AuthenticateBloc>().add(
           AuthenticateEvent.loginWithPhone(
             phoneNumber: '+84$phone',
@@ -250,6 +251,5 @@ class LoginPage extends StatelessWidget {
             },
           ),
         );
-    Navigator.of(context, rootNavigator: true).pop();
   }
 }

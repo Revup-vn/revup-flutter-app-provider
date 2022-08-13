@@ -1,24 +1,23 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
-import '../../router/router.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  const HomePage(this.user, {super.key});
+  final AppUser user;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return AutoTabsScaffold(
-      routes: const [
-        HomePrimaryRoute(),
-        HistoryProviderRoute(),
-        NotificationProviderRoute(),
-        AccountRoute(),
+      routes: [
+        HomePrimaryRoute(user: user),
+        const HistoryProviderRoute(),
+        const NotificationProviderRoute(),
+        const AccountRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

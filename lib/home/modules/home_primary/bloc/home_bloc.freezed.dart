@@ -19,32 +19,39 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(bool status, String providerID)
+        changeActiveStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(bool status, String providerID)? changeActiveStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(bool status, String providerID)? changeActiveStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ChangeActiveStatus value) changeActiveStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ChangeActiveStatus value)? changeActiveStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ChangeActiveStatus value)? changeActiveStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,6 +112,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(bool status, String providerID)
+        changeActiveStatus,
   }) {
     return started();
   }
@@ -113,6 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(bool status, String providerID)? changeActiveStatus,
   }) {
     return started?.call();
   }
@@ -121,6 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(bool status, String providerID)? changeActiveStatus,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -133,6 +144,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ChangeActiveStatus value) changeActiveStatus,
   }) {
     return started(this);
   }
@@ -141,6 +153,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ChangeActiveStatus value)? changeActiveStatus,
   }) {
     return started?.call(this);
   }
@@ -149,6 +162,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ChangeActiveStatus value)? changeActiveStatus,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -163,29 +177,177 @@ abstract class _Started implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$_ChangeActiveStatusCopyWith<$Res> {
+  factory _$$_ChangeActiveStatusCopyWith(_$_ChangeActiveStatus value,
+          $Res Function(_$_ChangeActiveStatus) then) =
+      __$$_ChangeActiveStatusCopyWithImpl<$Res>;
+  $Res call({bool status, String providerID});
+}
+
+/// @nodoc
+class __$$_ChangeActiveStatusCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res>
+    implements _$$_ChangeActiveStatusCopyWith<$Res> {
+  __$$_ChangeActiveStatusCopyWithImpl(
+      _$_ChangeActiveStatus _value, $Res Function(_$_ChangeActiveStatus) _then)
+      : super(_value, (v) => _then(v as _$_ChangeActiveStatus));
+
+  @override
+  _$_ChangeActiveStatus get _value => super._value as _$_ChangeActiveStatus;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? providerID = freezed,
+  }) {
+    return _then(_$_ChangeActiveStatus(
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      providerID: providerID == freezed
+          ? _value.providerID
+          : providerID // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeActiveStatus implements _ChangeActiveStatus {
+  const _$_ChangeActiveStatus({required this.status, required this.providerID});
+
+  @override
+  final bool status;
+  @override
+  final String providerID;
+
+  @override
+  String toString() {
+    return 'HomeEvent.changeActiveStatus(status: $status, providerID: $providerID)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeActiveStatus &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.providerID, providerID));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(providerID));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ChangeActiveStatusCopyWith<_$_ChangeActiveStatus> get copyWith =>
+      __$$_ChangeActiveStatusCopyWithImpl<_$_ChangeActiveStatus>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(bool status, String providerID)
+        changeActiveStatus,
+  }) {
+    return changeActiveStatus(status, providerID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(bool status, String providerID)? changeActiveStatus,
+  }) {
+    return changeActiveStatus?.call(status, providerID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(bool status, String providerID)? changeActiveStatus,
+    required TResult orElse(),
+  }) {
+    if (changeActiveStatus != null) {
+      return changeActiveStatus(status, providerID);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ChangeActiveStatus value) changeActiveStatus,
+  }) {
+    return changeActiveStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ChangeActiveStatus value)? changeActiveStatus,
+  }) {
+    return changeActiveStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ChangeActiveStatus value)? changeActiveStatus,
+    required TResult orElse(),
+  }) {
+    if (changeActiveStatus != null) {
+      return changeActiveStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeActiveStatus implements HomeEvent {
+  const factory _ChangeActiveStatus(
+      {required final bool status,
+      required final String providerID}) = _$_ChangeActiveStatus;
+
+  bool get status;
+  String get providerID;
+  @JsonKey(ignore: true)
+  _$$_ChangeActiveStatusCopyWith<_$_ChangeActiveStatus> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(bool status, AppUser user)
+        changeActiveStatusSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,24 +355,24 @@ mixin _$HomeState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_ChangeActiveStatusSuccess value)
+        changeActiveStatusSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -272,8 +434,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(bool status, AppUser user)
+        changeActiveStatusSuccess,
   }) {
     return initial();
   }
@@ -283,8 +445,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
   }) {
     return initial?.call();
   }
@@ -294,8 +455,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -309,8 +469,8 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_ChangeActiveStatusSuccess value)
+        changeActiveStatusSuccess,
   }) {
     return initial(this);
   }
@@ -320,8 +480,8 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
   }) {
     return initial?.call(this);
   }
@@ -331,8 +491,8 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -387,8 +547,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(bool status, AppUser user)
+        changeActiveStatusSuccess,
   }) {
     return loading();
   }
@@ -398,8 +558,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
   }) {
     return loading?.call();
   }
@@ -409,8 +568,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -424,8 +582,8 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_ChangeActiveStatusSuccess value)
+        changeActiveStatusSuccess,
   }) {
     return loading(this);
   }
@@ -435,8 +593,8 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
   }) {
     return loading?.call(this);
   }
@@ -446,8 +604,8 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -462,50 +620,100 @@ abstract class _Loading implements HomeState {
 }
 
 /// @nodoc
-abstract class _$$_FailureCopyWith<$Res> {
-  factory _$$_FailureCopyWith(
-          _$_Failure value, $Res Function(_$_Failure) then) =
-      __$$_FailureCopyWithImpl<$Res>;
+abstract class _$$_ChangeActiveStatusSuccessCopyWith<$Res> {
+  factory _$$_ChangeActiveStatusSuccessCopyWith(
+          _$_ChangeActiveStatusSuccess value,
+          $Res Function(_$_ChangeActiveStatusSuccess) then) =
+      __$$_ChangeActiveStatusSuccessCopyWithImpl<$Res>;
+  $Res call({bool status, AppUser user});
+
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$$_FailureCopyWith<$Res> {
-  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
-      : super(_value, (v) => _then(v as _$_Failure));
+class __$$_ChangeActiveStatusSuccessCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res>
+    implements _$$_ChangeActiveStatusSuccessCopyWith<$Res> {
+  __$$_ChangeActiveStatusSuccessCopyWithImpl(
+      _$_ChangeActiveStatusSuccess _value,
+      $Res Function(_$_ChangeActiveStatusSuccess) _then)
+      : super(_value, (v) => _then(v as _$_ChangeActiveStatusSuccess));
 
   @override
-  _$_Failure get _value => super._value as _$_Failure;
+  _$_ChangeActiveStatusSuccess get _value =>
+      super._value as _$_ChangeActiveStatusSuccess;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? user = freezed,
+  }) {
+    return _then(_$_ChangeActiveStatusSuccess(
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser,
+    ));
+  }
+
+  @override
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
-  const _$_Failure();
+class _$_ChangeActiveStatusSuccess implements _ChangeActiveStatusSuccess {
+  const _$_ChangeActiveStatusSuccess(
+      {required this.status, required this.user});
+
+  @override
+  final bool status;
+  @override
+  final AppUser user;
 
   @override
   String toString() {
-    return 'HomeState.failure()';
+    return 'HomeState.changeActiveStatusSuccess(status: $status, user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Failure);
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeActiveStatusSuccess &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ChangeActiveStatusSuccessCopyWith<_$_ChangeActiveStatusSuccess>
+      get copyWith => __$$_ChangeActiveStatusSuccessCopyWithImpl<
+          _$_ChangeActiveStatusSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(bool status, AppUser user)
+        changeActiveStatusSuccess,
   }) {
-    return failure();
+    return changeActiveStatusSuccess(status, user);
   }
 
   @override
@@ -513,10 +721,9 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
   }) {
-    return failure?.call();
+    return changeActiveStatusSuccess?.call(status, user);
   }
 
   @override
@@ -524,12 +731,11 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(bool status, AppUser user)? changeActiveStatusSuccess,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure();
+    if (changeActiveStatusSuccess != null) {
+      return changeActiveStatusSuccess(status, user);
     }
     return orElse();
   }
@@ -539,10 +745,10 @@ class _$_Failure implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_ChangeActiveStatusSuccess value)
+        changeActiveStatusSuccess,
   }) {
-    return failure(this);
+    return changeActiveStatusSuccess(this);
   }
 
   @override
@@ -550,10 +756,10 @@ class _$_Failure implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
   }) {
-    return failure?.call(this);
+    return changeActiveStatusSuccess?.call(this);
   }
 
   @override
@@ -561,132 +767,25 @@ class _$_Failure implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_ChangeActiveStatusSuccess value)?
+        changeActiveStatusSuccess,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(this);
+    if (changeActiveStatusSuccess != null) {
+      return changeActiveStatusSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _Failure implements HomeState {
-  const factory _Failure() = _$_Failure;
-}
+abstract class _ChangeActiveStatusSuccess implements HomeState {
+  const factory _ChangeActiveStatusSuccess(
+      {required final bool status,
+      required final AppUser user}) = _$_ChangeActiveStatusSuccess;
 
-/// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, (v) => _then(v as _$_Success));
-
-  @override
-  _$_Success get _value => super._value as _$_Success;
-}
-
-/// @nodoc
-
-class _$_Success implements _Success {
-  const _$_Success();
-
-  @override
-  String toString() {
-    return 'HomeState.success()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function() success,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements HomeState {
-  const factory _Success() = _$_Success;
+  bool get status;
+  AppUser get user;
+  @JsonKey(ignore: true)
+  _$$_ChangeActiveStatusSuccessCopyWith<_$_ChangeActiveStatusSuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }

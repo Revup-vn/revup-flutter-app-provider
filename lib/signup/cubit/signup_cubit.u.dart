@@ -14,12 +14,12 @@ class SignupCubit extends Cubit<SignupCubitState> {
   final StorageBloc _storageBloc;
 
   Future<Unit> uploadImg({required IList<StorageFile> files}) async {
-    final isDoneLogin = Completer<Unit>();
+    final isDone = Completer<Unit>();
     _storageBloc.add(StorageEvent.uploadMany(files: files));
 
     return _listenOnce(
-      isDoneLogin,
-      (event) async => event.maybeWhen(
+      isDone,
+      (event) => event.maybeWhen(
         success: (eitherFailuresOrUrls) => emit(
           SignupCubitState.uploadImageSuccess(
             eitherFailuresOrUrls: eitherFailuresOrUrls,
@@ -43,7 +43,6 @@ class SignupCubit extends Cubit<SignupCubitState> {
         event.maybeMap(
           success: (value) => isDone.complete(unit),
           orElse: () => unit,
-          error: (_) => _storageBloc.add(const StorageEvent.reset()),
         );
       },
     );
