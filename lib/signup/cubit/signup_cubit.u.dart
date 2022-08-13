@@ -5,8 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
-part 'signup_cubit_state.dart';
 part 'signup_cubit.u.freezed.dart';
+part 'signup_cubit_state.dart';
 
 class SignupCubit extends Cubit<SignupCubitState> {
   SignupCubit(this._storageBloc) : super(const SignupCubitState.initial());
@@ -14,12 +14,12 @@ class SignupCubit extends Cubit<SignupCubitState> {
   final StorageBloc _storageBloc;
 
   Future<Unit> uploadImg({required IList<StorageFile> files}) async {
-    final isDone = Completer<Unit>();
+    final isDoneLogin = Completer<Unit>();
     _storageBloc.add(StorageEvent.uploadMany(files: files));
 
     return _listenOnce(
-      isDone,
-      (event) => event.maybeWhen(
+      isDoneLogin,
+      (event) async => event.maybeWhen(
         success: (eitherFailuresOrUrls) => emit(
           SignupCubitState.uploadImageSuccess(
             eitherFailuresOrUrls: eitherFailuresOrUrls,

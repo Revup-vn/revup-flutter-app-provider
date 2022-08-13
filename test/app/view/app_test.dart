@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:revup_provider/login/bloc/login_bloc.dart';
 
 void main() {

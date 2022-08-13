@@ -15,10 +15,7 @@ import '../vendor_authentication/vender_authentication.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(
-      page: SplashPage,
-      initial: true,
-    ),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: DetailServiceRequestPage),
     AdaptiveRoute<void>(page: InfoRequestPage),
