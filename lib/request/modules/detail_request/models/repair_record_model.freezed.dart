@@ -16,12 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RepairRecordModel {
-  List<RequestServiceModel> get requestServiceModel =>
+  List<PendingServiceModel> get requestServiceModel =>
       throw _privateConstructorUsedError;
-  List<BonusServicesModel> get bonusServicesModel =>
+  List<PaidServicesModel> get bonusServicesModel =>
       throw _privateConstructorUsedError;
   int get feeTransport => throw _privateConstructorUsedError;
-  int get temporary => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RepairRecordModelCopyWith<RepairRecordModel> get copyWith =>
@@ -34,10 +33,9 @@ abstract class $RepairRecordModelCopyWith<$Res> {
           RepairRecordModel value, $Res Function(RepairRecordModel) then) =
       _$RepairRecordModelCopyWithImpl<$Res>;
   $Res call(
-      {List<RequestServiceModel> requestServiceModel,
-      List<BonusServicesModel> bonusServicesModel,
-      int feeTransport,
-      int temporary});
+      {List<PendingServiceModel> requestServiceModel,
+      List<PaidServicesModel> bonusServicesModel,
+      int feeTransport});
 }
 
 /// @nodoc
@@ -54,24 +52,19 @@ class _$RepairRecordModelCopyWithImpl<$Res>
     Object? requestServiceModel = freezed,
     Object? bonusServicesModel = freezed,
     Object? feeTransport = freezed,
-    Object? temporary = freezed,
   }) {
     return _then(_value.copyWith(
       requestServiceModel: requestServiceModel == freezed
           ? _value.requestServiceModel
           : requestServiceModel // ignore: cast_nullable_to_non_nullable
-              as List<RequestServiceModel>,
+              as List<PendingServiceModel>,
       bonusServicesModel: bonusServicesModel == freezed
           ? _value.bonusServicesModel
           : bonusServicesModel // ignore: cast_nullable_to_non_nullable
-              as List<BonusServicesModel>,
+              as List<PaidServicesModel>,
       feeTransport: feeTransport == freezed
           ? _value.feeTransport
           : feeTransport // ignore: cast_nullable_to_non_nullable
-              as int,
-      temporary: temporary == freezed
-          ? _value.temporary
-          : temporary // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -85,10 +78,9 @@ abstract class _$$_RepairRecordModelCopyWith<$Res>
       __$$_RepairRecordModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<RequestServiceModel> requestServiceModel,
-      List<BonusServicesModel> bonusServicesModel,
-      int feeTransport,
-      int temporary});
+      {List<PendingServiceModel> requestServiceModel,
+      List<PaidServicesModel> bonusServicesModel,
+      int feeTransport});
 }
 
 /// @nodoc
@@ -107,24 +99,19 @@ class __$$_RepairRecordModelCopyWithImpl<$Res>
     Object? requestServiceModel = freezed,
     Object? bonusServicesModel = freezed,
     Object? feeTransport = freezed,
-    Object? temporary = freezed,
   }) {
     return _then(_$_RepairRecordModel(
       requestServiceModel: requestServiceModel == freezed
           ? _value._requestServiceModel
           : requestServiceModel // ignore: cast_nullable_to_non_nullable
-              as List<RequestServiceModel>,
+              as List<PendingServiceModel>,
       bonusServicesModel: bonusServicesModel == freezed
           ? _value._bonusServicesModel
           : bonusServicesModel // ignore: cast_nullable_to_non_nullable
-              as List<BonusServicesModel>,
+              as List<PaidServicesModel>,
       feeTransport: feeTransport == freezed
           ? _value.feeTransport
           : feeTransport // ignore: cast_nullable_to_non_nullable
-              as int,
-      temporary: temporary == freezed
-          ? _value.temporary
-          : temporary // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -134,35 +121,32 @@ class __$$_RepairRecordModelCopyWithImpl<$Res>
 
 class _$_RepairRecordModel implements _RepairRecordModel {
   const _$_RepairRecordModel(
-      {required final List<RequestServiceModel> requestServiceModel,
-      required final List<BonusServicesModel> bonusServicesModel,
-      required this.feeTransport,
-      required this.temporary})
+      {required final List<PendingServiceModel> requestServiceModel,
+      required final List<PaidServicesModel> bonusServicesModel,
+      required this.feeTransport})
       : _requestServiceModel = requestServiceModel,
         _bonusServicesModel = bonusServicesModel;
 
-  final List<RequestServiceModel> _requestServiceModel;
+  final List<PendingServiceModel> _requestServiceModel;
   @override
-  List<RequestServiceModel> get requestServiceModel {
+  List<PendingServiceModel> get requestServiceModel {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_requestServiceModel);
   }
 
-  final List<BonusServicesModel> _bonusServicesModel;
+  final List<PaidServicesModel> _bonusServicesModel;
   @override
-  List<BonusServicesModel> get bonusServicesModel {
+  List<PaidServicesModel> get bonusServicesModel {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bonusServicesModel);
   }
 
   @override
   final int feeTransport;
-  @override
-  final int temporary;
 
   @override
   String toString() {
-    return 'RepairRecordModel(requestServiceModel: $requestServiceModel, bonusServicesModel: $bonusServicesModel, feeTransport: $feeTransport, temporary: $temporary)';
+    return 'RepairRecordModel(requestServiceModel: $requestServiceModel, bonusServicesModel: $bonusServicesModel, feeTransport: $feeTransport)';
   }
 
   @override
@@ -175,8 +159,7 @@ class _$_RepairRecordModel implements _RepairRecordModel {
             const DeepCollectionEquality()
                 .equals(other._bonusServicesModel, _bonusServicesModel) &&
             const DeepCollectionEquality()
-                .equals(other.feeTransport, feeTransport) &&
-            const DeepCollectionEquality().equals(other.temporary, temporary));
+                .equals(other.feeTransport, feeTransport));
   }
 
   @override
@@ -184,8 +167,7 @@ class _$_RepairRecordModel implements _RepairRecordModel {
       runtimeType,
       const DeepCollectionEquality().hash(_requestServiceModel),
       const DeepCollectionEquality().hash(_bonusServicesModel),
-      const DeepCollectionEquality().hash(feeTransport),
-      const DeepCollectionEquality().hash(temporary));
+      const DeepCollectionEquality().hash(feeTransport));
 
   @JsonKey(ignore: true)
   @override
@@ -196,19 +178,16 @@ class _$_RepairRecordModel implements _RepairRecordModel {
 
 abstract class _RepairRecordModel implements RepairRecordModel {
   const factory _RepairRecordModel(
-      {required final List<RequestServiceModel> requestServiceModel,
-      required final List<BonusServicesModel> bonusServicesModel,
-      required final int feeTransport,
-      required final int temporary}) = _$_RepairRecordModel;
+      {required final List<PendingServiceModel> requestServiceModel,
+      required final List<PaidServicesModel> bonusServicesModel,
+      required final int feeTransport}) = _$_RepairRecordModel;
 
   @override
-  List<RequestServiceModel> get requestServiceModel;
+  List<PendingServiceModel> get requestServiceModel;
   @override
-  List<BonusServicesModel> get bonusServicesModel;
+  List<PaidServicesModel> get bonusServicesModel;
   @override
   int get feeTransport;
-  @override
-  int get temporary;
   @override
   @JsonKey(ignore: true)
   _$$_RepairRecordModelCopyWith<_$_RepairRecordModel> get copyWith =>

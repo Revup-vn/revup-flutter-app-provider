@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
-import '../../../../l10n/l10n.dart';
-import '../bloc/detail_service_request_bloc.u.dart';
+import '../../../../../l10n/l10n.dart';
 
 class TotalServicePriceItem extends StatelessWidget {
   const TotalServicePriceItem({
     super.key,
+    required this.tempTotal,
   });
+
+  final int tempTotal;
 
   @override
   Widget build(BuildContext context) {
@@ -39,29 +41,17 @@ class TotalServicePriceItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  BlocBuilder<DetailServiceRequestBloc,
-                      DetailServiceRequestState>(
-                    builder: (context, state) {
-                      return state.when(
-                        initial: () => const Text('Empty'),
-                        loading: () => const Center(
-                          child: CircularProgressIndicator(),
+                  SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        AutoSizeText(
+                          context.formatMoney(tempTotal),
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
-                        failure: () => const Text('Failed'),
-                        success: (repairRecordModel) => SizedBox(
-                          height: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              AutoSizeText(
-                                '''${repairRecordModel.temporary}Đ''',
-                                style: Theme.of(context).textTheme.labelLarge,
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                      ],
+                    ),
                   ),
                 ],
               ),

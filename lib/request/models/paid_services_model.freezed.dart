@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'bonus_services_model.dart';
+part of 'paid_services_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$BonusServicesModel {
+mixin _$PaidServicesModel {
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $BonusServicesModelCopyWith<BonusServicesModel> get copyWith =>
+  $PaidServicesModelCopyWith<PaidServicesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BonusServicesModelCopyWith<$Res> {
-  factory $BonusServicesModelCopyWith(
-          BonusServicesModel value, $Res Function(BonusServicesModel) then) =
-      _$BonusServicesModelCopyWithImpl<$Res>;
+abstract class $PaidServicesModelCopyWith<$Res> {
+  factory $PaidServicesModelCopyWith(
+          PaidServicesModel value, $Res Function(PaidServicesModel) then) =
+      _$PaidServicesModelCopyWithImpl<$Res>;
   $Res call({String name, int price});
 }
 
 /// @nodoc
-class _$BonusServicesModelCopyWithImpl<$Res>
-    implements $BonusServicesModelCopyWith<$Res> {
-  _$BonusServicesModelCopyWithImpl(this._value, this._then);
+class _$PaidServicesModelCopyWithImpl<$Res>
+    implements $PaidServicesModelCopyWith<$Res> {
+  _$PaidServicesModelCopyWithImpl(this._value, this._then);
 
-  final BonusServicesModel _value;
+  final PaidServicesModel _value;
   // ignore: unused_field
-  final $Res Function(BonusServicesModel) _then;
+  final $Res Function(PaidServicesModel) _then;
 
   @override
   $Res call({
@@ -60,32 +60,32 @@ class _$BonusServicesModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_BonusServicesModelCopyWith<$Res>
-    implements $BonusServicesModelCopyWith<$Res> {
-  factory _$$_BonusServicesModelCopyWith(_$_BonusServicesModel value,
-          $Res Function(_$_BonusServicesModel) then) =
-      __$$_BonusServicesModelCopyWithImpl<$Res>;
+abstract class _$$_PaidServicesModelCopyWith<$Res>
+    implements $PaidServicesModelCopyWith<$Res> {
+  factory _$$_PaidServicesModelCopyWith(_$_PaidServicesModel value,
+          $Res Function(_$_PaidServicesModel) then) =
+      __$$_PaidServicesModelCopyWithImpl<$Res>;
   @override
   $Res call({String name, int price});
 }
 
 /// @nodoc
-class __$$_BonusServicesModelCopyWithImpl<$Res>
-    extends _$BonusServicesModelCopyWithImpl<$Res>
-    implements _$$_BonusServicesModelCopyWith<$Res> {
-  __$$_BonusServicesModelCopyWithImpl(
-      _$_BonusServicesModel _value, $Res Function(_$_BonusServicesModel) _then)
-      : super(_value, (v) => _then(v as _$_BonusServicesModel));
+class __$$_PaidServicesModelCopyWithImpl<$Res>
+    extends _$PaidServicesModelCopyWithImpl<$Res>
+    implements _$$_PaidServicesModelCopyWith<$Res> {
+  __$$_PaidServicesModelCopyWithImpl(
+      _$_PaidServicesModel _value, $Res Function(_$_PaidServicesModel) _then)
+      : super(_value, (v) => _then(v as _$_PaidServicesModel));
 
   @override
-  _$_BonusServicesModel get _value => super._value as _$_BonusServicesModel;
+  _$_PaidServicesModel get _value => super._value as _$_PaidServicesModel;
 
   @override
   $Res call({
     Object? name = freezed,
     Object? price = freezed,
   }) {
-    return _then(_$_BonusServicesModel(
+    return _then(_$_PaidServicesModel(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -100,8 +100,8 @@ class __$$_BonusServicesModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BonusServicesModel implements _BonusServicesModel {
-  const _$_BonusServicesModel({required this.name, required this.price});
+class _$_PaidServicesModel implements _PaidServicesModel {
+  const _$_PaidServicesModel({required this.name, required this.price});
 
   @override
   final String name;
@@ -110,14 +110,14 @@ class _$_BonusServicesModel implements _BonusServicesModel {
 
   @override
   String toString() {
-    return 'BonusServicesModel(name: $name, price: $price)';
+    return 'PaidServicesModel(name: $name, price: $price)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BonusServicesModel &&
+            other is _$_PaidServicesModel &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.price, price));
   }
@@ -130,15 +130,15 @@ class _$_BonusServicesModel implements _BonusServicesModel {
 
   @JsonKey(ignore: true)
   @override
-  _$$_BonusServicesModelCopyWith<_$_BonusServicesModel> get copyWith =>
-      __$$_BonusServicesModelCopyWithImpl<_$_BonusServicesModel>(
+  _$$_PaidServicesModelCopyWith<_$_PaidServicesModel> get copyWith =>
+      __$$_PaidServicesModelCopyWithImpl<_$_PaidServicesModel>(
           this, _$identity);
 }
 
-abstract class _BonusServicesModel implements BonusServicesModel {
-  const factory _BonusServicesModel(
+abstract class _PaidServicesModel implements PaidServicesModel {
+  const factory _PaidServicesModel(
       {required final String name,
-      required final int price}) = _$_BonusServicesModel;
+      required final int price}) = _$_PaidServicesModel;
 
   @override
   String get name;
@@ -146,6 +146,6 @@ abstract class _BonusServicesModel implements BonusServicesModel {
   int get price;
   @override
   @JsonKey(ignore: true)
-  _$$_BonusServicesModelCopyWith<_$_BonusServicesModel> get copyWith =>
+  _$$_PaidServicesModelCopyWith<_$_PaidServicesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

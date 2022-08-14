@@ -23,25 +23,25 @@ class SelectOptionCompleteBloc
       started: () async {
         emit(const SelectOptionCompleteState.loading());
         final requestServiceModel = [
-          const RequestServiceModel(
+          const PendingServiceModel(
             name: 'Thay săm',
             price: 170000,
           ),
-          const RequestServiceModel(
+          const PendingServiceModel(
             name: 'Thay săm',
             price: 170000,
           ),
-          const RequestServiceModel(
+          const PendingServiceModel(
             name: 'Thay săm',
             price: 170000,
           ),
         ];
         final bonustServiceModel = [
-          const BonusServicesModel(
+          const PaidServicesModel(
             name: 'Bọc yên xe',
             price: 170000,
           ),
-          const BonusServicesModel(
+          const PaidServicesModel(
             name: 'Bọc yên xe',
             price: 170000,
           ),

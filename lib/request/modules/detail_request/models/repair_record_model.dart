@@ -7,9 +7,8 @@ part 'repair_record_model.freezed.dart';
 @freezed
 class RepairRecordModel with _$RepairRecordModel {
   const factory RepairRecordModel({
-    required List<RequestServiceModel> requestServiceModel,
-    required List<BonusServicesModel> bonusServicesModel,
+    required List<PendingServiceModel> requestServiceModel,
+    required List<PaidServicesModel> bonusServicesModel,
     required int feeTransport,
-    required int temporary,
   }) = _RepairRecordModel;
 }

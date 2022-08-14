@@ -11,27 +11,23 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'dart:async' as _i14;
 
-import 'package:flutter/material.dart' as _i13;
-
 import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:flutter/material.dart' as _i13;
 import 'package:revup_core/core.dart' as _i15;
-
 import 'package:revup_provider/home/home.dart' as _i8;
+import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i11;
 import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
 import 'package:revup_provider/my_review/my_review.dart' as _i6;
 import 'package:revup_provider/otp/view/otp_page.u.dart' as _i10;
+import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
+    as _i5;
 import 'package:revup_provider/repair_service/repair_service.dart' as _i4;
 import 'package:revup_provider/request/modules/modules.dart' as _i3;
 import 'package:revup_provider/signup/view/signup_page.u.dart' as _i9;
 import 'package:revup_provider/splash/splash.dart' as _i1;
-
-import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i11;
-import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
-    as _i5;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
     as _i7;
 
@@ -119,6 +115,12 @@ class AppRouter extends _i12.RootStackRouter {
               args.photoURL, args.uid, args.email,
               key: args.key));
     },
+    P12DetailRoute.name: (routeData) {
+      final args = routeData.argsAs<P12DetailRouteArgs>();
+      return _i12.AdaptivePage<void>(
+          routeData: routeData,
+          child: _i3.P12DetailPage(key: args.key, recordId: args.recordId));
+    },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i12.AdaptivePage<void>(
@@ -169,6 +171,7 @@ class AppRouter extends _i12.RootStackRouter {
         _i12.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
         _i12.RouteConfig(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page'),
+        _i12.RouteConfig(P12DetailRoute.name, path: '/p12-detail-page'),
         _i12.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i12.RouteConfig(HomePrimaryRoute.name,
               path: 'home-primary-page', parent: HomeRoute.name),
@@ -438,6 +441,30 @@ class LoginEnterPhoneRouteArgs {
   @override
   String toString() {
     return 'LoginEnterPhoneRouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, email: $email, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.P12DetailPage]
+class P12DetailRoute extends _i12.PageRouteInfo<P12DetailRouteArgs> {
+  P12DetailRoute({_i13.Key? key, required String recordId})
+      : super(P12DetailRoute.name,
+            path: '/p12-detail-page',
+            args: P12DetailRouteArgs(key: key, recordId: recordId));
+
+  static const String name = 'P12DetailRoute';
+}
+
+class P12DetailRouteArgs {
+  const P12DetailRouteArgs({this.key, required this.recordId});
+
+  final _i13.Key? key;
+
+  final String recordId;
+
+  @override
+  String toString() {
+    return 'P12DetailRouteArgs{key: $key, recordId: $recordId}';
   }
 }
 
