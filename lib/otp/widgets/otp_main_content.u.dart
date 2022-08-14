@@ -25,10 +25,10 @@ class OTPMainContent extends StatelessWidget {
           leading: BackButton(
             onPressed: () {
               context.loaderOverlay.hide();
-              context.router.pop();
               context.read<AuthenticateBloc>().add(
                     const AuthenticateEvent.reset(),
                   );
+              context.router.pop();
             },
           ),
         ),

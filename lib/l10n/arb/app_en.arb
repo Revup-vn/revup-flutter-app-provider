@@ -102,7 +102,7 @@
   "onboardPageFirstTitle": "Professional car repair service",
   "onboardPageSecondTitle": "Always on duty on all roads",
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
-  "operationStatusLabel": "Operation status",
+  "operationStatusLabel": "Active status",
   "orderDetailLabel": "Order details",
   "orderInformationLabel": "Order Information",
   "organizationLabel": "Organization account",
@@ -199,5 +199,6 @@
   "newRequestLabel": "New request",
   "repairItemsLabel": "repair items",
   "repairRequestSkipLabel": "Would you like to skip this repair request?",
-  "needPriceQuotationLabel": "Need price quotation"
+  "needPriceQuotationLabel": "Need price quotation",
+  "idImgRequiredLabel": "You have to take a photo of your font id card"
 }
