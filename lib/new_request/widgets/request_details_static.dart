@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
+import '../../request/models/pending_service_model.dart';
 import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
 import '../../shared/widgets/app_avatar.dart';
 import '../models/pending_request.dart';
-import '../models/pending_service.dart';
 
 class RequestDetailsStatic extends StatelessWidget {
   const RequestDetailsStatic({
@@ -24,7 +23,7 @@ class RequestDetailsStatic extends StatelessWidget {
   final AppUser consumer;
   final PendingRequest record;
   final double distance;
-  final IList<PendingService> pendingService;
+  final IList<PendingServiceModel> pendingService;
   final int pendingAmount;
 
   @override
@@ -168,7 +167,7 @@ class RequestDetailsStatic extends StatelessWidget {
                       context.router.push(
                         DetailServiceRequestRoute(
                           record: record,
-                          pendingService: pendingService,
+                          requests: pendingService,
                           pendingAmount: pendingAmount,
                         ),
                       );

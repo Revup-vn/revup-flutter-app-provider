@@ -88,7 +88,7 @@ class LoginPage extends StatelessWidget {
               );
 
               return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(const HomeRoute());
+                context.router.push(HomeRoute(user: authType.user));
               });
             },
             orElse: () => false,
@@ -217,7 +217,9 @@ class LoginPage extends StatelessWidget {
         );
       },
     );
-
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(context, rootNavigator: true).pop();
+    });
     context.read<AuthenticateBloc>().add(
           AuthenticateEvent.loginWithPhone(
             phoneNumber: '+84$phone',
@@ -250,6 +252,5 @@ class LoginPage extends StatelessWidget {
             },
           ),
         );
-    Navigator.of(context, rootNavigator: true).pop();
   }
 }

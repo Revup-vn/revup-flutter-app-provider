@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'new_request_bloc.dart';
+part of 'detail_service_request_bloc.u.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$NewRequestEvent {
+mixin _$DetailServiceRequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -51,20 +51,20 @@ mixin _$NewRequestEvent {
 }
 
 /// @nodoc
-abstract class $NewRequestEventCopyWith<$Res> {
-  factory $NewRequestEventCopyWith(
-          NewRequestEvent value, $Res Function(NewRequestEvent) then) =
-      _$NewRequestEventCopyWithImpl<$Res>;
+abstract class $DetailServiceRequestEventCopyWith<$Res> {
+  factory $DetailServiceRequestEventCopyWith(DetailServiceRequestEvent value,
+          $Res Function(DetailServiceRequestEvent) then) =
+      _$DetailServiceRequestEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewRequestEventCopyWithImpl<$Res>
-    implements $NewRequestEventCopyWith<$Res> {
-  _$NewRequestEventCopyWithImpl(this._value, this._then);
+class _$DetailServiceRequestEventCopyWithImpl<$Res>
+    implements $DetailServiceRequestEventCopyWith<$Res> {
+  _$DetailServiceRequestEventCopyWithImpl(this._value, this._then);
 
-  final NewRequestEvent _value;
+  final DetailServiceRequestEvent _value;
   // ignore: unused_field
-  final $Res Function(NewRequestEvent) _then;
+  final $Res Function(DetailServiceRequestEvent) _then;
 }
 
 /// @nodoc
@@ -75,7 +75,8 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$NewRequestEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
+    extends _$DetailServiceRequestEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -91,7 +92,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'NewRequestEvent.started()';
+    return 'DetailServiceRequestEvent.started()';
   }
 
   @override
@@ -160,26 +161,18 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements NewRequestEvent {
+abstract class _Started implements DetailServiceRequestEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-mixin _$NewRequestState {
+mixin _$DetailServiceRequestState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)
-        success,
+    required TResult Function(RepairRecordModel repairRecordModel) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,15 +180,7 @@ mixin _$NewRequestState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -203,15 +188,7 @@ mixin _$NewRequestState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -243,20 +220,20 @@ mixin _$NewRequestState {
 }
 
 /// @nodoc
-abstract class $NewRequestStateCopyWith<$Res> {
-  factory $NewRequestStateCopyWith(
-          NewRequestState value, $Res Function(NewRequestState) then) =
-      _$NewRequestStateCopyWithImpl<$Res>;
+abstract class $DetailServiceRequestStateCopyWith<$Res> {
+  factory $DetailServiceRequestStateCopyWith(DetailServiceRequestState value,
+          $Res Function(DetailServiceRequestState) then) =
+      _$DetailServiceRequestStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewRequestStateCopyWithImpl<$Res>
-    implements $NewRequestStateCopyWith<$Res> {
-  _$NewRequestStateCopyWithImpl(this._value, this._then);
+class _$DetailServiceRequestStateCopyWithImpl<$Res>
+    implements $DetailServiceRequestStateCopyWith<$Res> {
+  _$DetailServiceRequestStateCopyWithImpl(this._value, this._then);
 
-  final NewRequestState _value;
+  final DetailServiceRequestState _value;
   // ignore: unused_field
-  final $Res Function(NewRequestState) _then;
+  final $Res Function(DetailServiceRequestState) _then;
 }
 
 /// @nodoc
@@ -267,7 +244,8 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$DetailServiceRequestStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -283,7 +261,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'NewRequestState.initial()';
+    return 'DetailServiceRequestState.initial()';
   }
 
   @override
@@ -301,15 +279,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)
-        success,
+    required TResult Function(RepairRecordModel repairRecordModel) success,
   }) {
     return initial();
   }
@@ -320,15 +290,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
   }) {
     return initial?.call();
   }
@@ -339,15 +301,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -394,7 +348,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements NewRequestState {
+abstract class _Initial implements DetailServiceRequestState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -406,7 +360,8 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$DetailServiceRequestStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -422,7 +377,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'NewRequestState.loading()';
+    return 'DetailServiceRequestState.loading()';
   }
 
   @override
@@ -440,15 +395,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)
-        success,
+    required TResult Function(RepairRecordModel repairRecordModel) success,
   }) {
     return loading();
   }
@@ -459,15 +406,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
   }) {
     return loading?.call();
   }
@@ -478,15 +417,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -533,7 +464,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements NewRequestState {
+abstract class _Loading implements DetailServiceRequestState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -545,7 +476,8 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$DetailServiceRequestStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -561,7 +493,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'NewRequestState.failure()';
+    return 'DetailServiceRequestState.failure()';
   }
 
   @override
@@ -579,15 +511,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)
-        success,
+    required TResult Function(RepairRecordModel repairRecordModel) success,
   }) {
     return failure();
   }
@@ -598,15 +522,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
   }) {
     return failure?.call();
   }
@@ -617,15 +533,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -672,7 +580,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements NewRequestState {
+abstract class _Failure implements DetailServiceRequestState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -681,22 +589,14 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call(
-      {Directions directions,
-      Marker fromMarker,
-      Marker toMarker,
-      AppUser consumer,
-      PendingRequest record,
-      IList<PendingServiceModel> services,
-      int pendingAmount});
+  $Res call({RepairRecordModel repairRecordModel});
 
-  $DirectionsCopyWith<$Res> get directions;
-  $AppUserCopyWith<$Res> get consumer;
-  $PendingRequestCopyWith<$Res> get record;
+  $RepairRecordModelCopyWith<$Res> get repairRecordModel;
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$DetailServiceRequestStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
@@ -706,64 +606,20 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? directions = freezed,
-    Object? fromMarker = freezed,
-    Object? toMarker = freezed,
-    Object? consumer = freezed,
-    Object? record = freezed,
-    Object? services = freezed,
-    Object? pendingAmount = freezed,
+    Object? repairRecordModel = freezed,
   }) {
     return _then(_$_Success(
-      directions: directions == freezed
-          ? _value.directions
-          : directions // ignore: cast_nullable_to_non_nullable
-              as Directions,
-      fromMarker: fromMarker == freezed
-          ? _value.fromMarker
-          : fromMarker // ignore: cast_nullable_to_non_nullable
-              as Marker,
-      toMarker: toMarker == freezed
-          ? _value.toMarker
-          : toMarker // ignore: cast_nullable_to_non_nullable
-              as Marker,
-      consumer: consumer == freezed
-          ? _value.consumer
-          : consumer // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-      record: record == freezed
-          ? _value.record
-          : record // ignore: cast_nullable_to_non_nullable
-              as PendingRequest,
-      services: services == freezed
-          ? _value.services
-          : services // ignore: cast_nullable_to_non_nullable
-              as IList<PendingServiceModel>,
-      pendingAmount: pendingAmount == freezed
-          ? _value.pendingAmount
-          : pendingAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+      repairRecordModel: repairRecordModel == freezed
+          ? _value.repairRecordModel
+          : repairRecordModel // ignore: cast_nullable_to_non_nullable
+              as RepairRecordModel,
     ));
   }
 
   @override
-  $DirectionsCopyWith<$Res> get directions {
-    return $DirectionsCopyWith<$Res>(_value.directions, (value) {
-      return _then(_value.copyWith(directions: value));
-    });
-  }
-
-  @override
-  $AppUserCopyWith<$Res> get consumer {
-    return $AppUserCopyWith<$Res>(_value.consumer, (value) {
-      return _then(_value.copyWith(consumer: value));
-    });
-  }
-
-  @override
-  $PendingRequestCopyWith<$Res> get record {
-    return $PendingRequestCopyWith<$Res>(_value.record, (value) {
-      return _then(_value.copyWith(record: value));
+  $RepairRecordModelCopyWith<$Res> get repairRecordModel {
+    return $RepairRecordModelCopyWith<$Res>(_value.repairRecordModel, (value) {
+      return _then(_value.copyWith(repairRecordModel: value));
     });
   }
 }
@@ -771,33 +627,14 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(
-      {required this.directions,
-      required this.fromMarker,
-      required this.toMarker,
-      required this.consumer,
-      required this.record,
-      required this.services,
-      required this.pendingAmount});
+  const _$_Success({required this.repairRecordModel});
 
   @override
-  final Directions directions;
-  @override
-  final Marker fromMarker;
-  @override
-  final Marker toMarker;
-  @override
-  final AppUser consumer;
-  @override
-  final PendingRequest record;
-  @override
-  final IList<PendingServiceModel> services;
-  @override
-  final int pendingAmount;
+  final RepairRecordModel repairRecordModel;
 
   @override
   String toString() {
-    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, services: $services, pendingAmount: $pendingAmount)';
+    return 'DetailServiceRequestState.success(repairRecordModel: $repairRecordModel)';
   }
 
   @override
@@ -806,27 +643,12 @@ class _$_Success implements _Success {
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
             const DeepCollectionEquality()
-                .equals(other.directions, directions) &&
-            const DeepCollectionEquality()
-                .equals(other.fromMarker, fromMarker) &&
-            const DeepCollectionEquality().equals(other.toMarker, toMarker) &&
-            const DeepCollectionEquality().equals(other.consumer, consumer) &&
-            const DeepCollectionEquality().equals(other.record, record) &&
-            const DeepCollectionEquality().equals(other.services, services) &&
-            const DeepCollectionEquality()
-                .equals(other.pendingAmount, pendingAmount));
+                .equals(other.repairRecordModel, repairRecordModel));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(directions),
-      const DeepCollectionEquality().hash(fromMarker),
-      const DeepCollectionEquality().hash(toMarker),
-      const DeepCollectionEquality().hash(consumer),
-      const DeepCollectionEquality().hash(record),
-      const DeepCollectionEquality().hash(services),
-      const DeepCollectionEquality().hash(pendingAmount));
+      runtimeType, const DeepCollectionEquality().hash(repairRecordModel));
 
   @JsonKey(ignore: true)
   @override
@@ -839,18 +661,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)
-        success,
+    required TResult Function(RepairRecordModel repairRecordModel) success,
   }) {
-    return success(directions, fromMarker, toMarker, consumer, record, services,
-        pendingAmount);
+    return success(repairRecordModel);
   }
 
   @override
@@ -859,18 +672,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
   }) {
-    return success?.call(directions, fromMarker, toMarker, consumer, record,
-        services, pendingAmount);
+    return success?.call(repairRecordModel);
   }
 
   @override
@@ -879,20 +683,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            Directions directions,
-            Marker fromMarker,
-            Marker toMarker,
-            AppUser consumer,
-            PendingRequest record,
-            IList<PendingServiceModel> services,
-            int pendingAmount)?
-        success,
+    TResult Function(RepairRecordModel repairRecordModel)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(directions, fromMarker, toMarker, consumer, record,
-          services, pendingAmount);
+      return success(repairRecordModel);
     }
     return orElse();
   }
@@ -935,23 +730,11 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements NewRequestState {
-  const factory _Success(
-      {required final Directions directions,
-      required final Marker fromMarker,
-      required final Marker toMarker,
-      required final AppUser consumer,
-      required final PendingRequest record,
-      required final IList<PendingServiceModel> services,
-      required final int pendingAmount}) = _$_Success;
+abstract class _Success implements DetailServiceRequestState {
+  const factory _Success({required final RepairRecordModel repairRecordModel}) =
+      _$_Success;
 
-  Directions get directions;
-  Marker get fromMarker;
-  Marker get toMarker;
-  AppUser get consumer;
-  PendingRequest get record;
-  IList<PendingServiceModel> get services;
-  int get pendingAmount;
+  RepairRecordModel get repairRecordModel;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

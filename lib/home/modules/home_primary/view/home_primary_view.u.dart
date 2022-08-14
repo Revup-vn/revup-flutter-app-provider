@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../shared/shared.dart';
+import '../../../../shared/widgets/loading.u.dart';
+import '../../../home.dart';
 
 class HomePrimaryView extends StatelessWidget {
   const HomePrimaryView({
     super.key,
     required this.user,
   });
-  final UserModel user;
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class HomePrimaryView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AutoSizeText(
-                '${l10n.hiLabel}, ${user.name}',
+                '${l10n.hiLabel}, ${user.firstName}${user.lastName}',
                 style: Theme.of(context)
                         .textTheme
                         .headlineSmall
@@ -50,7 +53,7 @@ class HomePrimaryView extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   AutoSizeText(
-                    user.address,
+                    user.addr,
                     style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -71,14 +74,47 @@ class HomePrimaryView extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(width: 10),
-                  FlutterSwitch(
-                    value: user.onlineStatus,
-                    width: 45,
-                    height: 25,
-                    activeColor: Theme.of(context).colorScheme.primary,
-                    onToggle: (value) {
-                      // TODO(namngoc231): change status
-                    },
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) => state.map(
+                      initial: (_) => FlutterSwitch(
+                        value: user.maybeMap(
+                          provider: (value) {
+                            return value.online;
+                          },
+                          orElse: () => false,
+                        ),
+                        width: 45,
+                        height: 25,
+                        activeColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                        inactiveColor: Theme.of(context).colorScheme.outline,
+                        onToggle: (value) {
+                          context.read<HomeBloc>().add(
+                                HomeEvent.changeActiveStatus(
+                                  status: value,
+                                  providerID: user.uuid,
+                                ),
+                              );
+                        },
+                      ),
+                      loading: (_) => const Loading(),
+                      changeActiveStatusSuccess: (data) => FlutterSwitch(
+                        value: data.status,
+                        width: 45,
+                        height: 25,
+                        activeColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                        inactiveColor: Theme.of(context).colorScheme.outline,
+                        onToggle: (value) {
+                          context.read<HomeBloc>().add(
+                                HomeEvent.changeActiveStatus(
+                                  status: value,
+                                  providerID: data.user.uuid,
+                                ),
+                              );
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -1,23 +1,22 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../../l10n/l10n.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../../models/pending_service_model.dart';
 
 class ServiceRequestItem extends StatelessWidget {
   const ServiceRequestItem({
     super.key,
-    required this.pendingService,
+    required this.requests,
   });
 
-  final IList<PendingServiceModel> pendingService;
+  final List<PendingServiceModel> requests;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final services = pendingService.toList();
+
     return Column(
       children: [
         SizedBox(
@@ -39,28 +38,24 @@ class ServiceRequestItem extends StatelessWidget {
         const SizedBox(
           height: 6,
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: services.length,
-          itemBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              height: 50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  AutoSizeText(
-                    services[index].name,
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                  AutoSizeText(
-                    context.formatMoney(services[index].price),
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ],
-              ),
-            );
-          },
+        ...List.generate(
+          requests.length,
+          (index) => SizedBox(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                AutoSizeText(
+                  requests[index].name,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                AutoSizeText(
+                  context.formatMoney(requests[index].price),
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );

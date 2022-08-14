@@ -8,8 +8,8 @@ import 'package:revup_core/core.dart';
 
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
+import '../../request/models/pending_service_model.dart';
 import '../models/pending_request.dart';
-import '../models/pending_service.dart';
 
 part 'new_request_bloc.freezed.dart';
 part 'new_request_event.dart';
@@ -69,15 +69,15 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         final services =
             (await storeRepository.repairPaymentRepo(repairRecord).all())
                 .map(
-                  (r) => r.map<Option<PendingService>>(
+                  (r) => r.map<Option<PendingServiceModel>>(
                     (a) => a.maybeMap(
                       pending: (v) =>
-                          some(PendingService.fromDto(paymentService: v)),
+                          some(PendingServiceModel.fromDto(paymentService: v)),
                       orElse: none,
                     ),
                   ),
                 )
-                .fold((l) => ilist(<Option<PendingService>>[]), (r) => r)
+                .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
                 .filter(
                   (a) => a.isSome(),
                 )
@@ -86,7 +86,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                 );
         final pendingAmount = services
             .map(
-              (a) => a.moneyAmount,
+              (a) => a.price,
             )
             .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
 

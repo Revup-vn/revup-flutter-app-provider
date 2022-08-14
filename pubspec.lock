@@ -594,27 +594,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0-alpha.5"
-  flutter_local_notifications:
-    dependency: transitive
-    description:
-      name: flutter_local_notifications
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "9.7.0"
-  flutter_local_notifications_linux:
-    dependency: transitive
-    description:
-      name: flutter_local_notifications_linux
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.1"
-  flutter_local_notifications_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_local_notifications_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -1186,10 +1165,12 @@ packages:
   revup_core:
     dependency: "direct main"
     description:
-      path: "../revup-core"
-      relative: true
-    source: path
-    version: "6.0.0-dev"
+      path: "."
+      ref: main
+      resolved-ref: aeb110c61a7de9959bfc4445b36bb6b6fa4aa38e
+      url: "https://github.com/Revup-vn/revup-core.git"
+    source: git
+    version: "6.0.1-dev"
   rxdart:
     dependency: transitive
     description:
@@ -1412,13 +1393,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  timezone:
-    dependency: transitive
-    description:
-      name: timezone
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.0"
   timing:
     dependency: transitive
     description:

@@ -2,12 +2,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../models/models.dart';
 
-part 'select_option_complete_model.freezed.dart';
+part 'repair_record_model.freezed.dart';
 
 @freezed
-class SelectOptionCompleteModel with _$SelectOptionCompleteModel {
-  const factory SelectOptionCompleteModel({
+class RepairRecordModel with _$RepairRecordModel {
+  const factory RepairRecordModel({
     required List<PendingServiceModel> requestServiceModel,
     required List<PaidServicesModel> bonusServicesModel,
-  }) = _SelectOptionCompleteModel;
+    required int feeTransport,
+  }) = _RepairRecordModel;
 }

@@ -11,7 +11,7 @@ class NewRequestState with _$NewRequestState {
     required Marker toMarker,
     required AppUser consumer,
     required PendingRequest record,
-    required IList<PendingService> services,
+    required IList<PendingServiceModel> services,
     required int pendingAmount,
   }) = _Success;
 }

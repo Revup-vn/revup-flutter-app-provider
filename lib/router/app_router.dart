@@ -34,6 +34,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: NewRequestPage, initial: true),
+    AdaptiveRoute<void>(page: P12DetailPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

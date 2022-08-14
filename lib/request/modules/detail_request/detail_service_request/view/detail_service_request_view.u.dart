@@ -1,27 +1,19 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dartz/dartz.dart';
+import '../../../../../l10n/l10n.dart';
+import '../../widgets/widgets.dart';
 
-import '../../../../l10n/l10n.dart';
-import '../../../../new_request/models/pending_request.dart';
-import '../../../../new_request/models/pending_service.dart';
-import '../widgets/widgets.dart';
-
-class DetailServiceRequestPage extends StatelessWidget {
-  const DetailServiceRequestPage({
+class DetailServiceRequestView extends StatelessWidget {
+  const DetailServiceRequestView({
     super.key,
-    required this.record,
-    required this.pendingService,
-    required this.pendingAmount,
   });
-  final PendingRequest record;
-  final IList<PendingService> pendingService;
-  final int pendingAmount;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    // TODO(tcmhoang): depressed cannot review this file
+    /// someone please help me
 
     return Scaffold(
       appBar: AppBar(),
@@ -53,8 +45,8 @@ class DetailServiceRequestPage extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    ServiceRequestItem(
-                      pendingService: pendingService,
+                    const ServiceRequestItem(
+                      requests: [],
                     ),
                     const SizedBox(
                       height: 16,
@@ -66,8 +58,8 @@ class DetailServiceRequestPage extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    BonusServicetItem(
-                      record: record,
+                    const BonusServiceItem(
+                      bonuses: [],
                     ),
                     const SizedBox(
                       height: 16,
@@ -79,8 +71,8 @@ class DetailServiceRequestPage extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    AdditionalCoststItem(
-                      record: record,
+                    const AdditionalCostItem(
+                      fee: 0,
                     ),
                     const SizedBox(
                       height: 100,
@@ -92,9 +84,9 @@ class DetailServiceRequestPage extends StatelessWidget {
           ),
           Expanded(
             child: Column(
-              children: [
+              children: const [
                 TotalServicePriceItem(
-                  pendingAmount: pendingAmount,
+                  pendingAmount: 0,
                 ),
               ],
             ),
