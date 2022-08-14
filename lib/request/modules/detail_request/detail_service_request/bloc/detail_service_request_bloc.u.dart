@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../models/models.dart';
-import '../models/models.dart';
+import '../../../../models/models.dart';
+import '../../models/models.dart';
 
 part 'detail_service_request_bloc.u.freezed.dart';
 part 'detail_service_request_event.u.dart';
@@ -24,25 +24,25 @@ class DetailServiceRequestBloc
       started: () async {
         emit(const DetailServiceRequestState.loading());
         final requestServiceModel = [
-          const RequestServiceModel(
+          const PendingServiceModel(
             name: 'Thay săm',
             price: 170000,
           ),
-          const RequestServiceModel(
+          const PendingServiceModel(
             name: 'Thay săm',
             price: 170000,
           ),
-          const RequestServiceModel(
+          const PendingServiceModel(
             name: 'Thay săm',
             price: 170000,
           ),
         ];
         final bonusServiceModel = [
-          const BonusServicesModel(
+          const PaidServicesModel(
             name: 'Bọc yên xe',
             price: 170000,
           ),
-          const BonusServicesModel(
+          const PaidServicesModel(
             name: 'Bọc yên xe',
             price: 170000,
           ),
@@ -59,7 +59,6 @@ class DetailServiceRequestBloc
           requestServiceModel: requestServiceModel,
           bonusServicesModel: bonusServiceModel,
           feeTransport: feeTransport,
-          temporary: temporary,
         );
 
         emit(

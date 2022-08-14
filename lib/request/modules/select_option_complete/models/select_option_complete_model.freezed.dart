@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SelectOptionCompleteModel {
-  List<RequestServiceModel> get requestServiceModel =>
+  List<PendingServiceModel> get requestServiceModel =>
       throw _privateConstructorUsedError;
-  List<BonusServicesModel> get bonusServicesModel =>
+  List<PaidServicesModel> get bonusServicesModel =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,8 +32,8 @@ abstract class $SelectOptionCompleteModelCopyWith<$Res> {
           $Res Function(SelectOptionCompleteModel) then) =
       _$SelectOptionCompleteModelCopyWithImpl<$Res>;
   $Res call(
-      {List<RequestServiceModel> requestServiceModel,
-      List<BonusServicesModel> bonusServicesModel});
+      {List<PendingServiceModel> requestServiceModel,
+      List<PaidServicesModel> bonusServicesModel});
 }
 
 /// @nodoc
@@ -54,11 +54,11 @@ class _$SelectOptionCompleteModelCopyWithImpl<$Res>
       requestServiceModel: requestServiceModel == freezed
           ? _value.requestServiceModel
           : requestServiceModel // ignore: cast_nullable_to_non_nullable
-              as List<RequestServiceModel>,
+              as List<PendingServiceModel>,
       bonusServicesModel: bonusServicesModel == freezed
           ? _value.bonusServicesModel
           : bonusServicesModel // ignore: cast_nullable_to_non_nullable
-              as List<BonusServicesModel>,
+              as List<PaidServicesModel>,
     ));
   }
 }
@@ -72,8 +72,8 @@ abstract class _$$_SelectOptionCompleteModelCopyWith<$Res>
       __$$_SelectOptionCompleteModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<RequestServiceModel> requestServiceModel,
-      List<BonusServicesModel> bonusServicesModel});
+      {List<PendingServiceModel> requestServiceModel,
+      List<PaidServicesModel> bonusServicesModel});
 }
 
 /// @nodoc
@@ -98,11 +98,11 @@ class __$$_SelectOptionCompleteModelCopyWithImpl<$Res>
       requestServiceModel: requestServiceModel == freezed
           ? _value._requestServiceModel
           : requestServiceModel // ignore: cast_nullable_to_non_nullable
-              as List<RequestServiceModel>,
+              as List<PendingServiceModel>,
       bonusServicesModel: bonusServicesModel == freezed
           ? _value._bonusServicesModel
           : bonusServicesModel // ignore: cast_nullable_to_non_nullable
-              as List<BonusServicesModel>,
+              as List<PaidServicesModel>,
     ));
   }
 }
@@ -111,21 +111,21 @@ class __$$_SelectOptionCompleteModelCopyWithImpl<$Res>
 
 class _$_SelectOptionCompleteModel implements _SelectOptionCompleteModel {
   const _$_SelectOptionCompleteModel(
-      {required final List<RequestServiceModel> requestServiceModel,
-      required final List<BonusServicesModel> bonusServicesModel})
+      {required final List<PendingServiceModel> requestServiceModel,
+      required final List<PaidServicesModel> bonusServicesModel})
       : _requestServiceModel = requestServiceModel,
         _bonusServicesModel = bonusServicesModel;
 
-  final List<RequestServiceModel> _requestServiceModel;
+  final List<PendingServiceModel> _requestServiceModel;
   @override
-  List<RequestServiceModel> get requestServiceModel {
+  List<PendingServiceModel> get requestServiceModel {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_requestServiceModel);
   }
 
-  final List<BonusServicesModel> _bonusServicesModel;
+  final List<PaidServicesModel> _bonusServicesModel;
   @override
-  List<BonusServicesModel> get bonusServicesModel {
+  List<PaidServicesModel> get bonusServicesModel {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bonusServicesModel);
   }
@@ -161,14 +161,14 @@ class _$_SelectOptionCompleteModel implements _SelectOptionCompleteModel {
 
 abstract class _SelectOptionCompleteModel implements SelectOptionCompleteModel {
   const factory _SelectOptionCompleteModel(
-          {required final List<RequestServiceModel> requestServiceModel,
-          required final List<BonusServicesModel> bonusServicesModel}) =
+          {required final List<PendingServiceModel> requestServiceModel,
+          required final List<PaidServicesModel> bonusServicesModel}) =
       _$_SelectOptionCompleteModel;
 
   @override
-  List<RequestServiceModel> get requestServiceModel;
+  List<PendingServiceModel> get requestServiceModel;
   @override
-  List<BonusServicesModel> get bonusServicesModel;
+  List<PaidServicesModel> get bonusServicesModel;
   @override
   @JsonKey(ignore: true)
   _$$_SelectOptionCompleteModelCopyWith<_$_SelectOptionCompleteModel>

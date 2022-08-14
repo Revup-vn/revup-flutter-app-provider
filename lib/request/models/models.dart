@@ -1,2 +1,2 @@
-export 'bonus_services_model.dart';
-export 'request_service_model.dart';
+export 'paid_services_model.dart';
+export 'pending_service_model.dart';

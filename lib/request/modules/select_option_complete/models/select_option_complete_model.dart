@@ -7,7 +7,7 @@ part 'select_option_complete_model.freezed.dart';
 @freezed
 class SelectOptionCompleteModel with _$SelectOptionCompleteModel {
   const factory SelectOptionCompleteModel({
-    required List<RequestServiceModel> requestServiceModel,
-    required List<BonusServicesModel> bonusServicesModel,
+    required List<PendingServiceModel> requestServiceModel,
+    required List<PaidServicesModel> bonusServicesModel,
   }) = _SelectOptionCompleteModel;
 }

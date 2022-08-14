@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../../../l10n/l10n.dart';
-import '../widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
+import '../../widgets/widgets.dart';
 
 class DetailServiceRequestView extends StatelessWidget {
   const DetailServiceRequestView({
@@ -46,7 +46,9 @@ class DetailServiceRequestView extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    const ServiceRequestItem(),
+                    const ServiceRequestItem(
+                      requests: [],
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
@@ -57,7 +59,9 @@ class DetailServiceRequestView extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const BonusServicetItem(),
+                    const BonusServiceItem(
+                      bonuses: [],
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
@@ -68,7 +72,9 @@ class DetailServiceRequestView extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const AdditionalCoststItem(),
+                    const AdditionalCostItem(
+                      fee: 0,
+                    ),
                     const SizedBox(
                       height: 100,
                     ),
@@ -80,7 +86,9 @@ class DetailServiceRequestView extends StatelessWidget {
           Expanded(
             child: Column(
               children: const [
-                TotalServicePriceItem(),
+                TotalServicePriceItem(
+                  tempTotal: 0,
+                ),
               ],
             ),
           ),
