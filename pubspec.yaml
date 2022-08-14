@@ -1,6 +1,6 @@
 name: revup_provider
 description: A very good app
-version: 1.0.0-dev+9
+version: 1.0.0-dev+10
 publish_to: none
 
 environment:
