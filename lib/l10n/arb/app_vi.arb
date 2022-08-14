@@ -196,5 +196,7 @@
   "feeOfTransportLabel": "Phí di chuyển",
   "acceptLabel": "Chấp nhận",
   "newRequestLabel": "Yêu cầu mới",
-  "repairItemsLabel": "hạng mục"
+  "repairItemsLabel": "hạng mục",
+  "repairRequestSkipLabel": "Xác nhận bỏ qua yêu cầu sửa chữa này?",
+  "needPriceQuotationLabel": "Cần báo giá"
 }

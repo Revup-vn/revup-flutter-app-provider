@@ -10,7 +10,8 @@ class NewRequestState with _$NewRequestState {
     required Marker fromMarker,
     required Marker toMarker,
     required AppUser consumer,
-    required RepairRecord record,
-    required IList<PaymentService> services,
+    required PendingRequest record,
+    required IList<PendingService> services,
+    required int pendingAmount,
   }) = _Success;
 }

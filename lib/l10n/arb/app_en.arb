@@ -197,5 +197,7 @@
   "feeOfTransportLabel": "Fee of transport",
   "acceptLabel": "Accept",
   "newRequestLabel": "New request",
-  "repairItemsLabel": "repair items"
+  "repairItemsLabel": "repair items",
+  "repairRequestSkipLabel": "Would you like to skip this repair request?",
+  "needPriceQuotationLabel": "Need price quotation"
 }

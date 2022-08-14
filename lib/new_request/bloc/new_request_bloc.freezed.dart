@@ -176,8 +176,9 @@ mixin _$NewRequestState {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -191,8 +192,9 @@ mixin _$NewRequestState {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -206,8 +208,9 @@ mixin _$NewRequestState {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
     required TResult orElse(),
   }) =>
@@ -303,8 +306,9 @@ class _$_Initial implements _Initial {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)
         success,
   }) {
     return initial();
@@ -321,8 +325,9 @@ class _$_Initial implements _Initial {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
   }) {
     return initial?.call();
@@ -339,8 +344,9 @@ class _$_Initial implements _Initial {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
     required TResult orElse(),
   }) {
@@ -439,8 +445,9 @@ class _$_Loading implements _Loading {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)
         success,
   }) {
     return loading();
@@ -457,8 +464,9 @@ class _$_Loading implements _Loading {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
   }) {
     return loading?.call();
@@ -475,8 +483,9 @@ class _$_Loading implements _Loading {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
     required TResult orElse(),
   }) {
@@ -575,8 +584,9 @@ class _$_Failure implements _Failure {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)
         success,
   }) {
     return failure();
@@ -593,8 +603,9 @@ class _$_Failure implements _Failure {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
   }) {
     return failure?.call();
@@ -611,8 +622,9 @@ class _$_Failure implements _Failure {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
     required TResult orElse(),
   }) {
@@ -674,12 +686,13 @@ abstract class _$$_SuccessCopyWith<$Res> {
       Marker fromMarker,
       Marker toMarker,
       AppUser consumer,
-      RepairRecord record,
-      IList<PaymentService> services});
+      PendingRequest record,
+      IList<PendingService> services,
+      int pendingAmount});
 
   $DirectionsCopyWith<$Res> get directions;
   $AppUserCopyWith<$Res> get consumer;
-  $RepairRecordCopyWith<$Res> get record;
+  $PendingRequestCopyWith<$Res> get record;
 }
 
 /// @nodoc
@@ -699,6 +712,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
     Object? consumer = freezed,
     Object? record = freezed,
     Object? services = freezed,
+    Object? pendingAmount = freezed,
   }) {
     return _then(_$_Success(
       directions: directions == freezed
@@ -720,11 +734,15 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
       record: record == freezed
           ? _value.record
           : record // ignore: cast_nullable_to_non_nullable
-              as RepairRecord,
+              as PendingRequest,
       services: services == freezed
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
-              as IList<PaymentService>,
+              as IList<PendingService>,
+      pendingAmount: pendingAmount == freezed
+          ? _value.pendingAmount
+          : pendingAmount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -743,8 +761,8 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
   }
 
   @override
-  $RepairRecordCopyWith<$Res> get record {
-    return $RepairRecordCopyWith<$Res>(_value.record, (value) {
+  $PendingRequestCopyWith<$Res> get record {
+    return $PendingRequestCopyWith<$Res>(_value.record, (value) {
       return _then(_value.copyWith(record: value));
     });
   }
@@ -759,7 +777,8 @@ class _$_Success implements _Success {
       required this.toMarker,
       required this.consumer,
       required this.record,
-      required this.services});
+      required this.services,
+      required this.pendingAmount});
 
   @override
   final Directions directions;
@@ -770,13 +789,15 @@ class _$_Success implements _Success {
   @override
   final AppUser consumer;
   @override
-  final RepairRecord record;
+  final PendingRequest record;
   @override
-  final IList<PaymentService> services;
+  final IList<PendingService> services;
+  @override
+  final int pendingAmount;
 
   @override
   String toString() {
-    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, services: $services)';
+    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, services: $services, pendingAmount: $pendingAmount)';
   }
 
   @override
@@ -791,7 +812,9 @@ class _$_Success implements _Success {
             const DeepCollectionEquality().equals(other.toMarker, toMarker) &&
             const DeepCollectionEquality().equals(other.consumer, consumer) &&
             const DeepCollectionEquality().equals(other.record, record) &&
-            const DeepCollectionEquality().equals(other.services, services));
+            const DeepCollectionEquality().equals(other.services, services) &&
+            const DeepCollectionEquality()
+                .equals(other.pendingAmount, pendingAmount));
   }
 
   @override
@@ -802,7 +825,8 @@ class _$_Success implements _Success {
       const DeepCollectionEquality().hash(toMarker),
       const DeepCollectionEquality().hash(consumer),
       const DeepCollectionEquality().hash(record),
-      const DeepCollectionEquality().hash(services));
+      const DeepCollectionEquality().hash(services),
+      const DeepCollectionEquality().hash(pendingAmount));
 
   @JsonKey(ignore: true)
   @override
@@ -820,12 +844,13 @@ class _$_Success implements _Success {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)
         success,
   }) {
-    return success(
-        directions, fromMarker, toMarker, consumer, record, services);
+    return success(directions, fromMarker, toMarker, consumer, record, services,
+        pendingAmount);
   }
 
   @override
@@ -839,12 +864,13 @@ class _$_Success implements _Success {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
   }) {
-    return success?.call(
-        directions, fromMarker, toMarker, consumer, record, services);
+    return success?.call(directions, fromMarker, toMarker, consumer, record,
+        services, pendingAmount);
   }
 
   @override
@@ -858,14 +884,15 @@ class _$_Success implements _Success {
             Marker fromMarker,
             Marker toMarker,
             AppUser consumer,
-            RepairRecord record,
-            IList<PaymentService> services)?
+            PendingRequest record,
+            IList<PendingService> services,
+            int pendingAmount)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(
-          directions, fromMarker, toMarker, consumer, record, services);
+      return success(directions, fromMarker, toMarker, consumer, record,
+          services, pendingAmount);
     }
     return orElse();
   }
@@ -914,15 +941,17 @@ abstract class _Success implements NewRequestState {
       required final Marker fromMarker,
       required final Marker toMarker,
       required final AppUser consumer,
-      required final RepairRecord record,
-      required final IList<PaymentService> services}) = _$_Success;
+      required final PendingRequest record,
+      required final IList<PendingService> services,
+      required final int pendingAmount}) = _$_Success;
 
   Directions get directions;
   Marker get fromMarker;
   Marker get toMarker;
   AppUser get consumer;
-  RepairRecord get record;
-  IList<PaymentService> get services;
+  PendingRequest get record;
+  IList<PendingService> get services;
+  int get pendingAmount;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

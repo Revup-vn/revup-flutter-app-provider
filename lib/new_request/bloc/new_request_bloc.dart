@@ -8,6 +8,8 @@ import 'package:revup_core/core.dart';
 
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
+import '../models/pending_request.dart';
+import '../models/pending_service.dart';
 
 part 'new_request_bloc.freezed.dart';
 part 'new_request_event.dart';
@@ -33,16 +35,18 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
             (await _repairRecord.get('101f54f8-994c-4610-a68e-747e5e9916d2'))
                 .map<Option<RepairRecord>>(
                   (r) => r.maybeMap(
-                    pending: (v) => some(r),
+                    pending: some,
                     orElse: none,
                   ),
                 )
-                .fold(
-                  (l) => throw NullThrownError(),
-                  (r) => r.getOrElse(
-                    () => throw NullThrownError(),
-                  ),
-                );
+                .fold<Option<RepairRecord>>(
+                  (l) => none(),
+                  (r) => r,
+                )
+                .getOrElse(() => throw NullThrownError());
+        print(repairRecord);
+        final pendingRequest =
+            PendingRequest.fromDto(repairRecord: repairRecord);
         final consumer = (await _userStore.get(repairRecord.cid))
             .fold<Option<AppUser>>(
               (l) => none(),
@@ -64,16 +68,37 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
 
         final services =
             (await storeRepository.repairPaymentRepo(repairRecord).all())
-                .fold((l) => ilist(<PaymentService>[]), (r) => r);
-        print(services);
+                .map(
+                  (r) => r.map<Option<PendingService>>(
+                    (a) => a.maybeMap(
+                      pending: (v) =>
+                          some(PendingService.fromDto(paymentService: v)),
+                      orElse: none,
+                    ),
+                  ),
+                )
+                .fold((l) => ilist(<Option<PendingService>>[]), (r) => r)
+                .filter(
+                  (a) => a.isSome(),
+                )
+                .map(
+                  (a) => a.getOrElse(() => throw NullThrownError()),
+                );
+        final pendingAmount = services
+            .map(
+              (a) => a.moneyAmount,
+            )
+            .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
+
         emit(
           NewRequestState.success(
             directions: directions,
             fromMarker: fromMarker,
             toMarker: toMarker,
             consumer: consumer,
-            record: repairRecord,
+            record: pendingRequest,
             services: services,
+            pendingAmount: pendingAmount,
           ),
         );
       },

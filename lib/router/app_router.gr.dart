@@ -11,24 +11,31 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i15;
+
+import 'dart:async' as _i18;
+
+import 'package:flutter/material.dart' as _i14;
 
 import 'package:auto_route/auto_route.dart' as _i13;
-import 'package:flutter/material.dart' as _i14;
-import 'package:revup_core/core.dart' as _i16;
+import 'package:dartz/dartz.dart' as _i16;
+import 'package:revup_core/core.dart' as _i19;
+
 import 'package:revup_provider/home/home.dart' as _i8;
-import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i11;
 import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
 import 'package:revup_provider/my_review/my_review.dart' as _i6;
+import 'package:revup_provider/new_request/models/pending_request.dart' as _i15;
+import 'package:revup_provider/new_request/models/pending_service.dart' as _i17;
 import 'package:revup_provider/new_request/view/new_request_page.dart' as _i12;
 import 'package:revup_provider/otp/view/otp_page.u.dart' as _i10;
-import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
-    as _i5;
 import 'package:revup_provider/repair_service/repair_service.dart' as _i4;
 import 'package:revup_provider/request/modules/modules.dart' as _i3;
 import 'package:revup_provider/signup/view/signup_page.u.dart' as _i9;
 import 'package:revup_provider/splash/splash.dart' as _i1;
+
+import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i11;
+import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
+    as _i5;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
     as _i7;
 
@@ -47,8 +54,14 @@ class AppRouter extends _i13.RootStackRouter {
           routeData: routeData, child: const _i2.LoginPage());
     },
     DetailServiceRequestRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailServiceRequestRouteArgs>();
       return _i13.AdaptivePage<void>(
-          routeData: routeData, child: const _i3.DetailServiceRequestPage());
+          routeData: routeData,
+          child: _i3.DetailServiceRequestPage(
+              key: args.key,
+              record: args.record,
+              pendingService: args.pendingService,
+              pendingAmount: args.pendingAmount));
     },
     InfoRequestRoute.name: (routeData) {
       return _i13.AdaptivePage<void>(
@@ -199,12 +212,43 @@ class LoginRoute extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.DetailServiceRequestPage]
-class DetailServiceRequestRoute extends _i13.PageRouteInfo<void> {
-  const DetailServiceRequestRoute()
+class DetailServiceRequestRoute
+    extends _i13.PageRouteInfo<DetailServiceRequestRouteArgs> {
+  DetailServiceRequestRoute(
+      {_i14.Key? key,
+      required _i15.PendingRequest record,
+      required _i16.IList<_i17.PendingService> pendingService,
+      required int pendingAmount})
       : super(DetailServiceRequestRoute.name,
-            path: '/detail-service-request-page');
+            path: '/detail-service-request-page',
+            args: DetailServiceRequestRouteArgs(
+                key: key,
+                record: record,
+                pendingService: pendingService,
+                pendingAmount: pendingAmount));
 
   static const String name = 'DetailServiceRequestRoute';
+}
+
+class DetailServiceRequestRouteArgs {
+  const DetailServiceRequestRouteArgs(
+      {this.key,
+      required this.record,
+      required this.pendingService,
+      required this.pendingAmount});
+
+  final _i14.Key? key;
+
+  final _i15.PendingRequest record;
+
+  final _i16.IList<_i17.PendingService> pendingService;
+
+  final int pendingAmount;
+
+  @override
+  String toString() {
+    return 'DetailServiceRequestRouteArgs{key: $key, record: $record, pendingService: $pendingService, pendingAmount: $pendingAmount}';
+  }
 }
 
 /// generated route for
@@ -312,7 +356,7 @@ class HistoryProviderDetailRoute extends _i13.PageRouteInfo<void> {
 /// [_i9.SignupPage]
 class SignupRoute extends _i13.PageRouteInfo<SignupRouteArgs> {
   SignupRoute(
-      {required _i15.Completer<_i16.AppUser> completer,
+      {required _i18.Completer<_i19.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
@@ -340,7 +384,7 @@ class SignupRouteArgs {
       required this.email,
       this.key});
 
-  final _i15.Completer<_i16.AppUser> completer;
+  final _i18.Completer<_i19.AppUser> completer;
 
   final String phoneNumber;
 
@@ -363,7 +407,7 @@ class SignupRouteArgs {
 class OTPRoute extends _i13.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i15.Completer<String> completer,
+      required _i18.Completer<String> completer,
       _i14.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
@@ -379,7 +423,7 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i15.Completer<String> completer;
+  final _i18.Completer<String> completer;
 
   final _i14.Key? key;
 
@@ -394,7 +438,7 @@ class OTPRouteArgs {
 class LoginEnterPhoneRoute
     extends _i13.PageRouteInfo<LoginEnterPhoneRouteArgs> {
   LoginEnterPhoneRoute(
-      {required _i15.Completer<_i16.AppUser> completer,
+      {required _i18.Completer<_i19.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
@@ -422,7 +466,7 @@ class LoginEnterPhoneRouteArgs {
       required this.email,
       this.key});
 
-  final _i15.Completer<_i16.AppUser> completer;
+  final _i18.Completer<_i19.AppUser> completer;
 
   final String phoneNumber;
 

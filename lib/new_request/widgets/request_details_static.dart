@@ -1,11 +1,16 @@
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
 import '../../shared/widgets/app_avatar.dart';
+import '../models/pending_request.dart';
+import '../models/pending_service.dart';
 
 class RequestDetailsStatic extends StatelessWidget {
   const RequestDetailsStatic({
@@ -13,12 +18,14 @@ class RequestDetailsStatic extends StatelessWidget {
     required this.consumer,
     required this.record,
     required this.distance,
-    required this.services,
+    required this.pendingService,
+    required this.pendingAmount,
   });
   final AppUser consumer;
-  final RepairRecord record;
+  final PendingRequest record;
   final double distance;
-  final IList<PaymentService> services;
+  final IList<PendingService> pendingService;
+  final int pendingAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +125,7 @@ class RequestDetailsStatic extends StatelessWidget {
                       children: [
                         TextSpan(text: l10n.vehicleTypeLabel),
                         TextSpan(
-                          text: record.vehicle == 'motobike'
+                          text: record.vehicle == 'motorbike'
                               ? l10n.motorcycleLabel
                               : l10n.carLabel,
                           style: const TextStyle(fontWeight: FontWeight.bold),
@@ -144,7 +151,7 @@ class RequestDetailsStatic extends StatelessWidget {
                               TextSpan(text: l10n.serviceLabel),
                               TextSpan(
                                 text:
-                                    '''${services.length()} ${l10n.repairItemsLabel}''',
+                                    '''${pendingService.length()} ${l10n.repairItemsLabel}''',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -157,7 +164,15 @@ class RequestDetailsStatic extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.router.push(
+                        DetailServiceRequestRoute(
+                          record: record,
+                          pendingService: pendingService,
+                          pendingAmount: pendingAmount,
+                        ),
+                      );
+                    },
                     child: Text(
                       l10n.detailLabel,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
