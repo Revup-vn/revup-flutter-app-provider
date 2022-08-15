@@ -47,10 +47,6 @@ class CardReview extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(48),
                                 child: CachedNetworkImage(
-                                  fadeInDuration:
-                                      const Duration(milliseconds: 50),
-                                  fadeOutDuration:
-                                      const Duration(milliseconds: 50),
                                   imageUrl: data.imageUrl,
                                   placeholder: (context, url) {
                                     return DefaultAvatar(

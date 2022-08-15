@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
+import '../bloc/list_service_bloc.dart';
 import '../models/service_model.dart';
 import '../widgets/card_service.u.dart';
 import '../widgets/vehicle_type_item.u.dart';
@@ -38,17 +40,31 @@ class ListServiceView extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                     callback: () {
-                      // TODO(namngoc231): list service motobike
+                      if (sortType != 0) {
+                        context.read<ListServiceBloc>().add(
+                              const ListServiceEvent.sortTypeChanged(
+                                sortType: 0,
+                              ),
+                            );
+                      }
                     },
                     sorted: sortType == 0,
                   ),
                   VehicleTypeItem(
                     vehicleName: l10n.carLabel,
-                    iconVehicle: Icon(Icons.local_taxi,
-                        size: 20,
-                        color: Theme.of(context).colorScheme.onPrimary),
+                    iconVehicle: Icon(
+                      Icons.local_taxi,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                     callback: () {
-                      // TODO(namngoc231): list service car
+                      if (sortType != 1) {
+                        context.read<ListServiceBloc>().add(
+                              const ListServiceEvent.sortTypeChanged(
+                                sortType: 1,
+                              ),
+                            );
+                      }
                     },
                     sorted: sortType == 1,
                   ),
@@ -62,15 +78,14 @@ class ListServiceView extends StatelessWidget {
               itemCount: listService.length,
               shrinkWrap: true,
               itemBuilder: (context, index) => CartServiceReview(
-                img: Image.asset(
-                  listService[index].imageUrl,
-                  height: 50,
-                  width: 50,
-                ),
+                imgUrl: listService[index].imageUrl,
                 serviceName: listService[index].serviceName,
                 priceRange: context.formatMoney(
                   int.parse(listService[index].price),
                 ),
+                callback: () {
+                  //TODO: route to detail service
+                },
               ),
             ),
           ],

@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../../router/app_router.gr.dart';
+import 'package:flutter/material.dart';
 
 class CartDetailServiceReview extends StatelessWidget {
   const CartDetailServiceReview({
@@ -21,9 +17,9 @@ class CartDetailServiceReview extends StatelessWidget {
     return InkWell(
       onTap: () {
         // TODO(namngoc231): Go to card detail
-        context.router.push(
-          const AddServiceRoute(),
-        );
+        // context.router.push(
+        //   const AddServiceRoute(),
+        // );
       },
       child: Card(
         color: Theme.of(context).colorScheme.surface,

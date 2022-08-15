@@ -60,8 +60,10 @@ class AppRouter extends _i11.RootStackRouter {
           routeData: routeData, child: const _i3.SelectOptionCompletePage());
     },
     AddServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<AddServiceRouteArgs>();
       return _i11.AdaptivePage<void>(
-          routeData: routeData, child: const _i4.AddServicePage());
+          routeData: routeData,
+          child: _i4.AddServicePage(args.providerID, key: args.key));
     },
     MyReviewRoute.name: (routeData) {
       final args = routeData.argsAs<MyReviewRouteArgs>();
@@ -228,11 +230,26 @@ class SelectOptionCompleteRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.AddServicePage]
-class AddServiceRoute extends _i11.PageRouteInfo<void> {
-  const AddServiceRoute()
-      : super(AddServiceRoute.name, path: '/add-service-page');
+class AddServiceRoute extends _i11.PageRouteInfo<AddServiceRouteArgs> {
+  AddServiceRoute({required String providerID, _i12.Key? key})
+      : super(AddServiceRoute.name,
+            path: '/add-service-page',
+            args: AddServiceRouteArgs(providerID: providerID, key: key));
 
   static const String name = 'AddServiceRoute';
+}
+
+class AddServiceRouteArgs {
+  const AddServiceRouteArgs({required this.providerID, this.key});
+
+  final String providerID;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'AddServiceRouteArgs{providerID: $providerID, key: $key}';
+  }
 }
 
 /// generated route for

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../router/router.dart';
 import '../bloc/list_service_bloc.dart';
 import 'list_service_builder.u.dart';
 
@@ -28,7 +30,7 @@ class ListServicePage extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               onPressed: () {
-                // TODO(namngoc231): cancel
+                context.router.push(AddServiceRoute(providerID: providerID));
               },
               child: Text(context.l10n.addLabel),
             ),
