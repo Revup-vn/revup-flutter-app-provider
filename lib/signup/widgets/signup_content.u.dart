@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -407,7 +406,8 @@ class SignUpContent extends StatelessWidget {
                               ),
                             );
                           } else {
-                            if (_formKey.currentState!.saveAndValidate()) {
+                            if (_formKey.currentState?.saveAndValidate() ==
+                                true) {
                               context.loaderOverlay.show();
                               final data = _formKey.currentState?.value;
                               final fName =
@@ -438,7 +438,6 @@ class SignUpContent extends StatelessWidget {
                                     .whenComplete(() {
                                   context.read<StorageBloc>().state.whenOrNull(
                                     success: (eitherFailuresOrUrls) async {
-                                      log('success');
                                       final tmp = eitherFailuresOrUrls
                                           .map<Option<String>>(
                                         (a) => a.fold(

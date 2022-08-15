@@ -11,31 +11,35 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'dart:async' as _i18;
+
+import 'package:flutter/material.dart' as _i15;
 
 import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:dartz/dartz.dart' as _i17;
-import 'package:flutter/material.dart' as _i15;
 import 'package:revup_core/core.dart' as _i19;
-import 'package:revup_provider/home/home.dart' as _i10;
-import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i13;
+
+import 'package:revup_provider/home/home.dart' as _i9;
 import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
-import 'package:revup_provider/my_review/my_review.dart' as _i8;
-import 'package:revup_provider/otp/view/otp_page.u.dart' as _i12;
-import 'package:revup_provider/repair_service/detail_service/view/detail_service_view.u.dart'
-    as _i7;
+import 'package:revup_provider/my_review/my_review.dart' as _i7;
+import 'package:revup_provider/otp/view/otp_page.u.dart' as _i11;
 import 'package:revup_provider/repair_service/repair_service.dart' as _i6;
 import 'package:revup_provider/request/models/models.dart' as _i16;
+import 'package:revup_provider/request/modules/modules.dart' as _i3;
+import 'package:revup_provider/signup/view/signup_page.u.dart' as _i10;
+import 'package:revup_provider/splash/splash.dart' as _i1;
+
+import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i12;
+import 'package:revup_provider/repair_service/update_service/view/view.dart'
+    as _i13;
 import 'package:revup_provider/request/modules/detail_request/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart'
     as _i5;
-import 'package:revup_provider/request/modules/modules.dart' as _i3;
 import 'package:revup_provider/request/modules/p14_repair_completed/view/view.dart'
     as _i4;
-import 'package:revup_provider/signup/view/signup_page.u.dart' as _i11;
-import 'package:revup_provider/splash/splash.dart' as _i1;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
-    as _i9;
+    as _i8;
 
 class AppRouter extends _i14.RootStackRouter {
   AppRouter([_i15.GlobalKey<_i15.NavigatorState>? navigatorKey])
@@ -53,7 +57,9 @@ class AppRouter extends _i14.RootStackRouter {
     },
     DetailServiceRequestRoute.name: (routeData) {
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i3.DetailServiceRequestPage());
+          routeData: routeData,
+          child: const _i3.DetailServiceRequestPage(),
+          maintainState: false);
     },
     InfoRequestRoute.name: (routeData) {
       return _i14.AdaptivePage<void>(
@@ -88,42 +94,46 @@ class AppRouter extends _i14.RootStackRouter {
               _i5.P16FinishedOrderDetailPage(key: args.key, data: args.data));
     },
     AddServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<AddServiceRouteArgs>();
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i6.AddServicePage());
-    },
-    DetailServiceView.name: (routeData) {
-      return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i7.DetailServiceView());
-    },
-    ListServiceView.name: (routeData) {
-      return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i6.ListServiceView());
+          routeData: routeData,
+          child: _i6.AddServicePage(args.providerID, key: args.key));
     },
     MyReviewRoute.name: (routeData) {
+      final args = routeData.argsAs<MyReviewRouteArgs>();
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.MyReviewPage());
+          routeData: routeData,
+          child: _i7.MyReviewPage(args.providerID, key: args.key));
     },
     VendorAuthenticationRoute.name: (routeData) {
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i9.VendorAuthenticationPage());
+          routeData: routeData, child: const _i8.VendorAuthenticationPage());
     },
     ListServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<ListServiceRouteArgs>();
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i6.ListServicePage());
+          routeData: routeData,
+          child: _i6.ListServicePage(args.providerID, key: args.key),
+          maintainState: false);
     },
     DetailServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailServiceRouteArgs>();
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i6.DetailServicePage());
+          routeData: routeData,
+          child: _i6.DetailServicePage(
+              args.providerID, args.serviceName, args.category,
+              key: args.key),
+          maintainState: false);
     },
     HistoryProviderDetailRoute.name: (routeData) {
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i10.HistoryProviderDetailPage());
+          routeData: routeData, child: const _i9.HistoryProviderDetailPage());
     },
     SignupRoute.name: (routeData) {
       final args = routeData.argsAs<SignupRouteArgs>();
       return _i14.AdaptivePage<void>(
           routeData: routeData,
-          child: _i11.SignupPage(args.completer, args.phoneNumber,
+          child: _i10.SignupPage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
               key: args.key));
     },
@@ -131,14 +141,22 @@ class AppRouter extends _i14.RootStackRouter {
       final args = routeData.argsAs<OTPRouteArgs>();
       return _i14.AdaptivePage<void>(
           routeData: routeData,
-          child: _i12.OTPPage(args.phoneNumber, args.completer, key: args.key));
+          child: _i11.OTPPage(args.phoneNumber, args.completer, key: args.key));
     },
     LoginEnterPhoneRoute.name: (routeData) {
       final args = routeData.argsAs<LoginEnterPhoneRouteArgs>();
       return _i14.AdaptivePage<void>(
           routeData: routeData,
-          child: _i13.LoginEnterPhonePage(args.completer, args.phoneNumber,
+          child: _i12.LoginEnterPhonePage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
+              key: args.key));
+    },
+    UpdateServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<UpdateServiceRouteArgs>();
+      return _i14.AdaptivePage<void>(
+          routeData: routeData,
+          child: _i13.UpdateServicePage(
+              args.providerID, args.category, args.sName,
               key: args.key));
     },
     P12DetailRoute.name: (routeData) {
@@ -150,25 +168,27 @@ class AppRouter extends _i14.RootStackRouter {
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: _i10.HomePage(args.user, key: args.key));
+          routeData: routeData, child: _i9.HomePage(args.user, key: args.key));
     },
     HomePrimaryRoute.name: (routeData) {
       final args = routeData.argsAs<HomePrimaryRouteArgs>();
       return _i14.AdaptivePage<void>(
           routeData: routeData,
-          child: _i10.HomePrimaryPage(args.user, key: args.key));
+          child: _i9.HomePrimaryPage(args.user, key: args.key));
     },
     HistoryProviderRoute.name: (routeData) {
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i10.HistoryProviderPage());
+          routeData: routeData, child: const _i9.HistoryProviderPage());
     },
     NotificationProviderRoute.name: (routeData) {
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i10.NotificationProviderPage());
+          routeData: routeData, child: const _i9.NotificationProviderPage());
     },
     AccountRoute.name: (routeData) {
+      final args = routeData.argsAs<AccountRouteArgs>();
       return _i14.AdaptivePage<void>(
-          routeData: routeData, child: const _i10.AccountPage());
+          routeData: routeData,
+          child: _i9.AccountPage(args.user, key: args.key));
     }
   };
 
@@ -186,8 +206,6 @@ class AppRouter extends _i14.RootStackRouter {
         _i14.RouteConfig(P16FinishedOrderDetailRoute.name,
             path: '/p16-finished-order-detail-page'),
         _i14.RouteConfig(AddServiceRoute.name, path: '/add-service-page'),
-        _i14.RouteConfig(DetailServiceView.name, path: '/detail-service-view'),
-        _i14.RouteConfig(ListServiceView.name, path: '/list-service-view'),
         _i14.RouteConfig(MyReviewRoute.name, path: '/my-review-page'),
         _i14.RouteConfig(VendorAuthenticationRoute.name,
             path: '/vendor-authentication-page'),
@@ -199,6 +217,7 @@ class AppRouter extends _i14.RootStackRouter {
         _i14.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
         _i14.RouteConfig(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page'),
+        _i14.RouteConfig(UpdateServiceRoute.name, path: '/update-service-page'),
         _i14.RouteConfig(P12DetailRoute.name, path: '/p12-detail-page'),
         _i14.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i14.RouteConfig(HomePrimaryRoute.name,
@@ -362,41 +381,54 @@ class P16FinishedOrderDetailRouteArgs {
 
 /// generated route for
 /// [_i6.AddServicePage]
-class AddServiceRoute extends _i14.PageRouteInfo<void> {
-  const AddServiceRoute()
-      : super(AddServiceRoute.name, path: '/add-service-page');
+class AddServiceRoute extends _i14.PageRouteInfo<AddServiceRouteArgs> {
+  AddServiceRoute({required String providerID, _i15.Key? key})
+      : super(AddServiceRoute.name,
+            path: '/add-service-page',
+            args: AddServiceRouteArgs(providerID: providerID, key: key));
 
   static const String name = 'AddServiceRoute';
 }
 
-/// generated route for
-/// [_i7.DetailServiceView]
-class DetailServiceView extends _i14.PageRouteInfo<void> {
-  const DetailServiceView()
-      : super(DetailServiceView.name, path: '/detail-service-view');
+class AddServiceRouteArgs {
+  const AddServiceRouteArgs({required this.providerID, this.key});
 
-  static const String name = 'DetailServiceView';
+  final String providerID;
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'AddServiceRouteArgs{providerID: $providerID, key: $key}';
+  }
 }
 
 /// generated route for
-/// [_i6.ListServiceView]
-class ListServiceView extends _i14.PageRouteInfo<void> {
-  const ListServiceView()
-      : super(ListServiceView.name, path: '/list-service-view');
-
-  static const String name = 'ListServiceView';
-}
-
-/// generated route for
-/// [_i8.MyReviewPage]
-class MyReviewRoute extends _i14.PageRouteInfo<void> {
-  const MyReviewRoute() : super(MyReviewRoute.name, path: '/my-review-page');
+/// [_i7.MyReviewPage]
+class MyReviewRoute extends _i14.PageRouteInfo<MyReviewRouteArgs> {
+  MyReviewRoute({required String providerID, _i15.Key? key})
+      : super(MyReviewRoute.name,
+            path: '/my-review-page',
+            args: MyReviewRouteArgs(providerID: providerID, key: key));
 
   static const String name = 'MyReviewRoute';
 }
 
+class MyReviewRouteArgs {
+  const MyReviewRouteArgs({required this.providerID, this.key});
+
+  final String providerID;
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'MyReviewRouteArgs{providerID: $providerID, key: $key}';
+  }
+}
+
 /// generated route for
-/// [_i9.VendorAuthenticationPage]
+/// [_i8.VendorAuthenticationPage]
 class VendorAuthenticationRoute extends _i14.PageRouteInfo<void> {
   const VendorAuthenticationRoute()
       : super(VendorAuthenticationRoute.name,
@@ -407,24 +439,70 @@ class VendorAuthenticationRoute extends _i14.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.ListServicePage]
-class ListServiceRoute extends _i14.PageRouteInfo<void> {
-  const ListServiceRoute()
-      : super(ListServiceRoute.name, path: '/list-service-page');
+class ListServiceRoute extends _i14.PageRouteInfo<ListServiceRouteArgs> {
+  ListServiceRoute({required String providerID, _i15.Key? key})
+      : super(ListServiceRoute.name,
+            path: '/list-service-page',
+            args: ListServiceRouteArgs(providerID: providerID, key: key));
 
   static const String name = 'ListServiceRoute';
 }
 
+class ListServiceRouteArgs {
+  const ListServiceRouteArgs({required this.providerID, this.key});
+
+  final String providerID;
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'ListServiceRouteArgs{providerID: $providerID, key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i6.DetailServicePage]
-class DetailServiceRoute extends _i14.PageRouteInfo<void> {
-  const DetailServiceRoute()
-      : super(DetailServiceRoute.name, path: '/detail-service-page');
+class DetailServiceRoute extends _i14.PageRouteInfo<DetailServiceRouteArgs> {
+  DetailServiceRoute(
+      {required String providerID,
+      required String serviceName,
+      required String category,
+      _i15.Key? key})
+      : super(DetailServiceRoute.name,
+            path: '/detail-service-page',
+            args: DetailServiceRouteArgs(
+                providerID: providerID,
+                serviceName: serviceName,
+                category: category,
+                key: key));
 
   static const String name = 'DetailServiceRoute';
 }
 
+class DetailServiceRouteArgs {
+  const DetailServiceRouteArgs(
+      {required this.providerID,
+      required this.serviceName,
+      required this.category,
+      this.key});
+
+  final String providerID;
+
+  final String serviceName;
+
+  final String category;
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'DetailServiceRouteArgs{providerID: $providerID, serviceName: $serviceName, category: $category, key: $key}';
+  }
+}
+
 /// generated route for
-/// [_i10.HistoryProviderDetailPage]
+/// [_i9.HistoryProviderDetailPage]
 class HistoryProviderDetailRoute extends _i14.PageRouteInfo<void> {
   const HistoryProviderDetailRoute()
       : super(HistoryProviderDetailRoute.name,
@@ -434,7 +512,7 @@ class HistoryProviderDetailRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.SignupPage]
+/// [_i10.SignupPage]
 class SignupRoute extends _i14.PageRouteInfo<SignupRouteArgs> {
   SignupRoute(
       {required _i18.Completer<_i19.AppUser> completer,
@@ -484,7 +562,7 @@ class SignupRouteArgs {
 }
 
 /// generated route for
-/// [_i12.OTPPage]
+/// [_i11.OTPPage]
 class OTPRoute extends _i14.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
@@ -515,7 +593,7 @@ class OTPRouteArgs {
 }
 
 /// generated route for
-/// [_i13.LoginEnterPhonePage]
+/// [_i12.LoginEnterPhonePage]
 class LoginEnterPhoneRoute
     extends _i14.PageRouteInfo<LoginEnterPhoneRouteArgs> {
   LoginEnterPhoneRoute(
@@ -566,6 +644,46 @@ class LoginEnterPhoneRouteArgs {
 }
 
 /// generated route for
+/// [_i13.UpdateServicePage]
+class UpdateServiceRoute extends _i14.PageRouteInfo<UpdateServiceRouteArgs> {
+  UpdateServiceRoute(
+      {required String providerID,
+      required String category,
+      required String sName,
+      _i15.Key? key})
+      : super(UpdateServiceRoute.name,
+            path: '/update-service-page',
+            args: UpdateServiceRouteArgs(
+                providerID: providerID,
+                category: category,
+                sName: sName,
+                key: key));
+
+  static const String name = 'UpdateServiceRoute';
+}
+
+class UpdateServiceRouteArgs {
+  const UpdateServiceRouteArgs(
+      {required this.providerID,
+      required this.category,
+      required this.sName,
+      this.key});
+
+  final String providerID;
+
+  final String category;
+
+  final String sName;
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'UpdateServiceRouteArgs{providerID: $providerID, category: $category, sName: $sName, key: $key}';
+  }
+}
+
+/// generated route for
 /// [_i3.P12DetailPage]
 class P12DetailRoute extends _i14.PageRouteInfo<P12DetailRouteArgs> {
   P12DetailRoute({_i15.Key? key, required String recordId})
@@ -590,7 +708,7 @@ class P12DetailRouteArgs {
 }
 
 /// generated route for
-/// [_i10.HomePage]
+/// [_i9.HomePage]
 class HomeRoute extends _i14.PageRouteInfo<HomeRouteArgs> {
   HomeRoute(
       {required _i19.AppUser user,
@@ -618,7 +736,7 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i10.HomePrimaryPage]
+/// [_i9.HomePrimaryPage]
 class HomePrimaryRoute extends _i14.PageRouteInfo<HomePrimaryRouteArgs> {
   HomePrimaryRoute({required _i19.AppUser user, _i15.Key? key})
       : super(HomePrimaryRoute.name,
@@ -642,7 +760,7 @@ class HomePrimaryRouteArgs {
 }
 
 /// generated route for
-/// [_i10.HistoryProviderPage]
+/// [_i9.HistoryProviderPage]
 class HistoryProviderRoute extends _i14.PageRouteInfo<void> {
   const HistoryProviderRoute()
       : super(HistoryProviderRoute.name, path: 'history-provider-page');
@@ -651,7 +769,7 @@ class HistoryProviderRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.NotificationProviderPage]
+/// [_i9.NotificationProviderPage]
 class NotificationProviderRoute extends _i14.PageRouteInfo<void> {
   const NotificationProviderRoute()
       : super(NotificationProviderRoute.name,
@@ -661,9 +779,24 @@ class NotificationProviderRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.AccountPage]
-class AccountRoute extends _i14.PageRouteInfo<void> {
-  const AccountRoute() : super(AccountRoute.name, path: 'account-page');
+/// [_i9.AccountPage]
+class AccountRoute extends _i14.PageRouteInfo<AccountRouteArgs> {
+  AccountRoute({required _i19.AppUser user, _i15.Key? key})
+      : super(AccountRoute.name,
+            path: 'account-page', args: AccountRouteArgs(user: user, key: key));
 
   static const String name = 'AccountRoute';
+}
+
+class AccountRouteArgs {
+  const AccountRouteArgs({required this.user, this.key});
+
+  final _i19.AppUser user;
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'AccountRouteArgs{user: $user, key: $key}';
+  }
 }

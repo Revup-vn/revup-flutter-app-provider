@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../../router/app_router.gr.dart';
+import '../../../shared/utils/fallbacks.dart';
 
 class CartServiceReview extends StatelessWidget {
   const CartServiceReview({
     super.key,
-    required this.img,
+    required this.imgUrl,
     required this.serviceName,
     required this.priceRange,
+    this.callback,
   });
-  final Image img;
+  final String imgUrl;
   final String serviceName;
   final String priceRange;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        // TODO(namngoc231): Go to card review
-        context.router.push(
-          const DetailServiceRoute(),
-        );
-      },
+      onTap: callback,
       child: Card(
         color: Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
@@ -50,12 +47,18 @@ class CartServiceReview extends StatelessWidget {
                               width: 50,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(48),
-                                child: img,
-                                // Image.asset(
-                                //   'assets/screens/ball.png',
-                                //   height: 50,
-                                //   width: 50,
-                                // ),
+                                child: CachedNetworkImage(
+                                  fadeInDuration:
+                                      const Duration(milliseconds: 50),
+                                  fadeOutDuration:
+                                      const Duration(milliseconds: 50),
+                                  imageUrl: imgUrl.isEmpty
+                                      ? kFallbackServiceImg
+                                      : imgUrl,
+                                  height: 64,
+                                  width: 64,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ],

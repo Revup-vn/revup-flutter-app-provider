@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:revup_core/core.dart';
 
-import '../../../router/app_router.gr.dart';
+import '../../../shared/shared.dart';
 
-class CartDetailServiceReview extends StatelessWidget {
-  const CartDetailServiceReview({
+class ServiceProduct extends StatelessWidget {
+  const ServiceProduct({
     super.key,
     required this.img,
     required this.serviceName,
     required this.priceRange,
   });
-  final Image img;
+  final String img;
   final String serviceName;
-  final String priceRange;
+  final int priceRange;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         // TODO(namngoc231): Go to card detail
-        context.router.push(
-          const AddServiceRoute(),
-        );
+        // context.router.push(
+        //   const AddServiceRoute(),
+        // );
       },
       child: Card(
         color: Theme.of(context).colorScheme.surface,
@@ -50,7 +51,13 @@ class CartDetailServiceReview extends StatelessWidget {
                               width: 50,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(48),
-                                child: img,
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      img.isEmpty ? kFallbackProductImg : img,
+                                  height: 64,
+                                  width: 64,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ],
@@ -79,7 +86,7 @@ class CartDetailServiceReview extends StatelessWidget {
                               Row(
                                 children: [
                                   AutoSizeText(
-                                    priceRange,
+                                    context.formatMoney(priceRange),
                                     style:
                                         Theme.of(context).textTheme.bodyText2,
                                   ),

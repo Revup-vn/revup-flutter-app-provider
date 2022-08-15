@@ -6,7 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
-import '../models/models.dart';
+import '../models/rating_data.dart';
 
 class CardReview extends StatelessWidget {
   const CardReview({
@@ -14,7 +14,7 @@ class CardReview extends StatelessWidget {
     required this.data,
   });
 
-  final ReviewModel data;
+  final RatingData data;
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +48,13 @@ class CardReview extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(48),
                                 child: CachedNetworkImage(
-                                  fadeInDuration:
-                                      const Duration(milliseconds: 50),
-                                  fadeOutDuration:
-                                      const Duration(milliseconds: 50),
-                                  imageUrl: data.user.urlImage,
+                                  imageUrl: data.imageUrl,
                                   placeholder: (context, url) {
                                     return DefaultAvatar(
                                       textSize: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
-                                      userName: data.user.name,
+                                      userName: data.consumerName,
                                     );
                                   },
                                   errorWidget: (context, url, dynamic error) {
@@ -66,7 +62,7 @@ class CardReview extends StatelessWidget {
                                       textSize: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
-                                      userName: data.user.name,
+                                      userName: data.consumerName,
                                     );
                                   },
                                   height: 64,
@@ -85,7 +81,7 @@ class CardReview extends StatelessWidget {
                               Row(
                                 children: [
                                   AutoSizeText(
-                                    data.user.name,
+                                    data.consumerName,
                                     style:
                                         Theme.of(context).textTheme.labelLarge,
                                   ),
@@ -120,7 +116,7 @@ class CardReview extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         AutoSizeText(
-                          data.comment,
+                          data.description,
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ],
@@ -131,7 +127,9 @@ class CardReview extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 child: AutoSizeText(
-                  '''${DateTime.now().difference(data.commentedData).toString()} ${l10n.yesterdayLabel}''',
+                  data.createdTime.day != DateTime.now().day
+                      ? '''${DateTime.now().difference(data.createdTime).inDays} ${l10n.yesterdayLabel}'''
+                      : 'Today',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),

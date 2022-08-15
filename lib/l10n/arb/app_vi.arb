@@ -116,7 +116,7 @@
   "pictureLabel": "Hình ảnh",
   "portraitLabel": "Ảnh chân dung",
   "postLabel": "Bài viết",
-  "priceUnitLabel": "Đơn vị tính giá",
+  "priceUnitLabel": "Danh mục",
   "privacyLabel": "Chính sách bảo mật",
   "productListLabel": "Danh sách sản phẩm",
   "productPriceLabel": "Đơn giá",
@@ -194,5 +194,6 @@
   "idCardLabel": "Số cmnd hoặc cccd",
   "imageCardLabel": "Ảnh cmnd hoặc cccd",
   "bioLabel": "Câu nói yêu thích của bạn",
-  "idImgRequiredLabel": "Bạn hãy chụp ảnh mặt trước cmnd hoặc cccd của bạn"
+  "idImgRequiredLabel": "Bạn hãy chụp ảnh mặt trước cmnd hoặc cccd của bạn",
+  "failLabel": "Thất bại"
 }
