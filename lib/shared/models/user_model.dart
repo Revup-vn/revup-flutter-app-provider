@@ -14,6 +14,7 @@ class UserModel with _$UserModel {
     required String urlImage,
     required bool onlineStatus,
   }) = _UserModel;
+
   factory UserModel.fromDto(AppUser user) => UserModel(
         name: '${user.firstName} ${user.lastName}',
         email: user.email,

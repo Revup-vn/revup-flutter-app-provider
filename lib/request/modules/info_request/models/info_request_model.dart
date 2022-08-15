@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/shared.dart';
+import '../../../../shared/models/user_model.dart';
 
 part 'info_request_model.freezed.dart';
 

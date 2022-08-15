@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../../../../l10n/l10n.dart';
-import '../../widgets/widgets.dart';
+import '../../../models/models.dart';
+import 'paid_service_item.u.dart';
+import 'service_request_item.u.dart';
+import 'total_service_price_item.u.dart';
 
-class DetailServiceRequestView extends StatelessWidget {
-  const DetailServiceRequestView({
+class RecordDetail extends StatelessWidget {
+  const RecordDetail({
     super.key,
+    required this.title,
+    required this.unpaidServices,
+    required this.paidServices,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    // TODO(tcmhoang): depressed cannot review this file
-    /// someone please help me
+  final String title;
+  final List<PendingServiceModel> unpaidServices;
+  final List<PaidServicesModel> paidServices;
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
+  @override
+  Widget build(BuildContext context) => Column(
         children: [
           Expanded(
             flex: 8,
@@ -31,7 +33,7 @@ class DetailServiceRequestView extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           AutoSizeText(
-                            l10n.serviceDetailLabel,
+                            title,
                             style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -46,9 +48,7 @@ class DetailServiceRequestView extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    const ServiceRequestItem(
-                      requests: [],
-                    ),
+                    ServiceRequestItem(requests: unpaidServices),
                     const SizedBox(
                       height: 16,
                     ),
@@ -59,9 +59,7 @@ class DetailServiceRequestView extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const PaidServiceItem(
-                      bonuses: [],
-                    ),
+                    PaidServiceItem(bonuses: paidServices),
                     const SizedBox(
                       height: 16,
                     ),
@@ -71,12 +69,6 @@ class DetailServiceRequestView extends StatelessWidget {
                     ),
                     const SizedBox(
                       height: 16,
-                    ),
-                    const AdditionalCostItem(
-                      fee: 0,
-                    ),
-                    const SizedBox(
-                      height: 100,
                     ),
                   ],
                 ),
@@ -85,15 +77,19 @@ class DetailServiceRequestView extends StatelessWidget {
           ),
           Expanded(
             child: Column(
-              children: const [
+              children: [
                 TotalServicePriceItem(
-                  tempTotal: 0,
+                  tempTotal: -paidServices
+                          .map((e) => e.price)
+                          .toList()
+                          .reduce((value, element) => value + element) +
+                      unpaidServices
+                          .map((e) => e.price)
+                          .reduce((value, element) => value + element),
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
+      );
 }
