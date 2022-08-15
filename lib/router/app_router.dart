@@ -5,7 +5,6 @@ import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../my_review/my_review.dart';
 import '../otp/view/otp_page.u.dart';
-import '../repair_service/detail_service/view/detail_service_view.u.dart';
 import '../repair_service/repair_service.dart';
 import '../request/modules/modules.dart';
 import '../signup/view/signup_page.u.dart';
@@ -22,8 +21,6 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: RepairCompletePage),
     AdaptiveRoute<void>(page: SelectOptionCompletePage),
     AdaptiveRoute<void>(page: AddServicePage),
-    AdaptiveRoute<void>(page: DetailServiceView),
-    AdaptiveRoute<void>(page: ListServiceView),
     AdaptiveRoute<void>(page: MyReviewPage),
     AdaptiveRoute<void>(page: VendorAuthenticationPage),
     AdaptiveRoute<void>(page: ListServicePage),

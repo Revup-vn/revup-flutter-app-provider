@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
@@ -18,7 +17,7 @@ class HomePage extends StatelessWidget {
         HomePrimaryRoute(user: user),
         const HistoryProviderRoute(),
         const NotificationProviderRoute(),
-        const AccountRoute(),
+        AccountRoute(user: user),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

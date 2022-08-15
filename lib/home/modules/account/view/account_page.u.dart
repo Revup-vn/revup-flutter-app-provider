@@ -1,37 +1,26 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../../shared/shared.dart';
+import '../../../home.dart';
 import 'account_view.u.dart';
 
 class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
-
+  const AccountPage(this.user, {super.key});
+  final AppUser user;
   @override
   Widget build(BuildContext context) {
-    // Read from bloc not ins in here
-    final aUser = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: 'XXX-XXX-XXXX',
-      dob: DateTime.now(),
-      addr: 'Ninh Binh',
-      email: 'huyxam@huyxam.cm',
-      active: true,
-      avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-      vac: const VideoCallAccount(
-        id: '',
-        username: '',
-        pwd: '',
-        email: '',
+    return BlocProvider(
+      create: (context) => AccountBloc(
+        user.uuid,
+        context.read(),
+        context.read(),
+        context.read(),
+        ImagePicker(),
+        context.read(),
       ),
+      child: const AccountView(),
     );
-
-    return AccountView(user: UserModel.fromDto(aUser));
   }
 }

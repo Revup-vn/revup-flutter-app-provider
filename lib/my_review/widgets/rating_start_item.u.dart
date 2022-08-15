@@ -1,15 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 class MyReviewItem extends StatelessWidget {
   const MyReviewItem({
     super.key,
     required this.numberOfStars,
     required this.callback,
+    required this.onPressed,
   });
   final String numberOfStars;
   final VoidCallback callback;
+  final bool onPressed;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,7 +18,9 @@ class MyReviewItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Chip(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: onPressed
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.surfaceVariant,
           avatar: CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.primary,
             child: Icon(

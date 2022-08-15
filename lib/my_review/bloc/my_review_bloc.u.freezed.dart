@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'account_bloc.dart';
+part of 'my_review_bloc.u.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,61 +15,62 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AccountEvent {
+mixin _$MyReviewEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ImageSource source) imageUploadSelected,
+    required TResult Function(int sortStarRating) sortButtonSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(int sortStarRating)? sortButtonSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(int sortStarRating)? sortButtonSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_SortButtonSelected value) sortButtonSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_SortButtonSelected value)? sortButtonSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_SortButtonSelected value)? sortButtonSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccountEventCopyWith<$Res> {
-  factory $AccountEventCopyWith(
-          AccountEvent value, $Res Function(AccountEvent) then) =
-      _$AccountEventCopyWithImpl<$Res>;
+abstract class $MyReviewEventCopyWith<$Res> {
+  factory $MyReviewEventCopyWith(
+          MyReviewEvent value, $Res Function(MyReviewEvent) then) =
+      _$MyReviewEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AccountEventCopyWithImpl<$Res> implements $AccountEventCopyWith<$Res> {
-  _$AccountEventCopyWithImpl(this._value, this._then);
+class _$MyReviewEventCopyWithImpl<$Res>
+    implements $MyReviewEventCopyWith<$Res> {
+  _$MyReviewEventCopyWithImpl(this._value, this._then);
 
-  final AccountEvent _value;
+  final MyReviewEvent _value;
   // ignore: unused_field
-  final $Res Function(AccountEvent) _then;
+  final $Res Function(MyReviewEvent) _then;
 }
 
 /// @nodoc
@@ -80,7 +81,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$AccountEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res> extends _$MyReviewEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -96,7 +97,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'AccountEvent.started()';
+    return 'MyReviewEvent.started()';
   }
 
   @override
@@ -112,7 +113,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ImageSource source) imageUploadSelected,
+    required TResult Function(int sortStarRating) sortButtonSelected,
   }) {
     return started();
   }
@@ -121,7 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(int sortStarRating)? sortButtonSelected,
   }) {
     return started?.call();
   }
@@ -130,7 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(int sortStarRating)? sortButtonSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -143,7 +144,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_SortButtonSelected value) sortButtonSelected,
   }) {
     return started(this);
   }
@@ -152,7 +153,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_SortButtonSelected value)? sortButtonSelected,
   }) {
     return started?.call(this);
   }
@@ -161,7 +162,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_SortButtonSelected value)? sortButtonSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -171,100 +172,101 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements AccountEvent {
+abstract class _Started implements MyReviewEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
-  factory _$$_ImageUploadSelectedCopyWith(_$_ImageUploadSelected value,
-          $Res Function(_$_ImageUploadSelected) then) =
-      __$$_ImageUploadSelectedCopyWithImpl<$Res>;
-  $Res call({ImageSource source});
+abstract class _$$_SortButtonSelectedCopyWith<$Res> {
+  factory _$$_SortButtonSelectedCopyWith(_$_SortButtonSelected value,
+          $Res Function(_$_SortButtonSelected) then) =
+      __$$_SortButtonSelectedCopyWithImpl<$Res>;
+  $Res call({int sortStarRating});
 }
 
 /// @nodoc
-class __$$_ImageUploadSelectedCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res>
-    implements _$$_ImageUploadSelectedCopyWith<$Res> {
-  __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
-      $Res Function(_$_ImageUploadSelected) _then)
-      : super(_value, (v) => _then(v as _$_ImageUploadSelected));
+class __$$_SortButtonSelectedCopyWithImpl<$Res>
+    extends _$MyReviewEventCopyWithImpl<$Res>
+    implements _$$_SortButtonSelectedCopyWith<$Res> {
+  __$$_SortButtonSelectedCopyWithImpl(
+      _$_SortButtonSelected _value, $Res Function(_$_SortButtonSelected) _then)
+      : super(_value, (v) => _then(v as _$_SortButtonSelected));
 
   @override
-  _$_ImageUploadSelected get _value => super._value as _$_ImageUploadSelected;
+  _$_SortButtonSelected get _value => super._value as _$_SortButtonSelected;
 
   @override
   $Res call({
-    Object? source = freezed,
+    Object? sortStarRating = freezed,
   }) {
-    return _then(_$_ImageUploadSelected(
-      source: source == freezed
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ImageSource,
+    return _then(_$_SortButtonSelected(
+      sortStarRating: sortStarRating == freezed
+          ? _value.sortStarRating
+          : sortStarRating // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ImageUploadSelected implements _ImageUploadSelected {
-  const _$_ImageUploadSelected({required this.source});
+class _$_SortButtonSelected implements _SortButtonSelected {
+  const _$_SortButtonSelected({required this.sortStarRating});
 
   @override
-  final ImageSource source;
+  final int sortStarRating;
 
   @override
   String toString() {
-    return 'AccountEvent.imageUploadSelected(source: $source)';
+    return 'MyReviewEvent.sortButtonSelected(sortStarRating: $sortStarRating)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageUploadSelected &&
-            const DeepCollectionEquality().equals(other.source, source));
+            other is _$_SortButtonSelected &&
+            const DeepCollectionEquality()
+                .equals(other.sortStarRating, sortStarRating));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(sortStarRating));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
-      __$$_ImageUploadSelectedCopyWithImpl<_$_ImageUploadSelected>(
+  _$$_SortButtonSelectedCopyWith<_$_SortButtonSelected> get copyWith =>
+      __$$_SortButtonSelectedCopyWithImpl<_$_SortButtonSelected>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ImageSource source) imageUploadSelected,
+    required TResult Function(int sortStarRating) sortButtonSelected,
   }) {
-    return imageUploadSelected(source);
+    return sortButtonSelected(sortStarRating);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(int sortStarRating)? sortButtonSelected,
   }) {
-    return imageUploadSelected?.call(source);
+    return sortButtonSelected?.call(sortStarRating);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(int sortStarRating)? sortButtonSelected,
     required TResult orElse(),
   }) {
-    if (imageUploadSelected != null) {
-      return imageUploadSelected(source);
+    if (sortButtonSelected != null) {
+      return sortButtonSelected(sortStarRating);
     }
     return orElse();
   }
@@ -273,113 +275,116 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_SortButtonSelected value) sortButtonSelected,
   }) {
-    return imageUploadSelected(this);
+    return sortButtonSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_SortButtonSelected value)? sortButtonSelected,
   }) {
-    return imageUploadSelected?.call(this);
+    return sortButtonSelected?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_SortButtonSelected value)? sortButtonSelected,
     required TResult orElse(),
   }) {
-    if (imageUploadSelected != null) {
-      return imageUploadSelected(this);
+    if (sortButtonSelected != null) {
+      return sortButtonSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class _ImageUploadSelected implements AccountEvent {
-  const factory _ImageUploadSelected({required final ImageSource source}) =
-      _$_ImageUploadSelected;
+abstract class _SortButtonSelected implements MyReviewEvent {
+  const factory _SortButtonSelected({required final int sortStarRating}) =
+      _$_SortButtonSelected;
 
-  ImageSource get source;
+  int get sortStarRating;
   @JsonKey(ignore: true)
-  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+  _$$_SortButtonSelectedCopyWith<_$_SortButtonSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$AccountState {
+mixin _$MyReviewState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(IList<RatingData> data, int sortStarRating)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccountStateCopyWith<$Res> {
-  factory $AccountStateCopyWith(
-          AccountState value, $Res Function(AccountState) then) =
-      _$AccountStateCopyWithImpl<$Res>;
+abstract class $MyReviewStateCopyWith<$Res> {
+  factory $MyReviewStateCopyWith(
+          MyReviewState value, $Res Function(MyReviewState) then) =
+      _$MyReviewStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AccountStateCopyWithImpl<$Res> implements $AccountStateCopyWith<$Res> {
-  _$AccountStateCopyWithImpl(this._value, this._then);
+class _$MyReviewStateCopyWithImpl<$Res>
+    implements $MyReviewStateCopyWith<$Res> {
+  _$MyReviewStateCopyWithImpl(this._value, this._then);
 
-  final AccountState _value;
+  final MyReviewState _value;
   // ignore: unused_field
-  final $Res Function(AccountState) _then;
+  final $Res Function(MyReviewState) _then;
 }
 
 /// @nodoc
@@ -390,7 +395,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res> extends _$MyReviewStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -406,7 +411,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'AccountState.initial()';
+    return 'MyReviewState.initial()';
   }
 
   @override
@@ -422,10 +427,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(IList<RatingData> data, int sortStarRating)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
   }) {
     return initial();
   }
@@ -434,9 +439,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
     return initial?.call();
   }
@@ -445,9 +451,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -460,9 +467,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
   }) {
     return initial(this);
   }
@@ -471,9 +478,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -482,9 +489,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -494,8 +501,171 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AccountState {
+abstract class _Initial implements MyReviewState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_LoadDataSuccessCopyWith<$Res> {
+  factory _$$_LoadDataSuccessCopyWith(
+          _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
+      __$$_LoadDataSuccessCopyWithImpl<$Res>;
+  $Res call({IList<RatingData> data, int sortStarRating});
+}
+
+/// @nodoc
+class __$$_LoadDataSuccessCopyWithImpl<$Res>
+    extends _$MyReviewStateCopyWithImpl<$Res>
+    implements _$$_LoadDataSuccessCopyWith<$Res> {
+  __$$_LoadDataSuccessCopyWithImpl(
+      _$_LoadDataSuccess _value, $Res Function(_$_LoadDataSuccess) _then)
+      : super(_value, (v) => _then(v as _$_LoadDataSuccess));
+
+  @override
+  _$_LoadDataSuccess get _value => super._value as _$_LoadDataSuccess;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? sortStarRating = freezed,
+  }) {
+    return _then(_$_LoadDataSuccess(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as IList<RatingData>,
+      sortStarRating: sortStarRating == freezed
+          ? _value.sortStarRating
+          : sortStarRating // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LoadDataSuccess implements _LoadDataSuccess {
+  const _$_LoadDataSuccess({required this.data, required this.sortStarRating});
+
+  @override
+  final IList<RatingData> data;
+  @override
+  final int sortStarRating;
+
+  @override
+  String toString() {
+    return 'MyReviewState.loadDataSuccess(data: $data, sortStarRating: $sortStarRating)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadDataSuccess &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality()
+                .equals(other.sortStarRating, sortStarRating));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(sortStarRating));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      __$$_LoadDataSuccessCopyWithImpl<_$_LoadDataSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(IList<RatingData> data, int sortStarRating)
+        loadDataSuccess,
+    required TResult Function() loading,
+    required TResult Function() failure,
+  }) {
+    return loadDataSuccess(data, sortStarRating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
+    TResult Function()? loading,
+    TResult Function()? failure,
+  }) {
+    return loadDataSuccess?.call(data, sortStarRating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    required TResult orElse(),
+  }) {
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(data, sortStarRating);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return loadDataSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return loadDataSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadDataSuccess implements MyReviewState {
+  const factory _LoadDataSuccess(
+      {required final IList<RatingData> data,
+      required final int sortStarRating}) = _$_LoadDataSuccess;
+
+  IList<RatingData> get data;
+  int get sortStarRating;
+  @JsonKey(ignore: true)
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -506,7 +676,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res> extends _$MyReviewStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -522,7 +692,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'AccountState.loading()';
+    return 'MyReviewState.loading()';
   }
 
   @override
@@ -538,10 +708,10 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(IList<RatingData> data, int sortStarRating)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
   }) {
     return loading();
   }
@@ -550,9 +720,10 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
     return loading?.call();
   }
@@ -561,9 +732,10 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -576,9 +748,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
   }) {
     return loading(this);
   }
@@ -587,9 +759,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
   }) {
     return loading?.call(this);
   }
@@ -598,9 +770,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -610,7 +782,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements AccountState {
+abstract class _Loading implements MyReviewState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -622,7 +794,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res> extends _$MyReviewStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -638,7 +810,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'AccountState.failure()';
+    return 'MyReviewState.failure()';
   }
 
   @override
@@ -654,10 +826,10 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(IList<RatingData> data, int sortStarRating)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
   }) {
     return failure();
   }
@@ -666,9 +838,10 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
     return failure?.call();
   }
@@ -677,9 +850,10 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(IList<RatingData> data, int sortStarRating)?
+        loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -692,9 +866,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
   }) {
     return failure(this);
   }
@@ -703,9 +877,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
   }) {
     return failure?.call(this);
   }
@@ -714,9 +888,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -726,185 +900,6 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements AccountState {
+abstract class _Failure implements MyReviewState {
   const factory _Failure() = _$_Failure;
-}
-
-/// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({AppUser aUser, double rating, String newImgUrl});
-
-  $AppUserCopyWith<$Res> get aUser;
-}
-
-/// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, (v) => _then(v as _$_Success));
-
-  @override
-  _$_Success get _value => super._value as _$_Success;
-
-  @override
-  $Res call({
-    Object? aUser = freezed,
-    Object? rating = freezed,
-    Object? newImgUrl = freezed,
-  }) {
-    return _then(_$_Success(
-      aUser: aUser == freezed
-          ? _value.aUser
-          : aUser // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-      rating: rating == freezed
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      newImgUrl: newImgUrl == freezed
-          ? _value.newImgUrl
-          : newImgUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-
-  @override
-  $AppUserCopyWith<$Res> get aUser {
-    return $AppUserCopyWith<$Res>(_value.aUser, (value) {
-      return _then(_value.copyWith(aUser: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_Success implements _Success {
-  const _$_Success(
-      {required this.aUser, required this.rating, required this.newImgUrl});
-
-  @override
-  final AppUser aUser;
-  @override
-  final double rating;
-  @override
-  final String newImgUrl;
-
-  @override
-  String toString() {
-    return 'AccountState.success(aUser: $aUser, rating: $rating, newImgUrl: $newImgUrl)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            const DeepCollectionEquality().equals(other.aUser, aUser) &&
-            const DeepCollectionEquality().equals(other.rating, rating) &&
-            const DeepCollectionEquality().equals(other.newImgUrl, newImgUrl));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(aUser),
-      const DeepCollectionEquality().hash(rating),
-      const DeepCollectionEquality().hash(newImgUrl));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
-  }) {
-    return success(aUser, rating, newImgUrl);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
-  }) {
-    return success?.call(aUser, rating, newImgUrl);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(aUser, rating, newImgUrl);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements AccountState {
-  const factory _Success(
-      {required final AppUser aUser,
-      required final double rating,
-      required final String newImgUrl}) = _$_Success;
-
-  AppUser get aUser;
-  double get rating;
-  String get newImgUrl;
-  @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
 }
