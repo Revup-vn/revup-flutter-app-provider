@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../../l10n/l10n.dart';
+import '../../widgets/record_detail.dart';
 import '../../widgets/widgets.dart';
 import '../bloc/p12_detail_bloc.dart';
 
@@ -38,79 +38,11 @@ class P12DetailView extends StatelessWidget {
             initial: Container.new,
             loading: () =>
                 const Center(child: CircularProgressIndicator.adaptive()),
-            populated: (requests, bonuses) => Column(
-              children: [
-                Expanded(
-                  flex: 8,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            child: Row(
-                              children: <Widget>[
-                                AutoSizeText(
-                                  // TODO(tcmhoang): Add arb value
-                                  'Dang sua chua',
-                                  style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge
-                                          ?.copyWith(
-                                              fontWeight: FontWeight.bold) ??
-                                      const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          ServiceRequestItem(requests: requests),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          const Divider(
-                            height: 1,
-                            thickness: 1,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          BonusServiceItem(bonuses: bonuses),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          const Divider(
-                            height: 1,
-                            thickness: 1,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      TotalServicePriceItem(
-                        tempTotal: bonuses
-                                .map((e) => e.price)
-                                .toList()
-                                .reduce((value, element) => value + element) +
-                            requests
-                                .map((e) => e.price)
-                                .reduce((value, element) => value + element),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            populated: (unpaid, paid) => RecordDetail(
+              title: 'Dang sua chua',
+              // TODO(ctmhoang): intl this
+              unpaidServices: unpaid,
+              paidServices: paid,
             ),
             failure: () => Center(
               child: Column(

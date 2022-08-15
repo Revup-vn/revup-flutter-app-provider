@@ -6,8 +6,8 @@ import 'package:revup_core/core.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../../models/models.dart';
 
-class BonusServiceItem extends StatelessWidget {
-  const BonusServiceItem({
+class PaidServiceItem extends StatelessWidget {
+  const PaidServiceItem({
     super.key,
     required this.bonuses,
   });
@@ -25,6 +25,7 @@ class BonusServiceItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               AutoSizeText(
+                // TODO(tcmhoang) : change this to `Paid Services`
                 l10n.bonusServicesLabel,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.outline,
