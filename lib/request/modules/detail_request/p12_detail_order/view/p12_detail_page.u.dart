@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 import '../bloc/p12_detail_bloc.dart';
 
-import '../../models/repair_record_model.dart';
 import 'p12_detail_view.u.dart';
 
 class P12DetailPage extends StatelessWidget {
@@ -21,8 +20,10 @@ class P12DetailPage extends StatelessWidget {
         context
             .read<StoreRepository>()
             .repairPaymentRepo(RepairRecordDummy.dummyStarted(recordId)),
+        recordId,
+        context.read(),
       ),
-      child: const P12DetailView(),
+      child: P12DetailView(id: recordId),
     );
   }
 }

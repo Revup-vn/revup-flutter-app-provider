@@ -10,11 +10,15 @@ part 'p12_detail_state.dart';
 part 'p12_detail_bloc.freezed.dart';
 
 class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
-  P12DetailBloc(this._ips) : super(const P12DetailState.initial()) {
+  P12DetailBloc(this._ips, this.id, this._irr)
+      : super(const P12DetailState.initial()) {
     on<P12DetailEvent>(
       (event, emit) {
         event.when(
-          submitted: () => unit,
+          submitted: (onRoute) async => (await _irr.get(id)).fold(
+            (l) => emit(const P12DetailState.failure()),
+            (r) => onRoute(r.vehicle),
+          ),
           fetched: () async => (await _ips.all()).toOption().fold(
                 () => emit(const P12DetailState.failure()),
                 (a) => a
@@ -63,4 +67,6 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
   }
 
   final IStore<PaymentService> _ips;
+  final String id;
+  final IStore<RepairRecord> _irr;
 }

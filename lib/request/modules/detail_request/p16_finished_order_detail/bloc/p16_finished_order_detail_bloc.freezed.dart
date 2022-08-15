@@ -19,38 +19,38 @@ mixin _$P16FinishedOrderDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() fetchedData,
+    required TResult Function() populateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchedData,
+    TResult Function()? populateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchedData,
+    TResult Function()? populateData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_fetchedData value) fetchedData,
+    required TResult Function(_fetchedData value) populateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? fetchedData,
+    TResult Function(_fetchedData value)? populateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? fetchedData,
+    TResult Function(_fetchedData value)? populateData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,7 +115,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() fetchedData,
+    required TResult Function() populateData,
   }) {
     return started();
   }
@@ -124,7 +124,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchedData,
+    TResult Function()? populateData,
   }) {
     return started?.call();
   }
@@ -133,7 +133,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchedData,
+    TResult Function()? populateData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -146,7 +146,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_fetchedData value) fetchedData,
+    required TResult Function(_fetchedData value) populateData,
   }) {
     return started(this);
   }
@@ -155,7 +155,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? fetchedData,
+    TResult Function(_fetchedData value)? populateData,
   }) {
     return started?.call(this);
   }
@@ -164,7 +164,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? fetchedData,
+    TResult Function(_fetchedData value)? populateData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -204,7 +204,7 @@ class _$_fetchedData implements _fetchedData {
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailEvent.fetchedData()';
+    return 'P16FinishedOrderDetailEvent.populateData()';
   }
 
   @override
@@ -220,29 +220,29 @@ class _$_fetchedData implements _fetchedData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() fetchedData,
+    required TResult Function() populateData,
   }) {
-    return fetchedData();
+    return populateData();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchedData,
+    TResult Function()? populateData,
   }) {
-    return fetchedData?.call();
+    return populateData?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchedData,
+    TResult Function()? populateData,
     required TResult orElse(),
   }) {
-    if (fetchedData != null) {
-      return fetchedData();
+    if (populateData != null) {
+      return populateData();
     }
     return orElse();
   }
@@ -251,29 +251,29 @@ class _$_fetchedData implements _fetchedData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_fetchedData value) fetchedData,
+    required TResult Function(_fetchedData value) populateData,
   }) {
-    return fetchedData(this);
+    return populateData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? fetchedData,
+    TResult Function(_fetchedData value)? populateData,
   }) {
-    return fetchedData?.call(this);
+    return populateData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? fetchedData,
+    TResult Function(_fetchedData value)? populateData,
     required TResult orElse(),
   }) {
-    if (fetchedData != null) {
-      return fetchedData(this);
+    if (populateData != null) {
+      return populateData(this);
     }
     return orElse();
   }
@@ -289,30 +289,24 @@ mixin _$P16FinishedOrderDetailState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            List<PendingServiceModel> requests, List<PaidServicesModel> bonuses)
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
         loadSuccess,
-    required TResult Function() loadFailure,
-    required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
+    TResult Function(
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
         loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
+    TResult Function(
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
         loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -320,24 +314,18 @@ mixin _$P16FinishedOrderDetailState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_success value) loadSuccess,
-    required TResult Function(_failure value) loadFailure,
-    required TResult Function(_loading value) loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -403,10 +391,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            List<PendingServiceModel> requests, List<PaidServicesModel> bonuses)
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
         loadSuccess,
-    required TResult Function() loadFailure,
-    required TResult Function() loading,
   }) {
     return initial();
   }
@@ -415,11 +401,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
+    TResult Function(
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
         loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
   }) {
     return initial?.call();
   }
@@ -428,11 +412,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
+    TResult Function(
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
         loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -446,8 +428,6 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_success value) loadSuccess,
-    required TResult Function(_failure value) loadFailure,
-    required TResult Function(_loading value) loading,
   }) {
     return initial(this);
   }
@@ -457,8 +437,6 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
   }) {
     return initial?.call(this);
   }
@@ -468,8 +446,6 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -488,8 +464,7 @@ abstract class _$$_successCopyWith<$Res> {
   factory _$$_successCopyWith(
           _$_success value, $Res Function(_$_success) then) =
       __$$_successCopyWithImpl<$Res>;
-  $Res call(
-      {List<PendingServiceModel> requests, List<PaidServicesModel> bonuses});
+  $Res call({List<PendingServiceModel> unpaid, List<PaidServicesModel> paid});
 }
 
 /// @nodoc
@@ -504,17 +479,17 @@ class __$$_successCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? requests = freezed,
-    Object? bonuses = freezed,
+    Object? unpaid = freezed,
+    Object? paid = freezed,
   }) {
     return _then(_$_success(
-      requests: requests == freezed
-          ? _value._requests
-          : requests // ignore: cast_nullable_to_non_nullable
+      unpaid: unpaid == freezed
+          ? _value._unpaid
+          : unpaid // ignore: cast_nullable_to_non_nullable
               as List<PendingServiceModel>,
-      bonuses: bonuses == freezed
-          ? _value._bonuses
-          : bonuses // ignore: cast_nullable_to_non_nullable
+      paid: paid == freezed
+          ? _value._paid
+          : paid // ignore: cast_nullable_to_non_nullable
               as List<PaidServicesModel>,
     ));
   }
@@ -524,28 +499,28 @@ class __$$_successCopyWithImpl<$Res>
 
 class _$_success implements _success {
   const _$_success(
-      {required final List<PendingServiceModel> requests,
-      required final List<PaidServicesModel> bonuses})
-      : _requests = requests,
-        _bonuses = bonuses;
+      {required final List<PendingServiceModel> unpaid,
+      required final List<PaidServicesModel> paid})
+      : _unpaid = unpaid,
+        _paid = paid;
 
-  final List<PendingServiceModel> _requests;
+  final List<PendingServiceModel> _unpaid;
   @override
-  List<PendingServiceModel> get requests {
+  List<PendingServiceModel> get unpaid {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_requests);
+    return EqualUnmodifiableListView(_unpaid);
   }
 
-  final List<PaidServicesModel> _bonuses;
+  final List<PaidServicesModel> _paid;
   @override
-  List<PaidServicesModel> get bonuses {
+  List<PaidServicesModel> get paid {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bonuses);
+    return EqualUnmodifiableListView(_paid);
   }
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailState.loadSuccess(requests: $requests, bonuses: $bonuses)';
+    return 'P16FinishedOrderDetailState.loadSuccess(unpaid: $unpaid, paid: $paid)';
   }
 
   @override
@@ -553,15 +528,15 @@ class _$_success implements _success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_success &&
-            const DeepCollectionEquality().equals(other._requests, _requests) &&
-            const DeepCollectionEquality().equals(other._bonuses, _bonuses));
+            const DeepCollectionEquality().equals(other._unpaid, _unpaid) &&
+            const DeepCollectionEquality().equals(other._paid, _paid));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_requests),
-      const DeepCollectionEquality().hash(_bonuses));
+      const DeepCollectionEquality().hash(_unpaid),
+      const DeepCollectionEquality().hash(_paid));
 
   @JsonKey(ignore: true)
   @override
@@ -573,40 +548,34 @@ class _$_success implements _success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            List<PendingServiceModel> requests, List<PaidServicesModel> bonuses)
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
         loadSuccess,
-    required TResult Function() loadFailure,
-    required TResult Function() loading,
   }) {
-    return loadSuccess(requests, bonuses);
+    return loadSuccess(unpaid, paid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
+    TResult Function(
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
         loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
   }) {
-    return loadSuccess?.call(requests, bonuses);
+    return loadSuccess?.call(unpaid, paid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
+    TResult Function(
+            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
         loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(requests, bonuses);
+      return loadSuccess(unpaid, paid);
     }
     return orElse();
   }
@@ -616,8 +585,6 @@ class _$_success implements _success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_success value) loadSuccess,
-    required TResult Function(_failure value) loadFailure,
-    required TResult Function(_loading value) loading,
   }) {
     return loadSuccess(this);
   }
@@ -627,8 +594,6 @@ class _$_success implements _success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
   }) {
     return loadSuccess?.call(this);
   }
@@ -638,8 +603,6 @@ class _$_success implements _success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -651,256 +614,12 @@ class _$_success implements _success {
 
 abstract class _success implements P16FinishedOrderDetailState {
   const factory _success(
-      {required final List<PendingServiceModel> requests,
-      required final List<PaidServicesModel> bonuses}) = _$_success;
+      {required final List<PendingServiceModel> unpaid,
+      required final List<PaidServicesModel> paid}) = _$_success;
 
-  List<PendingServiceModel> get requests;
-  List<PaidServicesModel> get bonuses;
+  List<PendingServiceModel> get unpaid;
+  List<PaidServicesModel> get paid;
   @JsonKey(ignore: true)
   _$$_successCopyWith<_$_success> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_failureCopyWith<$Res> {
-  factory _$$_failureCopyWith(
-          _$_failure value, $Res Function(_$_failure) then) =
-      __$$_failureCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_failureCopyWithImpl<$Res>
-    extends _$P16FinishedOrderDetailStateCopyWithImpl<$Res>
-    implements _$$_failureCopyWith<$Res> {
-  __$$_failureCopyWithImpl(_$_failure _value, $Res Function(_$_failure) _then)
-      : super(_value, (v) => _then(v as _$_failure));
-
-  @override
-  _$_failure get _value => super._value as _$_failure;
-}
-
-/// @nodoc
-
-class _$_failure implements _failure {
-  const _$_failure();
-
-  @override
-  String toString() {
-    return 'P16FinishedOrderDetailState.loadFailure()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_failure);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(
-            List<PendingServiceModel> requests, List<PaidServicesModel> bonuses)
-        loadSuccess,
-    required TResult Function() loadFailure,
-    required TResult Function() loading,
-  }) {
-    return loadFailure();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
-        loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
-  }) {
-    return loadFailure?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
-        loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
-    required TResult orElse(),
-  }) {
-    if (loadFailure != null) {
-      return loadFailure();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_success value) loadSuccess,
-    required TResult Function(_failure value) loadFailure,
-    required TResult Function(_loading value) loading,
-  }) {
-    return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
-  }) {
-    return loadFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
-    required TResult orElse(),
-  }) {
-    if (loadFailure != null) {
-      return loadFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _failure implements P16FinishedOrderDetailState {
-  const factory _failure() = _$_failure;
-}
-
-/// @nodoc
-abstract class _$$_loadingCopyWith<$Res> {
-  factory _$$_loadingCopyWith(
-          _$_loading value, $Res Function(_$_loading) then) =
-      __$$_loadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_loadingCopyWithImpl<$Res>
-    extends _$P16FinishedOrderDetailStateCopyWithImpl<$Res>
-    implements _$$_loadingCopyWith<$Res> {
-  __$$_loadingCopyWithImpl(_$_loading _value, $Res Function(_$_loading) _then)
-      : super(_value, (v) => _then(v as _$_loading));
-
-  @override
-  _$_loading get _value => super._value as _$_loading;
-}
-
-/// @nodoc
-
-class _$_loading implements _loading {
-  const _$_loading();
-
-  @override
-  String toString() {
-    return 'P16FinishedOrderDetailState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(
-            List<PendingServiceModel> requests, List<PaidServicesModel> bonuses)
-        loadSuccess,
-    required TResult Function() loadFailure,
-    required TResult Function() loading,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
-        loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<PendingServiceModel> requests,
-            List<PaidServicesModel> bonuses)?
-        loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function()? loading,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_success value) loadSuccess,
-    required TResult Function(_failure value) loadFailure,
-    required TResult Function(_loading value) loading,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
-    TResult Function(_failure value)? loadFailure,
-    TResult Function(_loading value)? loading,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _loading implements P16FinishedOrderDetailState {
-  const factory _loading() = _$_loading;
 }

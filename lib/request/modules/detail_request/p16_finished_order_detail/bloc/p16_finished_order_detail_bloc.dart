@@ -11,55 +11,19 @@ part 'p16_finished_order_detail_bloc.freezed.dart';
 
 class P16FinishedOrderDetailBloc
     extends Bloc<P16FinishedOrderDetailEvent, P16FinishedOrderDetailState> {
-  P16FinishedOrderDetailBloc(this._ips)
+  P16FinishedOrderDetailBloc(this.data)
       : super(const P16FinishedOrderDetailState.initial()) {
     on<P16FinishedOrderDetailEvent>((event, emit) {
       event.when(
         started: () => unit,
-        fetchedData: () async => (await _ips.all()).toOption().fold(
-              () => emit(const P16FinishedOrderDetailState.loadFailure()),
-              (a) => a
-                  .filter(
-                    (a) => a.maybeMap(
-                      orElse: () => true,
-                      needToVerify: (_) => false,
-                    ),
-                  )
-                  .map(
-                    (a) => a.map(
-                      pending: (val) => PendingServiceModel(
-                        name: val.serviceName,
-                        price: val.moneyAmount +
-                            val.products
-                                .map((e) => e.quantity * e.unitPrice)
-                                .reduce(
-                                  (value, element) => value + element,
-                                ),
-                      ),
-                      paid: (val) => PaidServicesModel(
-                        name: val.serviceName,
-                        price: val.moneyAmount +
-                            val.products
-                                .map((e) => e.quantity * e.unitPrice)
-                                .reduce(
-                                  (value, element) => value + element,
-                                ),
-                      ),
-                      needToVerify: (_) => throw NullThrownError(),
-                    ),
-                  )
-                  .partition((a) => a is PaidServicesModel)
-                  .apply(
-                    (a, b) => emit(
-                      P16FinishedOrderDetailState.loadSuccess(
-                        requests: b.toList().cast<PendingServiceModel>(),
-                        bonuses: a.toList().cast<PaidServicesModel>(),
-                      ),
-                    ),
-                  ),
-            ),
+        populateData: () => emit(
+          P16FinishedOrderDetailState.loadSuccess(
+            paid: data.tail,
+            unpaid: data.head,
+          ),
+        ),
       );
     });
   }
-  final IStore<PaymentService> _ips;
+  final Tuple2<List<PendingServiceModel>, List<PaidServicesModel>> data;
 }

@@ -19,19 +19,19 @@ mixin _$P12DetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetched,
-    required TResult Function() submitted,
+    required TResult Function(Function1<String, void> onRoute) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetched,
-    TResult Function()? submitted,
+    TResult Function(Function1<String, void> onRoute)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetched,
-    TResult Function()? submitted,
+    TResult Function(Function1<String, void> onRoute)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$_fetched implements _fetched {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetched,
-    required TResult Function() submitted,
+    required TResult Function(Function1<String, void> onRoute) submitted,
   }) {
     return fetched();
   }
@@ -122,7 +122,7 @@ class _$_fetched implements _fetched {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetched,
-    TResult Function()? submitted,
+    TResult Function(Function1<String, void> onRoute)? submitted,
   }) {
     return fetched?.call();
   }
@@ -131,7 +131,7 @@ class _$_fetched implements _fetched {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetched,
-    TResult Function()? submitted,
+    TResult Function(Function1<String, void> onRoute)? submitted,
     required TResult orElse(),
   }) {
     if (fetched != null) {
@@ -181,6 +181,7 @@ abstract class _$$_submittedCopyWith<$Res> {
   factory _$$_submittedCopyWith(
           _$_submitted value, $Res Function(_$_submitted) then) =
       __$$_submittedCopyWithImpl<$Res>;
+  $Res call({Function1<String, void> onRoute});
 }
 
 /// @nodoc
@@ -193,54 +194,76 @@ class __$$_submittedCopyWithImpl<$Res>
 
   @override
   _$_submitted get _value => super._value as _$_submitted;
+
+  @override
+  $Res call({
+    Object? onRoute = freezed,
+  }) {
+    return _then(_$_submitted(
+      onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function1<String, void>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_submitted implements _submitted {
-  const _$_submitted();
+  const _$_submitted(this.onRoute);
+
+  @override
+  final Function1<String, void> onRoute;
 
   @override
   String toString() {
-    return 'P12DetailEvent.submitted()';
+    return 'P12DetailEvent.submitted(onRoute: $onRoute)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_submitted);
+        (other.runtimeType == runtimeType &&
+            other is _$_submitted &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, onRoute);
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_submittedCopyWith<_$_submitted> get copyWith =>
+      __$$_submittedCopyWithImpl<_$_submitted>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetched,
-    required TResult Function() submitted,
+    required TResult Function(Function1<String, void> onRoute) submitted,
   }) {
-    return submitted();
+    return submitted(onRoute);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetched,
-    TResult Function()? submitted,
+    TResult Function(Function1<String, void> onRoute)? submitted,
   }) {
-    return submitted?.call();
+    return submitted?.call(onRoute);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetched,
-    TResult Function()? submitted,
+    TResult Function(Function1<String, void> onRoute)? submitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
-      return submitted();
+      return submitted(onRoute);
     }
     return orElse();
   }
@@ -278,7 +301,13 @@ class _$_submitted implements _submitted {
 }
 
 abstract class _submitted implements P12DetailEvent {
-  const factory _submitted() = _$_submitted;
+  const factory _submitted(final Function1<String, void> onRoute) =
+      _$_submitted;
+
+  Function1<String, void> get onRoute;
+  @JsonKey(ignore: true)
+  _$$_submittedCopyWith<_$_submitted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

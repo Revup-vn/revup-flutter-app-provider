@@ -78,7 +78,7 @@ class RecordDetail extends StatelessWidget {
             child: Column(
               children: [
                 TotalServicePriceItem(
-                  tempTotal: paidServices
+                  tempTotal: -paidServices
                           .map((e) => e.price)
                           .toList()
                           .reduce((value, element) => value + element) +

@@ -4,9 +4,7 @@ part of 'p16_finished_order_detail_bloc.dart';
 class P16FinishedOrderDetailState with _$P16FinishedOrderDetailState {
   const factory P16FinishedOrderDetailState.initial() = _Initial;
   const factory P16FinishedOrderDetailState.loadSuccess({
-    required List<PendingServiceModel> requests,
-    required List<PaidServicesModel> bonuses,
+    required List<PendingServiceModel> unpaid,
+    required List<PaidServicesModel> paid,
   }) = _success;
-  const factory P16FinishedOrderDetailState.loadFailure() = _failure;
-  const factory P16FinishedOrderDetailState.loading() = _loading;
 }

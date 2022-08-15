@@ -5,12 +5,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
+import '../../../../../router/router.dart';
 import '../../widgets/record_detail.dart';
 import '../../widgets/widgets.dart';
 import '../bloc/p12_detail_bloc.dart';
 
 class P12DetailView extends StatelessWidget {
-  const P12DetailView({super.key});
+  const P12DetailView({super.key, required this.id});
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +24,21 @@ class P12DetailView extends StatelessWidget {
       appBar: AppBar(
         actions: [
           TextButton(
-            onPressed: () {
-              context
-                  .read<P12DetailBloc>()
-                  .add(const P12DetailEvent.submitted());
-            },
+            onPressed: () => context.read<P12DetailBloc>().state.maybeWhen(
+                  orElse: () => null,
+                  populated: (unpaid, paid) =>
+                      context.read<P12DetailBloc>().add(
+                            P12DetailEvent.submitted(
+                              (vehicle) => context.router.push(
+                                P13SelectOptionCompleteRoute(
+                                  id: id,
+                                  paid: paid,
+                                  vehicle: vehicle,
+                                ),
+                              ),
+                            ),
+                          ),
+                ),
             child: const Text(
               'Xac nhan',
               // TODO(tcmhoang): add arbs
@@ -34,7 +46,7 @@ class P12DetailView extends StatelessWidget {
           )
         ],
       ),
-      body: context.read<P12DetailBloc>().state.when(
+      body: context.watch<P12DetailBloc>().state.when(
             initial: Container.new,
             loading: () =>
                 const Center(child: CircularProgressIndicator.adaptive()),

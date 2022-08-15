@@ -7,7 +7,9 @@ import '../my_review/my_review.dart';
 import '../otp/view/otp_page.u.dart';
 import '../repair_service/detail_service/view/detail_service_view.u.dart';
 import '../repair_service/repair_service.dart';
+import '../request/modules/detail_request/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart';
 import '../request/modules/modules.dart';
+import '../request/modules/p14_repair_completed/view/view.dart';
 import '../signup/view/signup_page.u.dart';
 import '../splash/splash.dart';
 import '../vendor_authentication/vender_authentication.dart';
@@ -19,8 +21,9 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: DetailServiceRequestPage),
     AdaptiveRoute<void>(page: InfoRequestPage),
-    AdaptiveRoute<void>(page: RepairCompletePage),
-    AdaptiveRoute<void>(page: SelectOptionCompletePage),
+    AdaptiveRoute<void>(page: P14RepairCompletePage),
+    AdaptiveRoute<void>(page: P13SelectOptionCompletePage),
+    AdaptiveRoute<void>(page: P16FinishedOrderDetailPage),
     AdaptiveRoute<void>(page: AddServicePage),
     AdaptiveRoute<void>(page: DetailServiceView),
     AdaptiveRoute<void>(page: ListServiceView),
