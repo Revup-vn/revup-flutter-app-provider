@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ServiceModel {
-  String get providerID => throw _privateConstructorUsedError;
   String get serviceName => throw _privateConstructorUsedError;
   int get sortType => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
@@ -32,12 +31,7 @@ abstract class $ServiceModelCopyWith<$Res> {
   factory $ServiceModelCopyWith(
           ServiceModel value, $Res Function(ServiceModel) then) =
       _$ServiceModelCopyWithImpl<$Res>;
-  $Res call(
-      {String providerID,
-      String serviceName,
-      int sortType,
-      String price,
-      String imageUrl});
+  $Res call({String serviceName, int sortType, String price, String imageUrl});
 }
 
 /// @nodoc
@@ -50,17 +44,12 @@ class _$ServiceModelCopyWithImpl<$Res> implements $ServiceModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? providerID = freezed,
     Object? serviceName = freezed,
     Object? sortType = freezed,
     Object? price = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      providerID: providerID == freezed
-          ? _value.providerID
-          : providerID // ignore: cast_nullable_to_non_nullable
-              as String,
       serviceName: serviceName == freezed
           ? _value.serviceName
           : serviceName // ignore: cast_nullable_to_non_nullable
@@ -88,12 +77,7 @@ abstract class _$$_ServiceModelCopyWith<$Res>
           _$_ServiceModel value, $Res Function(_$_ServiceModel) then) =
       __$$_ServiceModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String providerID,
-      String serviceName,
-      int sortType,
-      String price,
-      String imageUrl});
+  $Res call({String serviceName, int sortType, String price, String imageUrl});
 }
 
 /// @nodoc
@@ -109,17 +93,12 @@ class __$$_ServiceModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? providerID = freezed,
     Object? serviceName = freezed,
     Object? sortType = freezed,
     Object? price = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_$_ServiceModel(
-      providerID: providerID == freezed
-          ? _value.providerID
-          : providerID // ignore: cast_nullable_to_non_nullable
-              as String,
       serviceName: serviceName == freezed
           ? _value.serviceName
           : serviceName // ignore: cast_nullable_to_non_nullable
@@ -144,14 +123,11 @@ class __$$_ServiceModelCopyWithImpl<$Res>
 
 class _$_ServiceModel implements _ServiceModel {
   _$_ServiceModel(
-      {required this.providerID,
-      required this.serviceName,
+      {required this.serviceName,
       required this.sortType,
       required this.price,
       required this.imageUrl});
 
-  @override
-  final String providerID;
   @override
   final String serviceName;
   @override
@@ -163,7 +139,7 @@ class _$_ServiceModel implements _ServiceModel {
 
   @override
   String toString() {
-    return 'ServiceModel(providerID: $providerID, serviceName: $serviceName, sortType: $sortType, price: $price, imageUrl: $imageUrl)';
+    return 'ServiceModel(serviceName: $serviceName, sortType: $sortType, price: $price, imageUrl: $imageUrl)';
   }
 
   @override
@@ -171,8 +147,6 @@ class _$_ServiceModel implements _ServiceModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ServiceModel &&
-            const DeepCollectionEquality()
-                .equals(other.providerID, providerID) &&
             const DeepCollectionEquality()
                 .equals(other.serviceName, serviceName) &&
             const DeepCollectionEquality().equals(other.sortType, sortType) &&
@@ -183,7 +157,6 @@ class _$_ServiceModel implements _ServiceModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(providerID),
       const DeepCollectionEquality().hash(serviceName),
       const DeepCollectionEquality().hash(sortType),
       const DeepCollectionEquality().hash(price),
@@ -197,14 +170,11 @@ class _$_ServiceModel implements _ServiceModel {
 
 abstract class _ServiceModel implements ServiceModel {
   factory _ServiceModel(
-      {required final String providerID,
-      required final String serviceName,
+      {required final String serviceName,
       required final int sortType,
       required final String price,
       required final String imageUrl}) = _$_ServiceModel;
 
-  @override
-  String get providerID;
   @override
   String get serviceName;
   @override

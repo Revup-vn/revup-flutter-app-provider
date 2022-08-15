@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/widgets/loading.u.dart';
@@ -24,9 +25,10 @@ class ListServiceBuilder extends StatelessWidget {
         failure: Loading.new,
         loading: Loading.new,
         initial: Container.new,
-        loadDataSuccess: (data, sortType) => ListServiceView(
+        loadDataSuccess: (data, sortType, providerID) => ListServiceView(
           data: data,
           sortType: sortType,
+          providerID: providerID,
         ),
       ),
     );

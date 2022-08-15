@@ -8,5 +8,6 @@ class ListServiceState with _$ListServiceState {
   const factory ListServiceState.loadDataSuccess({
     required IList<ServiceModel> data,
     required int sortType,
+    required String providerID,
   }) = _LoadDataSuccess;
 }

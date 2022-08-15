@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -10,26 +11,21 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../shared/shared.dart';
-import '../add_service.dart';
-import '../bloc/dropdown_list_bloc.dart';
 import '../bloc/upload_image_bloc.dart';
+import '../update_service.dart';
 
-class AddServiceView extends StatelessWidget {
-  AddServiceView({
+class UpdateServiceView extends StatelessWidget {
+  UpdateServiceView(
+    this.data, {
     super.key,
   });
   final _formKey = GlobalKey<FormBuilderState>();
-
+  final UpdateServiceModel data;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     var imageLink = '';
-    final items = [
-      'Xe máy',
-      'Oto',
-    ];
-    var dropdownvalue = items[0];
     return DismissKeyboard(
       child: Scaffold(
         appBar: AppBar(
@@ -80,13 +76,31 @@ class AddServiceView extends StatelessWidget {
                                         Theme.of(context).colorScheme.outline,
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      _showModalButtonSheet(context);
-                                    },
-                                    icon: const Icon(
-                                      Icons.add_photo_alternate_outlined,
-                                    ),
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    clipBehavior: Clip.none,
+                                    fit: StackFit.passthrough,
+                                    children: [
+                                      CachedNetworkImage(
+                                        imageUrl: data.img.isEmpty
+                                            ? kFallbackServiceImg
+                                            : data.img,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      Center(
+                                        child: IconButton(
+                                          onPressed: () {
+                                            _showModalButtonSheet(context);
+                                          },
+                                          icon: Icon(
+                                            Icons.camera_alt_outlined,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
@@ -161,6 +175,8 @@ class AddServiceView extends StatelessWidget {
                           const SizedBox(height: 5),
                           FormBuilderTextField(
                             name: 'serviceName',
+                            initialValue: data.serviceName,
+                            enabled: false,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               hintText: l10n.enterServiceNameLabel,
@@ -186,6 +202,7 @@ class AddServiceView extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           FormBuilderTextField(
+                            initialValue: data.serviceFee.toString(),
                             name: 'fee',
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -203,52 +220,6 @@ class AddServiceView extends StatelessWidget {
                               ),
                             ]),
                           ),
-                          const SizedBox(height: 10),
-                          AutoSizeText(
-                            l10n.priceUnitLabel,
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          const SizedBox(height: 5),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Theme.of(context).colorScheme.outline,
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: BlocSelector<DropdownListBloc,
-                                DropdownListState, String>(
-                              selector: (state) => state.maybeWhen(
-                                success: (value) => value,
-                                orElse: () => items[0],
-                              ),
-                              builder: (context, value) => DropdownButton(
-                                value: value,
-                                underline: const SizedBox(),
-                                isExpanded: true,
-                                icon: const Icon(Icons.keyboard_arrow_down),
-                                items: items.map((items) {
-                                  return DropdownMenuItem(
-                                    value: items,
-                                    child: Text(items),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  if (newValue != null) {
-                                    if (newValue.isNotEmpty) {
-                                      dropdownvalue = newValue;
-                                      context.read<DropdownListBloc>().add(
-                                            DropdownListEvent.dropdownChanged(
-                                              value: newValue,
-                                            ),
-                                          );
-                                    }
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -264,15 +235,15 @@ class AddServiceView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() == true) {
-                      final data = _formKey.currentState?.value;
-                      final model = AddServiceModel(
-                        img: imageLink,
-                        serviceName: (data?['serviceName']).toString(),
-                        serviceFee: int.parse((data?['fee']).toString()),
-                        cate: dropdownvalue,
+                      final dataForm = _formKey.currentState?.value;
+                      final model = UpdateServiceModel(
+                        img: imageLink.isEmpty ? data.img : imageLink,
+                        serviceName: (dataForm?['serviceName']).toString(),
+                        serviceFee: int.parse((dataForm?['fee']).toString()),
+                        cate: data.cate,
                       );
-                      context.read<AddServiceBloc>().add(
-                            AddServiceEvent.submitted(data: model),
+                      context.read<UpdateServiceBloc>().add(
+                            UpdateServiceEvent.submitted(model: model),
                           );
                     }
                   },

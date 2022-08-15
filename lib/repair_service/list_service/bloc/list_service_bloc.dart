@@ -46,7 +46,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
           (aUser) async {
             final tmp = await (storeRepository.repairCategoryRepo(aUser))
                 .where('name', isEqualTo: 'Xe máy');
-            final listDataModel = tmp.fold(
+            tmp.fold(
               (l) => emit(const ListServiceState.failure()),
               (r) async => r.map(
                 (repairCate) async {
@@ -72,7 +72,6 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                         final hp = list.last.price;
                         final lp = list.first.price;
                         return ServiceModel(
-                          providerID: providerID,
                           serviceName: repairService.name,
                           sortType: 0,
                           price:
@@ -81,7 +80,6 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                         );
                       } else {
                         return ServiceModel(
-                          providerID: providerID,
                           serviceName: repairService.name,
                           sortType: 0,
                           price: repairService.fee.toString(),
@@ -100,7 +98,13 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
           },
         );
         final res = await data.future;
-        emit(ListServiceState.loadDataSuccess(data: ilist(res), sortType: 0));
+        emit(
+          ListServiceState.loadDataSuccess(
+            data: ilist(res),
+            sortType: 0,
+            providerID: providerID,
+          ),
+        );
       },
       sortTypeChanged: (sortType) async {
         emit(const ListServiceState.loading());
@@ -119,7 +123,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
             final type = sortType == 0 ? 'Xe máy' : 'Oto';
             final tmp = await (storeRepository.repairCategoryRepo(aUser))
                 .where('name', isEqualTo: type);
-            final listDataModel = tmp.fold(
+            tmp.fold(
               (l) => emit(const ListServiceState.failure()),
               (r) async => r.map(
                 (repairCate) async {
@@ -145,7 +149,6 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                         final hp = list.last.price;
                         final lp = list.first.price;
                         return ServiceModel(
-                          providerID: providerID,
                           serviceName: repairService.name,
                           sortType: 0,
                           price:
@@ -154,7 +157,6 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                         );
                       } else {
                         return ServiceModel(
-                          providerID: providerID,
                           serviceName: repairService.name,
                           sortType: 0,
                           price: repairService.fee.toString(),
@@ -177,6 +179,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
           ListServiceState.loadDataSuccess(
             data: ilist(res),
             sortType: sortType,
+            providerID: providerID,
           ),
         );
       },

@@ -26,8 +26,8 @@ class AddServiceBloc extends Bloc<AddServiceEvent, AddServiceState> {
     AddServiceEvent event,
     Emitter<AddServiceState> emit,
   ) async {
-    event.when(
-      started: () => emit(const AddServiceState.initial()),
+    await event.when(
+      started: () async => emit(const AddServiceState.initial()),
       submitted: (data) async {
         await (await _userRepos.get(providerID))
             .map(
@@ -57,7 +57,8 @@ class AddServiceBloc extends Bloc<AddServiceEvent, AddServiceState> {
               ),
             );
           },
-        )?.whenComplete(() => emit(const AddServiceState.addServiceSuccess()));
+        );
+        emit(const AddServiceState.addServiceSuccess());
       },
     );
   }

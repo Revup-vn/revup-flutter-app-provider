@@ -194,5 +194,6 @@
   "idCardLabel": "ID Card Number",
   "imageCardLabel": "ID Card Image",
   "bioLabel": "Your slogan",
-  "idImgRequiredLabel": "You have to take a photo of your font id card"
+  "idImgRequiredLabel": "You have to take a photo of your font id card",
+  "failLabel": "Fail"
 }
