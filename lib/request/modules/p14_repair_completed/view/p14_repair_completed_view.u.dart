@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../router/router.dart';
+import '../../../../router/app_router.gr.dart';
 import '../../../models/models.dart';
 import '../cubit/overview_record_cubit.dart';
 import '../widgets/widgets.dart';
@@ -27,9 +27,6 @@ class P14RepairCompleteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // TODO(tcmhoang): depressed cannot review this file
-    /// someone please help m
-
     return Scaffold(
       appBar: AppBar(),
       body: BlocConsumer<OverviewRecordCubit, OverviewRecordState>(

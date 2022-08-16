@@ -16,11 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddServiceModel {
-  Image get img => throw _privateConstructorUsedError;
+  String get img => throw _privateConstructorUsedError;
   String get serviceName => throw _privateConstructorUsedError;
   int get serviceFee => throw _privateConstructorUsedError;
-  String get priceUnit => throw _privateConstructorUsedError;
-  String get shortDescription => throw _privateConstructorUsedError;
+  String get cate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddServiceModelCopyWith<AddServiceModel> get copyWith =>
@@ -32,12 +31,7 @@ abstract class $AddServiceModelCopyWith<$Res> {
   factory $AddServiceModelCopyWith(
           AddServiceModel value, $Res Function(AddServiceModel) then) =
       _$AddServiceModelCopyWithImpl<$Res>;
-  $Res call(
-      {Image img,
-      String serviceName,
-      int serviceFee,
-      String priceUnit,
-      String shortDescription});
+  $Res call({String img, String serviceName, int serviceFee, String cate});
 }
 
 /// @nodoc
@@ -54,14 +48,13 @@ class _$AddServiceModelCopyWithImpl<$Res>
     Object? img = freezed,
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
-    Object? priceUnit = freezed,
-    Object? shortDescription = freezed,
+    Object? cate = freezed,
   }) {
     return _then(_value.copyWith(
       img: img == freezed
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
-              as Image,
+              as String,
       serviceName: serviceName == freezed
           ? _value.serviceName
           : serviceName // ignore: cast_nullable_to_non_nullable
@@ -70,13 +63,9 @@ class _$AddServiceModelCopyWithImpl<$Res>
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
               as int,
-      priceUnit: priceUnit == freezed
-          ? _value.priceUnit
-          : priceUnit // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescription: shortDescription == freezed
-          ? _value.shortDescription
-          : shortDescription // ignore: cast_nullable_to_non_nullable
+      cate: cate == freezed
+          ? _value.cate
+          : cate // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -89,12 +78,7 @@ abstract class _$$_AddServiceModelCopyWith<$Res>
           _$_AddServiceModel value, $Res Function(_$_AddServiceModel) then) =
       __$$_AddServiceModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Image img,
-      String serviceName,
-      int serviceFee,
-      String priceUnit,
-      String shortDescription});
+  $Res call({String img, String serviceName, int serviceFee, String cate});
 }
 
 /// @nodoc
@@ -113,14 +97,13 @@ class __$$_AddServiceModelCopyWithImpl<$Res>
     Object? img = freezed,
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
-    Object? priceUnit = freezed,
-    Object? shortDescription = freezed,
+    Object? cate = freezed,
   }) {
     return _then(_$_AddServiceModel(
       img: img == freezed
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
-              as Image,
+              as String,
       serviceName: serviceName == freezed
           ? _value.serviceName
           : serviceName // ignore: cast_nullable_to_non_nullable
@@ -129,13 +112,9 @@ class __$$_AddServiceModelCopyWithImpl<$Res>
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
               as int,
-      priceUnit: priceUnit == freezed
-          ? _value.priceUnit
-          : priceUnit // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescription: shortDescription == freezed
-          ? _value.shortDescription
-          : shortDescription // ignore: cast_nullable_to_non_nullable
+      cate: cate == freezed
+          ? _value.cate
+          : cate // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -148,23 +127,20 @@ class _$_AddServiceModel implements _AddServiceModel {
       {required this.img,
       required this.serviceName,
       required this.serviceFee,
-      required this.priceUnit,
-      required this.shortDescription});
+      required this.cate});
 
   @override
-  final Image img;
+  final String img;
   @override
   final String serviceName;
   @override
   final int serviceFee;
   @override
-  final String priceUnit;
-  @override
-  final String shortDescription;
+  final String cate;
 
   @override
   String toString() {
-    return 'AddServiceModel(img: $img, serviceName: $serviceName, serviceFee: $serviceFee, priceUnit: $priceUnit, shortDescription: $shortDescription)';
+    return 'AddServiceModel(img: $img, serviceName: $serviceName, serviceFee: $serviceFee, cate: $cate)';
   }
 
   @override
@@ -177,9 +153,7 @@ class _$_AddServiceModel implements _AddServiceModel {
                 .equals(other.serviceName, serviceName) &&
             const DeepCollectionEquality()
                 .equals(other.serviceFee, serviceFee) &&
-            const DeepCollectionEquality().equals(other.priceUnit, priceUnit) &&
-            const DeepCollectionEquality()
-                .equals(other.shortDescription, shortDescription));
+            const DeepCollectionEquality().equals(other.cate, cate));
   }
 
   @override
@@ -188,8 +162,7 @@ class _$_AddServiceModel implements _AddServiceModel {
       const DeepCollectionEquality().hash(img),
       const DeepCollectionEquality().hash(serviceName),
       const DeepCollectionEquality().hash(serviceFee),
-      const DeepCollectionEquality().hash(priceUnit),
-      const DeepCollectionEquality().hash(shortDescription));
+      const DeepCollectionEquality().hash(cate));
 
   @JsonKey(ignore: true)
   @override
@@ -199,22 +172,19 @@ class _$_AddServiceModel implements _AddServiceModel {
 
 abstract class _AddServiceModel implements AddServiceModel {
   const factory _AddServiceModel(
-      {required final Image img,
+      {required final String img,
       required final String serviceName,
       required final int serviceFee,
-      required final String priceUnit,
-      required final String shortDescription}) = _$_AddServiceModel;
+      required final String cate}) = _$_AddServiceModel;
 
   @override
-  Image get img;
+  String get img;
   @override
   String get serviceName;
   @override
   int get serviceFee;
   @override
-  String get priceUnit;
-  @override
-  String get shortDescription;
+  String get cate;
   @override
   @JsonKey(ignore: true)
   _$$_AddServiceModelCopyWith<_$_AddServiceModel> get copyWith =>

@@ -7,9 +7,11 @@ class MyReviewItem extends StatelessWidget {
     super.key,
     required this.numberOfStars,
     required this.callback,
+    required this.onPressed,
   });
   final String numberOfStars;
   final VoidCallback callback;
+  final bool onPressed;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,7 +19,9 @@ class MyReviewItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Chip(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: onPressed
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.surfaceVariant,
           avatar: CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.primary,
             child: Icon(
