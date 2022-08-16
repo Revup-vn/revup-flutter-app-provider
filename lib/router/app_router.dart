@@ -8,6 +8,7 @@ import '../otp/view/otp_page.u.dart';
 import '../repair_service/add-product/view/add_product_page.u.dart';
 import '../repair_service/repair_service.dart';
 import '../repair_service/update_service/view/view.dart';
+import '../repair_service/update_service/view/view.dart';
 import '../request/modules/detail_request/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart';
 import '../request/modules/modules.dart';
 import '../request/modules/p14_repair_completed/view/view.dart';
@@ -20,7 +21,10 @@ import '../vendor_authentication/vender_authentication.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
-    AdaptiveRoute<void>(page: DetailServiceRequestPage, maintainState: false),
+    AdaptiveRoute<void>(
+        page: DetailServiceRequestPage,
+        maintainState: false,
+        maintainState: false),
     AdaptiveRoute<void>(page: InfoRequestPage),
     AdaptiveRoute<void>(page: P14RepairCompletePage),
     AdaptiveRoute<void>(page: P13SelectOptionCompletePage),
@@ -28,12 +32,15 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: AddServicePage),
     AdaptiveRoute<void>(page: MyReviewPage),
     AdaptiveRoute<void>(page: VendorAuthenticationPage),
-    AdaptiveRoute<void>(page: ListServicePage, maintainState: false),
-    AdaptiveRoute<void>(page: DetailServicePage, maintainState: false),
+    AdaptiveRoute<void>(
+        page: ListServicePage, maintainState: false, maintainState: false),
+    AdaptiveRoute<void>(
+        page: DetailServicePage, maintainState: false, maintainState: false),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
+    AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: P12DetailPage),
     AdaptiveRoute<void>(page: AddProductPage),

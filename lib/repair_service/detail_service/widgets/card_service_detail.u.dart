@@ -82,7 +82,8 @@ class ServiceProduct extends StatelessWidget {
                               Row(
                                 children: [
                                   AutoSizeText(
-                                    context.formatMoney(priceRange),
+                                    context.formatMoney(
+                                        context.formatMoney(priceRange)),
                                     style:
                                         Theme.of(context).textTheme.bodyText2,
                                   ),

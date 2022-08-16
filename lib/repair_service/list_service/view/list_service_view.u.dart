@@ -8,11 +8,17 @@ import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
 import '../bloc/list_service_bloc.dart';
 import '../models/service_model.dart';
+import '../../../router/router.dart';
+import '../bloc/list_service_bloc.dart';
+import '../models/service_model.dart';
 import '../widgets/card_service.u.dart';
 import '../widgets/vehicle_type_item.u.dart';
 
 class ListServiceView extends StatelessWidget {
   const ListServiceView({
+    required this.data,
+    required this.sortType,
+    required this.providerID,
     required this.data,
     required this.sortType,
     required this.providerID,

@@ -7,8 +7,15 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../shared/shared.dart';
+import '../add_service.dart';
+import '../bloc/dropdown_list_bloc.dart';
+import '../bloc/upload_image_bloc.dart';
 import '../../../shared/shared.dart';
 import '../add_service.dart';
 import '../bloc/dropdown_list_bloc.dart';
@@ -18,6 +25,7 @@ class AddServiceView extends StatelessWidget {
   AddServiceView({
     super.key,
   });
+  final _formKey = GlobalKey<FormBuilderState>();
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override

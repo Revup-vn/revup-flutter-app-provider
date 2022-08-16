@@ -31,7 +31,6 @@ import 'package:revup_provider/repair_service/update_service/view/view.dart'
 import 'package:revup_provider/request/models/models.dart' as _i17;
 import 'package:revup_provider/request/modules/detail_request/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart'
     as _i5;
-import 'package:revup_provider/request/modules/modules.dart' as _i3;
 import 'package:revup_provider/request/modules/p14_repair_completed/view/view.dart'
     as _i4;
 import 'package:revup_provider/signup/view/signup_page.u.dart' as _i10;
@@ -646,7 +645,7 @@ class LoginEnterPhoneRouteArgs {
 
   @override
   String toString() {
-    return 'LoginEnterPhoneRouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, email: $email, key: $key}';
+    return 'UpdateServiceRouteArgs{providerID: $providerID, category: $category, sName: $sName, key: $key}';
   }
 }
 

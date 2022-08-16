@@ -7,14 +7,16 @@ import '../../../shared/utils/fallbacks.dart';
 class CartServiceReview extends StatelessWidget {
   const CartServiceReview({
     super.key,
-    required this.imgUrl,
+    required this.imgUrlUrl,
     required this.serviceName,
     required this.priceRange,
+    this.callback,
     this.callback,
   });
   final String imgUrl;
   final String serviceName;
   final String priceRange;
+  final VoidCallback? callback;
   final VoidCallback? callback;
 
   @override
