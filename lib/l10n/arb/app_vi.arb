@@ -26,7 +26,6 @@
   "carLabel": "Ô tô",
   "cashLabel": "Tiền mặt",
   "cashPaymentLabel": "Thanh toán bằng tiền mặt",
-  "categoriesLabel": " hạng mục",
   "changeLanguageLabel": "Thay đổi ngôn ngữ",
   "chooseImageLabel": "Chọn hình ảnh",
   "chooseImageNoteLabel": "Thêm ảnh để thợ sửa chữa hình dung rõ hơn yêu cầu của bạn",
@@ -199,5 +198,11 @@
   "repairItemsLabel": "hạng mục",
   "repairRequestSkipLabel": "Xác nhận bỏ qua yêu cầu sửa chữa này?",
   "needPriceQuotationLabel": "Cần báo giá",
-  "idImgRequiredLabel": "Bạn hãy chụp ảnh mặt trước cmnd hoặc cccd của bạn"
+  "idImgRequiredLabel": "Bạn hãy chụp ảnh mặt trước cmnd hoặc cccd của bạn",
+  "providerArrivedLabel": "Tôi đã đến nơi",
+  "startRepairLabel": "Bắt đầu sửa chữa",
+  "underRepairLabel": "Đang sửa chữa",
+  "notIncludeProductPriceLabel": "Chi phí ở đây chỉ là phí dịch vụ chưa bao gồm giá sản phẩm",
+  "touchToQuoteLabel": "Chạm để nhập giá",
+  "enterPriceLabel": "Nhập giá"
 }

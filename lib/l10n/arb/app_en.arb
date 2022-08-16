@@ -26,7 +26,6 @@
   "carLabel": "Car",
   "cashLabel": "Cash",
   "cashPaymentLabel": "Payment in cash",
-  "categoriesLabel": " categories",
   "changeLanguageLabel": "Change Language",
   "chooseImageLabel": "Choose image",
   "chooseImageNoteLabel": "Add a photo for the repairman to better visualize your request",
@@ -201,5 +200,11 @@
   "repairItemsLabel": "repair items",
   "repairRequestSkipLabel": "Would you like to skip this repair request?",
   "needPriceQuotationLabel": "Need price quotation",
-  "idImgRequiredLabel": "You have to take a photo of your font id card"
+  "idImgRequiredLabel": "You have to take a photo of your font id card",
+  "providerArrivedLabel": "I arrived",
+  "startRepairLabel": "Start the repair",
+  "underRepairLabel": "Repairing",
+  "notIncludeProductPriceLabel": "The cost here is only the service fee, not including the product price",
+  "touchToQuoteLabel": "Tap to enter price",
+  "enterPriceLabel": "Enter price"
 }

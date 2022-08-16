@@ -2,14 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../request/models/pending_service_model.dart';
+import '../../repair_request/models/pending_service_model.dart';
 import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
 import '../../shared/widgets/app_avatar.dart';
-import '../models/pending_request.dart';
+import '../bloc/new_request_bloc.dart';
+import '../models/pending_repair_request.dart';
 
 class RequestDetailsStatic extends StatelessWidget {
   const RequestDetailsStatic({
@@ -21,7 +23,7 @@ class RequestDetailsStatic extends StatelessWidget {
     required this.pendingAmount,
   });
   final AppUser consumer;
-  final PendingRequest record;
+  final PendingRepairRequest record;
   final double distance;
   final IList<PendingServiceModel> pendingService;
   final int pendingAmount;
@@ -84,7 +86,7 @@ class RequestDetailsStatic extends StatelessWidget {
                       children: [
                         TextSpan(text: l10n.distanceLabel),
                         TextSpan(
-                          text: ' ${distance.toStringAsFixed(2)}',
+                          text: ' ${distance.toStringAsFixed(2)} km',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -165,7 +167,7 @@ class RequestDetailsStatic extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       context.router.push(
-                        DetailServiceRequestRoute(
+                        P3RequestDetailRoute(
                           record: record,
                           requests: pendingService,
                           pendingAmount: pendingAmount,
@@ -184,7 +186,18 @@ class RequestDetailsStatic extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // context.router.push();
+                  context
+                      .read<NewRequestBloc>()
+                      .add(NewRequestEvent.accepted(record: record));
+                  context.router.push(
+                    InfoRequestRoute(
+                      consumer: consumer,
+                      record: record,
+                      distance: distance,
+                      pendingService: pendingService,
+                      pendingAmount: pendingAmount,
+                    ),
+                  );
                 },
                 child: AutoSizeText(l10n.acceptLabel),
               ),

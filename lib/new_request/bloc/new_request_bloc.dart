@@ -8,8 +8,8 @@ import 'package:revup_core/core.dart';
 
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
-import '../../request/models/pending_service_model.dart';
-import '../models/pending_request.dart';
+import '../../repair_request/models/pending_service_model.dart';
+import '../models/pending_repair_request.dart';
 
 part 'new_request_bloc.freezed.dart';
 part 'new_request_event.dart';
@@ -44,9 +44,8 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                   (r) => r,
                 )
                 .getOrElse(() => throw NullThrownError());
-        print(repairRecord);
         final pendingRequest =
-            PendingRequest.fromDto(repairRecord: repairRecord);
+            PendingRepairRequest.fromDto(repairRecord: repairRecord);
         final consumer = (await _userStore.get(repairRecord.cid))
             .fold<Option<AppUser>>(
               (l) => none(),
@@ -84,6 +83,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                 .map(
                   (a) => a.getOrElse(() => throw NullThrownError()),
                 );
+
         final pendingAmount = services
             .map(
               (a) => a.price,
@@ -99,6 +99,33 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
             record: pendingRequest,
             services: services,
             pendingAmount: pendingAmount,
+          ),
+        );
+      },
+      accepted: (record) async {
+        // update repair record with accepted type
+        await _repairRecord.update(
+          RepairRecord.accepted(
+            id: record.id,
+            cid: record.cid,
+            pid: record.pid,
+            created: record.created,
+            desc: record.desc,
+            vehicle: record.vehicle,
+            money: record.money,
+            moving: DateTime.now(),
+            from: record.from,
+            to: record.to,
+          ),
+        );
+        // create `need to verify` service from optional service
+        final _paymentServiceStore = storeRepository.repairPaymentRepo(
+          RepairRecordDummy.dummyStarted(record.id),
+        );
+
+        record.optionalServices.map(
+          (e) => _paymentServiceStore.create(
+            PaymentService.needToVerify(serviceName: e.name, desc: e.desc),
           ),
         );
       },

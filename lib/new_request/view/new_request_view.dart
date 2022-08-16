@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
+import '../../shared/utils/utils_function.dart';
 import '../bloc/new_request_bloc.dart';
 import '../widgets/request_details_static.dart';
 import '../widgets/request_map_static.dart';
@@ -19,6 +21,7 @@ class NewRequestView extends StatelessWidget {
     blocPage.state.whenOrNull(
       initial: () => blocPage.add(const NewRequestEvent.started()),
     );
+    final maybeUser = getUser(context.read<AuthenticateBloc>().state);
 
     return BlocBuilder<NewRequestBloc, NewRequestState>(
       builder: (context, state) {
@@ -88,7 +91,18 @@ class NewRequestView extends StatelessWidget {
                                           width: 16,
                                         ),
                                         ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            context.router.replaceAll(
+                                              [
+                                                HomeRoute(
+                                                  user: maybeUser.getOrElse(
+                                                    () =>
+                                                        throw NullThrownError(),
+                                                  ),
+                                                )
+                                              ],
+                                            );
+                                          },
                                           child:
                                               Text(context.l10n.confirmLabel),
                                         )
