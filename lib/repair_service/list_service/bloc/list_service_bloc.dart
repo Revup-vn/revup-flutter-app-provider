@@ -68,14 +68,22 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                             (e1, e2) => e1.price.compareTo(e2.price),
                           )
                           .toList();
-                      if (list.isNotEmpty) {
-                        final hp = list.last.price;
-                        final lp = list.first.price;
+                      if (list.isNotEmpty && list.length >= 2) {
+                        final hp = list.first.price;
+                        final lp = list.last.price;
                         return ServiceModel(
                           serviceName: repairService.name,
                           sortType: 0,
                           price:
-                              '''${lp + repairService.fee}đ - ${hp + repairService.fee}đ''',
+                              '''${lp + repairService.fee} - ${hp + repairService.fee}''',
+                          imageUrl: repairService.img ?? '',
+                        );
+                      } else if (list.length == 1) {
+                        final price = list.last.price + repairService.fee;
+                        return ServiceModel(
+                          serviceName: repairService.name,
+                          sortType: 0,
+                          price: price.toString(),
                           imageUrl: repairService.img ?? '',
                         );
                       } else {
@@ -145,14 +153,22 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                             (e1, e2) => e1.price.compareTo(e2.price),
                           )
                           .toList();
-                      if (list.isNotEmpty) {
-                        final hp = list.last.price;
-                        final lp = list.first.price;
+                      if (list.isNotEmpty && list.length >= 2) {
+                        final hp = list.first.price;
+                        final lp = list.last.price;
                         return ServiceModel(
                           serviceName: repairService.name,
                           sortType: 0,
                           price:
-                              '''${lp + repairService.fee}đ - ${hp + repairService.fee}đ''',
+                              '''${lp + repairService.fee} - ${hp + repairService.fee}''',
+                          imageUrl: repairService.img ?? '',
+                        );
+                      } else if (list.length == 1) {
+                        final price = list.first.price + repairService.fee;
+                        return ServiceModel(
+                          serviceName: repairService.name,
+                          sortType: 0,
+                          price: price.toString(),
                           imageUrl: repairService.img ?? '',
                         );
                       } else {

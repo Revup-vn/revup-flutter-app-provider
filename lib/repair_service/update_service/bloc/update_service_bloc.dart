@@ -33,6 +33,45 @@ class UpdateServiceBloc extends Bloc<UpdateServiceEvent, UpdateServiceState> {
     Emitter<UpdateServiceState> emit,
   ) async {
     await event.when(
+      deleted: () async {
+        final completer = Completer<Either<StoreFailure, Unit>>();
+        emit(const UpdateServiceState.loading());
+        await (await _userRepos.get(providerID))
+            .map(
+              (r) => r.maybeMap<Option<AppUser>>(
+                orElse: none,
+                provider: some,
+              ),
+            )
+            .fold<Option<AppUser>>((l) => none(), (r) => r)
+            .fold(
+          () => null,
+          (aUser) async {
+            final tmp = await storeRepository
+                .repairCategoryRepo(aUser)
+                .where('name', isEqualTo: category);
+            tmp.map(
+              (r) => r.map(
+                (cate) async {
+                  final t = await storeRepository
+                      .repairServiceRepo(aUser, cate)
+                      .delete(serviceName);
+                  t.fold(
+                    (l) => completer.complete(left(l)),
+                    (r) => completer.complete(right(r)),
+                  );
+                },
+              ),
+            );
+          },
+        );
+        (await completer.future).fold(
+          (l) => emit(const UpdateServiceState.failure()),
+          (r) => emit(
+            const UpdateServiceState.deleteSuccess(),
+          ),
+        );
+      },
       started: () async {
         final repairService = Completer<UpdateServiceModel>();
         emit(const UpdateServiceState.loading());

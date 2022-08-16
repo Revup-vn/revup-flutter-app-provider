@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../router/router.dart';
 import '../../../shared/shared.dart';
 import '../widgets/card_service_detail.u.dart';
 
@@ -14,11 +15,14 @@ class DetailServiceView extends StatelessWidget {
     required this.service,
     required this.listProduct,
     required this.providerID,
+    required this.cate,
     super.key,
   });
   final RepairService service;
   final IList<RepairProduct> listProduct;
   final String providerID;
+  final String cate;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -129,7 +133,15 @@ class DetailServiceView extends StatelessWidget {
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    // TODO(wamynobe) : add new product
+                    context.router.push(
+                      AddProductRoute(
+                        providerID: providerID,
+                        cate: cate,
+                        sName: service.name,
+                        pName: '',
+                        type: 0,
+                      ),
+                    );
                   },
                   child: Text(l10n.addLabel),
                 ),
@@ -146,6 +158,17 @@ class DetailServiceView extends StatelessWidget {
                   img: listData[index].img,
                   serviceName: listData[index].name,
                   priceRange: listData[index].price,
+                  callback: () {
+                    context.router.push(
+                      AddProductRoute(
+                        providerID: providerID,
+                        cate: cate,
+                        sName: service.name,
+                        pName: listData[index].name,
+                        type: 1,
+                      ),
+                    );
+                  },
                 ),
               )
             else

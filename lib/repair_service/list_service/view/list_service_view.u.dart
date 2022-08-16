@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -85,9 +84,21 @@ class ListServiceView extends StatelessWidget {
               itemBuilder: (context, index) => CartServiceReview(
                 imgUrl: listService[index].imageUrl,
                 serviceName: listService[index].serviceName,
-                priceRange: context.formatMoney(
-                  int.parse(listService[index].price),
-                ),
+                priceRange: listService[index].price.split('-').length > 1
+                    ? '${context.formatMoney(
+                        int.parse(
+                          listService[index].price.split('-')[0].trim(),
+                        ),
+                      )} - ${context.formatMoney(
+                        int.parse(
+                          listService[index].price.split('-')[1].trim(),
+                        ),
+                      )}'
+                    : context.formatMoney(
+                        int.parse(
+                          listService[index].price,
+                        ),
+                      ),
                 callback: () {
                   context.router.push(
                     DetailServiceRoute(

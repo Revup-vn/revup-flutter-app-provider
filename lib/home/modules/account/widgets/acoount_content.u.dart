@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -74,7 +73,6 @@ class AccountContent extends StatelessWidget {
               accountName: l10n.serviceAccountLabel,
               accountIcon: const Icon(Icons.home_repair_service),
               callback: () {
-                // TODO(namngoc231): Go to Service
                 context.router.push(
                   ListServiceRoute(providerID: user.uuid),
                 );

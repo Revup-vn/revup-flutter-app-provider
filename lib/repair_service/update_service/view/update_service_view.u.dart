@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -28,19 +27,111 @@ class UpdateServiceView extends StatelessWidget {
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: AutoSizeText(
-            l10n.addNewServiceLabel,
+            l10n.updateServiceLabel,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                showDialog<String>(
+                  context: context,
+                  builder: (buildercontext) {
+                    return Dialog(
+                      backgroundColor: Colors.transparent,
+                      insetPadding: const EdgeInsets.all(10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                            ),
+                            width: double.infinity,
+                            height: 200,
+                            child: Column(
+                              children: [
+                                AutoSizeText(
+                                  context.l10n.sureLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary,
+                                      ),
+                                ),
+                                AutoSizeText(
+                                  context.l10n.delProductLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Row(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    context.read<UpdateServiceBloc>().add(
+                                          const UpdateServiceEvent.deleted(),
+                                        );
+                                    context.router.pop();
+                                  },
+                                  child: AutoSizeText(
+                                    context.l10n.doneLabel,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    context.router.pop();
+                                  },
+                                  child: AutoSizeText(
+                                    context.l10n.cancelLabel,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Text(context.l10n.deleteLabel),
+            ),
+          ],
         ),
         body: Column(
           children: [
             Expanded(
-              flex: 8,
+              flex: 5,
               child: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -189,7 +280,7 @@ class UpdateServiceView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[a-zA-Z ]+$',
+                                  r'^[A-Za-z0-9 ]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -230,6 +321,7 @@ class UpdateServiceView extends StatelessWidget {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(16),
+                height: 80,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Theme.of(context).cardColor),
                 child: ElevatedButton(
