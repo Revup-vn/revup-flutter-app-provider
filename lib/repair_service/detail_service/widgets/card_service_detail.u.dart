@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../shared/shared.dart';
@@ -12,20 +11,17 @@ class ServiceProduct extends StatelessWidget {
     required this.img,
     required this.serviceName,
     required this.priceRange,
+    this.callback,
   });
   final String img;
   final String serviceName;
   final int priceRange;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        // TODO(namngoc231): Go to card detail
-        // context.router.push(
-        //   const AddServiceRoute(),
-        // );
-      },
+      onTap: callback,
       child: Card(
         color: Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(

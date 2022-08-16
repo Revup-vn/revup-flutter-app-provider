@@ -5,27 +5,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../shared/widgets/loading.u.dart';
-import '../bloc/update_service_bloc.dart';
-import 'update_service_view.u.dart';
+import '../bloc/add_product_bloc.dart';
+import 'add_product_view.u.dart';
 
-class UpdateServiceBuilder extends StatelessWidget {
-  const UpdateServiceBuilder({super.key});
-
+class AddProductBuilder extends StatelessWidget {
+  const AddProductBuilder(this.type, {super.key});
+  final int type;
   @override
   Widget build(BuildContext context) {
-    context.watch<UpdateServiceBloc>().state.maybeWhen(
+    context.watch<AddProductBloc>().state.maybeWhen(
           initial: () {
             return context
-                .read<UpdateServiceBloc>()
-                .add(const UpdateServiceEvent.started());
+                .read<AddProductBloc>()
+                .add(AddProductEvent.started(type: type));
           },
           orElse: () => false,
         );
-    return BlocConsumer<UpdateServiceBloc, UpdateServiceState>(
+    return BlocConsumer<AddProductBloc, AddProductState>(
       builder: (context, state) => state.maybeWhen(
-        orElse: Container.new,
-        loadDataSuccess: UpdateServiceView.new,
         loading: Loading.new,
+        orElse: Container.new,
+        addServiceSuccess: Container.new,
+        loadDataSuccess: (model, cate, providerID, sName) =>
+            AddProductView(model, sName, cate, providerID),
       ),
       listener: (context, state) => state.maybeWhen(
         failure: () {
@@ -43,7 +45,7 @@ class UpdateServiceBuilder extends StatelessWidget {
                       child: Column(
                         children: [
                           Icon(
-                            Icons.cancel_presentation,
+                            Icons.cancel_outlined,
                             color: Theme.of(context).colorScheme.error,
                           ),
                           AutoSizeText(
@@ -68,7 +70,7 @@ class UpdateServiceBuilder extends StatelessWidget {
             context.router.popUntil((_) => count++ == 2);
           });
         },
-        sumbitSuccess: () {
+        addServiceSuccess: () {
           showDialog<String>(
             context: context,
             builder: (context) {
@@ -107,47 +109,6 @@ class UpdateServiceBuilder extends StatelessWidget {
           return Future.delayed(const Duration(seconds: 3), () {
             var count = 0;
             context.router.popUntil((_) => count++ == 2);
-          });
-        },
-        deleteSuccess: () {
-          showDialog<String>(
-            context: context,
-            builder: (context) {
-              return Dialog(
-                backgroundColor: Colors.transparent,
-                insetPadding: const EdgeInsets.all(10),
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 200,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.done,
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ),
-                          AutoSizeText(
-                            context.l10n.doneLabel,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onTertiary,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-          return Future.delayed(const Duration(seconds: 3), () {
-            var count = 0;
-            context.router.popUntil((_) => count++ == 3);
           });
         },
         orElse: () => false,

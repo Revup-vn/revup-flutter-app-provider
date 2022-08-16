@@ -5,6 +5,7 @@ import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../my_review/my_review.dart';
 import '../otp/view/otp_page.u.dart';
+import '../repair_service/add-product/view/add_product_page.u.dart';
 import '../repair_service/repair_service.dart';
 import '../repair_service/update_service/view/view.dart';
 import '../request/modules/detail_request/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart';
@@ -35,6 +36,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: P12DetailPage),
+    AdaptiveRoute<void>(page: AddProductPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

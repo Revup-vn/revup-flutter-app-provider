@@ -119,7 +119,6 @@
   "priceUnitLabel": "Danh mục",
   "privacyLabel": "Chính sách bảo mật",
   "productListLabel": "Danh sách sản phẩm",
-  "productPriceLabel": "Đơn giá",
   "productTypeLabel": "Loại sản phẩm",
   "questionAccountLabel": "Tại sao tài khoản REVUP của tôi bị khoá?",
   "questionCallLabel": "Làm sao để gọi điện trên ứng dụng Revup?",
@@ -195,5 +194,15 @@
   "imageCardLabel": "Ảnh cmnd hoặc cccd",
   "bioLabel": "Câu nói yêu thích của bạn",
   "idImgRequiredLabel": "Bạn hãy chụp ảnh mặt trước cmnd hoặc cccd của bạn",
-  "failLabel": "Thất bại"
+  "failLabel": "Thất bại",
+  "productInfoLabel": "Thông tin sản phẩm",
+  "productName" : "Tên sản phẩm",
+  "productPriceLabel" : "Giá sản phẩm",
+  "addNewProductLabel" : "Thêm mới mặt hàng",
+  "updateProductLabel" : "Chỉnh sửa mặt hàng",
+  "deleteLabel" : "Xoá",
+  "sureLabel" : "Bạn có chắc không?",
+  "delProductLabel" : "Dữ liệu về sản phẩm này sẽ bị xoá hết",
+  "delServiceLabel" : "Dữ liệu về dịch vụ này sẽ bị xoá hết",
+  "updateServiceLabel" : "Chỉnh sửa dịch vụ"
 }

@@ -10,37 +10,132 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../shared/shared.dart';
-import '../add_service.dart';
-import '../bloc/dropdown_list_bloc.dart';
+import '../bloc/add_product_bloc.dart';
 import '../bloc/upload_image_bloc.dart';
+import '../models/add_product_model.dart';
 
-class AddServiceView extends StatelessWidget {
-  AddServiceView({
+class AddProductView extends StatelessWidget {
+  AddProductView(
+    this.productModel,
+    this.serviceName,
+    this.cate,
+    this.providerID, {
     super.key,
   });
   final _formKey = GlobalKey<FormBuilderState>();
-
+  final AddProductModel productModel;
+  final String serviceName;
+  final String cate;
+  final String providerID;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     var imageLink = '';
-    final items = [
-      'Xe máy',
-      'Oto',
-    ];
-    var dropdownvalue = items[0];
     return DismissKeyboard(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: AutoSizeText(
-            l10n.addNewServiceLabel,
+            productModel.productName.isEmpty
+                ? context.l10n.addNewProductLabel
+                : context.l10n.updateProductLabel,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                showDialog<String>(
+                  context: context,
+                  builder: (buildercontext) {
+                    return Dialog(
+                      backgroundColor: Colors.transparent,
+                      insetPadding: const EdgeInsets.all(10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                            ),
+                            width: double.infinity,
+                            height: 200,
+                            child: Column(
+                              children: [
+                                AutoSizeText(
+                                  context.l10n.sureLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary,
+                                      ),
+                                ),
+                                AutoSizeText(
+                                  context.l10n.delProductLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Row(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    context.read<AddProductBloc>().add(
+                                          const AddProductEvent.deleteProduct(),
+                                        );
+                                    context.router.pop();
+                                  },
+                                  child: AutoSizeText(
+                                    context.l10n.doneLabel,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    context.router.pop();
+                                  },
+                                  child: AutoSizeText(
+                                    context.l10n.cancelLabel,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Text(context.l10n.deleteLabel),
+            ),
+          ],
         ),
         body: Column(
           children: [
@@ -81,13 +176,31 @@ class AddServiceView extends StatelessWidget {
                                         Theme.of(context).colorScheme.outline,
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      _showModalButtonSheet(context);
-                                    },
-                                    icon: const Icon(
-                                      Icons.add_photo_alternate_outlined,
-                                    ),
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    clipBehavior: Clip.none,
+                                    fit: StackFit.passthrough,
+                                    children: [
+                                      CachedNetworkImage(
+                                        imageUrl: productModel.imageUrl.isEmpty
+                                            ? kFallbackServiceImg
+                                            : productModel.imageUrl,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      Center(
+                                        child: IconButton(
+                                          onPressed: () {
+                                            _showModalButtonSheet(context);
+                                          },
+                                          icon: Icon(
+                                            Icons.camera_alt_outlined,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
@@ -142,7 +255,7 @@ class AddServiceView extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           AutoSizeText(
-                            l10n.serviceInforLabel,
+                            l10n.productInfoLabel,
                             style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -156,12 +269,14 @@ class AddServiceView extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           AutoSizeText(
-                            l10n.serviceNameLabel,
+                            l10n.productName,
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                           const SizedBox(height: 5),
                           FormBuilderTextField(
-                            name: 'serviceName',
+                            initialValue: productModel.productName,
+                            enabled: productModel.productName.isEmpty,
+                            name: 'productName',
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               hintText: l10n.enterServiceNameLabel,
@@ -182,11 +297,12 @@ class AddServiceView extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           AutoSizeText(
-                            l10n.serviceFeeLabel,
+                            l10n.productPriceLabel,
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                           const SizedBox(height: 5),
                           FormBuilderTextField(
+                            initialValue: productModel.productFee.toString(),
                             name: 'fee',
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -206,49 +322,21 @@ class AddServiceView extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           AutoSizeText(
-                            l10n.priceUnitLabel,
+                            l10n.serviceDescriptionLabel,
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                           const SizedBox(height: 5),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Theme.of(context).colorScheme.outline,
-                              ),
-                              borderRadius: BorderRadius.circular(5),
+                          FormBuilderTextField(
+                            name: 'des',
+                            initialValue: productModel.des,
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              hintText: l10n.enterMountLabel,
                             ),
-                            child: BlocSelector<DropdownListBloc,
-                                DropdownListState, String>(
-                              selector: (state) => state.maybeWhen(
-                                success: (value) => value,
-                                orElse: () => items[0],
-                              ),
-                              builder: (context, value) => DropdownButton(
-                                value: value,
-                                underline: const SizedBox(),
-                                isExpanded: true,
-                                icon: const Icon(Icons.keyboard_arrow_down),
-                                items: items.map((items) {
-                                  return DropdownMenuItem(
-                                    value: items,
-                                    child: Text(items),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  if (newValue != null) {
-                                    if (newValue.isNotEmpty) {
-                                      dropdownvalue = newValue;
-                                      context.read<DropdownListBloc>().add(
-                                            DropdownListEvent.dropdownChanged(
-                                              value: newValue,
-                                            ),
-                                          );
-                                    }
-                                  }
-                                },
-                              ),
-                            ),
+                            style: Theme.of(context).textTheme.labelLarge,
+                            keyboardType: TextInputType.multiline,
+                            maxLength: 100,
+                            maxLines: 5,
                           ),
                         ],
                       ),
@@ -266,14 +354,19 @@ class AddServiceView extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() == true) {
                       final data = _formKey.currentState?.value;
-                      final model = AddServiceModel(
-                        img: imageLink,
-                        serviceName: (data?['serviceName']).toString(),
-                        serviceFee: int.parse((data?['fee']).toString()),
-                        cate: dropdownvalue,
+                      final model = AddProductModel(
+                        des: (data?['des']).toString(),
+                        imageUrl: imageLink.isEmpty
+                            ? productModel.imageUrl
+                            : imageLink,
+                        productFee: int.parse((data?['fee']).toString()),
+                        productName: (data?['productName']).toString(),
                       );
-                      context.read<AddServiceBloc>().add(
-                            AddServiceEvent.submitted(data: model),
+                      context.read<AddProductBloc>().add(
+                            AddProductEvent.submitted(
+                              data: model,
+                              type: productModel.productName.isEmpty ? 0 : 1,
+                            ),
                           );
                     }
                   },

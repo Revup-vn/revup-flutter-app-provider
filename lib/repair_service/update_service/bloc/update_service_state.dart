@@ -9,4 +9,5 @@ class UpdateServiceState with _$UpdateServiceState {
   const factory UpdateServiceState.loading() = _Loading;
   const factory UpdateServiceState.failure() = _Failure;
   const factory UpdateServiceState.sumbitSuccess() = _SumbitSuccess;
+  const factory UpdateServiceState.deleteSuccess() = _DeleteSuccess;
 }

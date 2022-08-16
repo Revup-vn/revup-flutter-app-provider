@@ -19,18 +19,21 @@ mixin _$UpdateServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() deleted,
     required TResult Function(UpdateServiceModel model) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? deleted,
     TResult Function(UpdateServiceModel model)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? deleted,
     TResult Function(UpdateServiceModel model)? submitted,
     required TResult orElse(),
   }) =>
@@ -38,18 +41,21 @@ mixin _$UpdateServiceEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Deleted value) deleted,
     required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
     TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
     TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
@@ -114,6 +120,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() deleted,
     required TResult Function(UpdateServiceModel model) submitted,
   }) {
     return started();
@@ -123,6 +130,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? deleted,
     TResult Function(UpdateServiceModel model)? submitted,
   }) {
     return started?.call();
@@ -132,6 +140,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? deleted,
     TResult Function(UpdateServiceModel model)? submitted,
     required TResult orElse(),
   }) {
@@ -145,6 +154,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Deleted value) deleted,
     required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
@@ -154,6 +164,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
     TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
@@ -163,6 +174,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
     TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
@@ -175,6 +187,116 @@ class _$_Started implements _Started {
 
 abstract class _Started implements UpdateServiceEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_DeletedCopyWith<$Res> {
+  factory _$$_DeletedCopyWith(
+          _$_Deleted value, $Res Function(_$_Deleted) then) =
+      __$$_DeletedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeletedCopyWithImpl<$Res>
+    extends _$UpdateServiceEventCopyWithImpl<$Res>
+    implements _$$_DeletedCopyWith<$Res> {
+  __$$_DeletedCopyWithImpl(_$_Deleted _value, $Res Function(_$_Deleted) _then)
+      : super(_value, (v) => _then(v as _$_Deleted));
+
+  @override
+  _$_Deleted get _value => super._value as _$_Deleted;
+}
+
+/// @nodoc
+
+class _$_Deleted implements _Deleted {
+  const _$_Deleted();
+
+  @override
+  String toString() {
+    return 'UpdateServiceEvent.deleted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Deleted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() deleted,
+    required TResult Function(UpdateServiceModel model) submitted,
+  }) {
+    return deleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? deleted,
+    TResult Function(UpdateServiceModel model)? submitted,
+  }) {
+    return deleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? deleted,
+    TResult Function(UpdateServiceModel model)? submitted,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Submitted value)? submitted,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted implements UpdateServiceEvent {
+  const factory _Deleted() = _$_Deleted;
 }
 
 /// @nodoc
@@ -252,6 +374,7 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() deleted,
     required TResult Function(UpdateServiceModel model) submitted,
   }) {
     return submitted(model);
@@ -261,6 +384,7 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? deleted,
     TResult Function(UpdateServiceModel model)? submitted,
   }) {
     return submitted?.call(model);
@@ -270,6 +394,7 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? deleted,
     TResult Function(UpdateServiceModel model)? submitted,
     required TResult orElse(),
   }) {
@@ -283,6 +408,7 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Deleted value) deleted,
     required TResult Function(_Submitted value) submitted,
   }) {
     return submitted(this);
@@ -292,6 +418,7 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
     TResult Function(_Submitted value)? submitted,
   }) {
     return submitted?.call(this);
@@ -301,6 +428,7 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Deleted value)? deleted,
     TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
@@ -330,6 +458,7 @@ mixin _$UpdateServiceState {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -339,6 +468,7 @@ mixin _$UpdateServiceState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -348,6 +478,7 @@ mixin _$UpdateServiceState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -358,6 +489,7 @@ mixin _$UpdateServiceState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -367,6 +499,7 @@ mixin _$UpdateServiceState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -376,6 +509,7 @@ mixin _$UpdateServiceState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -443,6 +577,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
   }) {
     return initial();
   }
@@ -455,6 +590,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
   }) {
     return initial?.call();
   }
@@ -467,6 +603,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -483,6 +620,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return initial(this);
   }
@@ -495,6 +633,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return initial?.call(this);
   }
@@ -507,6 +646,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -599,6 +739,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
   }) {
     return loadDataSuccess(model);
   }
@@ -611,6 +752,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
   }) {
     return loadDataSuccess?.call(model);
   }
@@ -623,6 +765,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
@@ -639,6 +782,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return loadDataSuccess(this);
   }
@@ -651,6 +795,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return loadDataSuccess?.call(this);
   }
@@ -663,6 +808,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
@@ -727,6 +873,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
   }) {
     return loading();
   }
@@ -739,6 +886,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
   }) {
     return loading?.call();
   }
@@ -751,6 +899,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -767,6 +916,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return loading(this);
   }
@@ -779,6 +929,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return loading?.call(this);
   }
@@ -791,6 +942,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -849,6 +1001,7 @@ class _$_Failure implements _Failure {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
   }) {
     return failure();
   }
@@ -861,6 +1014,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
   }) {
     return failure?.call();
   }
@@ -873,6 +1027,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -889,6 +1044,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return failure(this);
   }
@@ -901,6 +1057,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return failure?.call(this);
   }
@@ -913,6 +1070,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -972,6 +1130,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
   }) {
     return sumbitSuccess();
   }
@@ -984,6 +1143,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
   }) {
     return sumbitSuccess?.call();
   }
@@ -996,6 +1156,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (sumbitSuccess != null) {
@@ -1012,6 +1173,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return sumbitSuccess(this);
   }
@@ -1024,6 +1186,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return sumbitSuccess?.call(this);
   }
@@ -1036,6 +1199,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (sumbitSuccess != null) {
@@ -1047,4 +1211,133 @@ class _$_SumbitSuccess implements _SumbitSuccess {
 
 abstract class _SumbitSuccess implements UpdateServiceState {
   const factory _SumbitSuccess() = _$_SumbitSuccess;
+}
+
+/// @nodoc
+abstract class _$$_DeleteSuccessCopyWith<$Res> {
+  factory _$$_DeleteSuccessCopyWith(
+          _$_DeleteSuccess value, $Res Function(_$_DeleteSuccess) then) =
+      __$$_DeleteSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeleteSuccessCopyWithImpl<$Res>
+    extends _$UpdateServiceStateCopyWithImpl<$Res>
+    implements _$$_DeleteSuccessCopyWith<$Res> {
+  __$$_DeleteSuccessCopyWithImpl(
+      _$_DeleteSuccess _value, $Res Function(_$_DeleteSuccess) _then)
+      : super(_value, (v) => _then(v as _$_DeleteSuccess));
+
+  @override
+  _$_DeleteSuccess get _value => super._value as _$_DeleteSuccess;
+}
+
+/// @nodoc
+
+class _$_DeleteSuccess implements _DeleteSuccess {
+  const _$_DeleteSuccess();
+
+  @override
+  String toString() {
+    return 'UpdateServiceState.deleteSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_DeleteSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function() sumbitSuccess,
+    required TResult Function() deleteSuccess,
+  }) {
+    return deleteSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
+  }) {
+    return deleteSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function()? sumbitSuccess,
+    TResult Function()? deleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (deleteSuccess != null) {
+      return deleteSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_SumbitSuccess value) sumbitSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
+  }) {
+    return deleteSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
+  }) {
+    return deleteSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_SumbitSuccess value)? sumbitSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (deleteSuccess != null) {
+      return deleteSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteSuccess implements UpdateServiceState {
+  const factory _DeleteSuccess() = _$_DeleteSuccess;
 }

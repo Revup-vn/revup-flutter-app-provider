@@ -170,8 +170,8 @@ mixin _$DetailServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            RepairService rpService, IList<RepairProduct> rpProduct)
+    required TResult Function(RepairService rpService,
+            IList<RepairProduct> rpProduct, String cate)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -180,7 +180,8 @@ mixin _$DetailServiceState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -189,7 +190,8 @@ mixin _$DetailServiceState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -281,8 +283,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            RepairService rpService, IList<RepairProduct> rpProduct)
+    required TResult Function(RepairService rpService,
+            IList<RepairProduct> rpProduct, String cate)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -294,7 +296,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -306,7 +309,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -365,7 +369,8 @@ abstract class _$$_LoadDataSuccessCopyWith<$Res> {
   factory _$$_LoadDataSuccessCopyWith(
           _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
       __$$_LoadDataSuccessCopyWithImpl<$Res>;
-  $Res call({RepairService rpService, IList<RepairProduct> rpProduct});
+  $Res call(
+      {RepairService rpService, IList<RepairProduct> rpProduct, String cate});
 
   $RepairServiceCopyWith<$Res> get rpService;
 }
@@ -385,6 +390,7 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
   $Res call({
     Object? rpService = freezed,
     Object? rpProduct = freezed,
+    Object? cate = freezed,
   }) {
     return _then(_$_LoadDataSuccess(
       rpService: rpService == freezed
@@ -395,6 +401,10 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
           ? _value.rpProduct
           : rpProduct // ignore: cast_nullable_to_non_nullable
               as IList<RepairProduct>,
+      cate: cate == freezed
+          ? _value.cate
+          : cate // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -409,16 +419,19 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadDataSuccess implements _LoadDataSuccess {
-  const _$_LoadDataSuccess({required this.rpService, required this.rpProduct});
+  const _$_LoadDataSuccess(
+      {required this.rpService, required this.rpProduct, required this.cate});
 
   @override
   final RepairService rpService;
   @override
   final IList<RepairProduct> rpProduct;
+  @override
+  final String cate;
 
   @override
   String toString() {
-    return 'DetailServiceState.loadDataSuccess(rpService: $rpService, rpProduct: $rpProduct)';
+    return 'DetailServiceState.loadDataSuccess(rpService: $rpService, rpProduct: $rpProduct, cate: $cate)';
   }
 
   @override
@@ -427,14 +440,16 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
         (other.runtimeType == runtimeType &&
             other is _$_LoadDataSuccess &&
             const DeepCollectionEquality().equals(other.rpService, rpService) &&
-            const DeepCollectionEquality().equals(other.rpProduct, rpProduct));
+            const DeepCollectionEquality().equals(other.rpProduct, rpProduct) &&
+            const DeepCollectionEquality().equals(other.cate, cate));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(rpService),
-      const DeepCollectionEquality().hash(rpProduct));
+      const DeepCollectionEquality().hash(rpProduct),
+      const DeepCollectionEquality().hash(cate));
 
   @JsonKey(ignore: true)
   @override
@@ -445,39 +460,41 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            RepairService rpService, IList<RepairProduct> rpProduct)
+    required TResult Function(RepairService rpService,
+            IList<RepairProduct> rpProduct, String cate)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
   }) {
-    return loadDataSuccess(rpService, rpProduct);
+    return loadDataSuccess(rpService, rpProduct, cate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
   }) {
-    return loadDataSuccess?.call(rpService, rpProduct);
+    return loadDataSuccess?.call(rpService, rpProduct, cate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
-      return loadDataSuccess(rpService, rpProduct);
+      return loadDataSuccess(rpService, rpProduct, cate);
     }
     return orElse();
   }
@@ -523,10 +540,12 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
 abstract class _LoadDataSuccess implements DetailServiceState {
   const factory _LoadDataSuccess(
       {required final RepairService rpService,
-      required final IList<RepairProduct> rpProduct}) = _$_LoadDataSuccess;
+      required final IList<RepairProduct> rpProduct,
+      required final String cate}) = _$_LoadDataSuccess;
 
   RepairService get rpService;
   IList<RepairProduct> get rpProduct;
+  String get cate;
   @JsonKey(ignore: true)
   _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -573,8 +592,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            RepairService rpService, IList<RepairProduct> rpProduct)
+    required TResult Function(RepairService rpService,
+            IList<RepairProduct> rpProduct, String cate)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -586,7 +605,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -598,7 +618,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -693,8 +714,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            RepairService rpService, IList<RepairProduct> rpProduct)
+    required TResult Function(RepairService rpService,
+            IList<RepairProduct> rpProduct, String cate)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -706,7 +727,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -718,7 +740,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct)?
+    TResult Function(RepairService rpService, IList<RepairProduct> rpProduct,
+            String cate)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,

@@ -120,7 +120,6 @@
   "priceUnitLabel": "Category",
   "privacyLabel": "Privacy Policy",
   "productListLabel": "List of products",
-  "productPriceLabel": "Unit price",
   "productTypeLabel": "Product type",
   "questionAccountLabel": "Why is my REVUP account locked?",
   "questionCallLabel": "How to make calls on Revup app?",
@@ -196,5 +195,16 @@
   "imageCardLabel": "ID Card Image",
   "bioLabel": "Your slogan",
   "idImgRequiredLabel": "You have to take a photo of your font id card",
-  "failLabel": "Fail"
+  "failLabel": "Fail",
+  "productInfoLabel": "Product Info",
+  "productName" : "Product Name",
+  "productPriceLabel" : "Product Price",
+  "addNewProductLabel" : "Add New Product",
+  "updateProductLabel" : "Update Product",
+  "deleteLabel" : "Delete",
+  "sureLabel" : "Are you sure?",
+  "delProductLabel" : "This product's data will be deleted",
+  "delServiceLabel" : "This service's data will be deleted",
+  "updateServiceLabel" : "Update Service"
+
 }

@@ -75,7 +75,11 @@ class DetailServiceBloc extends Bloc<DetailServiceEvent, DetailServiceState> {
         final res2 = await repairProducts.future;
 
         emit(
-          DetailServiceState.loadDataSuccess(rpService: res1, rpProduct: res2),
+          DetailServiceState.loadDataSuccess(
+            rpService: res1,
+            rpProduct: res2,
+            cate: category,
+          ),
         );
       },
     );
