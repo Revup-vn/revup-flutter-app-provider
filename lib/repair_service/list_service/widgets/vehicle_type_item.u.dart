@@ -8,10 +8,12 @@ class VehicleTypeItem extends StatelessWidget {
     required this.vehicleName,
     required this.iconVehicle,
     required this.callback,
+    required this.sorted,
   });
   final String vehicleName;
   final Icon iconVehicle;
   final VoidCallback callback;
+  final bool sorted;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,9 +21,13 @@ class VehicleTypeItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Chip(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: sorted
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.onSurfaceVariant,
           avatar: CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
+            backgroundColor: sorted
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onSurfaceVariant,
             child: iconVehicle,
           ),
           label: AutoSizeText(

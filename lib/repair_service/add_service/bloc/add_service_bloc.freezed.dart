@@ -19,32 +19,38 @@ mixin _$AddServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(AddServiceModel data) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(AddServiceModel data)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(AddServiceModel data)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(AddServiceModel data) submitted,
   }) {
     return started();
   }
@@ -115,6 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(AddServiceModel data)? submitted,
   }) {
     return started?.call();
   }
@@ -123,6 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(AddServiceModel data)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -135,6 +144,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -143,6 +153,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -151,6 +162,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -165,36 +177,186 @@ abstract class _Started implements AddServiceEvent {
 }
 
 /// @nodoc
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
+  $Res call({AddServiceModel data});
+
+  $AddServiceModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$_SubmittedCopyWithImpl<$Res>
+    extends _$AddServiceEventCopyWithImpl<$Res>
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
+
+  @override
+  _$_Submitted get _value => super._value as _$_Submitted;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_$_Submitted(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as AddServiceModel,
+    ));
+  }
+
+  @override
+  $AddServiceModelCopyWith<$Res> get data {
+    return $AddServiceModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Submitted implements _Submitted {
+  const _$_Submitted({required this.data});
+
+  @override
+  final AddServiceModel data;
+
+  @override
+  String toString() {
+    return 'AddServiceEvent.submitted(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submitted &&
+            const DeepCollectionEquality().equals(other.data, data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(AddServiceModel data) submitted,
+  }) {
+    return submitted(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(AddServiceModel data)? submitted,
+  }) {
+    return submitted?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(AddServiceModel data)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submitted implements AddServiceEvent {
+  const factory _Submitted({required final AddServiceModel data}) =
+      _$_Submitted;
+
+  AddServiceModel get data;
+  @JsonKey(ignore: true)
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AddServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() addServiceSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? addServiceSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? addServiceSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_AddServiceSuccess value) addServiceSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_AddServiceSuccess value)? addServiceSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_AddServiceSuccess value)? addServiceSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -257,6 +419,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() addServiceSuccess,
   }) {
     return initial();
   }
@@ -265,6 +428,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? addServiceSuccess,
   }) {
     return initial?.call();
   }
@@ -273,6 +437,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? addServiceSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -285,6 +450,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_AddServiceSuccess value) addServiceSuccess,
   }) {
     return initial(this);
   }
@@ -293,6 +459,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_AddServiceSuccess value)? addServiceSuccess,
   }) {
     return initial?.call(this);
   }
@@ -301,6 +468,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_AddServiceSuccess value)? addServiceSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -312,4 +480,109 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements AddServiceState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_AddServiceSuccessCopyWith<$Res> {
+  factory _$$_AddServiceSuccessCopyWith(_$_AddServiceSuccess value,
+          $Res Function(_$_AddServiceSuccess) then) =
+      __$$_AddServiceSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AddServiceSuccessCopyWithImpl<$Res>
+    extends _$AddServiceStateCopyWithImpl<$Res>
+    implements _$$_AddServiceSuccessCopyWith<$Res> {
+  __$$_AddServiceSuccessCopyWithImpl(
+      _$_AddServiceSuccess _value, $Res Function(_$_AddServiceSuccess) _then)
+      : super(_value, (v) => _then(v as _$_AddServiceSuccess));
+
+  @override
+  _$_AddServiceSuccess get _value => super._value as _$_AddServiceSuccess;
+}
+
+/// @nodoc
+
+class _$_AddServiceSuccess implements _AddServiceSuccess {
+  const _$_AddServiceSuccess();
+
+  @override
+  String toString() {
+    return 'AddServiceState.addServiceSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AddServiceSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() addServiceSuccess,
+  }) {
+    return addServiceSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? addServiceSuccess,
+  }) {
+    return addServiceSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? addServiceSuccess,
+    required TResult orElse(),
+  }) {
+    if (addServiceSuccess != null) {
+      return addServiceSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_AddServiceSuccess value) addServiceSuccess,
+  }) {
+    return addServiceSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AddServiceSuccess value)? addServiceSuccess,
+  }) {
+    return addServiceSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AddServiceSuccess value)? addServiceSuccess,
+    required TResult orElse(),
+  }) {
+    if (addServiceSuccess != null) {
+      return addServiceSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddServiceSuccess implements AddServiceState {
+  const factory _AddServiceSuccess() = _$_AddServiceSuccess;
 }

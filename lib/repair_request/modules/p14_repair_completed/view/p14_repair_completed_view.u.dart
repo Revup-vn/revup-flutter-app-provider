@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../router/router.dart';
+import '../../../../router/app_router.gr.dart';
 import '../../../models/models.dart';
 import '../cubit/overview_record_cubit.dart';
 import '../widgets/widgets.dart';

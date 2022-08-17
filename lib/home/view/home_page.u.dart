@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
         HomePrimaryRoute(user: user),
         const HistoryProviderRoute(),
         const NotificationProviderRoute(),
-        const AccountRoute(),
+        AccountRoute(user: user),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

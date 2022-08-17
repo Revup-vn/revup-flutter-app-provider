@@ -12,8 +12,9 @@ import '../repair_request/modules/detail_request/p3_request_detail/view/p3_reque
 import '../repair_request/modules/p14_repair_completed/view/p14_repair_completed_page.u.dart';
 import '../repair_request/modules/p4_info_request/view/info_request_page.u.dart';
 import '../repair_request/request.dart';
-import '../repair_service/detail_service/view/detail_service_view.u.dart';
+import '../repair_service/add-product/view/add_product_page.u.dart';
 import '../repair_service/repair_service.dart';
+import '../repair_service/update_service/view/view.dart';
 import '../signup/view/signup_page.u.dart';
 import '../splash/splash.dart';
 import '../vendor_authentication/vender_authentication.dart';
@@ -23,18 +24,16 @@ import '../vendor_authentication/vender_authentication.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
-    AdaptiveRoute<void>(page: P3RequestDetailPage),
+    AdaptiveRoute<void>(page: P3RequestDetailPage, maintainState: false),
     AdaptiveRoute<void>(page: InfoRequestPage),
     AdaptiveRoute<void>(page: P14RepairCompletePage),
     AdaptiveRoute<void>(page: P13SelectOptionCompletePage),
     AdaptiveRoute<void>(page: P16FinishedOrderDetailPage),
     AdaptiveRoute<void>(page: AddServicePage),
-    AdaptiveRoute<void>(page: DetailServiceView),
-    AdaptiveRoute<void>(page: ListServiceView),
     AdaptiveRoute<void>(page: MyReviewPage),
     AdaptiveRoute<void>(page: VendorAuthenticationPage),
-    AdaptiveRoute<void>(page: ListServicePage),
-    AdaptiveRoute<void>(page: DetailServicePage),
+    AdaptiveRoute<void>(page: ListServicePage, maintainState: false),
+    AdaptiveRoute<void>(page: DetailServicePage, maintainState: false),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),
@@ -42,6 +41,9 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: NewRequestPage),
     AdaptiveRoute<void>(page: P12DetailPage),
     AdaptiveRoute<void>(page: P10QuotePricePage),
+    AdaptiveRoute<void>(page: UpdateServicePage),
+    AdaptiveRoute<void>(page: P12DetailPage),
+    AdaptiveRoute<void>(page: AddProductPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

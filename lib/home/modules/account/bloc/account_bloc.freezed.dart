@@ -19,32 +19,38 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return started();
   }
@@ -114,6 +121,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return started?.call();
   }
@@ -122,6 +130,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -134,6 +143,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return started(this);
   }
@@ -142,6 +152,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return started?.call(this);
   }
@@ -150,6 +161,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -164,13 +176,150 @@ abstract class _Started implements AccountEvent {
 }
 
 /// @nodoc
+abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
+  factory _$$_ImageUploadSelectedCopyWith(_$_ImageUploadSelected value,
+          $Res Function(_$_ImageUploadSelected) then) =
+      __$$_ImageUploadSelectedCopyWithImpl<$Res>;
+  $Res call({ImageSource source});
+}
+
+/// @nodoc
+class __$$_ImageUploadSelectedCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res>
+    implements _$$_ImageUploadSelectedCopyWith<$Res> {
+  __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
+      $Res Function(_$_ImageUploadSelected) _then)
+      : super(_value, (v) => _then(v as _$_ImageUploadSelected));
+
+  @override
+  _$_ImageUploadSelected get _value => super._value as _$_ImageUploadSelected;
+
+  @override
+  $Res call({
+    Object? source = freezed,
+  }) {
+    return _then(_$_ImageUploadSelected(
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ImageUploadSelected implements _ImageUploadSelected {
+  const _$_ImageUploadSelected({required this.source});
+
+  @override
+  final ImageSource source;
+
+  @override
+  String toString() {
+    return 'AccountEvent.imageUploadSelected(source: $source)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ImageUploadSelected &&
+            const DeepCollectionEquality().equals(other.source, source));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      __$$_ImageUploadSelectedCopyWithImpl<_$_ImageUploadSelected>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(ImageSource source) imageUploadSelected,
+  }) {
+    return imageUploadSelected(source);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ImageSource source)? imageUploadSelected,
+  }) {
+    return imageUploadSelected?.call(source);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ImageSource source)? imageUploadSelected,
+    required TResult orElse(),
+  }) {
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(source);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+  }) {
+    return imageUploadSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+  }) {
+    return imageUploadSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    required TResult orElse(),
+  }) {
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ImageUploadSelected implements AccountEvent {
+  const factory _ImageUploadSelected({required final ImageSource source}) =
+      _$_ImageUploadSelected;
+
+  ImageSource get source;
+  @JsonKey(ignore: true)
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AccountState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(AppUser aUser, double rating, String newImgUrl)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,7 +327,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,7 +335,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -275,7 +424,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(AppUser aUser, double rating, String newImgUrl)
+        success,
   }) {
     return initial();
   }
@@ -286,7 +436,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
     return initial?.call();
   }
@@ -297,7 +447,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -390,7 +540,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(AppUser aUser, double rating, String newImgUrl)
+        success,
   }) {
     return loading();
   }
@@ -401,7 +552,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
     return loading?.call();
   }
@@ -412,7 +563,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -505,7 +656,8 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(AppUser aUser, double rating, String newImgUrl)
+        success,
   }) {
     return failure();
   }
@@ -516,7 +668,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
     return failure?.call();
   }
@@ -527,7 +679,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -583,6 +735,9 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({AppUser aUser, double rating, String newImgUrl});
+
+  $AppUserCopyWith<$Res> get aUser;
 }
 
 /// @nodoc
@@ -593,26 +748,76 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? aUser = freezed,
+    Object? rating = freezed,
+    Object? newImgUrl = freezed,
+  }) {
+    return _then(_$_Success(
+      aUser: aUser == freezed
+          ? _value.aUser
+          : aUser // ignore: cast_nullable_to_non_nullable
+              as AppUser,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      newImgUrl: newImgUrl == freezed
+          ? _value.newImgUrl
+          : newImgUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  $AppUserCopyWith<$Res> get aUser {
+    return $AppUserCopyWith<$Res>(_value.aUser, (value) {
+      return _then(_value.copyWith(aUser: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success(
+      {required this.aUser, required this.rating, required this.newImgUrl});
+
+  @override
+  final AppUser aUser;
+  @override
+  final double rating;
+  @override
+  final String newImgUrl;
 
   @override
   String toString() {
-    return 'AccountState.success()';
+    return 'AccountState.success(aUser: $aUser, rating: $rating, newImgUrl: $newImgUrl)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other.aUser, aUser) &&
+            const DeepCollectionEquality().equals(other.rating, rating) &&
+            const DeepCollectionEquality().equals(other.newImgUrl, newImgUrl));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(aUser),
+      const DeepCollectionEquality().hash(rating),
+      const DeepCollectionEquality().hash(newImgUrl));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -620,9 +825,10 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(AppUser aUser, double rating, String newImgUrl)
+        success,
   }) {
-    return success();
+    return success(aUser, rating, newImgUrl);
   }
 
   @override
@@ -631,9 +837,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
   }) {
-    return success?.call();
+    return success?.call(aUser, rating, newImgUrl);
   }
 
   @override
@@ -642,11 +848,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(aUser, rating, newImgUrl);
     }
     return orElse();
   }
@@ -690,5 +896,15 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements AccountState {
-  const factory _Success() = _$_Success;
+  const factory _Success(
+      {required final AppUser aUser,
+      required final double rating,
+      required final String newImgUrl}) = _$_Success;
+
+  AppUser get aUser;
+  double get rating;
+  String get newImgUrl;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }
