@@ -136,7 +136,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                   ),
                                 );
                               },
-                              child: needToVerifyService.isEmpty
+                              child: !needToVerifyService.isEmpty
                                   ? Text(l10n.quoteLabel)
                                   : Text(l10n.detailLabel),
                             ),

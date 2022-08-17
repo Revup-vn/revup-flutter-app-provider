@@ -14,15 +14,11 @@ part 'p10_quote_price_state.dart';
 
 class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
   P10QuotePriceCubit(
-    this._userStore,
-    this._repairRecord,
     this._paymentService,
     this.record,
     this.pendingService,
     this.pendingAmount,
   ) : super(const _Initial());
-  final IStore<AppUser> _userStore;
-  final IStore<RepairRecord> _repairRecord;
   final IStore<PaymentService> _paymentService;
   final PendingRepairRequest record;
   final IList<PendingServiceModel> pendingService;
@@ -58,9 +54,13 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
               pending: (v) => PendingServiceModel(
                 name: v.serviceName,
                 price: v.moneyAmount +
-                    v.products.map((e) => e.quantity * e.unitPrice).reduce(
-                          (value, element) => value + element,
-                        ),
+                    (v.products.isEmpty
+                        ? 0
+                        : v.products
+                            .map((e) => e.quantity * e.unitPrice)
+                            .reduce(
+                              (value, element) => value + element,
+                            )),
               ),
               paid: (v) => throw NullThrownError(),
               needToVerify: (v) => NeedToVerifyModel(
@@ -71,19 +71,17 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
           )
           .partition((a) => a is NeedToVerifyModel)
           .apply(
-            (a, b) => emit(
-              P10QuotePriceState.success(
-                pendingService: b.toList().cast<PendingServiceModel>(),
-                needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
-              ),
+        (a, b) {
+          emit(
+            P10QuotePriceState.success(
+              pendingService: b.toList().cast<PendingServiceModel>(),
+              needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
             ),
           );
+        },
+      );
     }
   }
-
-  // Future<void> submit(Function1<String, void> onRoute) {
-
-  // }
 
   @override
   Future<void> close() async {

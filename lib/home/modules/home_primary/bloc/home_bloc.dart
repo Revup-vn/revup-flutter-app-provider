@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:revup_core/core.dart';
 
 part 'home_bloc.freezed.dart';
@@ -8,17 +9,21 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc(this._userRepos) : super(const _Initial()) {
+  HomeBloc(this._userRepos, this.user) : super(const _Initial()) {
     on<HomeEvent>(_onEvent);
   }
   final IStore<AppUser> _userRepos;
+  final AppUser user;
   Future<void> _onEvent(
     HomeEvent event,
     Emitter<HomeState> emit,
   ) async {
     await event.when(
-      started: () async {
+      started: (lat, lng) async {
         emit(const HomeState.loading());
+        final point = GeoFlutterFire().point(latitude: lat, longitude: lng);
+        final curLocation = {AppUserFields.GeoPointLocation.toString(): point};
+        await _userRepos.collection().doc(user.uuid).set(curLocation);
         emit(const HomeState.initial());
       },
       changeActiveStatus: (status, providerID) async {

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,8 +27,6 @@ class P10QuotePricePage extends StatelessWidget {
         sr.repairPaymentRepo(RepairRecordDummy.dummyStarted(record.id));
     return BlocProvider(
       create: (context) => P10QuotePriceCubit(
-        context.read(),
-        context.read(),
         paymentService,
         record,
         pendingService,
@@ -37,18 +36,13 @@ class P10QuotePricePage extends StatelessWidget {
         appBar: AppBar(
           actions: [
             TextButton(
-              onPressed: () => context
-                  .read<P10QuotePriceCubit>()
-                  .state
-                  .maybeWhen(
-                      orElse: () => null,
-                      success: (pendingService, needToVerifyService) =>
-                          context.read<P10QuotePriceCubit>()
-                      // .submit(
-                      //       (vehicle) => context.router.push(),
-                      //     ),
+              onPressed: () =>
+                  context.read<P10QuotePriceCubit>().state.maybeWhen(
+                        orElse: () => context.router.pop(),
+                        success: (pendingService, needToVerifyService) =>
+                            context.read<P10QuotePriceCubit>(),
                       ),
-              child: Text(context.l10n.quoteLabel),
+              child: Text(context.l10n.confirmLabel),
             )
           ],
         ),

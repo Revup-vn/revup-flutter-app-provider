@@ -210,7 +210,7 @@ class AppRouter extends _i18.RootStackRouter {
 
   @override
   List<_i18.RouteConfig> get routes => [
-        _i18.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i18.RouteConfig(SplashRoute.name, path: '/'),
         _i18.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i18.RouteConfig(P3RequestDetailRoute.name,
             path: '/p3-request-detail-page'),
@@ -235,7 +235,7 @@ class AppRouter extends _i18.RootStackRouter {
         _i18.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
         _i18.RouteConfig(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page'),
-        _i18.RouteConfig(NewRequestRoute.name, path: '/'),
+        _i18.RouteConfig(NewRequestRoute.name, path: '/new-request-page'),
         _i18.RouteConfig(P12DetailRoute.name, path: '/p12-detail-page'),
         _i18.RouteConfig(P10QuotePriceRoute.name,
             path: '/p10-quote-price-page'),
@@ -255,7 +255,7 @@ class AppRouter extends _i18.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i18.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -678,7 +678,8 @@ class LoginEnterPhoneRouteArgs {
 /// generated route for
 /// [_i16.NewRequestPage]
 class NewRequestRoute extends _i18.PageRouteInfo<void> {
-  const NewRequestRoute() : super(NewRequestRoute.name, path: '/');
+  const NewRequestRoute()
+      : super(NewRequestRoute.name, path: '/new-request-page');
 
   static const String name = 'NewRequestRoute';
 }

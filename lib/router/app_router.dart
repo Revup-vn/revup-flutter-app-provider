@@ -21,7 +21,7 @@ import '../vendor_authentication/vender_authentication.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: P3RequestDetailPage),
     AdaptiveRoute<void>(page: InfoRequestPage),
@@ -39,7 +39,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
-    AdaptiveRoute<void>(page: NewRequestPage, initial: true),
+    AdaptiveRoute<void>(page: NewRequestPage),
     AdaptiveRoute<void>(page: P12DetailPage),
     AdaptiveRoute<void>(page: P10QuotePricePage),
     AdaptiveRoute<void>(

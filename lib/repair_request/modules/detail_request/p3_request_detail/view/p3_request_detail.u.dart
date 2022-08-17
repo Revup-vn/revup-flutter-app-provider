@@ -29,7 +29,6 @@ class P3RequestDetailPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            flex: 8,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
               child: SingleChildScrollView(
@@ -89,14 +88,8 @@ class P3RequestDetailPage extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Column(
-              children: [
-                TotalServicePriceItem(
-                  pendingAmount: pendingAmount,
-                ),
-              ],
-            ),
+          TotalServicePriceItem(
+            pendingAmount: pendingAmount,
           ),
         ],
       ),

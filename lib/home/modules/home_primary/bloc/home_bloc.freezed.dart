@@ -18,20 +18,20 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(double lat, double lng) started,
     required TResult Function(bool status, String providerID)
         changeActiveStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(double lat, double lng)? started,
     TResult Function(bool status, String providerID)? changeActiveStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(double lat, double lng)? started,
     TResult Function(bool status, String providerID)? changeActiveStatus,
     required TResult orElse(),
   }) =>
@@ -77,6 +77,7 @@ abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
+  $Res call({double lat, double lng});
 }
 
 /// @nodoc
@@ -87,55 +88,88 @@ class __$$_StartedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 
   @override
   _$_Started get _value => super._value as _$_Started;
+
+  @override
+  $Res call({
+    Object? lat = freezed,
+    Object? lng = freezed,
+  }) {
+    return _then(_$_Started(
+      lat: lat == freezed
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lng: lng == freezed
+          ? _value.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Started implements _Started {
-  const _$_Started();
+  const _$_Started({required this.lat, required this.lng});
+
+  @override
+  final double lat;
+  @override
+  final double lng;
 
   @override
   String toString() {
-    return 'HomeEvent.started()';
+    return 'HomeEvent.started(lat: $lat, lng: $lng)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType &&
+            other is _$_Started &&
+            const DeepCollectionEquality().equals(other.lat, lat) &&
+            const DeepCollectionEquality().equals(other.lng, lng));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(lat),
+      const DeepCollectionEquality().hash(lng));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
+      __$$_StartedCopyWithImpl<_$_Started>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(double lat, double lng) started,
     required TResult Function(bool status, String providerID)
         changeActiveStatus,
   }) {
-    return started();
+    return started(lat, lng);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(double lat, double lng)? started,
     TResult Function(bool status, String providerID)? changeActiveStatus,
   }) {
-    return started?.call();
+    return started?.call(lat, lng);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(double lat, double lng)? started,
     TResult Function(bool status, String providerID)? changeActiveStatus,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started();
+      return started(lat, lng);
     }
     return orElse();
   }
@@ -173,7 +207,14 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements HomeEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started(
+      {required final double lat, required final double lng}) = _$_Started;
+
+  double get lat;
+  double get lng;
+  @JsonKey(ignore: true)
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -253,7 +294,7 @@ class _$_ChangeActiveStatus implements _ChangeActiveStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(double lat, double lng) started,
     required TResult Function(bool status, String providerID)
         changeActiveStatus,
   }) {
@@ -263,7 +304,7 @@ class _$_ChangeActiveStatus implements _ChangeActiveStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(double lat, double lng)? started,
     TResult Function(bool status, String providerID)? changeActiveStatus,
   }) {
     return changeActiveStatus?.call(status, providerID);
@@ -272,7 +313,7 @@ class _$_ChangeActiveStatus implements _ChangeActiveStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(double lat, double lng)? started,
     TResult Function(bool status, String providerID)? changeActiveStatus,
     required TResult orElse(),
   }) {

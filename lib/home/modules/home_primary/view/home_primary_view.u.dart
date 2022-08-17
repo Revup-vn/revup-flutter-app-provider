@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
+import '../../../../shared/utils/utils_function.dart';
 import '../../../../shared/widgets/loading.u.dart';
 import '../../../home.dart';
 
@@ -18,9 +19,22 @@ class HomePrimaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(tcmhoang): Intl this page
     final l10n = context.l10n;
+    final blocPage = context.watch<HomeBloc>();
+    blocPage.state.maybeWhen(
+      initial: () async {
+        final isGranted = await requestUserLocation();
+        if (isGranted) {
+          final pos = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high,
+          );
 
+          blocPage
+              .add(HomeEvent.started(lat: pos.latitude, lng: pos.longitude));
+        }
+      },
+      orElse: () => false,
+    );
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

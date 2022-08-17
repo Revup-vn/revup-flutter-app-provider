@@ -189,7 +189,7 @@ class RequestDetailsStatic extends StatelessWidget {
                   context
                       .read<NewRequestBloc>()
                       .add(NewRequestEvent.accepted(record: record));
-                  context.router.push(
+                  context.router.replace(
                     InfoRequestRoute(
                       consumer: consumer,
                       record: record,
