@@ -82,7 +82,6 @@ class AccountContent extends StatelessWidget {
               accountName: l10n.editProfileLabel,
               accountIcon: const Icon(Icons.portrait),
               callback: () {
-                // TODO(namngoc231): Go to update profile
                 context.router.push(
                   const VendorAuthenticationRoute(),
                 );

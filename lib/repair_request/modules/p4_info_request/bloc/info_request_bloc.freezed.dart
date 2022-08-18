@@ -418,13 +418,8 @@ mixin _$InfoRequestState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)
+    required TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -433,13 +428,8 @@ mixin _$InfoRequestState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -448,13 +438,8 @@ mixin _$InfoRequestState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
     required TResult orElse(),
   }) =>
@@ -546,13 +531,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)
+    required TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)
         success,
   }) {
     return initial();
@@ -564,13 +544,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
   }) {
     return initial?.call();
@@ -582,13 +557,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
     required TResult orElse(),
   }) {
@@ -683,13 +653,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)
+    required TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)
         success,
   }) {
     return loading();
@@ -701,13 +666,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
   }) {
     return loading?.call();
@@ -719,13 +679,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
     required TResult orElse(),
   }) {
@@ -820,13 +775,8 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)
+    required TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)
         success,
   }) {
     return failure();
@@ -838,13 +788,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
   }) {
     return failure?.call();
@@ -856,13 +801,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
     required TResult orElse(),
   }) {
@@ -920,14 +860,10 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   $Res call(
-      {AppUser consumer,
-      double distance,
-      IList<PendingServiceModel> pendingService,
-      int pendingAmount,
-      IList<PaymentService> needToVerifyService,
-      PendingRepairRequest record});
+      {IList<PaymentService> needToVerifyService,
+      PendingRepairRequest record,
+      int len});
 
-  $AppUserCopyWith<$Res> get consumer;
   $PendingRepairRequestCopyWith<$Res> get record;
 }
 
@@ -943,30 +879,11 @@ class __$$_SuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? consumer = freezed,
-    Object? distance = freezed,
-    Object? pendingService = freezed,
-    Object? pendingAmount = freezed,
     Object? needToVerifyService = freezed,
     Object? record = freezed,
+    Object? len = freezed,
   }) {
     return _then(_$_Success(
-      consumer: consumer == freezed
-          ? _value.consumer
-          : consumer // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-      distance: distance == freezed
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as double,
-      pendingService: pendingService == freezed
-          ? _value.pendingService
-          : pendingService // ignore: cast_nullable_to_non_nullable
-              as IList<PendingServiceModel>,
-      pendingAmount: pendingAmount == freezed
-          ? _value.pendingAmount
-          : pendingAmount // ignore: cast_nullable_to_non_nullable
-              as int,
       needToVerifyService: needToVerifyService == freezed
           ? _value.needToVerifyService
           : needToVerifyService // ignore: cast_nullable_to_non_nullable
@@ -975,14 +892,11 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.record
           : record // ignore: cast_nullable_to_non_nullable
               as PendingRepairRequest,
+      len: len == freezed
+          ? _value.len
+          : len // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
-  }
-
-  @override
-  $AppUserCopyWith<$Res> get consumer {
-    return $AppUserCopyWith<$Res>(_value.consumer, (value) {
-      return _then(_value.copyWith(consumer: value));
-    });
   }
 
   @override
@@ -997,29 +911,20 @@ class __$$_SuccessCopyWithImpl<$Res>
 
 class _$_Success implements _Success {
   const _$_Success(
-      {required this.consumer,
-      required this.distance,
-      required this.pendingService,
-      required this.pendingAmount,
-      required this.needToVerifyService,
-      required this.record});
+      {required this.needToVerifyService,
+      required this.record,
+      required this.len});
 
-  @override
-  final AppUser consumer;
-  @override
-  final double distance;
-  @override
-  final IList<PendingServiceModel> pendingService;
-  @override
-  final int pendingAmount;
   @override
   final IList<PaymentService> needToVerifyService;
   @override
   final PendingRepairRequest record;
+  @override
+  final int len;
 
   @override
   String toString() {
-    return 'InfoRequestState.success(consumer: $consumer, distance: $distance, pendingService: $pendingService, pendingAmount: $pendingAmount, needToVerifyService: $needToVerifyService, record: $record)';
+    return 'InfoRequestState.success(needToVerifyService: $needToVerifyService, record: $record, len: $len)';
   }
 
   @override
@@ -1027,26 +932,18 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other.consumer, consumer) &&
-            const DeepCollectionEquality().equals(other.distance, distance) &&
-            const DeepCollectionEquality()
-                .equals(other.pendingService, pendingService) &&
-            const DeepCollectionEquality()
-                .equals(other.pendingAmount, pendingAmount) &&
             const DeepCollectionEquality()
                 .equals(other.needToVerifyService, needToVerifyService) &&
-            const DeepCollectionEquality().equals(other.record, record));
+            const DeepCollectionEquality().equals(other.record, record) &&
+            const DeepCollectionEquality().equals(other.len, len));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(consumer),
-      const DeepCollectionEquality().hash(distance),
-      const DeepCollectionEquality().hash(pendingService),
-      const DeepCollectionEquality().hash(pendingAmount),
       const DeepCollectionEquality().hash(needToVerifyService),
-      const DeepCollectionEquality().hash(record));
+      const DeepCollectionEquality().hash(record),
+      const DeepCollectionEquality().hash(len));
 
   @JsonKey(ignore: true)
   @override
@@ -1059,17 +956,11 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)
+    required TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)
         success,
   }) {
-    return success(consumer, distance, pendingService, pendingAmount,
-        needToVerifyService, record);
+    return success(needToVerifyService, record, len);
   }
 
   @override
@@ -1078,17 +969,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
   }) {
-    return success?.call(consumer, distance, pendingService, pendingAmount,
-        needToVerifyService, record);
+    return success?.call(needToVerifyService, record, len);
   }
 
   @override
@@ -1097,19 +982,13 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            AppUser consumer,
-            double distance,
-            IList<PendingServiceModel> pendingService,
-            int pendingAmount,
-            IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record)?
+    TResult Function(IList<PaymentService> needToVerifyService,
+            PendingRepairRequest record, int len)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(consumer, distance, pendingService, pendingAmount,
-          needToVerifyService, record);
+      return success(needToVerifyService, record, len);
     }
     return orElse();
   }
@@ -1154,19 +1033,13 @@ class _$_Success implements _Success {
 
 abstract class _Success implements InfoRequestState {
   const factory _Success(
-      {required final AppUser consumer,
-      required final double distance,
-      required final IList<PendingServiceModel> pendingService,
-      required final int pendingAmount,
-      required final IList<PaymentService> needToVerifyService,
-      required final PendingRepairRequest record}) = _$_Success;
+      {required final IList<PaymentService> needToVerifyService,
+      required final PendingRepairRequest record,
+      required final int len}) = _$_Success;
 
-  AppUser get consumer;
-  double get distance;
-  IList<PendingServiceModel> get pendingService;
-  int get pendingAmount;
   IList<PaymentService> get needToVerifyService;
   PendingRepairRequest get record;
+  int get len;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NeedToVerifyModel {
   String get serviceName => throw _privateConstructorUsedError;
   String get desc => throw _privateConstructorUsedError;
+  int? get quotePrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NeedToVerifyModelCopyWith<NeedToVerifyModel> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $NeedToVerifyModelCopyWith<$Res> {
   factory $NeedToVerifyModelCopyWith(
           NeedToVerifyModel value, $Res Function(NeedToVerifyModel) then) =
       _$NeedToVerifyModelCopyWithImpl<$Res>;
-  $Res call({String serviceName, String desc});
+  $Res call({String serviceName, String desc, int? quotePrice});
 }
 
 /// @nodoc
@@ -45,6 +46,7 @@ class _$NeedToVerifyModelCopyWithImpl<$Res>
   $Res call({
     Object? serviceName = freezed,
     Object? desc = freezed,
+    Object? quotePrice = freezed,
   }) {
     return _then(_value.copyWith(
       serviceName: serviceName == freezed
@@ -55,6 +57,10 @@ class _$NeedToVerifyModelCopyWithImpl<$Res>
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String,
+      quotePrice: quotePrice == freezed
+          ? _value.quotePrice
+          : quotePrice // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -66,7 +72,7 @@ abstract class _$$_NeedToVerifyModelCopyWith<$Res>
           $Res Function(_$_NeedToVerifyModel) then) =
       __$$_NeedToVerifyModelCopyWithImpl<$Res>;
   @override
-  $Res call({String serviceName, String desc});
+  $Res call({String serviceName, String desc, int? quotePrice});
 }
 
 /// @nodoc
@@ -84,6 +90,7 @@ class __$$_NeedToVerifyModelCopyWithImpl<$Res>
   $Res call({
     Object? serviceName = freezed,
     Object? desc = freezed,
+    Object? quotePrice = freezed,
   }) {
     return _then(_$_NeedToVerifyModel(
       serviceName: serviceName == freezed
@@ -94,6 +101,10 @@ class __$$_NeedToVerifyModelCopyWithImpl<$Res>
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String,
+      quotePrice: quotePrice == freezed
+          ? _value.quotePrice
+          : quotePrice // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -101,16 +112,19 @@ class __$$_NeedToVerifyModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NeedToVerifyModel implements _NeedToVerifyModel {
-  const _$_NeedToVerifyModel({required this.serviceName, required this.desc});
+  const _$_NeedToVerifyModel(
+      {required this.serviceName, required this.desc, this.quotePrice});
 
   @override
   final String serviceName;
   @override
   final String desc;
+  @override
+  final int? quotePrice;
 
   @override
   String toString() {
-    return 'NeedToVerifyModel(serviceName: $serviceName, desc: $desc)';
+    return 'NeedToVerifyModel(serviceName: $serviceName, desc: $desc, quotePrice: $quotePrice)';
   }
 
   @override
@@ -120,14 +134,17 @@ class _$_NeedToVerifyModel implements _NeedToVerifyModel {
             other is _$_NeedToVerifyModel &&
             const DeepCollectionEquality()
                 .equals(other.serviceName, serviceName) &&
-            const DeepCollectionEquality().equals(other.desc, desc));
+            const DeepCollectionEquality().equals(other.desc, desc) &&
+            const DeepCollectionEquality()
+                .equals(other.quotePrice, quotePrice));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(serviceName),
-      const DeepCollectionEquality().hash(desc));
+      const DeepCollectionEquality().hash(desc),
+      const DeepCollectionEquality().hash(quotePrice));
 
   @JsonKey(ignore: true)
   @override
@@ -139,12 +156,15 @@ class _$_NeedToVerifyModel implements _NeedToVerifyModel {
 abstract class _NeedToVerifyModel implements NeedToVerifyModel {
   const factory _NeedToVerifyModel(
       {required final String serviceName,
-      required final String desc}) = _$_NeedToVerifyModel;
+      required final String desc,
+      final int? quotePrice}) = _$_NeedToVerifyModel;
 
   @override
   String get serviceName;
   @override
   String get desc;
+  @override
+  int? get quotePrice;
   @override
   @JsonKey(ignore: true)
   _$$_NeedToVerifyModelCopyWith<_$_NeedToVerifyModel> get copyWith =>

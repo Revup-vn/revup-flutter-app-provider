@@ -217,5 +217,7 @@
   "sureLabel": "Are you sure?",
   "delProductLabel": "This product's data will be deleted",
   "delServiceLabel": "This service's data will be deleted",
-  "updateServiceLabel": "Update Service"
+  "updateServiceLabel": "Update Service",
+  "repairLocationLabel": "Repair Location",
+  "currentLocationLabel": "Current Location"
 }

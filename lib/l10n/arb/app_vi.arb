@@ -215,5 +215,7 @@
   "sureLabel": "Bạn có chắc không?",
   "delProductLabel": "Dữ liệu về sản phẩm này sẽ bị xoá hết",
   "delServiceLabel": "Dữ liệu về dịch vụ này sẽ bị xoá hết",
-  "updateServiceLabel": "Chỉnh sửa dịch vụ"
+  "updateServiceLabel": "Chỉnh sửa dịch vụ",
+  "repairLocationLabel": "Địa điểm sửa chữa",
+  "currentLocationLabel": "Vị trí hiện tại"
 }

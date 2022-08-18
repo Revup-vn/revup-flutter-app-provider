@@ -7,5 +7,6 @@ class NeedToVerifyModel with _$NeedToVerifyModel {
   const factory NeedToVerifyModel({
     required String serviceName,
     required String desc,
+    int? quotePrice,
   }) = _NeedToVerifyModel;
 }

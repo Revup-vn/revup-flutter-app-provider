@@ -25,20 +25,23 @@ class InfoRequestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sr = context.read<StoreRepository>();
+    final paymentService =
+        sr.repairPaymentRepo(RepairRecordDummy.dummyStarted(record.id));
     return BlocProvider(
       create: (_) => InfoRequestBloc(
-        consumer,
         record,
-        distance,
-        pendingService,
-        pendingAmount,
         context.read(),
-        context.read(),
-        context.read(),
+        paymentService,
       ),
       child: Scaffold(
         appBar: AppBar(),
-        body: const InfoRequestView(),
+        body: InfoRequestView(
+          consumer: consumer,
+          distance: distance,
+          pendingService: pendingService,
+          pendingAmount: pendingAmount,
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_launcher/map_launcher.dart';
@@ -9,20 +10,31 @@ import '../../../../l10n/l10n.dart';
 import '../../../../new_request/models/pending_repair_request.dart';
 import '../../../../router/router.dart';
 import '../../../../shared/utils/utils_function.dart';
+import '../../../models/pending_service_model.dart';
 import '../bloc/info_request_bloc.dart';
 import '../widgets/action_button.dart';
 import '../widgets/widgets.dart';
 
 class InfoRequestView extends StatefulWidget {
-  const InfoRequestView({super.key});
-
+  const InfoRequestView({
+    super.key,
+    required this.consumer,
+    required this.distance,
+    required this.pendingService,
+    required this.pendingAmount,
+  });
+  final AppUser consumer;
+  final double distance;
+  final IList<PendingServiceModel> pendingService;
+  final int pendingAmount;
   @override
   State<InfoRequestView> createState() => _InfoRequestViewState();
 }
 
 class _InfoRequestViewState extends State<InfoRequestView> {
-  bool startMode = true;
+  bool startMode = false;
   bool fixedMode = false;
+  bool movingMode = false;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -40,12 +52,9 @@ class _InfoRequestViewState extends State<InfoRequestView> {
       builder: (context, state) {
         return state.maybeWhen(
           success: (
-            consumer,
-            distance,
-            pendingService,
-            pendingAmount,
             needToVerifyService,
             record,
+            len,
           ) =>
               Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
@@ -69,14 +78,14 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                       ),
                       const SizedBox(height: 20),
                       // CONTACT
-                      ContactItem(consumer: consumer),
+                      ContactItem(consumer: widget.consumer),
                       const SizedBox(height: 10),
                       const Divider(thickness: 1),
                       const SizedBox(height: 10),
                       BuildRowItem(
                         iconData: Icons.social_distance,
                         text: l10n.distanceLabel,
-                        textBold: '${distance.toStringAsFixed(2)} km',
+                        textBold: '${widget.distance.toStringAsFixed(2)} km',
                       ),
                       BuildRowItem(
                         iconData: Icons.directions_run,
@@ -113,8 +122,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                             child: BuildRowItem(
                               iconData: Icons.build,
                               text: l10n.serviceLabel,
-                              textBold:
-                                  '''${pendingService.length()} ${l10n.repairItemsLabel}''',
+                              textBold: '''$len ${l10n.repairItemsLabel}''',
                             ),
                           ),
                           GestureDetector(
@@ -131,8 +139,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                 context.router.push(
                                   P10QuotePriceRoute(
                                     record: record,
-                                    pendingService: pendingService,
-                                    pendingAmount: pendingAmount,
+                                    pendingService: widget.pendingService,
+                                    pendingAmount: widget.pendingAmount,
                                   ),
                                 );
                               },
@@ -163,19 +171,22 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                 ),
                 LayoutBuilder(
                   builder: (context, _) {
-                    if (startMode && needToVerifyService.isEmpty) {
+                    if (needToVerifyService.isEmpty) startMode = true;
+                    if (startMode) {
                       return ActionButton(
                         text: l10n.startLabel,
                         onPressed: () {
                           startMode = false;
+                          movingMode = true;
                           _openMapsFor(record);
                         },
                       );
-                    } else if (!startMode) {
+                    } else if (movingMode) {
                       return ActionButton(
                         text: l10n.providerArrivedLabel,
                         onPressed: () {
                           // update record to arrived
+                          movingMode = false;
                           fixedMode = true;
                           blocPage.add(const InfoRequestEvent.confirmArrived());
                         },
@@ -213,16 +224,16 @@ class _InfoRequestViewState extends State<InfoRequestView> {
         mapType: MapType.google,
         destination: Coords(record.to.lat, record.to.long),
         origin: Coords(record.from.lat, record.from.long),
-        destinationTitle: 'Điểm sửa chữa',
-        originTitle: 'Vị trí hiện tại',
+        destinationTitle: context.l10n.repairLocationLabel,
+        originTitle: context.l10n.currentLocationLabel,
       );
     } else if (isApple ?? false) {
       await MapLauncher.showDirections(
         mapType: MapType.apple,
         destination: Coords(record.to.lat, record.to.long),
         origin: Coords(record.from.lat, record.from.long),
-        destinationTitle: 'Điểm sửa chữa',
-        originTitle: 'Vị trí hiện tại',
+        destinationTitle: context.l10n.repairLocationLabel,
+        originTitle: context.l10n.currentLocationLabel,
       );
     }
   }
