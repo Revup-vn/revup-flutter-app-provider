@@ -47,7 +47,7 @@ class RecordDetail extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    ServiceRequestItem(requests: unpaidServices),
+                    ServiceRequestItem(pendingService: unpaidServices),
                     const SizedBox(
                       height: 16,
                     ),
@@ -74,20 +74,18 @@ class RecordDetail extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Column(
-              children: [
-                TotalServicePriceItem(
-                  pendingAmount: -paidServices
-                          .map((e) => e.price)
-                          .toList()
-                          .reduce((value, element) => value + element) +
-                      unpaidServices
-                          .map((e) => e.price)
-                          .reduce((value, element) => value + element),
-                ),
-              ],
-            ),
+          TotalServicePriceItem(
+            pendingAmount: (paidServices.isEmpty
+                    ? 0
+                    : -paidServices
+                        .map((e) => e.price)
+                        .toList()
+                        .reduce((value, element) => value + element)) +
+                (unpaidServices.isEmpty
+                    ? 0
+                    : unpaidServices
+                        .map((e) => e.price)
+                        .reduce((value, element) => value + element)),
           ),
         ],
       );

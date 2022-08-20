@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
+import '../../repair_request/models/need_to_verify_model.dart';
 import '../../repair_request/models/pending_service_model.dart';
 import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
@@ -20,12 +21,14 @@ class RequestDetailsStatic extends StatelessWidget {
     required this.record,
     required this.distance,
     required this.pendingService,
+    required this.needToVerify,
     required this.pendingAmount,
   });
   final AppUser consumer;
   final PendingRepairRequest record;
   final double distance;
   final IList<PendingServiceModel> pendingService;
+  final List<NeedToVerifyModel> needToVerify;
   final int pendingAmount;
 
   @override
@@ -152,7 +155,7 @@ class RequestDetailsStatic extends StatelessWidget {
                               TextSpan(text: l10n.serviceLabel),
                               TextSpan(
                                 text:
-                                    '''${pendingService.length()} ${l10n.repairItemsLabel}''',
+                                    '''${pendingService.length() + needToVerify.length} ${l10n.repairItemsLabel}''',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -169,7 +172,8 @@ class RequestDetailsStatic extends StatelessWidget {
                       context.router.push(
                         P3RequestDetailRoute(
                           record: record,
-                          requests: pendingService,
+                          pendingService: pendingService,
+                          needToVerify: needToVerify,
                           pendingAmount: pendingAmount,
                         ),
                       );

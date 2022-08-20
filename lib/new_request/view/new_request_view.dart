@@ -32,7 +32,8 @@ class NewRequestView extends StatelessWidget {
             toMarker,
             consumer,
             record,
-            services,
+            pendingService,
+            needToVerify,
             pendingAmount,
           ) {
             return Stack(
@@ -123,7 +124,8 @@ class NewRequestView extends StatelessWidget {
                   consumer: consumer,
                   record: record,
                   distance: directions.distance / 1000,
-                  pendingService: services,
+                  pendingService: ilist(pendingService),
+                  needToVerify: needToVerify,
                   pendingAmount: pendingAmount,
                 ),
               ],

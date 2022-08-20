@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
+import '../../../../router/router.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../../shared/widgets/loading.u.dart';
 import '../../../home.dart';
@@ -23,12 +25,13 @@ class HomePrimaryView extends StatelessWidget {
     final blocPage = context.watch<HomeBloc>();
     blocPage.state.maybeWhen(
       initial: () async {
-        final isGranted = await requestUserLocation();
-        if (isGranted) {
+        final isGranted = await requestPermission();
+        if (!isGranted) {
+          await context.router.push(const PermissionRoute());
+        } else {
           final pos = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
           );
-
           blocPage
               .add(HomeEvent.started(lat: pos.latitude, lng: pos.longitude));
         }

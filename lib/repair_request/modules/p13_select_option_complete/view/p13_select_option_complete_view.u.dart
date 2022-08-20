@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -9,7 +8,7 @@ import '../../../../l10n/l10n.dart';
 import '../../../../router/router.dart';
 import '../../../models/models.dart';
 import '../cubit/select_options_cubit.dart';
-import '../widgets/widgets.dart';
+import '../widgets/select_service_request_form.u.dart';
 
 class P13SelectOptionCompleteView extends StatelessWidget {
   const P13SelectOptionCompleteView({
@@ -28,9 +27,13 @@ class P13SelectOptionCompleteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    context.read<SelectOptionsCubit>().fetchUnpaidServices(
-          () => context.router.pop(),
-        );
+    final cubit = context.watch<SelectOptionsCubit>();
+    cubit.state.maybeWhen(
+      initial: () => cubit.fetchUnpaidServices(
+        () => context.router.pop(),
+      ),
+      orElse: () => false,
+    );
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
@@ -45,12 +48,13 @@ class P13SelectOptionCompleteView extends StatelessWidget {
               form.currentState?.save();
               context.router.push(
                 P14RepairCompleteRoute(
-                    finished: (form.currentState?.value ??
-                            <String, dynamic>{'data': <dynamic>[]})['data']
-                        as List<PendingServiceModel>,
-                    paid: paid,
-                    vehicle: vehicle,
-                    recordId: id),
+                  finished: (form.currentState?.value ??
+                          <String, dynamic>{'data': <dynamic>[]})['data']
+                      as List<PendingServiceModel>,
+                  paid: paid,
+                  vehicle: vehicle,
+                  recordId: id,
+                ),
               );
             },
             child: Text(l10n.nextLabel),
@@ -110,15 +114,14 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                   const SizedBox(
                     height: 32,
                   ),
-                  context.watch<SelectOptionsCubit>().state.when(
-                        initial: Container.new,
-                        loading: () =>
-                            const CircularProgressIndicator.adaptive(),
-                        populated: (data) => SelectServiceRequestForm(
-                          services: data,
-                          formKey: form,
-                        ),
-                      ),
+                  cubit.state.when(
+                    initial: Container.new,
+                    loading: () => const CircularProgressIndicator.adaptive(),
+                    populated: (data) => SelectServiceRequestForm(
+                      services: data,
+                      formKey: form,
+                    ),
+                  ),
                   const SizedBox(
                     height: 16,
                   ),

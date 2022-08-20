@@ -36,10 +36,11 @@ class P10QuotePricePage extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => TotalAmountCubit(
-            pendingService
-                .map((e) => e.price)
-                .toList()
-                .reduce((value, element) => value + element),
+            pendingService.isEmpty
+                ? 0
+                : pendingService.map((e) => e.price).toList().reduce(
+                      (value, element) => value + element,
+                    ),
           ),
         ),
       ],

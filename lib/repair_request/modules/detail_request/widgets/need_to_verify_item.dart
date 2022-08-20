@@ -47,11 +47,11 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
                 setState(() {
                   quotePrice = temp;
                 });
+                final isExist = await Hive.boxExists('verifyServices');
 
-                if (await Hive.boxExists('verifyServices')) {
-                  await Hive.openBox<int>('verifyServices');
-                }
-                final verifyServices = Hive.box<int>('verifyServices');
+                final verifyServices = isExist
+                    ? Hive.box<int>('verifyServices')
+                    : await Hive.openBox<int>('verifyServices');
 
                 await verifyServices.put(
                   widget.needToVerify.serviceName,

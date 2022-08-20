@@ -8,6 +8,7 @@ import 'package:revup_core/core.dart';
 
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
+import '../../repair_request/models/need_to_verify_model.dart';
 import '../../repair_request/models/pending_service_model.dart';
 import '../models/pending_repair_request.dart';
 
@@ -32,7 +33,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
       started: () async {
         // TODO(cantgim): get repair record id from message
         final repairRecord =
-            (await _repairRecord.get('101f54f8-994c-4610-a68e-747e5e9916d2'))
+            (await _repairRecord.get('13fb558d-112d-45e2-b7fc-b78f3778dc1b'))
                 .map<Option<RepairRecord>>(
                   (r) => r.maybeMap(
                     pending: some,
@@ -65,7 +66,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
               BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
         );
 
-        final services =
+        final pendingService =
             (await storeRepository.repairPaymentRepo(repairRecord).all())
                 .map(
                   (r) => r.map<Option<PendingServiceModel>>(
@@ -84,23 +85,62 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                   (a) => a.getOrElse(() => throw NullThrownError()),
                 );
 
-        final pendingAmount = services
+        final pendingAmount = pendingService
             .map(
               (a) => a.price,
             )
             .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
 
-        emit(
-          NewRequestState.success(
-            directions: directions,
-            fromMarker: fromMarker,
-            toMarker: toMarker,
-            consumer: consumer,
-            record: pendingRequest,
-            services: services,
-            pendingAmount: pendingAmount,
-          ),
-        );
+        (await storeRepository.repairPaymentRepo(repairRecord).all())
+            .map<IList<PaymentService>>(
+              (r) => r.filter(
+                (a) => a.maybeMap(
+                  paid: (_) => false,
+                  orElse: () => true,
+                ),
+              ),
+            )
+            .map(
+              (r) => r
+                  .map(
+                    (a) => a.map(
+                      pending: (v) => PendingServiceModel(
+                        name: v.serviceName,
+                        price: v.moneyAmount +
+                            (v.products.isEmpty
+                                ? 0
+                                : v.products
+                                    .map((e) => e.quantity * e.unitPrice)
+                                    .reduce(
+                                      (value, element) => value + element,
+                                    )),
+                        isOptional: v.isOptional,
+                      ),
+                      paid: (v) => throw NullThrownError(),
+                      needToVerify: (v) => NeedToVerifyModel(
+                        serviceName: v.serviceName,
+                        desc: v.desc,
+                      ),
+                    ),
+                  )
+                  .partition((a) => a is NeedToVerifyModel)
+                  .apply(
+                (a, b) {
+                  emit(
+                    NewRequestState.success(
+                      directions: directions,
+                      fromMarker: fromMarker,
+                      toMarker: toMarker,
+                      consumer: consumer,
+                      record: pendingRequest,
+                      pendingService: b.toList().cast<PendingServiceModel>(),
+                      needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
+                      pendingAmount: pendingAmount,
+                    ),
+                  );
+                },
+              ),
+            );
       },
       accepted: (record) async {
         // update repair record with accepted type

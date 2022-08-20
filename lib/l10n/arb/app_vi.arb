@@ -217,5 +217,7 @@
   "delServiceLabel": "Dữ liệu về dịch vụ này sẽ bị xoá hết",
   "updateServiceLabel": "Chỉnh sửa dịch vụ",
   "repairLocationLabel": "Địa điểm sửa chữa",
-  "currentLocationLabel": "Vị trí hiện tại"
+  "currentLocationLabel": "Vị trí hiện tại",
+  "locationDeniedLabel": "Revup cần vị trí của bạn để khách hàng có thể tìm kiếm dịch vụ của bạn dễ dàng hơn",
+  "enableLocationLabel": "Cho phép truy cập vị trí"
 }

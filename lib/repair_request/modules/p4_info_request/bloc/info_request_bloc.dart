@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../new_request/models/pending_repair_request.dart';
@@ -14,17 +16,18 @@ part 'info_request_state.dart';
 class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   InfoRequestBloc(
     this.record,
-    this._userStore,
     this._repairRecord,
+    this._userRepos,
     this._paymentService,
+    this.user,
   ) : super(const _Initial()) {
     on<InfoRequestEvent>(_onEvent);
   }
   final PendingRepairRequest record;
-  final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
+  final IStore<RepairRecord> _userRepos;
   final IStore<PaymentService> _paymentService;
-  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
+  final AppUser user;
 
   Future<void> _onEvent(
     InfoRequestEvent event,
@@ -95,6 +98,12 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
             to: record.to, started: DateTime.now(),
           ),
         );
+      },
+      locationUpdated: (pos) async {
+        final point = GeoFlutterFire()
+            .point(latitude: pos.latitude, longitude: pos.longitude);
+        final curLocation = {AppUserFields.GeoPointLocation.toString(): point};
+        await _userRepos.collection().doc(user.uuid).update(curLocation);
       },
     );
   }

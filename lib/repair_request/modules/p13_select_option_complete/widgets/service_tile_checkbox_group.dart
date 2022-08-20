@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:revup_core/core.dart';
 
@@ -17,6 +16,8 @@ class ServiceTileCheckBoxGroup extends StatelessWidget {
         name: 'data',
         builder: (FormFieldState<List<PendingServiceModel>> field) =>
             ListView.builder(
+          shrinkWrap: true,
+          itemCount: services.length,
           itemBuilder: (context, index) => SizedBox(
             height: 50,
             child: Row(

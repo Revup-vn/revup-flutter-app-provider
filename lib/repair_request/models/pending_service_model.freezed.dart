@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PendingServiceModel {
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  bool get isOptional => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PendingServiceModelCopyWith<PendingServiceModel> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $PendingServiceModelCopyWith<$Res> {
   factory $PendingServiceModelCopyWith(
           PendingServiceModel value, $Res Function(PendingServiceModel) then) =
       _$PendingServiceModelCopyWithImpl<$Res>;
-  $Res call({String name, int price});
+  $Res call({String name, int price, bool isOptional});
 }
 
 /// @nodoc
@@ -45,6 +46,7 @@ class _$PendingServiceModelCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? price = freezed,
+    Object? isOptional = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -55,6 +57,10 @@ class _$PendingServiceModelCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      isOptional: isOptional == freezed
+          ? _value.isOptional
+          : isOptional // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -66,7 +72,7 @@ abstract class _$$_PendingServiceModelCopyWith<$Res>
           $Res Function(_$_PendingServiceModel) then) =
       __$$_PendingServiceModelCopyWithImpl<$Res>;
   @override
-  $Res call({String name, int price});
+  $Res call({String name, int price, bool isOptional});
 }
 
 /// @nodoc
@@ -84,6 +90,7 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? price = freezed,
+    Object? isOptional = freezed,
   }) {
     return _then(_$_PendingServiceModel(
       name: name == freezed
@@ -94,6 +101,10 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      isOptional: isOptional == freezed
+          ? _value.isOptional
+          : isOptional // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -101,16 +112,19 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PendingServiceModel implements _PendingServiceModel {
-  const _$_PendingServiceModel({required this.name, required this.price});
+  const _$_PendingServiceModel(
+      {required this.name, required this.price, required this.isOptional});
 
   @override
   final String name;
   @override
   final int price;
+  @override
+  final bool isOptional;
 
   @override
   String toString() {
-    return 'PendingServiceModel(name: $name, price: $price)';
+    return 'PendingServiceModel(name: $name, price: $price, isOptional: $isOptional)';
   }
 
   @override
@@ -119,14 +133,17 @@ class _$_PendingServiceModel implements _PendingServiceModel {
         (other.runtimeType == runtimeType &&
             other is _$_PendingServiceModel &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.price, price));
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality()
+                .equals(other.isOptional, isOptional));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(price));
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(isOptional));
 
   @JsonKey(ignore: true)
   @override
@@ -138,12 +155,15 @@ class _$_PendingServiceModel implements _PendingServiceModel {
 abstract class _PendingServiceModel implements PendingServiceModel {
   const factory _PendingServiceModel(
       {required final String name,
-      required final int price}) = _$_PendingServiceModel;
+      required final int price,
+      required final bool isOptional}) = _$_PendingServiceModel;
 
   @override
   String get name;
   @override
   int get price;
+  @override
+  bool get isOptional;
   @override
   @JsonKey(ignore: true)
   _$$_PendingServiceModelCopyWith<_$_PendingServiceModel> get copyWith =>

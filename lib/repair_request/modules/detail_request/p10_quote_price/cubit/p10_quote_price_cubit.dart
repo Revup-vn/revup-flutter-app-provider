@@ -62,6 +62,7 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
                             .reduce(
                               (value, element) => value + element,
                             )),
+                isOptional: v.isOptional,
               ),
               paid: (v) => throw NullThrownError(),
               needToVerify: (v) => NeedToVerifyModel(

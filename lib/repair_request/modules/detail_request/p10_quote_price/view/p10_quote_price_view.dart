@@ -19,7 +19,6 @@ class P10QuotePriceView extends StatelessWidget {
 
     return context.watch<P10QuotePriceCubit>().state.maybeWhen(
           success: (pendingService, needToVerifyService) {
-            final len = pendingService.length;
             return Scaffold(
               appBar: AppBar(
                 actions: [
@@ -81,7 +80,7 @@ class P10QuotePriceView extends StatelessWidget {
                                 height: 16,
                               ),
                               ServiceRequestItem(
-                                requests: pendingService,
+                                pendingService: pendingService,
                               ),
                               const SizedBox(
                                 height: 16,
@@ -96,12 +95,14 @@ class P10QuotePriceView extends StatelessWidget {
                               if (needToVerifyService.isNotEmpty)
                                 NeedToVerifyList(
                                   needToVerify: needToVerifyService,
-                                  pendingAmount: pendingService
-                                      .map((e) => e.price)
-                                      .toList()
-                                      .reduce(
-                                        (value, element) => value + element,
-                                      ),
+                                  pendingAmount: pendingService.isNotEmpty
+                                      ? pendingService
+                                          .map((e) => e.price)
+                                          .toList()
+                                          .reduce(
+                                            (value, element) => value + element,
+                                          )
+                                      : 0,
                                 )
                             ],
                           ),

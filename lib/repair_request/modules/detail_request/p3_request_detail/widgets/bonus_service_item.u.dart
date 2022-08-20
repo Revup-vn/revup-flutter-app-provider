@@ -2,15 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../l10n/l10n.dart';
-import '../../../../../new_request/models/pending_repair_request.dart';
+import '../../../../models/need_to_verify_model.dart';
 
 class BonusServicetItem extends StatelessWidget {
   const BonusServicetItem({
     super.key,
-    required this.record,
+    required this.needToVerify,
   });
 
-  final PendingRepairRequest record;
+  final List<NeedToVerifyModel> needToVerify;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -39,7 +39,7 @@ class BonusServicetItem extends StatelessWidget {
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: record.optionalServices.length,
+          itemCount: needToVerify.length,
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               height: 50,
@@ -47,7 +47,7 @@ class BonusServicetItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   AutoSizeText(
-                    record.optionalServices[index].name,
+                    needToVerify[index].serviceName,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   AutoSizeText(

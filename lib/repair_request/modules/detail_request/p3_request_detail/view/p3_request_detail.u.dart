@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../new_request/models/pending_repair_request.dart';
+import '../../../../models/need_to_verify_model.dart';
 import '../../../../models/pending_service_model.dart';
 import '../../widgets/widgets.dart';
 import '../widgets/additional_costs_item.u.dart';
@@ -13,11 +14,13 @@ class P3RequestDetailPage extends StatelessWidget {
   const P3RequestDetailPage({
     super.key,
     required this.record,
-    required this.requests,
+    required this.pendingService,
+    required this.needToVerify,
     required this.pendingAmount,
   });
   final PendingRepairRequest record;
-  final IList<PendingServiceModel> requests;
+  final IList<PendingServiceModel> pendingService;
+  final List<NeedToVerifyModel> needToVerify;
   final int pendingAmount;
 
   @override
@@ -64,7 +67,7 @@ class P3RequestDetailPage extends StatelessWidget {
                       height: 16,
                     ),
                     ServiceRequestItem(
-                      requests: requests.toList(),
+                      pendingService: pendingService.toList(),
                     ),
                     const SizedBox(
                       height: 16,
@@ -76,9 +79,9 @@ class P3RequestDetailPage extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    if (record.optionalServices.isNotEmpty)
+                    if (needToVerify.isNotEmpty)
                       BonusServicetItem(
-                        record: record,
+                        needToVerify: needToVerify,
                       ),
                     AdditionalCoststItem(
                       record: record,

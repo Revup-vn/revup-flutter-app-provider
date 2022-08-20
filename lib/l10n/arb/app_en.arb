@@ -219,5 +219,7 @@
   "delServiceLabel": "This service's data will be deleted",
   "updateServiceLabel": "Update Service",
   "repairLocationLabel": "Repair Location",
-  "currentLocationLabel": "Current Location"
+  "currentLocationLabel": "Current Location",
+  "locationDeniedLabel": "Revup needs your location so customers can find your services more easily",
+  "enableLocationLabel": "Allow location access"
 }

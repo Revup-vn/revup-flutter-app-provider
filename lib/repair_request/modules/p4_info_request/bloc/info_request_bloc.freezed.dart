@@ -19,6 +19,7 @@ mixin _$InfoRequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
     required TResult Function() confirmArrived,
   }) =>
@@ -26,6 +27,7 @@ mixin _$InfoRequestEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
   }) =>
@@ -33,6 +35,7 @@ mixin _$InfoRequestEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$InfoRequestEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) =>
@@ -48,6 +52,7 @@ mixin _$InfoRequestEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) =>
@@ -55,6 +60,7 @@ mixin _$InfoRequestEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
@@ -120,6 +126,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
     required TResult Function() confirmArrived,
   }) {
@@ -130,6 +137,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
   }) {
@@ -140,6 +148,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
@@ -154,6 +163,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
@@ -164,6 +174,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
@@ -174,6 +185,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
@@ -187,6 +199,153 @@ class _$_Started implements _Started {
 
 abstract class _Started implements InfoRequestEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_LocationUpdatedCopyWith<$Res> {
+  factory _$$_LocationUpdatedCopyWith(
+          _$_LocationUpdated value, $Res Function(_$_LocationUpdated) then) =
+      __$$_LocationUpdatedCopyWithImpl<$Res>;
+  $Res call({LatLng pos});
+}
+
+/// @nodoc
+class __$$_LocationUpdatedCopyWithImpl<$Res>
+    extends _$InfoRequestEventCopyWithImpl<$Res>
+    implements _$$_LocationUpdatedCopyWith<$Res> {
+  __$$_LocationUpdatedCopyWithImpl(
+      _$_LocationUpdated _value, $Res Function(_$_LocationUpdated) _then)
+      : super(_value, (v) => _then(v as _$_LocationUpdated));
+
+  @override
+  _$_LocationUpdated get _value => super._value as _$_LocationUpdated;
+
+  @override
+  $Res call({
+    Object? pos = freezed,
+  }) {
+    return _then(_$_LocationUpdated(
+      pos: pos == freezed
+          ? _value.pos
+          : pos // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LocationUpdated implements _LocationUpdated {
+  const _$_LocationUpdated({required this.pos});
+
+  @override
+  final LatLng pos;
+
+  @override
+  String toString() {
+    return 'InfoRequestEvent.locationUpdated(pos: $pos)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LocationUpdated &&
+            const DeepCollectionEquality().equals(other.pos, pos));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(pos));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LocationUpdatedCopyWith<_$_LocationUpdated> get copyWith =>
+      __$$_LocationUpdatedCopyWithImpl<_$_LocationUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(LatLng pos) locationUpdated,
+    required TResult Function() confirmStarted,
+    required TResult Function() confirmArrived,
+  }) {
+    return locationUpdated(pos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
+    TResult Function()? confirmStarted,
+    TResult Function()? confirmArrived,
+  }) {
+    return locationUpdated?.call(pos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
+    TResult Function()? confirmStarted,
+    TResult Function()? confirmArrived,
+    required TResult orElse(),
+  }) {
+    if (locationUpdated != null) {
+      return locationUpdated(pos);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_LocationUpdated value) locationUpdated,
+    required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmArrived value) confirmArrived,
+  }) {
+    return locationUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
+    TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmArrived value)? confirmArrived,
+  }) {
+    return locationUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
+    TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmArrived value)? confirmArrived,
+    required TResult orElse(),
+  }) {
+    if (locationUpdated != null) {
+      return locationUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationUpdated implements InfoRequestEvent {
+  const factory _LocationUpdated({required final LatLng pos}) =
+      _$_LocationUpdated;
+
+  LatLng get pos;
+  @JsonKey(ignore: true)
+  _$$_LocationUpdatedCopyWith<_$_LocationUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -231,6 +390,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
     required TResult Function() confirmArrived,
   }) {
@@ -241,6 +401,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
   }) {
@@ -251,6 +412,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
@@ -265,6 +427,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
@@ -275,6 +438,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
@@ -285,6 +449,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
@@ -342,6 +507,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
     required TResult Function() confirmArrived,
   }) {
@@ -352,6 +518,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
   }) {
@@ -362,6 +529,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
@@ -376,6 +544,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
@@ -386,6 +555,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
@@ -396,6 +566,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
