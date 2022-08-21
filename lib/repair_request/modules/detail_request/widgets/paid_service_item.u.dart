@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -9,10 +8,10 @@ import '../../../models/models.dart';
 class PaidServiceItem extends StatelessWidget {
   const PaidServiceItem({
     super.key,
-    required this.bonuses,
+    required this.paidService,
   });
 
-  final List<PaidServicesModel> bonuses;
+  final List<PaidServicesModel> paidService;
 
   @override
   Widget build(BuildContext context) {
@@ -41,23 +40,30 @@ class PaidServiceItem extends StatelessWidget {
           height: 6,
         ),
         ...List.generate(
-          bonuses.length,
+          paidService.length,
           (index) => SizedBox(
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 AutoSizeText(
-                  bonuses[index].name,
+                  paidService[index].name,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 AutoSizeText(
-                  context.formatMoney(bonuses[index].price),
+                  context.formatMoney(paidService[index].price),
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ],
             ),
           ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        const Divider(
+          height: 1,
+          thickness: 1,
         ),
       ],
     );

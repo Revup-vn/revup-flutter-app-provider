@@ -58,14 +58,8 @@ class RecordDetail extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    PaidServiceItem(bonuses: paidServices),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const Divider(
-                      height: 1,
-                      thickness: 1,
-                    ),
+                    if (paidServices.isNotEmpty)
+                      PaidServiceItem(paidService: paidServices),
                     const SizedBox(
                       height: 16,
                     ),

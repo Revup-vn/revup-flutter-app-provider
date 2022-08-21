@@ -46,6 +46,15 @@ class P13SelectOptionCompleteView extends StatelessWidget {
             ),
             onPressed: () {
               form.currentState?.save();
+              final saveLst =
+                  form.currentState?.value['data'] as List<PendingServiceModel>;
+              if (saveLst.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n.chooseAtLeastCompletedLabel)),
+                );
+                return;
+              }
+
               context.router.push(
                 P14RepairCompleteRoute(
                   finished: (form.currentState?.value ??

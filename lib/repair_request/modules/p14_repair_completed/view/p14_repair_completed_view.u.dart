@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../router/app_router.gr.dart';
+import '../../../../router/router.dart';
 import '../../../models/models.dart';
-import '../cubit/overview_record_cubit.dart';
+import '../cubit/p14_repair_completed_cubit.dart';
 import '../widgets/widgets.dart';
 
 class P14RepairCompleteView extends StatelessWidget {
@@ -28,12 +28,9 @@ class P14RepairCompleteView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(),
-      body: BlocConsumer<OverviewRecordCubit, OverviewRecordState>(
+      body: BlocConsumer<P14RepairCompletedCubit, P14RepairCompletedState>(
         listener: (context, state) => state.maybeMap(
           failed: (value) => context.router.pop(),
-          succeeded: (value) => context.router.push(
-            P16FinishedOrderDetailRoute(data: tuple2(finished, paid)),
-          ),
           orElse: () => unit,
         ),
         builder: (context, state) => state.maybeWhen(
@@ -67,7 +64,7 @@ class P14RepairCompleteView extends StatelessWidget {
                         UploadPhotosItem(
                           onUpdatedImageTile: (fs) => fs.then(
                             (value) => context
-                                .read<OverviewRecordCubit>()
+                                .read<P14RepairCompletedCubit>()
                                 .setImgs(value),
                           ), // Set Imgs
                         ),
@@ -80,18 +77,25 @@ class P14RepairCompleteView extends StatelessWidget {
                                 .reduce((value, element) => value + element),
                           ),
                           textButtonName: l10n.detailLabel,
+                          onPressed: () => context.router.push(
+                            P16FinishedOrderDetailRoute(
+                              data: tuple2(finished, paid),
+                            ),
+                          ),
                         ),
                         const SizedBox(height: 5),
                         BuildRowRepairCompletedItem(
                           title: l10n.vehicleTypeLabel,
-                          content: vehicle,
+                          content: vehicle == 'motorbike'
+                              ? l10n.motorcycleLabel
+                              : l10n.carLabel,
                           textButtonName: '',
                         ),
                         const SizedBox(height: 10),
                         BuildRowRepairCompletedItem(
                           title: l10n.completedItemLabel,
                           content:
-                              '''${l10n.totalLabel} ${finished.length}${l10n.repairItemsLabel}''',
+                              '''${l10n.totalLabel} ${finished.length} ${l10n.repairItemsLabel}''',
                           textButtonName: '',
                         ),
                         const SizedBox(height: 30),
@@ -121,7 +125,7 @@ class P14RepairCompleteView extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       context
-                          .read<OverviewRecordCubit>()
+                          .read<P14RepairCompletedCubit>()
                           .submit(finished, paid);
                     },
                     style: Theme.of(context).elevatedButtonTheme.style,

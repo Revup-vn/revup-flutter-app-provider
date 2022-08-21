@@ -219,5 +219,6 @@
   "repairLocationLabel": "Địa điểm sửa chữa",
   "currentLocationLabel": "Vị trí hiện tại",
   "locationDeniedLabel": "Revup cần vị trí của bạn để khách hàng có thể tìm kiếm dịch vụ của bạn dễ dàng hơn",
-  "enableLocationLabel": "Cho phép truy cập vị trí"
+  "enableLocationLabel": "Cho phép truy cập vị trí",
+  "chooseAtLeastCompletedLabel": "Chọn ít nhất một dịch vụ"
 }

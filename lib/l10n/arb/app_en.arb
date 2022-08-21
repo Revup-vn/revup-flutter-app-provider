@@ -221,5 +221,6 @@
   "repairLocationLabel": "Repair Location",
   "currentLocationLabel": "Current Location",
   "locationDeniedLabel": "Revup needs your location so customers can find your services more easily",
-  "enableLocationLabel": "Allow location access"
+  "enableLocationLabel": "Allow location access",
+  "chooseAtLeastCompletedLabel": "Choose at least one service"
 }

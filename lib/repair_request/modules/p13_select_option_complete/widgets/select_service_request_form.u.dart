@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../l10n/l10n.dart';
@@ -15,13 +14,11 @@ class SelectServiceRequestForm extends StatelessWidget {
   });
 
   final GlobalKey<FormBuilderState> formKey;
-
   final List<PendingServiceModel> services;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     return Column(
       children: [
         SizedBox(
