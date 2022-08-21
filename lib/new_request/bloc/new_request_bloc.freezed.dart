@@ -333,7 +333,8 @@ mixin _$NewRequestState {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)
         success,
   }) =>
@@ -349,7 +350,8 @@ mixin _$NewRequestState {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
   }) =>
@@ -365,7 +367,8 @@ mixin _$NewRequestState {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
     required TResult orElse(),
@@ -463,7 +466,8 @@ class _$_Initial implements _Initial {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)
         success,
   }) {
@@ -482,7 +486,8 @@ class _$_Initial implements _Initial {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
   }) {
@@ -501,7 +506,8 @@ class _$_Initial implements _Initial {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
     required TResult orElse(),
@@ -602,7 +608,8 @@ class _$_Loading implements _Loading {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)
         success,
   }) {
@@ -621,7 +628,8 @@ class _$_Loading implements _Loading {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
   }) {
@@ -640,7 +648,8 @@ class _$_Loading implements _Loading {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
     required TResult orElse(),
@@ -741,7 +750,8 @@ class _$_Failure implements _Failure {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)
         success,
   }) {
@@ -760,7 +770,8 @@ class _$_Failure implements _Failure {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
   }) {
@@ -779,7 +790,8 @@ class _$_Failure implements _Failure {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
     required TResult orElse(),
@@ -843,7 +855,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
       Marker toMarker,
       AppUser consumer,
       PendingRepairRequest record,
-      IList<PendingServiceModel> services,
+      List<PendingServiceModel> pendingService,
+      List<NeedToVerifyModel> needToVerifyService,
       int pendingAmount});
 
   $DirectionsCopyWith<$Res> get directions;
@@ -867,7 +880,8 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
     Object? toMarker = freezed,
     Object? consumer = freezed,
     Object? record = freezed,
-    Object? services = freezed,
+    Object? pendingService = freezed,
+    Object? needToVerifyService = freezed,
     Object? pendingAmount = freezed,
   }) {
     return _then(_$_Success(
@@ -891,10 +905,14 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
           ? _value.record
           : record // ignore: cast_nullable_to_non_nullable
               as PendingRepairRequest,
-      services: services == freezed
-          ? _value.services
-          : services // ignore: cast_nullable_to_non_nullable
-              as IList<PendingServiceModel>,
+      pendingService: pendingService == freezed
+          ? _value._pendingService
+          : pendingService // ignore: cast_nullable_to_non_nullable
+              as List<PendingServiceModel>,
+      needToVerifyService: needToVerifyService == freezed
+          ? _value._needToVerifyService
+          : needToVerifyService // ignore: cast_nullable_to_non_nullable
+              as List<NeedToVerifyModel>,
       pendingAmount: pendingAmount == freezed
           ? _value.pendingAmount
           : pendingAmount // ignore: cast_nullable_to_non_nullable
@@ -933,8 +951,11 @@ class _$_Success implements _Success {
       required this.toMarker,
       required this.consumer,
       required this.record,
-      required this.services,
-      required this.pendingAmount});
+      required final List<PendingServiceModel> pendingService,
+      required final List<NeedToVerifyModel> needToVerifyService,
+      required this.pendingAmount})
+      : _pendingService = pendingService,
+        _needToVerifyService = needToVerifyService;
 
   @override
   final Directions directions;
@@ -946,14 +967,26 @@ class _$_Success implements _Success {
   final AppUser consumer;
   @override
   final PendingRepairRequest record;
+  final List<PendingServiceModel> _pendingService;
   @override
-  final IList<PendingServiceModel> services;
+  List<PendingServiceModel> get pendingService {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pendingService);
+  }
+
+  final List<NeedToVerifyModel> _needToVerifyService;
+  @override
+  List<NeedToVerifyModel> get needToVerifyService {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_needToVerifyService);
+  }
+
   @override
   final int pendingAmount;
 
   @override
   String toString() {
-    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, services: $services, pendingAmount: $pendingAmount)';
+    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, pendingService: $pendingService, needToVerifyService: $needToVerifyService, pendingAmount: $pendingAmount)';
   }
 
   @override
@@ -968,7 +1001,10 @@ class _$_Success implements _Success {
             const DeepCollectionEquality().equals(other.toMarker, toMarker) &&
             const DeepCollectionEquality().equals(other.consumer, consumer) &&
             const DeepCollectionEquality().equals(other.record, record) &&
-            const DeepCollectionEquality().equals(other.services, services) &&
+            const DeepCollectionEquality()
+                .equals(other._pendingService, _pendingService) &&
+            const DeepCollectionEquality()
+                .equals(other._needToVerifyService, _needToVerifyService) &&
             const DeepCollectionEquality()
                 .equals(other.pendingAmount, pendingAmount));
   }
@@ -981,7 +1017,8 @@ class _$_Success implements _Success {
       const DeepCollectionEquality().hash(toMarker),
       const DeepCollectionEquality().hash(consumer),
       const DeepCollectionEquality().hash(record),
-      const DeepCollectionEquality().hash(services),
+      const DeepCollectionEquality().hash(_pendingService),
+      const DeepCollectionEquality().hash(_needToVerifyService),
       const DeepCollectionEquality().hash(pendingAmount));
 
   @JsonKey(ignore: true)
@@ -1001,12 +1038,13 @@ class _$_Success implements _Success {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)
         success,
   }) {
-    return success(directions, fromMarker, toMarker, consumer, record, services,
-        pendingAmount);
+    return success(directions, fromMarker, toMarker, consumer, record,
+        pendingService, needToVerifyService, pendingAmount);
   }
 
   @override
@@ -1021,12 +1059,13 @@ class _$_Success implements _Success {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
   }) {
     return success?.call(directions, fromMarker, toMarker, consumer, record,
-        services, pendingAmount);
+        pendingService, needToVerifyService, pendingAmount);
   }
 
   @override
@@ -1041,14 +1080,15 @@ class _$_Success implements _Success {
             Marker toMarker,
             AppUser consumer,
             PendingRepairRequest record,
-            IList<PendingServiceModel> services,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
             int pendingAmount)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
       return success(directions, fromMarker, toMarker, consumer, record,
-          services, pendingAmount);
+          pendingService, needToVerifyService, pendingAmount);
     }
     return orElse();
   }
@@ -1098,7 +1138,8 @@ abstract class _Success implements NewRequestState {
       required final Marker toMarker,
       required final AppUser consumer,
       required final PendingRepairRequest record,
-      required final IList<PendingServiceModel> services,
+      required final List<PendingServiceModel> pendingService,
+      required final List<NeedToVerifyModel> needToVerifyService,
       required final int pendingAmount}) = _$_Success;
 
   Directions get directions;
@@ -1106,7 +1147,8 @@ abstract class _Success implements NewRequestState {
   Marker get toMarker;
   AppUser get consumer;
   PendingRepairRequest get record;
-  IList<PendingServiceModel> get services;
+  List<PendingServiceModel> get pendingService;
+  List<NeedToVerifyModel> get needToVerifyService;
   int get pendingAmount;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>

@@ -8,10 +8,12 @@ class BuildRowRepairCompletedItem extends StatelessWidget {
     required this.title,
     required this.content,
     required this.textButtonName,
+    this.onPressed,
   });
   final String title;
   final String content;
   final String textButtonName;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +48,7 @@ class BuildRowRepairCompletedItem extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                onPressed: () {
-                  // TODO(namngoc231): fix again
-                },
+                onPressed: onPressed,
                 child: Text(
                   textButtonName,
                 ),

@@ -8,6 +8,7 @@ class PendingServiceModel with _$PendingServiceModel {
   const factory PendingServiceModel({
     required String name,
     required int price,
+    required bool isOptional,
   }) = _PendingServiceModel;
 
   factory PendingServiceModel.fromDto({
@@ -17,6 +18,7 @@ class PendingServiceModel with _$PendingServiceModel {
         pending: (v) => PendingServiceModel(
           name: v.serviceName,
           price: v.moneyAmount,
+          isOptional: v.isOptional,
         ),
         orElse: () => throw NullThrownError(),
       );

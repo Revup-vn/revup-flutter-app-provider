@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
-import '../../../../../new_request/models/pending_repair_request.dart';
+import '../../../models/need_to_verify_model.dart';
+import 'need_to_verify_item.dart';
 
-class AdditionalCoststItem extends StatelessWidget {
-  const AdditionalCoststItem({
+class NeedToVerifyList extends StatefulWidget {
+  const NeedToVerifyList({
     super.key,
-    required this.record,
+    required this.needToVerify,
+    required this.pendingAmount,
   });
-  final PendingRepairRequest record;
 
+  final List<NeedToVerifyModel> needToVerify;
+  final int pendingAmount;
+
+  @override
+  State<NeedToVerifyList> createState() => _NeedToVerifyListState();
+}
+
+class _NeedToVerifyListState extends State<NeedToVerifyList> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     return Column(
       children: [
         SizedBox(
@@ -24,7 +31,7 @@ class AdditionalCoststItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               AutoSizeText(
-                l10n.additionalCostsLabel,
+                l10n.bonusServicesLabel,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.outline,
                         ) ??
@@ -38,20 +45,11 @@ class AdditionalCoststItem extends StatelessWidget {
         const SizedBox(
           height: 6,
         ),
-        SizedBox(
-          height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              AutoSizeText(
-                l10n.transitFeeLabel,
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              AutoSizeText(
-                context.formatMoney(record.money),
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-            ],
+        ...List.generate(
+          widget.needToVerify.length,
+          (index) => NeedToVerifyItem(
+            needToVerify: widget.needToVerify[index],
+            pendingAmount: widget.pendingAmount,
           ),
         ),
       ],

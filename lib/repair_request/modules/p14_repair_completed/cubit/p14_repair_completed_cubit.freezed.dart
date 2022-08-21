@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'overview_record_cubit.dart';
+part of 'p14_repair_completed_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$OverviewRecordState {
+mixin _$P14RepairCompletedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -44,45 +44,45 @@ mixin _$OverviewRecordState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_failed value) failed,
-    required TResult Function(_uploading value) uploading,
-    required TResult Function(_succeeded value) succeeded,
+    required TResult Function(_Failed value) failed,
+    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Succeeded value) succeeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OverviewRecordStateCopyWith<$Res> {
-  factory $OverviewRecordStateCopyWith(
-          OverviewRecordState value, $Res Function(OverviewRecordState) then) =
-      _$OverviewRecordStateCopyWithImpl<$Res>;
+abstract class $P14RepairCompletedStateCopyWith<$Res> {
+  factory $P14RepairCompletedStateCopyWith(P14RepairCompletedState value,
+          $Res Function(P14RepairCompletedState) then) =
+      _$P14RepairCompletedStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$OverviewRecordStateCopyWithImpl<$Res>
-    implements $OverviewRecordStateCopyWith<$Res> {
-  _$OverviewRecordStateCopyWithImpl(this._value, this._then);
+class _$P14RepairCompletedStateCopyWithImpl<$Res>
+    implements $P14RepairCompletedStateCopyWith<$Res> {
+  _$P14RepairCompletedStateCopyWithImpl(this._value, this._then);
 
-  final OverviewRecordState _value;
+  final P14RepairCompletedState _value;
   // ignore: unused_field
-  final $Res Function(OverviewRecordState) _then;
+  final $Res Function(P14RepairCompletedState) _then;
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$OverviewRecordStateCopyWithImpl<$Res>
+    extends _$P14RepairCompletedStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -110,7 +110,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'OverviewRecordState.initial()';
+    return 'P14RepairCompletedState.initial()';
   }
 
   @override
@@ -163,9 +163,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_failed value) failed,
-    required TResult Function(_uploading value) uploading,
-    required TResult Function(_succeeded value) succeeded,
+    required TResult Function(_Failed value) failed,
+    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Succeeded value) succeeded,
   }) {
     return initial(this);
   }
@@ -174,9 +174,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
   }) {
     return initial?.call(this);
   }
@@ -185,9 +185,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -197,41 +197,41 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements OverviewRecordState {
+abstract class _Initial implements P14RepairCompletedState {
   const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$_failedCopyWith<$Res> {
-  factory _$$_failedCopyWith(_$_failed value, $Res Function(_$_failed) then) =
-      __$$_failedCopyWithImpl<$Res>;
+abstract class _$$_FailedCopyWith<$Res> {
+  factory _$$_FailedCopyWith(_$_Failed value, $Res Function(_$_Failed) then) =
+      __$$_FailedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_failedCopyWithImpl<$Res>
-    extends _$OverviewRecordStateCopyWithImpl<$Res>
-    implements _$$_failedCopyWith<$Res> {
-  __$$_failedCopyWithImpl(_$_failed _value, $Res Function(_$_failed) _then)
-      : super(_value, (v) => _then(v as _$_failed));
+class __$$_FailedCopyWithImpl<$Res>
+    extends _$P14RepairCompletedStateCopyWithImpl<$Res>
+    implements _$$_FailedCopyWith<$Res> {
+  __$$_FailedCopyWithImpl(_$_Failed _value, $Res Function(_$_Failed) _then)
+      : super(_value, (v) => _then(v as _$_Failed));
 
   @override
-  _$_failed get _value => super._value as _$_failed;
+  _$_Failed get _value => super._value as _$_Failed;
 }
 
 /// @nodoc
 
-class _$_failed implements _failed {
-  const _$_failed();
+class _$_Failed implements _Failed {
+  const _$_Failed();
 
   @override
   String toString() {
-    return 'OverviewRecordState.failed()';
+    return 'P14RepairCompletedState.failed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_failed);
+        (other.runtimeType == runtimeType && other is _$_Failed);
   }
 
   @override
@@ -278,9 +278,9 @@ class _$_failed implements _failed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_failed value) failed,
-    required TResult Function(_uploading value) uploading,
-    required TResult Function(_succeeded value) succeeded,
+    required TResult Function(_Failed value) failed,
+    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Succeeded value) succeeded,
   }) {
     return failed(this);
   }
@@ -289,9 +289,9 @@ class _$_failed implements _failed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
   }) {
     return failed?.call(this);
   }
@@ -300,9 +300,9 @@ class _$_failed implements _failed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -312,43 +312,43 @@ class _$_failed implements _failed {
   }
 }
 
-abstract class _failed implements OverviewRecordState {
-  const factory _failed() = _$_failed;
+abstract class _Failed implements P14RepairCompletedState {
+  const factory _Failed() = _$_Failed;
 }
 
 /// @nodoc
-abstract class _$$_uploadingCopyWith<$Res> {
-  factory _$$_uploadingCopyWith(
-          _$_uploading value, $Res Function(_$_uploading) then) =
-      __$$_uploadingCopyWithImpl<$Res>;
+abstract class _$$_UploadingCopyWith<$Res> {
+  factory _$$_UploadingCopyWith(
+          _$_Uploading value, $Res Function(_$_Uploading) then) =
+      __$$_UploadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_uploadingCopyWithImpl<$Res>
-    extends _$OverviewRecordStateCopyWithImpl<$Res>
-    implements _$$_uploadingCopyWith<$Res> {
-  __$$_uploadingCopyWithImpl(
-      _$_uploading _value, $Res Function(_$_uploading) _then)
-      : super(_value, (v) => _then(v as _$_uploading));
+class __$$_UploadingCopyWithImpl<$Res>
+    extends _$P14RepairCompletedStateCopyWithImpl<$Res>
+    implements _$$_UploadingCopyWith<$Res> {
+  __$$_UploadingCopyWithImpl(
+      _$_Uploading _value, $Res Function(_$_Uploading) _then)
+      : super(_value, (v) => _then(v as _$_Uploading));
 
   @override
-  _$_uploading get _value => super._value as _$_uploading;
+  _$_Uploading get _value => super._value as _$_Uploading;
 }
 
 /// @nodoc
 
-class _$_uploading implements _uploading {
-  const _$_uploading();
+class _$_Uploading implements _Uploading {
+  const _$_Uploading();
 
   @override
   String toString() {
-    return 'OverviewRecordState.uploading()';
+    return 'P14RepairCompletedState.uploading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_uploading);
+        (other.runtimeType == runtimeType && other is _$_Uploading);
   }
 
   @override
@@ -395,9 +395,9 @@ class _$_uploading implements _uploading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_failed value) failed,
-    required TResult Function(_uploading value) uploading,
-    required TResult Function(_succeeded value) succeeded,
+    required TResult Function(_Failed value) failed,
+    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Succeeded value) succeeded,
   }) {
     return uploading(this);
   }
@@ -406,9 +406,9 @@ class _$_uploading implements _uploading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
   }) {
     return uploading?.call(this);
   }
@@ -417,9 +417,9 @@ class _$_uploading implements _uploading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
     required TResult orElse(),
   }) {
     if (uploading != null) {
@@ -429,43 +429,43 @@ class _$_uploading implements _uploading {
   }
 }
 
-abstract class _uploading implements OverviewRecordState {
-  const factory _uploading() = _$_uploading;
+abstract class _Uploading implements P14RepairCompletedState {
+  const factory _Uploading() = _$_Uploading;
 }
 
 /// @nodoc
-abstract class _$$_succeededCopyWith<$Res> {
-  factory _$$_succeededCopyWith(
-          _$_succeeded value, $Res Function(_$_succeeded) then) =
-      __$$_succeededCopyWithImpl<$Res>;
+abstract class _$$_SucceededCopyWith<$Res> {
+  factory _$$_SucceededCopyWith(
+          _$_Succeeded value, $Res Function(_$_Succeeded) then) =
+      __$$_SucceededCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_succeededCopyWithImpl<$Res>
-    extends _$OverviewRecordStateCopyWithImpl<$Res>
-    implements _$$_succeededCopyWith<$Res> {
-  __$$_succeededCopyWithImpl(
-      _$_succeeded _value, $Res Function(_$_succeeded) _then)
-      : super(_value, (v) => _then(v as _$_succeeded));
+class __$$_SucceededCopyWithImpl<$Res>
+    extends _$P14RepairCompletedStateCopyWithImpl<$Res>
+    implements _$$_SucceededCopyWith<$Res> {
+  __$$_SucceededCopyWithImpl(
+      _$_Succeeded _value, $Res Function(_$_Succeeded) _then)
+      : super(_value, (v) => _then(v as _$_Succeeded));
 
   @override
-  _$_succeeded get _value => super._value as _$_succeeded;
+  _$_Succeeded get _value => super._value as _$_Succeeded;
 }
 
 /// @nodoc
 
-class _$_succeeded implements _succeeded {
-  const _$_succeeded();
+class _$_Succeeded implements _Succeeded {
+  const _$_Succeeded();
 
   @override
   String toString() {
-    return 'OverviewRecordState.succeeded()';
+    return 'P14RepairCompletedState.succeeded()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_succeeded);
+        (other.runtimeType == runtimeType && other is _$_Succeeded);
   }
 
   @override
@@ -512,9 +512,9 @@ class _$_succeeded implements _succeeded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_failed value) failed,
-    required TResult Function(_uploading value) uploading,
-    required TResult Function(_succeeded value) succeeded,
+    required TResult Function(_Failed value) failed,
+    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Succeeded value) succeeded,
   }) {
     return succeeded(this);
   }
@@ -523,9 +523,9 @@ class _$_succeeded implements _succeeded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
   }) {
     return succeeded?.call(this);
   }
@@ -534,9 +534,9 @@ class _$_succeeded implements _succeeded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_failed value)? failed,
-    TResult Function(_uploading value)? uploading,
-    TResult Function(_succeeded value)? succeeded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Succeeded value)? succeeded,
     required TResult orElse(),
   }) {
     if (succeeded != null) {
@@ -546,6 +546,6 @@ class _$_succeeded implements _succeeded {
   }
 }
 
-abstract class _succeeded implements OverviewRecordState {
-  const factory _succeeded() = _$_succeeded;
+abstract class _Succeeded implements P14RepairCompletedState {
+  const factory _Succeeded() = _$_Succeeded;
 }

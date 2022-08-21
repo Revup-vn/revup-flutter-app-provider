@@ -7,8 +7,8 @@ import 'package:revup_core/core.dart';
 
 import '../../../models/models.dart';
 
-part 'select_options_state.dart';
 part 'select_options_cubit.freezed.dart';
+part 'select_options_state.dart';
 
 class SelectOptionsCubit extends Cubit<SelectOptionsState> {
   SelectOptionsCubit(this._irs) : super(const SelectOptionsState.initial());
@@ -28,9 +28,12 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
                   pending: (val) => PendingServiceModel(
                     name: val.serviceName,
                     price: val.moneyAmount +
-                        val.products
-                            .map((e) => e.unitPrice * e.quantity)
-                            .reduce((value, element) => value + element),
+                        ((val.isOptional || val.products.isEmpty)
+                            ? 0
+                            : val.products
+                                .map((e) => e.unitPrice * e.quantity)
+                                .reduce((value, element) => value + element)),
+                    isOptional: val.isOptional,
                   ),
                 ),
               ),
