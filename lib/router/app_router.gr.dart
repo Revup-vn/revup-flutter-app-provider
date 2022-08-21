@@ -11,21 +11,29 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'dart:async' as _i26;
+
+import 'package:flutter/material.dart' as _i21;
 
 import 'package:auto_route/auto_route.dart' as _i20;
 import 'package:dartz/dartz.dart' as _i23;
-import 'package:flutter/material.dart' as _i21;
 import 'package:revup_core/core.dart' as _i25;
+
 import 'package:revup_provider/home/home.dart' as _i11;
-import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i14;
 import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
 import 'package:revup_provider/my_review/my_review.dart' as _i9;
-import 'package:revup_provider/new_request/models/pending_repair_request.dart'
-    as _i22;
 import 'package:revup_provider/new_request/view/new_request_page.dart' as _i15;
 import 'package:revup_provider/otp/view/otp_page.u.dart' as _i13;
+import 'package:revup_provider/repair_request/request.dart' as _i6;
+import 'package:revup_provider/repair_service/repair_service.dart' as _i8;
+import 'package:revup_provider/signup/view/signup_page.u.dart' as _i12;
+import 'package:revup_provider/splash/splash.dart' as _i1;
+
+import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i14;
+import 'package:revup_provider/new_request/models/pending_repair_request.dart'
+    as _i22;
 import 'package:revup_provider/permission_page/view/permission_page.u.dart'
     as _i19;
 import 'package:revup_provider/repair_request/models/need_to_verify_model.dart'
@@ -40,14 +48,10 @@ import 'package:revup_provider/repair_request/modules/p14_repair_completed/view/
     as _i5;
 import 'package:revup_provider/repair_request/modules/p4_info_request/view/info_request_page.u.dart'
     as _i4;
-import 'package:revup_provider/repair_request/request.dart' as _i6;
 import 'package:revup_provider/repair_service/add-product/view/add_product_page.u.dart'
     as _i18;
-import 'package:revup_provider/repair_service/repair_service.dart' as _i8;
 import 'package:revup_provider/repair_service/update_service/view/view.dart'
     as _i17;
-import 'package:revup_provider/signup/view/signup_page.u.dart' as _i12;
-import 'package:revup_provider/splash/splash.dart' as _i1;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
     as _i10;
 

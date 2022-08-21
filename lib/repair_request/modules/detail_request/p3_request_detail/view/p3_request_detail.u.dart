@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../new_request/models/pending_repair_request.dart';

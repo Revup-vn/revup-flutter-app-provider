@@ -1,5 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../models/need_to_verify_model.dart';
