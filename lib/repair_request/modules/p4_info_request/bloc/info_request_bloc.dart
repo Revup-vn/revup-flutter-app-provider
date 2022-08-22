@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../new_request/models/pending_repair_request.dart';
-import '../../../models/pending_service_model.dart';
 
 part 'info_request_bloc.freezed.dart';
 part 'info_request_event.dart';
@@ -12,25 +15,19 @@ part 'info_request_state.dart';
 
 class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   InfoRequestBloc(
-    this.consumer,
     this.record,
-    this.distance,
-    this.pendingService,
-    this.pendingAmount,
-    this._userStore,
     this._repairRecord,
-    this.storeRepository,
+    this._userRepos,
+    this._paymentService,
+    this.user,
   ) : super(const _Initial()) {
     on<InfoRequestEvent>(_onEvent);
   }
-  final AppUser consumer;
   final PendingRepairRequest record;
-  final double distance;
-  final IList<PendingServiceModel> pendingService;
-  final int pendingAmount;
-  final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
-  final StoreRepository storeRepository;
+  final IStore<RepairRecord> _userRepos;
+  final IStore<PaymentService> _paymentService;
+  final AppUser user;
 
   Future<void> _onEvent(
     InfoRequestEvent event,
@@ -38,14 +35,8 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   ) async {
     await event.when(
       started: () async {
-        print('in here');
         emit(const InfoRequestState.loading());
-        // get `need to verify` service list
-        final needToVerifyService = (await storeRepository
-                .repairPaymentRepo(
-                  RepairRecordDummy.dummyStarted(record.id),
-                )
-                .all())
+        final needToVerifyService = (await _paymentService.all())
             .map<IList<PaymentService>>(
               (r) => r.filter(
                 (a) =>
@@ -53,16 +44,25 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
               ),
             )
             .fold((l) => ilist(<PaymentService>[]), (r) => r);
-
-        emit(
-          InfoRequestState.success(
-            consumer: consumer,
-            distance: distance,
-            pendingService: pendingService,
-            pendingAmount: pendingAmount,
-            needToVerifyService: needToVerifyService,
-            record: record,
-          ),
+        await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
+          _paymentService.collection().snapshots(),
+          onData: (data) {
+            final len = data.docs
+                .map(_paymentService.parseRawData)
+                .fold<IList<PaymentService>>(
+                  nil(),
+                  (p, e) => e.fold(
+                    (l) => p,
+                    (r) => cons(r, p),
+                  ),
+                )
+                .length();
+            return InfoRequestState.success(
+              needToVerifyService: needToVerifyService,
+              record: record,
+              len: len,
+            );
+          },
         );
       },
       confirmArrived: () async {
@@ -98,6 +98,12 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
             to: record.to, started: DateTime.now(),
           ),
         );
+      },
+      locationUpdated: (pos) async {
+        final point = GeoFlutterFire()
+            .point(latitude: pos.latitude, longitude: pos.longitude);
+        final curLocation = {AppUserFields.GeoPointLocation.toString(): point};
+        await _userRepos.collection().doc(user.uuid).update(curLocation);
       },
     );
   }

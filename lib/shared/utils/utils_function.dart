@@ -20,19 +20,41 @@ Future<void> makePhoneCall(String phoneNumber) async {
   await launchUrl(launchUri);
 }
 
-Future<bool> requestUserLocation() async {
-  LocationPermission permission;
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.value(false);
+Future<bool> requestPermission() async {
+  // LocationPermission permission;
+  // permission = await Geolocator.checkPermission();
+  // if (permission == LocationPermission.denied) {
+  //   permission = await Geolocator.requestPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     return Future.value(false);
+  //   }
+  // }
+
+  // if (permission == LocationPermission.deniedForever) {
+  //   return Future.value(false);
+  // }
+
+  // return Future.value(true);
+  LocationPermission per;
+  per = await Geolocator.checkPermission();
+  if (per != LocationPermission.always &&
+      per != LocationPermission.whileInUse) {
+    per = await Geolocator.requestPermission();
+
+    if (per != LocationPermission.always &&
+        per != LocationPermission.whileInUse) {
+      per = await Geolocator.requestPermission();
+
+      if (per != LocationPermission.always &&
+          per != LocationPermission.whileInUse) {
+        per = await Geolocator.requestPermission();
+
+        if (per != LocationPermission.always &&
+            per != LocationPermission.whileInUse) {
+          return Future.value(false);
+        }
+      }
     }
   }
-
-  if (permission == LocationPermission.deniedForever) {
-    return Future.value(false);
-  }
-
   return Future.value(true);
 }

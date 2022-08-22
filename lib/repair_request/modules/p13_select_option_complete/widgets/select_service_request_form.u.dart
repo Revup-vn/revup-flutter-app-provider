@@ -15,13 +15,11 @@ class SelectServiceRequestForm extends StatelessWidget {
   });
 
   final GlobalKey<FormBuilderState> formKey;
-
   final List<PendingServiceModel> services;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     return Column(
       children: [
         SizedBox(

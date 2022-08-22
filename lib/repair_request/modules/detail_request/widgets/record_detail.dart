@@ -1,5 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../models/models.dart';
 import 'paid_service_item.u.dart';
@@ -47,7 +48,7 @@ class RecordDetail extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    ServiceRequestItem(requests: unpaidServices),
+                    ServiceRequestItem(pendingService: unpaidServices),
                     const SizedBox(
                       height: 16,
                     ),
@@ -58,14 +59,8 @@ class RecordDetail extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    PaidServiceItem(bonuses: paidServices),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const Divider(
-                      height: 1,
-                      thickness: 1,
-                    ),
+                    if (paidServices.isNotEmpty)
+                      PaidServiceItem(paidService: paidServices),
                     const SizedBox(
                       height: 16,
                     ),
@@ -74,20 +69,18 @@ class RecordDetail extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Column(
-              children: [
-                TotalServicePriceItem(
-                  pendingAmount: -paidServices
-                          .map((e) => e.price)
-                          .toList()
-                          .reduce((value, element) => value + element) +
-                      unpaidServices
-                          .map((e) => e.price)
-                          .reduce((value, element) => value + element),
-                ),
-              ],
-            ),
+          TotalServicePriceItem(
+            pendingAmount: (paidServices.isEmpty
+                    ? 0
+                    : -paidServices
+                        .map((e) => e.price)
+                        .toList()
+                        .reduce((value, element) => value + element)) +
+                (unpaidServices.isEmpty
+                    ? 0
+                    : unpaidServices
+                        .map((e) => e.price)
+                        .reduce((value, element) => value + element)),
           ),
         ],
       );

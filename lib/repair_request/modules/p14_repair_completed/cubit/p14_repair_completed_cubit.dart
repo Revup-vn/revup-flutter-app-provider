@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -8,12 +7,12 @@ import 'package:revup_core/core.dart';
 
 import '../../../models/models.dart';
 
-part 'overview_record_state.dart';
-part 'overview_record_cubit.freezed.dart';
+part 'p14_repair_completed_cubit.freezed.dart';
+part 'p14_repair_completed_state.dart';
 
-class OverviewRecordCubit extends Cubit<OverviewRecordState> {
-  OverviewRecordCubit(this._irr, this._rid, this._sb, this._sr)
-      : super(const OverviewRecordState.initial());
+class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
+  P14RepairCompletedCubit(this._irr, this._rid, this._sb, this._sr)
+      : super(const P14RepairCompletedState.initial());
   final IStore<RepairRecord> _irr;
   final StoreRepository _sr;
   final StorageBloc _sb;
@@ -28,7 +27,8 @@ class OverviewRecordCubit extends Cubit<OverviewRecordState> {
   ) async {
     final currRecord =
         await _irr.get(_rid); // The record must have type started
-    currRecord.fold((l) => emit(const OverviewRecordState.failed()), (r) async {
+    currRecord.fold((l) => emit(const P14RepairCompletedState.failed()),
+        (r) async {
       // Save images
       final imgLinks = await _auxUploadImage(imgs);
 
@@ -59,26 +59,27 @@ class OverviewRecordCubit extends Cubit<OverviewRecordState> {
         r.maybeMap(
           orElse: () => throw NullThrownError(),
           started: (val) => RepairRecord.finished(
-              id: val.id,
-              cid: val.cid,
-              pid: val.pid,
-              created: val.created,
-              desc: val.desc,
-              vehicle: val.vehicle,
-              money: paid
-                      .map((e) => e.price)
-                      .reduce((value, element) => value + element) +
-                  finished
-                      .map((e) => e.price)
-                      .reduce((value, element) => value + element),
-              moving: val.moving,
-              started: val.started,
-              completed: DateTime.now(),
-              imgs: imgLinks,
-              feedback:
-                  ReportFeedbackDummy.dummy(), // Consumer will overwrite this
-              from: val.from,
-              to: val.to),
+            id: val.id,
+            cid: val.cid,
+            pid: val.pid,
+            created: val.created,
+            desc: val.desc,
+            vehicle: val.vehicle,
+            money: paid
+                    .map((e) => e.price)
+                    .reduce((value, element) => value + element) +
+                finished
+                    .map((e) => e.price)
+                    .reduce((value, element) => value + element),
+            moving: val.moving,
+            started: val.started,
+            completed: DateTime.now(),
+            imgs: imgLinks,
+            feedback:
+                ReportFeedbackDummy.dummy(), // Consumer will overwrite this
+            from: val.from,
+            to: val.to,
+          ),
         ),
       );
     });

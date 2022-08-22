@@ -215,5 +215,10 @@
   "sureLabel": "Bạn có chắc không?",
   "delProductLabel": "Dữ liệu về sản phẩm này sẽ bị xoá hết",
   "delServiceLabel": "Dữ liệu về dịch vụ này sẽ bị xoá hết",
-  "updateServiceLabel": "Chỉnh sửa dịch vụ"
+  "updateServiceLabel": "Chỉnh sửa dịch vụ",
+  "repairLocationLabel": "Địa điểm sửa chữa",
+  "currentLocationLabel": "Vị trí hiện tại",
+  "locationDeniedLabel": "Revup cần vị trí của bạn để khách hàng có thể tìm kiếm dịch vụ của bạn dễ dàng hơn",
+  "enableLocationLabel": "Cho phép truy cập vị trí",
+  "chooseAtLeastCompletedLabel": "Chọn ít nhất một dịch vụ"
 }
