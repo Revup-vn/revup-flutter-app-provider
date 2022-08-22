@@ -191,7 +191,7 @@
   "enterPhoneNumberLabel": "Enter your phone number to continue",
   "toomanyReqLabel": "You request OTP too many time, please wait before retry",
   "idCardLabel": "ID Card Number",
-  "imageCardLabel": "ID Card Image",
+  "imageCardLabel": "Business Registration Certificate Image",
   "bioLabel": "Your slogan",
   "feeOfTransportLabel": "Fee of transport",
   "acceptLabel": "Accept",
