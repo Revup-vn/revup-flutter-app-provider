@@ -121,65 +121,166 @@ class LoginPage extends StatelessWidget {
                   );
                 },
                 provider: (value) {
-                  context.loaderOverlay.hide();
-                  showDialog<String>(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        backgroundColor: Colors.transparent,
-                        insetPadding: const EdgeInsets.all(10),
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 200,
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.done,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onTertiary,
-                                  ),
-                                  AutoSizeText(
-                                    context.l10n.loginSuccessLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onTertiary,
-                                        ),
-                                  ),
-                                ],
+                  if (value.active == true) {
+                    context.loaderOverlay.hide();
+                    showDialog<String>(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: const EdgeInsets.all(10),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                height: 200,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.done,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary,
+                                    ),
+                                    AutoSizeText(
+                                      context.l10n.loginSuccessLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onTertiary,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-
-                  return Future.delayed(const Duration(seconds: 3), () async {
-                    final boxAuthType = await Hive.openBox<dynamic>('authType');
-                    await boxAuthType.put(
-                      'auth',
-                      authType.map(
-                        google: (value) =>
-                            AuthType.google(user: value.user).toJson(),
-                        phone: (value) =>
-                            AuthType.phone(user: value.user).toJson(),
-                        email: (value) =>
-                            AuthType.email(user: value.user).toJson(),
-                      ),
+                            ],
+                          ),
+                        );
+                      },
                     );
 
-                    await context.router.pushAndPopUntil(
-                      HomeRoute(user: authType.user),
-                      predicate: (_) => true,
+                    return Future.delayed(
+                      const Duration(seconds: 3),
+                      () async {
+                        final boxAuthType =
+                            await Hive.openBox<dynamic>('authType');
+                        await boxAuthType.put(
+                          'auth',
+                          authType.map(
+                            google: (value) =>
+                                AuthType.google(user: value.user).toJson(),
+                            phone: (value) =>
+                                AuthType.phone(user: value.user).toJson(),
+                            email: (value) =>
+                                AuthType.email(user: value.user).toJson(),
+                          ),
+                        );
+
+                        await context.router.pushAndPopUntil(
+                          HomeRoute(user: authType.user),
+                          predicate: (_) => true,
+                        );
+                      },
                     );
-                  });
+                  } else {
+                    context.loaderOverlay.hide();
+                    showDialog<String>(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: const EdgeInsets.all(10),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                height: 200,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Center(
+                                      child: Icon(
+                                        Icons.warning,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
+                                      ),
+                                    ),
+                                    AutoSizeText(
+                                      context.l10n.accountNotActiveLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                    ),
+                                    AutoSizeText(
+                                      context.l10n.canLoginLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                    ),
+                                    AutoSizeText(
+                                      context.l10n.loginFailDescLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: TextButton(
+                                  onPressed: () async {
+                                    final boxAuthType =
+                                        await Hive.openBox<dynamic>('authType');
+                                    await boxAuthType.put(
+                                      'auth',
+                                      authType.map(
+                                        google: (value) =>
+                                            AuthType.google(user: value.user)
+                                                .toJson(),
+                                        phone: (value) =>
+                                            AuthType.phone(user: value.user)
+                                                .toJson(),
+                                        email: (value) =>
+                                            AuthType.email(user: value.user)
+                                                .toJson(),
+                                      ),
+                                    );
+
+                                    await context.router.pushAndPopUntil(
+                                      HomeRoute(user: authType.user),
+                                      predicate: (_) => true,
+                                    );
+                                  },
+                                  child: const AutoSizeText('Ok'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }
                 },
               );
             },

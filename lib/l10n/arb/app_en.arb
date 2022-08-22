@@ -228,5 +228,7 @@
   "updateProfileFail": "Update fail",
   "languageLabel": "Language",
   "vietnameseLabel": "Vietnamese",
-  "englishLabel": "English"
+  "englishLabel": "English",
+  "accountNotActiveLabel": "Your account has not been active yet.",
+  "canLoginLabel": "You still can login but consumer can not book you."
 }
