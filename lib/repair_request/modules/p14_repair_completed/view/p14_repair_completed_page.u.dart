@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/models.dart';
@@ -22,13 +21,17 @@ class P14RepairCompletePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => P14RepairCompletedCubit(
-        context.read(),
-        recordId,
-        context.read(),
-        context.read(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => P14RepairCompletedCubit(
+            context.read(),
+            recordId,
+            context.read(),
+            context.read(),
+          ),
+        ),
+      ],
       child: P14RepairCompleteView(
         finished: finished,
         paid: paid,

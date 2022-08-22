@@ -1,15 +1,36 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../router/router.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotificationCubit>().addForegroundListener((p0) {
+      final type = p0.type;
+      switch (type) {
+        case NotificationType.ConsumerRequestRepair:
+          context.router
+              .push(NewRequestRoute(recordId: p0.data['recordId'] as String));
+          break;
+        // ignore: no_default_cases
+        default:
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

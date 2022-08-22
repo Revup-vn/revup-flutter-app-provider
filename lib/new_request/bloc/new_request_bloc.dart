@@ -17,13 +17,18 @@ part 'new_request_event.dart';
 part 'new_request_state.dart';
 
 class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
-  NewRequestBloc(this._repairRecord, this._userStore, this.storeRepository)
-      : super(const _Initial()) {
+  NewRequestBloc(
+    this._repairRecord,
+    this._userStore,
+    this.storeRepository,
+    this.recordId,
+  ) : super(const _Initial()) {
     on<NewRequestEvent>(_onEvent);
   }
   final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
+  final String recordId;
 
   FutureOr<void> _onEvent(
     NewRequestEvent event,
@@ -31,20 +36,18 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
   ) async {
     await event.when(
       started: () async {
-        // TODO(cantgim): get repair record id from message
-        final repairRecord =
-            (await _repairRecord.get('13fb558d-112d-45e2-b7fc-b78f3778dc1b'))
-                .map<Option<RepairRecord>>(
-                  (r) => r.maybeMap(
-                    pending: some,
-                    orElse: none,
-                  ),
-                )
-                .fold<Option<RepairRecord>>(
-                  (l) => none(),
-                  (r) => r,
-                )
-                .getOrElse(() => throw NullThrownError());
+        final repairRecord = (await _repairRecord.get(recordId))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                pending: some,
+                orElse: none,
+              ),
+            )
+            .fold<Option<RepairRecord>>(
+              (l) => none(),
+              (r) => r,
+            )
+            .getOrElse(() => throw NullThrownError());
         final pendingRequest =
             PendingRepairRequest.fromDto(repairRecord: repairRecord);
         final consumer = (await _userStore.get(repairRecord.cid))
@@ -142,7 +145,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
               ),
             );
       },
-      accepted: (record) async {
+      accepted: (record, onRoute, sendMessage) async {
         // update repair record with accepted type
         await _repairRecord.update(
           RepairRecord.accepted(
@@ -168,6 +171,55 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
             PaymentService.needToVerify(serviceName: e.name, desc: e.desc),
           ),
         );
+
+        // get consumer fcm token
+        final consumer = (await _userStore.get(record.cid))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+        final token =
+            (await storeRepository.userNotificationTokenRepo(consumer).all())
+                .fold((l) => throw NullThrownError(), (r) => r.toList())
+                .first;
+
+        // send notification to consumer
+        sendMessage(token.token);
+        // route to info request
+        onRoute();
+      },
+      decline: (record, onRoute, sendMessage) async {
+        // update record to decline status
+        await _repairRecord.update(
+          RepairRecord.aborted(
+            id: record.id,
+            cid: record.cid,
+            pid: record.pid,
+            created: record.created,
+            desc: record.desc,
+            vehicle: record.vehicle,
+            money: record.money,
+            from: record.from,
+            to: record.to,
+          ),
+        );
+        // get consumer fcm token
+        final consumer = (await _userStore.get(record.cid))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+        final token =
+            (await storeRepository.userNotificationTokenRepo(consumer).all())
+                .fold((l) => throw NullThrownError(), (r) => r.toList())
+                .first;
+
+        // send notification to consumer
+        sendMessage(token.token);
+        // route to home page
+        onRoute();
       },
     );
   }

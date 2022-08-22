@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -35,6 +34,7 @@ class RequestDetailsStatic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final cubitNotify = context.read<NotificationCubit>();
 
     return Positioned(
       bottom: 0,
@@ -191,18 +191,30 @@ class RequestDetailsStatic extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context
-                      .read<NewRequestBloc>()
-                      .add(NewRequestEvent.accepted(record: record));
-                  context.router.replace(
-                    InfoRequestRoute(
-                      consumer: consumer,
-                      record: record,
-                      distance: distance,
-                      pendingService: pendingService,
-                      pendingAmount: pendingAmount,
-                    ),
-                  );
+                  context.read<NewRequestBloc>().add(
+                        NewRequestEvent.accepted(
+                          record: record,
+                          onRoute: () => context.router.replace(
+                            InfoRequestRoute(
+                              consumer: consumer,
+                              record: record,
+                              distance: distance,
+                              pendingService: pendingService,
+                              pendingAmount: pendingAmount,
+                            ),
+                          ),
+                          sendMessage: (token) =>
+                              cubitNotify.sendMessageToToken(
+                            SendMessage(
+                              title: 'Revup',
+                              body: l10n.providerAcceptRequestLabel,
+                              token: token,
+                              iconUrl: kRevupIconApp,
+                              type: NotificationType.ProviderAccept,
+                            ),
+                          ),
+                        ),
+                      );
                 },
                 child: AutoSizeText(l10n.acceptLabel),
               ),

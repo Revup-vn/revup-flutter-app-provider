@@ -20,11 +20,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     await event.when(
       started: (lat, lng) async {
-        emit(const HomeState.loading());
         final point = GeoFlutterFire().point(latitude: lat, longitude: lng);
-        final curLocation = {AppUserFields.GeoPointLocation.toString(): point};
-        await _userRepos.collection().doc(user.uuid).set(curLocation);
-        emit(const HomeState.initial());
+        final data = point.data as Map<String, dynamic>;
+        final curLocation = {'cur_location': data};
+        await _userRepos.collection().doc(user.uuid).update(curLocation);
       },
       changeActiveStatus: (status, providerID) async {
         final tmp = (await _userRepos.get(providerID))

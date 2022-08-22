@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
@@ -53,7 +52,7 @@ class UploadPhotosItem extends StatelessWidget {
               child: SizedBox(
                 height: 64,
                 child: ListView.builder(
-                  itemCount: 2,
+                  itemCount: 0,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Image.asset(

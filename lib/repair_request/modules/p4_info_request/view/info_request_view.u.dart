@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:revup_core/core.dart';
@@ -12,6 +11,7 @@ import 'package:revup_core/core.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../new_request/models/pending_repair_request.dart';
 import '../../../../router/router.dart';
+import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/info_request_bloc.dart';
 import '../widgets/action_button.dart';
@@ -60,30 +60,9 @@ class _InfoRequestViewState extends State<InfoRequestView> {
     );
     // TODO (cantgim): listen for event choose product from consumer
 
-    // final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
-    //   () => throw NullThrownError(),
-    // );
-
-    final user = AppUser.provider(
-        uuid: 'geCHNSHZ2xg2GfMSfZpxAweWWln2',
-        firstName: 'firstName',
-        lastName: 'lastName',
-        phone: 'phone',
-        dob: DateTime.now(),
-        addr: 'addr',
-        email: 'email',
-        active: true,
-        avatarUrl: 'https://shibatoken.com/images/c1.png',
-        createdTime: DateTime.now(),
-        lastUpdatedTime: DateTime.now(),
-        idCardNum: 'idCardNum',
-        idCardImage: 'idCardImage',
-        backgroundUrl: 'https://shibatoken.com/images/c1.png',
-        bio: 'bio',
-        vac: VideoCallAccount(
-            id: 'id', username: 'username', pwd: 'pwd', email: 'email'),
-        online: true,
-        loc: Location(name: 'name', long: 1, lat: 1));
+    final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
+      () => throw NullThrownError(),
+    );
 
     return BlocBuilder<InfoRequestBloc, InfoRequestState>(
       builder: (context, state) {

@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../../shared/utils/utils.dart';
 import '../../shared/utils/utils_function.dart';
 import '../bloc/new_request_bloc.dart';
 import '../widgets/request_details_static.dart';
@@ -19,6 +19,7 @@ class NewRequestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final blocPage = context.watch<NewRequestBloc>();
+    final cubitNotify = context.read<NotificationCubit>();
     blocPage.state.whenOrNull(
       initial: () => blocPage.add(const NewRequestEvent.started()),
     );
@@ -94,15 +95,32 @@ class NewRequestView extends StatelessWidget {
                                         ),
                                         ElevatedButton(
                                           onPressed: () {
-                                            context.router.replaceAll(
-                                              [
-                                                HomeRoute(
-                                                  user: maybeUser.getOrElse(
-                                                    () =>
-                                                        throw NullThrownError(),
+                                            blocPage.add(
+                                              NewRequestEvent.decline(
+                                                record: record,
+                                                onRoute: () =>
+                                                    context.router.replace(
+                                                  HomeRoute(
+                                                    user: maybeUser.getOrElse(
+                                                      () =>
+                                                          throw NullThrownError(),
+                                                    ),
                                                   ),
-                                                )
-                                              ],
+                                                ),
+                                                sendMessage: (token) =>
+                                                    cubitNotify
+                                                        .sendMessageToToken(
+                                                  SendMessage(
+                                                    title: 'Revup',
+                                                    body: context.l10n
+                                                        .providerDeclineRequestLabel,
+                                                    token: token,
+                                                    iconUrl: kRevupIconApp,
+                                                    type: NotificationType
+                                                        .ProviderDecline,
+                                                  ),
+                                                ),
+                                              ),
                                             );
                                           },
                                           child:
