@@ -7,7 +7,7 @@
   "aboutUsLabel": "Giới thiệu về chúng tôi",
   "acceptPolicyLabel": "Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các ",
   "accountLabel": "Tài khoản của tôi",
-  "activateLabel": "Kích hoạt",
+  "activateLabel": "Hoạt động",
   "additionalCostsLabel": "Chi phí phụ",
   "addLabel": "Thêm mới",
   "addNewServiceLabel": "Thêm mới dịch vụ",
@@ -220,5 +220,11 @@
   "currentLocationLabel": "Vị trí hiện tại",
   "locationDeniedLabel": "Revup cần vị trí của bạn để khách hàng có thể tìm kiếm dịch vụ của bạn dễ dàng hơn",
   "enableLocationLabel": "Cho phép truy cập vị trí",
-  "chooseAtLeastCompletedLabel": "Chọn ít nhất một dịch vụ"
+  "chooseAtLeastCompletedLabel": "Chọn ít nhất một dịch vụ",
+  "loginFailLabel": "Tài khoản của bạn không được phép đăng nhập.",
+  "loginFailDescLabel": "Vui lòng liên hệ cskh để biết thêm thông tin.",
+  "updateProfileFail": "Cập nhật tài khoản lỗi vui lòng thử lại",
+  "languageLabel": "Ngôn ngữ",
+  "vietnameseLabel": "Tiếng Việt",
+  "englishLabel": "Tiếng Anh"
 }

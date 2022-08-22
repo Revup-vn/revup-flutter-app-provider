@@ -23,7 +23,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(const HomeState.loading());
         final point = GeoFlutterFire().point(latitude: lat, longitude: lng);
         final curLocation = {AppUserFields.GeoPointLocation.toString(): point};
-        await _userRepos.collection().doc(user.uuid).set(curLocation);
+        await _userRepos
+            .collection()
+            .doc(user.uuid)
+            .set(curLocation); //TODO(cantgim): geopoint error
         emit(const HomeState.initial());
       },
       changeActiveStatus: (status, providerID) async {

@@ -222,5 +222,11 @@
   "currentLocationLabel": "Current Location",
   "locationDeniedLabel": "Revup needs your location so customers can find your services more easily",
   "enableLocationLabel": "Allow location access",
-  "chooseAtLeastCompletedLabel": "Choose at least one service"
+  "chooseAtLeastCompletedLabel": "Choose at least one service",
+  "loginFailLabel": "Your account is not allowed to login.",
+  "loginFailDescLabel": "Please contact care center for more information.",
+  "updateProfileFail": "Update fail",
+  "languageLabel": "Language",
+  "vietnameseLabel": "Vietnamese",
+  "englishLabel": "English"
 }

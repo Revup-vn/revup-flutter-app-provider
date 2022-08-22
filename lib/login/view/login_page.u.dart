@@ -7,6 +7,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
@@ -49,47 +50,138 @@ class LoginPage extends StatelessWidget {
               orElse: () => false,
             ),
             authenticated: (authType) {
-              context.loaderOverlay.hide();
-              showDialog<String>(
-                context: context,
-                builder: (context) {
-                  return Dialog(
-                    backgroundColor: Colors.transparent,
-                    insetPadding: const EdgeInsets.all(10),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          height: 200,
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.done,
-                                color: Theme.of(context).colorScheme.onTertiary,
+              authType.user.maybeMap(
+                orElse: () {
+                  context.loaderOverlay.hide();
+                  showDialog<String>(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inverseSurface,
                               ),
-                              AutoSizeText(
-                                context.l10n.loginSuccessLabel,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiary,
-                                    ),
+                              width: double.infinity,
+                              height: 70,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.cancel_outlined,
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                    maxLines: 1,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailDescLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                    maxLines: 1,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
+                  );
+                  Future.delayed(
+                    const Duration(seconds: 5),
+                    () {
+                      context
+                          .read<AuthenticateBloc>()
+                          .add(AuthenticateEvent.signOut(authType: authType));
+                      context.router.pop();
+                    },
                   );
                 },
-              );
+                provider: (value) {
+                  context.loaderOverlay.hide();
+                  showDialog<String>(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.done,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onTertiary,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginSuccessLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onTertiary,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
 
-              return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(HomeRoute(user: authType.user));
-              });
+                  return Future.delayed(const Duration(seconds: 3), () async {
+                    final boxAuthType = await Hive.openBox<dynamic>('authType');
+                    await boxAuthType.put(
+                      'auth',
+                      authType.map(
+                        google: (value) =>
+                            AuthType.google(user: value.user).toJson(),
+                        phone: (value) =>
+                            AuthType.phone(user: value.user).toJson(),
+                        email: (value) =>
+                            AuthType.email(user: value.user).toJson(),
+                      ),
+                    );
+
+                    await context.router.pushAndPopUntil(
+                      HomeRoute(user: authType.user),
+                      predicate: (_) => true,
+                    );
+                  });
+                },
+              );
             },
             orElse: () => false,
           ),

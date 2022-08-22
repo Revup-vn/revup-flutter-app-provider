@@ -197,7 +197,6 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
               Row(
                 children: [
                   const Expanded(child: Divider()),
