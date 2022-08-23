@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
+import '../change_language/view/change_language_page.dart';
 import '../home/home.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
@@ -23,7 +24,7 @@ import '../vendor_authentication/vender_authentication.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: P3RequestDetailPage, maintainState: false),
     AdaptiveRoute<void>(page: InfoRequestPage),
@@ -40,11 +41,12 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: NewRequestPage),
-    AdaptiveRoute<void>(page: P12DetailPage, initial: true),
+    AdaptiveRoute<void>(page: P12DetailPage),
     AdaptiveRoute<void>(page: P10QuotePricePage),
     AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: AddProductPage),
     AdaptiveRoute<void>(page: PermissionPage),
+    AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

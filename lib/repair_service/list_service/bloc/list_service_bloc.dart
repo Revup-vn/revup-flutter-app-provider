@@ -46,9 +46,11 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
           (aUser) async {
             final tmp = await (storeRepository.repairCategoryRepo(aUser))
                 .where('name', isEqualTo: 'Xe máy');
-            tmp.fold(
-              (l) => emit(const ListServiceState.failure()),
-              (r) async => r.map(
+            tmp.fold((l) => emit(const ListServiceState.failure()), (r) async {
+              if (r.length() == 0) {
+                data.complete(<ServiceModel>[]);
+              }
+              r.map(
                 (repairCate) async {
                   final listService = await storeRepository
                       .repairServiceRepo(aUser, repairCate)
@@ -101,8 +103,8 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                   );
                   data.complete(listServiceModel);
                 },
-              ),
-            );
+              );
+            });
           },
         );
         final res = await data.future;

@@ -10,31 +10,43 @@ class BackGroundView extends StatelessWidget {
   const BackGroundView(
     this.coverHeight,
     this.backgroundImg,
-    this.callback, {
+    this.callback,
+    this.imgUrl, {
     super.key,
   });
   final double coverHeight;
   final File backgroundImg;
   final VoidCallback? callback;
+  final String imgUrl;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SizedBox(
-          child: backgroundImg.path.isEmpty
-              ? CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: coverHeight,
-                  imageUrl: kFallbackBackground,
-                )
-              : Image.file(
-                  backgroundImg,
-                  fit: BoxFit.fill,
-                  height: coverHeight,
-                  width: double.infinity,
-                ),
-        ),
+        if (imgUrl.isEmpty)
+          SizedBox(
+            child: backgroundImg.path.isEmpty
+                ? CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: coverHeight,
+                    imageUrl: kFallbackBackground,
+                  )
+                : Image.file(
+                    backgroundImg,
+                    fit: BoxFit.fill,
+                    height: coverHeight,
+                    width: double.infinity,
+                  ),
+          )
+        else
+          SizedBox(
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: coverHeight,
+              imageUrl: imgUrl,
+            ),
+          ),
         Positioned(
           bottom: 1,
           right: 1,

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/widgets/loading.u.dart';
 import '../../../home.dart';
-import '../widgets/acoount_content.u.dart';
+import '../widgets/account_content.u.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({

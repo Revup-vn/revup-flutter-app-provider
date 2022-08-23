@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../shared/widgets/loading.u.dart';
 import '../bloc/add_service_bloc.dart';
 import '../bloc/dropdown_list_bloc.dart';
 import '../bloc/upload_image_bloc.dart';
@@ -36,9 +37,10 @@ class AddServicePage extends StatelessWidget {
         ),
       ],
       child: BlocConsumer<AddServiceBloc, AddServiceState>(
-        builder: (context, state) => state.map(
+        builder: (context, state) => state.maybeMap(
+          loading: (value) => const Loading(),
           initial: (value) => AddServiceView(),
-          addServiceSuccess: (value) => Container(),
+          orElse: Container.new,
         ),
         listener: (context, state) => state.maybeWhen(
           addServiceSuccess: () {
