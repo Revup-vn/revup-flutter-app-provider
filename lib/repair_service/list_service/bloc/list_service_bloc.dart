@@ -135,60 +135,67 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                 .where('name', isEqualTo: type);
             tmp.fold(
               (l) => emit(const ListServiceState.failure()),
-              (r) async => r.map(
-                (repairCate) async {
-                  final listService = await storeRepository
-                      .repairServiceRepo(aUser, repairCate)
-                      .all();
-                  final listS = listService
-                      .map<IList<RepairService>>((r) => r)
-                      .fold<IList<RepairService>>((l) => nil(), (r) => r)
-                      .map(
-                    (repairService) async {
-                      final t = await storeRepository
-                          .repairProductRepo(aUser, repairCate, repairService)
+              (r) async {
+                if (r.length() <= 0) {
+                  data.complete([]);
+                } else {
+                  r.map(
+                    (repairCate) async {
+                      final listService = await storeRepository
+                          .repairServiceRepo(aUser, repairCate)
                           .all();
-                      final listProduct =
-                          t.fold<IList<RepairProduct>>((l) => nil(), (r) => r);
-                      final list = listProduct
-                          .sortByDouble(
-                            (e1, e2) => e1.price.compareTo(e2.price),
-                          )
-                          .toList();
-                      if (list.isNotEmpty && list.length >= 2) {
-                        final hp = list.first.price;
-                        final lp = list.last.price;
-                        return ServiceModel(
-                          serviceName: repairService.name,
-                          sortType: 0,
-                          price:
-                              '''${lp + repairService.fee} - ${hp + repairService.fee}''',
-                          imageUrl: repairService.img ?? '',
-                        );
-                      } else if (list.length == 1) {
-                        final price = list.first.price + repairService.fee;
-                        return ServiceModel(
-                          serviceName: repairService.name,
-                          sortType: 0,
-                          price: price.toString(),
-                          imageUrl: repairService.img ?? '',
-                        );
-                      } else {
-                        return ServiceModel(
-                          serviceName: repairService.name,
-                          sortType: 0,
-                          price: repairService.fee.toString(),
-                          imageUrl: repairService.img ?? '',
-                        );
-                      }
+                      final listS = listService
+                          .map<IList<RepairService>>((r) => r)
+                          .fold<IList<RepairService>>((l) => nil(), (r) => r)
+                          .map(
+                        (repairService) async {
+                          final t = await storeRepository
+                              .repairProductRepo(
+                                  aUser, repairCate, repairService)
+                              .all();
+                          final listProduct = t.fold<IList<RepairProduct>>(
+                              (l) => nil(), (r) => r);
+                          final list = listProduct
+                              .sortByDouble(
+                                (e1, e2) => e1.price.compareTo(e2.price),
+                              )
+                              .toList();
+                          if (list.isNotEmpty && list.length >= 2) {
+                            final hp = list.first.price;
+                            final lp = list.last.price;
+                            return ServiceModel(
+                              serviceName: repairService.name,
+                              sortType: 0,
+                              price:
+                                  '''${lp + repairService.fee} - ${hp + repairService.fee}''',
+                              imageUrl: repairService.img ?? '',
+                            );
+                          } else if (list.length == 1) {
+                            final price = list.first.price + repairService.fee;
+                            return ServiceModel(
+                              serviceName: repairService.name,
+                              sortType: 0,
+                              price: price.toString(),
+                              imageUrl: repairService.img ?? '',
+                            );
+                          } else {
+                            return ServiceModel(
+                              serviceName: repairService.name,
+                              sortType: 0,
+                              price: repairService.fee.toString(),
+                              imageUrl: repairService.img ?? '',
+                            );
+                          }
+                        },
+                      );
+                      final listServiceModel = await Future.wait(
+                        listS.map((a) async => a).toIterable(),
+                      );
+                      data.complete(listServiceModel);
                     },
                   );
-                  final listServiceModel = await Future.wait(
-                    listS.map((a) async => a).toIterable(),
-                  );
-                  data.complete(listServiceModel);
-                },
-              ),
+                }
+              },
             );
           },
         );
