@@ -34,7 +34,7 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
     super.initState();
     _isEnabled = false;
     context.read<NotificationCubit>().addForegroundListener((p0) {
-      final type = p0.type;
+      final type = p0.payload.type;
       switch (type) {
         case NotificationType.ConsumerBilled:
           setState(() {

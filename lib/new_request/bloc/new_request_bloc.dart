@@ -172,20 +172,23 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
           ),
         );
 
-        // get consumer fcm token
+        // get latest consumer fcm token
         final consumer = (await _userStore.get(record.cid))
             .fold<Option<AppUser>>(
               (l) => none(),
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final token =
-            (await storeRepository.userNotificationTokenRepo(consumer).all())
-                .fold((l) => throw NullThrownError(), (r) => r.toList())
-                .first;
+        final tokens = (await storeRepository
+                .userNotificationTokenRepo(consumer)
+                .all())
+            .fold((l) => throw NullThrownError(), (r) => r.toList())
+          ..sort(
+            (a, b) => a.created.compareTo(b.created),
+          );
 
         // send notification to consumer
-        sendMessage(token.token);
+        sendMessage(tokens.first.token);
         // route to info request
         onRoute();
       },

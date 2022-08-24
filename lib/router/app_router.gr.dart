@@ -182,10 +182,8 @@ class AppRouter extends _i20.RootStackRouter {
           child: _i15.NewRequestPage(key: args.key, recordId: args.recordId));
     },
     P12DetailRoute.name: (routeData) {
-      final args = routeData.argsAs<P12DetailRouteArgs>();
       return _i20.AdaptivePage<void>(
-          routeData: routeData,
-          child: _i6.P12DetailPage(key: args.key, recordId: args.recordId));
+          routeData: routeData, child: const _i6.P12DetailPage());
     },
     P10QuotePriceRoute.name: (routeData) {
       final args = routeData.argsAs<P10QuotePriceRouteArgs>();
@@ -246,7 +244,7 @@ class AppRouter extends _i20.RootStackRouter {
 
   @override
   List<_i20.RouteConfig> get routes => [
-        _i20.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i20.RouteConfig(SplashRoute.name, path: '/'),
         _i20.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i20.RouteConfig(P3RequestDetailRoute.name,
             path: '/p3-request-detail-page'),
@@ -270,7 +268,7 @@ class AppRouter extends _i20.RootStackRouter {
         _i20.RouteConfig(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page'),
         _i20.RouteConfig(NewRequestRoute.name, path: '/new-request-page'),
-        _i20.RouteConfig(P12DetailRoute.name, path: '/'),
+        _i20.RouteConfig(P12DetailRoute.name, path: '/p12-detail-page'),
         _i20.RouteConfig(P10QuotePriceRoute.name,
             path: '/p10-quote-price-page'),
         _i20.RouteConfig(UpdateServiceRoute.name, path: '/update-service-page'),
@@ -292,7 +290,7 @@ class AppRouter extends _i20.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i20.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -802,25 +800,10 @@ class NewRequestRouteArgs {
 
 /// generated route for
 /// [_i6.P12DetailPage]
-class P12DetailRoute extends _i20.PageRouteInfo<P12DetailRouteArgs> {
-  P12DetailRoute({_i21.Key? key, required String recordId})
-      : super(P12DetailRoute.name,
-            path: '/', args: P12DetailRouteArgs(key: key, recordId: recordId));
+class P12DetailRoute extends _i20.PageRouteInfo<void> {
+  const P12DetailRoute() : super(P12DetailRoute.name, path: '/p12-detail-page');
 
   static const String name = 'P12DetailRoute';
-}
-
-class P12DetailRouteArgs {
-  const P12DetailRouteArgs({this.key, required this.recordId});
-
-  final _i21.Key? key;
-
-  final String recordId;
-
-  @override
-  String toString() {
-    return 'P12DetailRouteArgs{key: $key, recordId: $recordId}';
-  }
 }
 
 /// generated route for
