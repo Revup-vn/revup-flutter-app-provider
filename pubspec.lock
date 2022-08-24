@@ -1186,11 +1186,9 @@ packages:
   revup_core:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "2dd2d0d7ff7ef9934565fd00af286a563b4e8507"
-      url: "https://github.com/Revup-vn/revup-core.git"
-    source: git
+      path: "../revup-core"
+      relative: true
+    source: path
     version: "6.2.4-dev"
   rxdart:
     dependency: transitive

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -184,11 +185,14 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                 .all())
             .fold((l) => throw NullThrownError(), (r) => r.toList())
           ..sort(
-            (a, b) => a.created.compareTo(b.created),
+            (a, b) => -b.created.compareTo(a.created),
           );
+        log(tokens.toString());
+        log(tokens.first.token);
 
         // send notification to consumer
-        sendMessage(tokens.first.token);
+        final b = await sendMessage(tokens.first.token);
+        log(b);
         // route to info request
         onRoute();
       },
