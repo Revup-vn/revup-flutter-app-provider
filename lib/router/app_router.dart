@@ -26,7 +26,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: P3RequestDetailPage, maintainState: false),
-    AdaptiveRoute<void>(page: InfoRequestPage),
+    AdaptiveRoute<void>(page: InfoRequestPage, maintainState: false),
     AdaptiveRoute<void>(page: P14RepairCompletePage),
     AdaptiveRoute<void>(page: P13SelectOptionCompletePage),
     AdaptiveRoute<void>(page: P16FinishedOrderDetailPage),

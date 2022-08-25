@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -9,7 +8,6 @@ import '../../widgets/need_to_verify_list.u.dart';
 import '../../widgets/service_request_item.u.dart';
 import '../../widgets/total_service_price_item.u.dart';
 import '../cubit/p10_quote_price_cubit.dart';
-import '../cubit/total_amount_cubit.dart';
 
 class P10QuotePriceView extends StatelessWidget {
   const P10QuotePriceView({super.key});
@@ -111,10 +109,17 @@ class P10QuotePriceView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  BlocBuilder<TotalAmountCubit, TotalAmountState>(
-                    builder: (context, state) => state.when(
-                      refresh: (v) => TotalServicePriceItem(pendingAmount: v),
-                    ),
+                  // BlocBuilder<TotalAmountCubit, TotalAmountState>(
+                  //   builder: (context, state) => state.when(
+                  //     refresh: (v) => TotalServicePriceItem(pendingAmount: v),
+                  //   ),
+                  // ),
+                  TotalServicePriceItem(
+                    pendingAmount: pendingService.isNotEmpty
+                        ? pendingService.map((e) => e.price).toList().reduce(
+                              (value, element) => value + element,
+                            )
+                        : 0,
                   ),
                 ],
               ),

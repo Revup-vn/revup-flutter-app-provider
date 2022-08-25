@@ -180,15 +180,15 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final tokens = (await storeRepository
-                .userNotificationTokenRepo(consumer)
-                .all())
-            .fold((l) => throw NullThrownError(), (r) => r.toList())
-          ..sort(
-            (a, b) => -b.created.compareTo(a.created),
-          );
-        log(tokens.toString());
-        log(tokens.first.token);
+        final tokens =
+            (await storeRepository.userNotificationTokenRepo(consumer).all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+        log('TOKEN:${tokens.first.token}');
 
         // send notification to consumer
         final b = await sendMessage(tokens.first.token);
@@ -218,13 +218,18 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final token =
+        final tokens =
             (await storeRepository.userNotificationTokenRepo(consumer).all())
-                .fold((l) => throw NullThrownError(), (r) => r.toList())
-                .first;
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
 
+        log('TOKEN:${tokens.first.token}');
         // send notification to consumer
-        sendMessage(token.token);
+        sendMessage(tokens.first.token);
         // route to home page
         onRoute();
       },
