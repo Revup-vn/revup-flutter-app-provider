@@ -191,7 +191,7 @@
   "enterPhoneNumberLabel": "Enter your phone number to continue",
   "toomanyReqLabel": "You request OTP too many time, please wait before retry",
   "idCardLabel": "ID Card Number",
-  "imageCardLabel": "ID Card Image",
+  "imageCardLabel": "Business Registration Certificate Image",
   "bioLabel": "Your slogan",
   "feeOfTransportLabel": "Fee of transport",
   "acceptLabel": "Accept",
@@ -224,5 +224,13 @@
   "enableLocationLabel": "Allow location access",
   "chooseAtLeastCompletedLabel": "Choose at least one service",
   "providerAcceptRequestLabel": "Your repair request has been accepted",
-  "providerDeclineRequestLabel": "The worker declined the request"
+  "providerDeclineRequestLabel": "The worker declined the request",
+  "loginFailLabel": "Your account is not allowed to login.",
+  "loginFailDescLabel": "Please contact care center for more information.",
+  "updateProfileFail": "Update fail",
+  "languageLabel": "Language",
+  "vietnameseLabel": "Vietnamese",
+  "englishLabel": "English",
+  "accountNotActiveLabel": "Your account has not been active yet.",
+  "canLoginLabel": "You still can login but consumer can not book you."
 }

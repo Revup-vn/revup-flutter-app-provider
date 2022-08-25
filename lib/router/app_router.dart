@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
+import '../change_language/view/change_language_page.dart';
 import '../home/home.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
@@ -45,6 +46,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: AddProductPage),
     AdaptiveRoute<void>(page: PermissionPage),
+    AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

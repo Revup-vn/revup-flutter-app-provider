@@ -197,7 +197,6 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
               Row(
                 children: [
                   const Expanded(child: Divider()),
@@ -243,7 +242,7 @@ class LoginView extends StatelessWidget {
                                   dob: DateTime.now(),
                                   addr: '',
                                   email: user.email ?? '',
-                                  active: true,
+                                  active: false,
                                   avatarUrl: user.photoURL ?? '',
                                   createdTime: DateTime.now(),
                                   lastUpdatedTime: DateTime.now(),

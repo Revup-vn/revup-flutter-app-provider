@@ -28,7 +28,6 @@ class UpdateServiceView extends StatelessWidget {
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: AutoSizeText(
             l10n.updateServiceLabel,
@@ -129,11 +128,10 @@ class UpdateServiceView extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: SafeArea(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: SingleChildScrollView(
@@ -281,7 +279,7 @@ class UpdateServiceView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[A-Za-z0-9 ]+$',
+                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -318,13 +316,13 @@ class UpdateServiceView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              const SizedBox(
+                height: 40,
+              ),
+              Container(
                 padding: const EdgeInsets.all(16),
                 height: 80,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(color: Theme.of(context).cardColor),
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() == true) {
@@ -347,8 +345,8 @@ class UpdateServiceView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
