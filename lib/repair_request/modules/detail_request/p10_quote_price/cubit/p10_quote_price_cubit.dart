@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../new_request/models/pending_repair_request.dart';
@@ -89,21 +88,22 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
     List<NeedToVerifyModel> needToVerify,
     Function0<void> onRoute,
   ) {
-    final verifyServices = Hive.box<int>('verifyServices');
-    final len = needToVerify.length;
-    for (var i = 0; i < len; i++) {
-      final price = verifyServices.get(needToVerify[i].serviceName);
-      _paymentService.update(
-        PaymentService.pending(
-          serviceName: needToVerify[i].serviceName,
-          moneyAmount: price ?? 0,
-          products: [],
-          isOptional: true,
-        ),
-      );
-    }
-    verifyServices.clear();
     onRoute();
+    return unit;
+  }
+
+  Future<Unit> quotePrice(
+    NeedToVerifyModel needToVerifyModel,
+    int price,
+  ) async {
+    await _paymentService.update(
+      PaymentService.pending(
+        serviceName: needToVerifyModel.serviceName,
+        moneyAmount: price,
+        products: [],
+        isOptional: true,
+      ),
+    );
     return unit;
   }
 

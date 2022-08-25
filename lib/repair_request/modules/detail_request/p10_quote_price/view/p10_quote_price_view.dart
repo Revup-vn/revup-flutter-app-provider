@@ -10,7 +10,6 @@ import '../../widgets/need_to_verify_list.u.dart';
 import '../../widgets/service_request_item.u.dart';
 import '../../widgets/total_service_price_item.u.dart';
 import '../cubit/p10_quote_price_cubit.dart';
-import '../cubit/total_amount_cubit.dart';
 
 class P10QuotePriceView extends StatelessWidget {
   const P10QuotePriceView({super.key});
@@ -129,10 +128,17 @@ class P10QuotePriceView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  BlocBuilder<TotalAmountCubit, TotalAmountState>(
-                    builder: (context, state) => state.when(
-                      refresh: (v) => TotalServicePriceItem(pendingAmount: v),
-                    ),
+                  // BlocBuilder<TotalAmountCubit, TotalAmountState>(
+                  //   builder: (context, state) => state.when(
+                  //     refresh: (v) => TotalServicePriceItem(pendingAmount: v),
+                  //   ),
+                  // ),
+                  TotalServicePriceItem(
+                    pendingAmount: pendingService.isNotEmpty
+                        ? pendingService.map((e) => e.price).toList().reduce(
+                              (value, element) => value + element,
+                            )
+                        : 0,
                   ),
                 ],
               ),

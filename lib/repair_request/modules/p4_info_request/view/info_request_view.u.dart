@@ -5,12 +5,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../new_request/models/pending_repair_request.dart';
 import '../../../../router/router.dart';
+import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/info_request_bloc.dart';
 import '../widgets/action_button.dart';
@@ -41,11 +43,11 @@ class _InfoRequestViewState extends State<InfoRequestView> {
   bool startMode = false;
   bool fixedMode = false;
   bool movingMode = false;
-  late Timer _timer;
+  // late Timer _timer;
   @override
   void initState() {
-    // updateLocation();
     super.initState();
+    rtUpdateLocation();
   }
 
   @override
@@ -57,32 +59,10 @@ class _InfoRequestViewState extends State<InfoRequestView> {
         blocPage.add(const InfoRequestEvent.started());
       },
     );
-    // TODO (cantgim): listen for event choose product from consumer
 
-    // final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
-    //   () => throw NullThrownError(),
-    // );
-
-    final user = AppUser.provider(
-        uuid: 'geCHNSHZ2xg2GfMSfZpxAweWWln2',
-        firstName: 'firstName',
-        lastName: 'lastName',
-        phone: 'phone',
-        dob: DateTime.now(),
-        addr: 'addr',
-        email: 'email',
-        active: true,
-        avatarUrl: 'https://shibatoken.com/images/c1.png',
-        createdTime: DateTime.now(),
-        lastUpdatedTime: DateTime.now(),
-        idCardNum: 'idCardNum',
-        idCardImage: 'idCardImage',
-        backgroundUrl: 'https://shibatoken.com/images/c1.png',
-        bio: 'bio',
-        vac: VideoCallAccount(
-            id: 'id', username: 'username', pwd: 'pwd', email: 'email'),
-        online: true,
-        loc: Location(name: 'name', long: 1, lat: 1));
+    final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
+      () => throw NullThrownError(),
+    );
 
     return BlocBuilder<InfoRequestBloc, InfoRequestState>(
       builder: (context, state) {
@@ -253,6 +233,15 @@ class _InfoRequestViewState extends State<InfoRequestView> {
     );
   }
 
+  void rtUpdateLocation() {
+    // _timer = Timer.periodic(const Duration(seconds: 30), (timer) async {
+    // });
+    Geolocator.getPositionStream().listen((position) async {
+      print(position);
+      // update position to firestore
+    });
+  }
+
   Future<void> _openMapsFor(PendingRepairRequest record) async {
     final isGoogle = await MapLauncher.isMapAvailable(MapType.google);
 
@@ -278,7 +267,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    // _timer.cancel();
     super.dispose();
   }
 }
