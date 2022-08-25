@@ -8,10 +8,10 @@ import 'p12_detail_view.u.dart';
 class P12DetailPage extends StatelessWidget {
   const P12DetailPage({
     super.key,
-    // required this.recordId,
+    required this.recordId,
   });
 
-  final String recordId = '101f54f8-994c-4610-a68e-747e5e9916d2';
+  final String recordId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

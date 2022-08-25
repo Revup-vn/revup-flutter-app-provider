@@ -18,22 +18,33 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
-      final recordId = p0.payload.payload['recordId'] as String;
+
       switch (type) {
         case NotificationType.ConsumerRequestRepair:
+          final recordId = p0.payload.payload['recordId'] as String;
           context.router.push(NewRequestRoute(recordId: recordId));
+          break;
+
+        case NotificationType.NormalMessage:
+          final typeSub = p0.payload.payload['typeSub'] as String;
+          final recordId = p0.payload.payload['recordId'] as String;
+          if (typeSub == 'accepted') {
+            context.router.push(
+              P12DetailRoute(recordId: recordId),
+            );
+          }
           break;
         // ignore: no_default_cases
         default:
           break;
       }
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Future<void>.delayed(
       const Duration(seconds: 5),
       () {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -25,6 +24,9 @@ class P13SelectOptionCompletePage extends StatelessWidget {
         context
             .read<StoreRepository>()
             .repairPaymentRepo(RepairRecordDummy.dummyStarted(id)),
+        context.read(),
+        context.read(),
+        context.read(),
       ),
       child: P13SelectOptionCompleteView(
         form: GlobalKey(),

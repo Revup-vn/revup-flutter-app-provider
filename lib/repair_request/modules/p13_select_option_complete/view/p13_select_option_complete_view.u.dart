@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../router/router.dart';
+import '../../../../shared/shared.dart';
 import '../../../models/models.dart';
 import '../cubit/select_options_cubit.dart';
 import '../widgets/select_service_request_form.u.dart';
@@ -54,6 +55,24 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                   SnackBar(content: Text(l10n.chooseAtLeastCompletedLabel)),
                 );
                 return;
+              } else {
+                context.read<SelectOptionsCubit>().sendMessage(id, (a, b, c) {
+                  context.read<NotificationCubit>().sendMessageToToken(
+                        SendMessage(
+                          title: 'Revup',
+                          body: 'Done',
+                          token: a,
+                          icon: kRevupIconApp,
+                          payload: MessageData(
+                            type: NotificationType.ProviderRepaired,
+                            payload: <String, dynamic>{
+                              'providerId': b,
+                              'recordId': c,
+                            },
+                          ),
+                        ),
+                      );
+                });
               }
 
               context.router.push(

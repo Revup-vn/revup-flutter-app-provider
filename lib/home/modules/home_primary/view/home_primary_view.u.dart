@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:geolocator/geolocator.dart';
@@ -70,26 +69,32 @@ class HomePrimaryView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  AutoSizeText(
-                    user.addr,
-                    style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(fontWeight: FontWeight.bold) ??
-                        const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Expanded(
+                    flex: 2,
+                    child: AutoSizeText(
+                      user.addr,
+                      style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(fontWeight: FontWeight.bold) ??
+                          const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
-                  const Spacer(),
-                  AutoSizeText(
-                    l10n.operationStatusLabel,
-                    style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(fontWeight: FontWeight.bold) ??
-                        const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Expanded(
+                    child: AutoSizeText(
+                      l10n.operationStatusLabel,
+                      style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(fontWeight: FontWeight.bold) ??
+                          const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                      minFontSize: 5,
+                      maxLines: 1,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   BlocBuilder<HomeBloc, HomeState>(

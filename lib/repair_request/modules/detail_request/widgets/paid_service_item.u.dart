@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -53,7 +52,10 @@ class PaidServiceItem extends StatelessWidget {
                 ),
                 AutoSizeText(
                   context.formatMoney(paidService[index].price),
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ],
             ),
