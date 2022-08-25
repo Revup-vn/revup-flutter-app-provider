@@ -87,7 +87,8 @@ class AppRouter extends _i20.RootStackRouter {
               record: args.record,
               distance: args.distance,
               pendingService: args.pendingService,
-              pendingAmount: args.pendingAmount));
+              pendingAmount: args.pendingAmount),
+          maintainState: false);
     },
     P14RepairCompleteRoute.name: (routeData) {
       final args = routeData.argsAs<P14RepairCompleteRouteArgs>();
