@@ -255,11 +255,30 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                             : () {
                                 // update record to started
                                 blocPage.add(
-                                  const InfoRequestEvent.confirmStarted(),
+                                  InfoRequestEvent.confirmStarted(
+                                    onRoute: () => context.router.push(
+                                        P12DetailRoute(recordId: record.id)),
+                                    sendMessage: (token, recordId) => context
+                                        .read<NotificationCubit>()
+                                        .sendMessageToToken(
+                                          SendMessage(
+                                            title: 'Revup',
+                                            body: '',
+                                            token: token,
+                                            icon: kRevupIconApp,
+                                            payload: MessageData(
+                                              type: NotificationType
+                                                  .NormalMessage,
+                                              payload: <String, dynamic>{
+                                                'subType': 'StartRepair',
+                                                'recordId': recordId,
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                  ),
                                 );
                                 // context.router.replace(HomeRoute(user: user));
-                                context.router
-                                    .push(P12DetailRoute(recordId: record.id));
                               },
                       );
                     }

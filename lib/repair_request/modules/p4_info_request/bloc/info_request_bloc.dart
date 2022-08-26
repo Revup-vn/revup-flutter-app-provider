@@ -115,7 +115,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
           ),
         );
       },
-      confirmStarted: () async {
+      confirmStarted: (onRoute, sendMessage) async {
         final maybeRecord = (await _repairRecord.get(recordId))
             .map<PendingRepairRequest>(
               (r) => r.maybeMap(
@@ -140,6 +140,27 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
             to: maybeRecord.to, started: DateTime.now(),
           ),
         );
+
+        // get latest consumer fcm token
+        final consumer = (await _userRepos.get(maybeRecord.cid))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+
+        final tokens =
+            (await storeRepository.userNotificationTokenRepo(consumer).all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+        // send message to consumer
+        sendMessage(tokens.first.token, recordId);
+
+        onRoute();
       },
       confirmDeparted: (onRoute, sendMessage) async {
         final maybeRecord = (await _repairRecord.get(recordId))

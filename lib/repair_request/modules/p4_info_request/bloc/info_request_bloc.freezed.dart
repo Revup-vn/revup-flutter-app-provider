@@ -20,7 +20,9 @@ mixin _$InfoRequestEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
-    required TResult Function() confirmStarted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        confirmStarted,
     required TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)
         confirmDeparted,
@@ -31,7 +33,9 @@ mixin _$InfoRequestEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -42,7 +46,9 @@ mixin _$InfoRequestEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -139,7 +145,9 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
-    required TResult Function() confirmStarted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        confirmStarted,
     required TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)
         confirmDeparted,
@@ -153,7 +161,9 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -167,7 +177,9 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -292,7 +304,9 @@ class _$_LocationUpdated implements _LocationUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
-    required TResult Function() confirmStarted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        confirmStarted,
     required TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)
         confirmDeparted,
@@ -306,7 +320,9 @@ class _$_LocationUpdated implements _LocationUpdated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -320,7 +336,9 @@ class _$_LocationUpdated implements _LocationUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -389,6 +407,8 @@ abstract class _$$_ConfirmStartedCopyWith<$Res> {
   factory _$$_ConfirmStartedCopyWith(
           _$_ConfirmStarted value, $Res Function(_$_ConfirmStarted) then) =
       __$$_ConfirmStartedCopyWithImpl<$Res>;
+  $Res call(
+      {Function0<void> onRoute, Function2<String, String, void> sendMessage});
 }
 
 /// @nodoc
@@ -401,39 +421,72 @@ class __$$_ConfirmStartedCopyWithImpl<$Res>
 
   @override
   _$_ConfirmStarted get _value => super._value as _$_ConfirmStarted;
+
+  @override
+  $Res call({
+    Object? onRoute = freezed,
+    Object? sendMessage = freezed,
+  }) {
+    return _then(_$_ConfirmStarted(
+      onRoute: onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function0<void>,
+      sendMessage: sendMessage == freezed
+          ? _value.sendMessage
+          : sendMessage // ignore: cast_nullable_to_non_nullable
+              as Function2<String, String, void>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ConfirmStarted implements _ConfirmStarted {
-  const _$_ConfirmStarted();
+  const _$_ConfirmStarted({required this.onRoute, required this.sendMessage});
+
+  @override
+  final Function0<void> onRoute;
+  @override
+  final Function2<String, String, void> sendMessage;
 
   @override
   String toString() {
-    return 'InfoRequestEvent.confirmStarted()';
+    return 'InfoRequestEvent.confirmStarted(onRoute: $onRoute, sendMessage: $sendMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ConfirmStarted);
+        (other.runtimeType == runtimeType &&
+            other is _$_ConfirmStarted &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
+            (identical(other.sendMessage, sendMessage) ||
+                other.sendMessage == sendMessage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, onRoute, sendMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ConfirmStartedCopyWith<_$_ConfirmStarted> get copyWith =>
+      __$$_ConfirmStartedCopyWithImpl<_$_ConfirmStarted>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
-    required TResult Function() confirmStarted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        confirmStarted,
     required TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)
         confirmDeparted,
     required TResult Function() confirmArrived,
   }) {
-    return confirmStarted();
+    return confirmStarted(onRoute, sendMessage);
   }
 
   @override
@@ -441,13 +494,15 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
     TResult Function()? confirmArrived,
   }) {
-    return confirmStarted?.call();
+    return confirmStarted?.call(onRoute, sendMessage);
   }
 
   @override
@@ -455,7 +510,9 @@ class _$_ConfirmStarted implements _ConfirmStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -463,7 +520,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     required TResult orElse(),
   }) {
     if (confirmStarted != null) {
-      return confirmStarted();
+      return confirmStarted(onRoute, sendMessage);
     }
     return orElse();
   }
@@ -510,7 +567,16 @@ class _$_ConfirmStarted implements _ConfirmStarted {
 }
 
 abstract class _ConfirmStarted implements InfoRequestEvent {
-  const factory _ConfirmStarted() = _$_ConfirmStarted;
+  const factory _ConfirmStarted(
+          {required final Function0<void> onRoute,
+          required final Function2<String, String, void> sendMessage}) =
+      _$_ConfirmStarted;
+
+  Function0<void> get onRoute;
+  Function2<String, String, void> get sendMessage;
+  @JsonKey(ignore: true)
+  _$$_ConfirmStartedCopyWith<_$_ConfirmStarted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -588,7 +654,9 @@ class _$_ConfirmDeparted implements _ConfirmDeparted {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
-    required TResult Function() confirmStarted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        confirmStarted,
     required TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)
         confirmDeparted,
@@ -602,7 +670,9 @@ class _$_ConfirmDeparted implements _ConfirmDeparted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -616,7 +686,9 @@ class _$_ConfirmDeparted implements _ConfirmDeparted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -725,7 +797,9 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
-    required TResult Function() confirmStarted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        confirmStarted,
     required TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)
         confirmDeparted,
@@ -739,7 +813,9 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
@@ -753,7 +829,9 @@ class _$_ConfirmArrived implements _ConfirmArrived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
-    TResult Function()? confirmStarted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        confirmStarted,
     TResult Function(
             Function0<void> onRoute, Function1<String, void> sendMessage)?
         confirmDeparted,
