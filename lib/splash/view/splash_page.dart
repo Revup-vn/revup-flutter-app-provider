@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -64,10 +63,7 @@ class _SplashPageState extends State<SplashPage> {
           },
           orElse: () => unit,
         );
-        context.router.popUntil(
-          (route) => true,
-        );
-        context.router.replace(
+        context.router.pushAndPopUntil(
           authBloc.state.maybeWhen(
             empty: (isFirstTime) => const LoginRoute(),
             authenticated: (type) {
@@ -91,6 +87,7 @@ class _SplashPageState extends State<SplashPage> {
             },
             orElse: LoginRoute.new,
           ),
+          predicate: (_) => true,
         );
       },
     );
