@@ -6,7 +6,7 @@ class NewRequestEvent with _$NewRequestEvent {
   const factory NewRequestEvent.accepted({
     required PendingRepairRequest record,
     required Function0<void> onRoute,
-    required Function1<String, Future<String>> sendMessage,
+    required Function1<String, Future<bool>> sendMessage,
   }) = _Accepted;
   const factory NewRequestEvent.decline({
     required PendingRepairRequest record,

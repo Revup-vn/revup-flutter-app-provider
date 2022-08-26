@@ -1,5 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 

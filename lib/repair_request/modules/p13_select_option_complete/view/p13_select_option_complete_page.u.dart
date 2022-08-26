@@ -25,6 +25,9 @@ class P13SelectOptionCompletePage extends StatelessWidget {
         context
             .read<StoreRepository>()
             .repairPaymentRepo(RepairRecordDummy.dummyStarted(id)),
+        context.read(),
+        context.read(),
+        context.read(),
       ),
       child: P13SelectOptionCompleteView(
         form: GlobalKey(),

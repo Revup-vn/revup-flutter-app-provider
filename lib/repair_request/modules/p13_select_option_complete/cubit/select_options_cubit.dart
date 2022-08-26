@@ -11,8 +11,16 @@ part 'select_options_cubit.freezed.dart';
 part 'select_options_state.dart';
 
 class SelectOptionsCubit extends Cubit<SelectOptionsState> {
-  SelectOptionsCubit(this._irs) : super(const SelectOptionsState.initial());
+  SelectOptionsCubit(
+    this._irs,
+    this.repairRepos,
+    this.userRepos,
+    this.storeRepository,
+  ) : super(const SelectOptionsState.initial());
   final IStore<PaymentService> _irs;
+  final IStore<RepairRecord> repairRepos;
+  final IStore<AppUser> userRepos;
+  final StoreRepository storeRepository;
 
   Future<Unit> fetchUnpaidServices(VoidCallback onError) async {
     emit(const SelectOptionsState.loading());
@@ -40,5 +48,38 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
         )
         .fold(onError, (a) => emit(SelectOptionsState.populated(a.toList())));
     return unit;
+  }
+
+  Future<void> sendMessage(
+    String rpid,
+    Function3<String, String, String, void> sendMessage,
+  ) async {
+    emit(const SelectOptionsState.loading());
+    final repairRecord = (await repairRepos.get(rpid))
+        .map<Option<RepairRecord>>(
+          (r) => r.maybeMap(
+            started: some,
+            orElse: none,
+          ),
+        )
+        .fold<Option<RepairRecord>>(
+          (l) => none(),
+          (r) => r,
+        )
+        .getOrElse(() => throw NullThrownError());
+    final consumer = (await userRepos.get(repairRecord.cid))
+        .fold<Option<AppUser>>(
+          (l) => none(),
+          some,
+        )
+        .getOrElse(() => throw NullThrownError());
+    final tokens = (await storeRepository
+            .userNotificationTokenRepo(consumer)
+            .all())
+        .fold((l) => throw NullThrownError(), (r) => r.toList())
+      ..sort(
+        (a, b) => -b.created.compareTo(a.created),
+      );
+    sendMessage(tokens.first.token, repairRecord.pid, rpid);
   }
 }

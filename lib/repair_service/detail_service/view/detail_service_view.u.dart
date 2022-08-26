@@ -28,6 +28,7 @@ class DetailServiceView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final listData = listProduct.toList();
+    final serAvt = service.img ?? '';
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -52,7 +53,8 @@ class DetailServiceView extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(48),
                             child: CachedNetworkImage(
-                              imageUrl: service.img ?? kFallbackServiceImg,
+                              imageUrl:
+                                  serAvt.isEmpty ? kFallbackServiceImg : serAvt,
                               height: 64,
                               width: 64,
                               fit: BoxFit.fill,

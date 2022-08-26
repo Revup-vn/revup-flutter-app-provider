@@ -72,7 +72,7 @@ class RecordDetail extends StatelessWidget {
           TotalServicePriceItem(
             pendingAmount: (paidServices.isEmpty
                     ? 0
-                    : -paidServices
+                    : paidServices
                         .map((e) => e.price)
                         .toList()
                         .reduce((value, element) => value + element)) +

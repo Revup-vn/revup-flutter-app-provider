@@ -35,7 +35,6 @@ class AddProductView extends StatelessWidget {
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: AutoSizeText(
             productModel.productName.isEmpty
@@ -46,103 +45,105 @@ class AddProductView extends StatelessWidget {
                 .headlineSmall
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (buildercontext) {
-                    return Dialog(
-                      backgroundColor: Colors.transparent,
-                      insetPadding: const EdgeInsets.all(10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .tertiaryContainer,
-                            ),
-                            width: double.infinity,
-                            height: 200,
-                            child: Column(
+          actions: productModel.productName.isNotEmpty
+              ? <Widget>[
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {
+                      showDialog<String>(
+                        context: context,
+                        builder: (buildercontext) {
+                          return Dialog(
+                            backgroundColor: Colors.transparent,
+                            insetPadding: const EdgeInsets.all(10),
+                            child: Stack(
                               children: [
-                                AutoSizeText(
-                                  context.l10n.sureLabel,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .tertiary,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .tertiaryContainer,
+                                  ),
+                                  width: double.infinity,
+                                  height: 200,
+                                  child: Column(
+                                    children: [
+                                      AutoSizeText(
+                                        context.l10n.sureLabel,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiary,
+                                            ),
                                       ),
+                                      AutoSizeText(
+                                        context.l10n.delProductLabel,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiary,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                AutoSizeText(
-                                  context.l10n.delProductLabel,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .tertiary,
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          context.read<AddProductBloc>().add(
+                                                const AddProductEvent
+                                                    .deleteProduct(),
+                                              );
+                                          context.router.pop();
+                                        },
+                                        child: AutoSizeText(
+                                          context.l10n.doneLabel,
+                                        ),
                                       ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          context.router.pop();
+                                        },
+                                        child: AutoSizeText(
+                                          context.l10n.cancelLabel,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Row(
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    context.read<AddProductBloc>().add(
-                                          const AddProductEvent.deleteProduct(),
-                                        );
-                                    context.router.pop();
-                                  },
-                                  child: AutoSizeText(
-                                    context.l10n.doneLabel,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    context.router.pop();
-                                  },
-                                  child: AutoSizeText(
-                                    context.l10n.cancelLabel,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-              child: Text(context.l10n.deleteLabel),
-            ),
-          ],
+                          );
+                        },
+                      );
+                    },
+                    child: Text(context.l10n.deleteLabel),
+                  ),
+                ]
+              : [],
         ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: SafeArea(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: SingleChildScrollView(
@@ -184,7 +185,7 @@ class AddProductView extends StatelessWidget {
                                     children: [
                                       CachedNetworkImage(
                                         imageUrl: productModel.imageUrl.isEmpty
-                                            ? kFallbackServiceImg
+                                            ? kFallbackProductImg
                                             : productModel.imageUrl,
                                         fit: BoxFit.fill,
                                       ),
@@ -290,7 +291,7 @@ class AddProductView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[A-Za-z0-9 ]+$',
+                                  r'^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -345,9 +346,7 @@ class AddProductView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              Container(
                 padding: const EdgeInsets.all(16),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Theme.of(context).cardColor),
@@ -378,8 +377,8 @@ class AddProductView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

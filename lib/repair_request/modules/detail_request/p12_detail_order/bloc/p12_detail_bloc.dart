@@ -52,11 +52,13 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
                     paid: (val) => PaidServicesModel(
                       name: val.serviceName,
                       price: val.moneyAmount +
-                          val.products
-                              .map((e) => e.quantity * e.unitPrice)
-                              .reduce(
-                                (value, element) => value + element,
-                              ),
+                          (val.products.isEmpty
+                              ? 0
+                              : val.products
+                                  .map((e) => e.quantity * e.unitPrice)
+                                  .reduce(
+                                    (value, element) => value + element,
+                                  )),
                     ),
                     needToVerify: (_) => throw NullThrownError(),
                   ),

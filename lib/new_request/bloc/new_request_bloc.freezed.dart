@@ -22,7 +22,7 @@ mixin _$NewRequestEvent {
     required TResult Function(
             PendingRepairRequest record,
             Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)
+            Function1<String, Future<bool>> sendMessage)
         accepted,
     required TResult Function(PendingRepairRequest record,
             Function0<void> onRoute, Function1<String, void> sendMessage)
@@ -33,7 +33,7 @@ mixin _$NewRequestEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -44,7 +44,7 @@ mixin _$NewRequestEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -136,7 +136,7 @@ class _$_Started implements _Started {
     required TResult Function(
             PendingRepairRequest record,
             Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)
+            Function1<String, Future<bool>> sendMessage)
         accepted,
     required TResult Function(PendingRepairRequest record,
             Function0<void> onRoute, Function1<String, void> sendMessage)
@@ -150,7 +150,7 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -164,7 +164,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -224,7 +224,7 @@ abstract class _$$_AcceptedCopyWith<$Res> {
   $Res call(
       {PendingRepairRequest record,
       Function0<void> onRoute,
-      Function1<String, Future<String>> sendMessage});
+      Function1<String, Future<bool>> sendMessage});
 
   $PendingRepairRequestCopyWith<$Res> get record;
 }
@@ -258,7 +258,7 @@ class __$$_AcceptedCopyWithImpl<$Res>
       sendMessage: sendMessage == freezed
           ? _value.sendMessage
           : sendMessage // ignore: cast_nullable_to_non_nullable
-              as Function1<String, Future<String>>,
+              as Function1<String, Future<bool>>,
     ));
   }
 
@@ -281,7 +281,7 @@ class _$_Accepted implements _Accepted {
   @override
   final Function0<void> onRoute;
   @override
-  final Function1<String, Future<String>> sendMessage;
+  final Function1<String, Future<bool>> sendMessage;
 
   @override
   String toString() {
@@ -315,7 +315,7 @@ class _$_Accepted implements _Accepted {
     required TResult Function(
             PendingRepairRequest record,
             Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)
+            Function1<String, Future<bool>> sendMessage)
         accepted,
     required TResult Function(PendingRepairRequest record,
             Function0<void> onRoute, Function1<String, void> sendMessage)
@@ -329,7 +329,7 @@ class _$_Accepted implements _Accepted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -343,7 +343,7 @@ class _$_Accepted implements _Accepted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -395,12 +395,12 @@ abstract class _Accepted implements NewRequestEvent {
   const factory _Accepted(
           {required final PendingRepairRequest record,
           required final Function0<void> onRoute,
-          required final Function1<String, Future<String>> sendMessage}) =
+          required final Function1<String, Future<bool>> sendMessage}) =
       _$_Accepted;
 
   PendingRepairRequest get record;
   Function0<void> get onRoute;
-  Function1<String, Future<String>> get sendMessage;
+  Function1<String, Future<bool>> get sendMessage;
   @JsonKey(ignore: true)
   _$$_AcceptedCopyWith<_$_Accepted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -503,7 +503,7 @@ class _$_Decline implements _Decline {
     required TResult Function(
             PendingRepairRequest record,
             Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)
+            Function1<String, Future<bool>> sendMessage)
         accepted,
     required TResult Function(PendingRepairRequest record,
             Function0<void> onRoute, Function1<String, void> sendMessage)
@@ -517,7 +517,7 @@ class _$_Decline implements _Decline {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?
@@ -531,7 +531,7 @@ class _$_Decline implements _Decline {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
-            Function1<String, Future<String>> sendMessage)?
+            Function1<String, Future<bool>> sendMessage)?
         accepted,
     TResult Function(PendingRepairRequest record, Function0<void> onRoute,
             Function1<String, void> sendMessage)?

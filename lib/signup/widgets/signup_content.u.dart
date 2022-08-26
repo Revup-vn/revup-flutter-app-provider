@@ -83,6 +83,7 @@ class SignUpContent extends StatelessWidget {
                         200,
                         File(''),
                         () => _showModalButtonSheet(context, 1, list),
+                        '',
                       ),
                       Avatar(
                         localImg: File(''),
@@ -105,6 +106,7 @@ class SignUpContent extends StatelessWidget {
                           200,
                           file[1],
                           () => _showModalButtonSheet(context, 1, list),
+                          '',
                         ),
                         Avatar(
                           localImg: file[0],
@@ -149,7 +151,7 @@ class SignUpContent extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[a-zA-Z ]+$',
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -298,57 +300,62 @@ class SignUpContent extends StatelessWidget {
                       const SizedBox(height: 16),
                       Row(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              border: Border.all(),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(5)),
-                            ),
-                            width: 40,
-                            height: 40,
-                            child: Center(
-                              child: IconButton(
-                                onPressed: () {
-                                  _showModalButtonSheet(context, 2, list);
-                                },
-                                icon: const Icon(Icons.photo_camera),
+                          Center(
+                            child: Container(
+                              height: 96,
+                              width: 96,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onInverseSurface,
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              border: Border.all(),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(5)),
-                            ),
-                            width: 40,
-                            height: 40,
-                            child: BlocBuilder<SignupBloc, SignupState>(
-                              builder: (context, state) => state.when(
-                                initial: () => const Center(
-                                  child: IconButton(
-                                    onPressed: null,
-                                    icon: Icon(
-                                      Icons.photo,
+                              child: BlocBuilder<SignupBloc, SignupState>(
+                                builder: (context, state) => state.when(
+                                  initial: () => Center(
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _showModalButtonSheet(context, 2, list);
+                                      },
+                                      icon: Icon(
+                                        Icons.add_photo_alternate_outlined,
+                                        size: 40,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                choosePhotoSuccess: (file) => Center(
-                                  child: file[2].path.isEmpty
-                                      ? const IconButton(
-                                          onPressed: null,
-                                          icon: Icon(
-                                            Icons.photo,
+                                  choosePhotoSuccess: (file) => Center(
+                                    child: file[2].path.isEmpty
+                                        ? IconButton(
+                                            onPressed: () {
+                                              _showModalButtonSheet(
+                                                context,
+                                                2,
+                                                list,
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons
+                                                  .add_photo_alternate_outlined,
+                                              size: 40,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .outline,
+                                            ),
+                                          )
+                                        : IdImage(
+                                            96,
+                                            file[2],
+                                            callback: () {
+                                              list[2] = File('');
+                                              context.read<SignupBloc>().add(
+                                                    const SignupEvent.started(),
+                                                  );
+                                            },
                                           ),
-                                        )
-                                      : IdImage(40, file[2]),
+                                  ),
                                 ),
                               ),
                             ),
@@ -481,7 +488,7 @@ class SignUpContent extends StatelessWidget {
                                               data?['address'].toString() ?? '',
                                           email:
                                               data?['email'].toString() ?? '',
-                                          active: true,
+                                          active: false,
                                           avatarUrl: list[0].isEmpty
                                               ? photoURL
                                               : list[0],
@@ -524,7 +531,7 @@ class SignUpContent extends StatelessWidget {
                                     ),
                                     addr: data?['address'].toString() ?? '',
                                     email: data?['email'].toString() ?? '',
-                                    active: true,
+                                    active: false,
                                     avatarUrl: photoURL,
                                     createdTime: DateTime.now(),
                                     lastUpdatedTime: DateTime.now(),

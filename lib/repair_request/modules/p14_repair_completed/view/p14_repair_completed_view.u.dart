@@ -1,12 +1,14 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../router/router.dart';
+import '../../../../shared/shared.dart';
 import '../../../models/models.dart';
 import '../cubit/p14_repair_completed_cubit.dart';
 import '../widgets/widgets.dart';
@@ -32,14 +34,17 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
   @override
   void initState() {
     super.initState();
+
     _isEnabled = false;
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
         case NotificationType.ConsumerBilled:
-          setState(() {
-            _isEnabled = true;
-          });
+          if (mounted) {
+            setState(() {
+              _isEnabled = true;
+            });
+          }
           break;
         // ignore: no_default_cases
         default:
@@ -149,10 +154,40 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
                     onPressed: _isEnabled
-                        ? () {
-                            context
+                        ? () async {
+                            await context
                                 .read<P14RepairCompletedCubit>()
-                                .submit(widget.finished, widget.paid);
+                                .submit(
+                              widget.finished,
+                              widget.paid,
+                              (a, b, c, d) async {
+                                await context
+                                    .read<NotificationCubit>()
+                                    .sendMessageToToken(
+                                      SendMessage(
+                                        title: 'Revup',
+                                        body: 'body',
+                                        token: a,
+                                        icon: kRevupIconApp,
+                                        payload: MessageData(
+                                          type: NotificationType.NormalMessage,
+                                          payload: <String, dynamic>{
+                                            'providerId': b,
+                                            'typeSub': c,
+                                            'recordId': d,
+                                          },
+                                        ),
+                                      ),
+                                    )
+                                    .whenComplete(
+                                      () => context.router.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            HomeRoute.name,
+                                      ),
+                                    );
+                              },
+                            );
                           }
                         : null,
                     style: Theme.of(context).elevatedButtonTheme.style,

@@ -63,6 +63,7 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
             directions: directions,
             fromMarker: fromMarker,
             toMarker: toMarker,
+            recordId: recordId,
           ),
         );
       },

@@ -29,11 +29,7 @@ class MapRouteView extends StatelessWidget {
     return BlocBuilder<MapRouteBloc, MapRouteState>(
       builder: (context, state) {
         return state.maybeWhen(
-          success: (
-            directions,
-            fromMaker,
-            toMarker,
-          ) {
+          success: (directions, fromMaker, toMarker, recordId) {
             return Stack(
               children: <Widget>[
                 RequestMapLive(
@@ -58,7 +54,7 @@ class MapRouteView extends StatelessWidget {
                     child: const Icon(Icons.navigation_rounded),
                   ),
                 ),
-                const RequestDetailsLive(),
+                RequestDetailsLive(recordId),
               ],
             );
           },

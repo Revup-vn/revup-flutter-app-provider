@@ -10,7 +10,9 @@ import '../../shared/utils/utils.dart';
 import '../bloc/map_route_bloc.dart';
 
 class RequestDetailsLive extends StatelessWidget {
-  const RequestDetailsLive({super.key});
+  const RequestDetailsLive(this.recordId, {super.key});
+
+  final String recordId;
   @override
   Widget build(BuildContext context) {
     final cubitNotify = context.read<NotificationCubit>();
@@ -38,7 +40,7 @@ class RequestDetailsLive extends StatelessWidget {
                 context.read<MapRouteBloc>().add(
                       MapRouteEvent.providerStarted(
                         onRoute: () => context.router.push(
-                          const P12DetailRoute(),
+                          P12DetailRoute(recordId: recordId),
                         ), // route to doing repair page
                         sendMessage: (token) => cubitNotify.sendMessageToToken(
                           SendMessage(

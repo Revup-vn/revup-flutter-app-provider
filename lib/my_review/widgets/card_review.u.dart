@@ -41,8 +41,7 @@ class CardReview extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.only(top: 10),
+                            SizedBox(
                               height: 50,
                               width: 50,
                               child: ClipRRect(
@@ -67,7 +66,7 @@ class CardReview extends StatelessWidget {
                                   },
                                   height: 64,
                                   width: 64,
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),

@@ -344,22 +344,24 @@ mixin _$MapRouteState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Directions directions, Marker fromMarker, Marker toMarker)
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, String recordId)
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions, Marker fromMarker, Marker toMarker)?
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            String recordId)?
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions, Marker fromMarker, Marker toMarker)?
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            String recordId)?
         success,
     required TResult orElse(),
   }) =>
@@ -442,8 +444,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Directions directions, Marker fromMarker, Marker toMarker)
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, String recordId)
         success,
   }) {
     return initial();
@@ -453,7 +455,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions, Marker fromMarker, Marker toMarker)?
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            String recordId)?
         success,
   }) {
     return initial?.call();
@@ -463,7 +466,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions, Marker fromMarker, Marker toMarker)?
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            String recordId)?
         success,
     required TResult orElse(),
   }) {
@@ -514,7 +518,11 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({Directions directions, Marker fromMarker, Marker toMarker});
+  $Res call(
+      {Directions directions,
+      Marker fromMarker,
+      Marker toMarker,
+      String recordId});
 
   $DirectionsCopyWith<$Res> get directions;
 }
@@ -533,6 +541,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$MapRouteStateCopyWithImpl<$Res>
     Object? directions = freezed,
     Object? fromMarker = freezed,
     Object? toMarker = freezed,
+    Object? recordId = freezed,
   }) {
     return _then(_$_Success(
       directions: directions == freezed
@@ -547,6 +556,10 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$MapRouteStateCopyWithImpl<$Res>
           ? _value.toMarker
           : toMarker // ignore: cast_nullable_to_non_nullable
               as Marker,
+      recordId: recordId == freezed
+          ? _value.recordId
+          : recordId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -564,7 +577,8 @@ class _$_Success implements _Success {
   const _$_Success(
       {required this.directions,
       required this.fromMarker,
-      required this.toMarker});
+      required this.toMarker,
+      required this.recordId});
 
   @override
   final Directions directions;
@@ -572,10 +586,12 @@ class _$_Success implements _Success {
   final Marker fromMarker;
   @override
   final Marker toMarker;
+  @override
+  final String recordId;
 
   @override
   String toString() {
-    return 'MapRouteState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker)';
+    return 'MapRouteState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, recordId: $recordId)';
   }
 
   @override
@@ -587,7 +603,8 @@ class _$_Success implements _Success {
                 .equals(other.directions, directions) &&
             const DeepCollectionEquality()
                 .equals(other.fromMarker, fromMarker) &&
-            const DeepCollectionEquality().equals(other.toMarker, toMarker));
+            const DeepCollectionEquality().equals(other.toMarker, toMarker) &&
+            const DeepCollectionEquality().equals(other.recordId, recordId));
   }
 
   @override
@@ -595,7 +612,8 @@ class _$_Success implements _Success {
       runtimeType,
       const DeepCollectionEquality().hash(directions),
       const DeepCollectionEquality().hash(fromMarker),
-      const DeepCollectionEquality().hash(toMarker));
+      const DeepCollectionEquality().hash(toMarker),
+      const DeepCollectionEquality().hash(recordId));
 
   @JsonKey(ignore: true)
   @override
@@ -606,33 +624,35 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Directions directions, Marker fromMarker, Marker toMarker)
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, String recordId)
         success,
   }) {
-    return success(directions, fromMarker, toMarker);
+    return success(directions, fromMarker, toMarker, recordId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions, Marker fromMarker, Marker toMarker)?
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            String recordId)?
         success,
   }) {
-    return success?.call(directions, fromMarker, toMarker);
+    return success?.call(directions, fromMarker, toMarker, recordId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions, Marker fromMarker, Marker toMarker)?
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            String recordId)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(directions, fromMarker, toMarker);
+      return success(directions, fromMarker, toMarker, recordId);
     }
     return orElse();
   }
@@ -673,11 +693,13 @@ abstract class _Success implements MapRouteState {
   const factory _Success(
       {required final Directions directions,
       required final Marker fromMarker,
-      required final Marker toMarker}) = _$_Success;
+      required final Marker toMarker,
+      required final String recordId}) = _$_Success;
 
   Directions get directions;
   Marker get fromMarker;
   Marker get toMarker;
+  String get recordId;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

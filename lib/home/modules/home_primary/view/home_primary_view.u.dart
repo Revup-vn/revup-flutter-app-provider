@@ -70,26 +70,32 @@ class HomePrimaryView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  AutoSizeText(
-                    user.addr,
-                    style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(fontWeight: FontWeight.bold) ??
-                        const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Expanded(
+                    flex: 2,
+                    child: AutoSizeText(
+                      user.addr,
+                      style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(fontWeight: FontWeight.bold) ??
+                          const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
-                  const Spacer(),
-                  AutoSizeText(
-                    l10n.operationStatusLabel,
-                    style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(fontWeight: FontWeight.bold) ??
-                        const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Expanded(
+                    child: AutoSizeText(
+                      l10n.operationStatusLabel,
+                      style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(fontWeight: FontWeight.bold) ??
+                          const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                      minFontSize: 5,
+                      maxLines: 1,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   BlocBuilder<HomeBloc, HomeState>(

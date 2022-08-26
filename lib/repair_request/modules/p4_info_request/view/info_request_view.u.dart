@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../router/router.dart';
+import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';

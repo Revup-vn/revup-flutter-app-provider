@@ -53,7 +53,10 @@ class PaidServiceItem extends StatelessWidget {
                 ),
                 AutoSizeText(
                   context.formatMoney(paidService[index].price),
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ],
             ),

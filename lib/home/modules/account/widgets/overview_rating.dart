@@ -20,7 +20,7 @@ class OverviewRating extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           AutoSizeText(
-            rating.toString(),
+            rating.isNaN || rating == 0 ? '0' : rating.toString(),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ) ??
