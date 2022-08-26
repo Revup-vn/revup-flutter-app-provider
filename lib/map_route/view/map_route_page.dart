@@ -5,16 +5,17 @@ import 'package:revup_core/core.dart';
 import '../../map/location/bloc/location_bloc.dart';
 import '../../repair_request/modules/p4_info_request/cubit/realtime_location_cubit.dart';
 import '../../shared/utils/utils_function.dart';
-import '../bloc/new_request_bloc.dart';
-import 'new_request_view.dart';
+import '../bloc/map_route_bloc.dart';
+import 'map_route_view.dart';
 
-class NewRequestPage extends StatelessWidget {
-  const NewRequestPage({
+class MapRoutePage extends StatelessWidget {
+  const MapRoutePage({
     super.key,
     required this.recordId,
+    required this.consumerId,
   });
   final String recordId;
-
+  final String consumerId;
   @override
   Widget build(BuildContext context) {
     final user = getUser(context.read<AuthenticateBloc>().state)
@@ -31,19 +32,16 @@ class NewRequestPage extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => NewRequestBloc(
+          create: (context) => MapRouteBloc(
             context.read(),
             context.read(),
             context.read(),
             recordId,
+            consumerId,
           ),
         ),
       ],
-      child: const Scaffold(
-        resizeToAvoidBottomInset: false,
-        extendBodyBehindAppBar: true,
-        body: NewRequestView(),
-      ),
+      child: const MapRouteView(),
     );
   }
 }

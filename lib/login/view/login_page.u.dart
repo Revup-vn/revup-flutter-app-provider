@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -26,7 +25,6 @@ class LoginPage extends StatelessWidget {
           partial: (appUser) => _onPartialAuth(appUser, context),
           orElse: () => unit,
         );
-    log(context.read<ConnectivityBloc>().state.toString());
     final notifyCubit = context.read<NotificationCubit>();
     final sr = context.read<StoreRepository>();
     return InternetAvailabilityPage(

@@ -21,6 +21,9 @@ mixin _$InfoRequestEvent {
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
+    required TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)
+        confirmDeparted,
     required TResult Function() confirmArrived,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +32,9 @@ mixin _$InfoRequestEvent {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +43,9 @@ mixin _$InfoRequestEvent {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
   }) =>
@@ -46,6 +55,7 @@ mixin _$InfoRequestEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmDeparted value) confirmDeparted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +64,7 @@ mixin _$InfoRequestEvent {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +73,7 @@ mixin _$InfoRequestEvent {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
   }) =>
@@ -128,6 +140,9 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
+    required TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)
+        confirmDeparted,
     required TResult Function() confirmArrived,
   }) {
     return started();
@@ -139,6 +154,9 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
   }) {
     return started?.call();
@@ -150,6 +168,9 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
   }) {
@@ -165,6 +186,7 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmDeparted value) confirmDeparted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
     return started(this);
@@ -176,6 +198,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
     return started?.call(this);
@@ -187,6 +210,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
   }) {
@@ -269,6 +293,9 @@ class _$_LocationUpdated implements _LocationUpdated {
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
+    required TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)
+        confirmDeparted,
     required TResult Function() confirmArrived,
   }) {
     return locationUpdated(pos);
@@ -280,6 +307,9 @@ class _$_LocationUpdated implements _LocationUpdated {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
   }) {
     return locationUpdated?.call(pos);
@@ -291,6 +321,9 @@ class _$_LocationUpdated implements _LocationUpdated {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
   }) {
@@ -306,6 +339,7 @@ class _$_LocationUpdated implements _LocationUpdated {
     required TResult Function(_Started value) started,
     required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmDeparted value) confirmDeparted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
     return locationUpdated(this);
@@ -317,6 +351,7 @@ class _$_LocationUpdated implements _LocationUpdated {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
     return locationUpdated?.call(this);
@@ -328,6 +363,7 @@ class _$_LocationUpdated implements _LocationUpdated {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
   }) {
@@ -392,6 +428,9 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
+    required TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)
+        confirmDeparted,
     required TResult Function() confirmArrived,
   }) {
     return confirmStarted();
@@ -403,6 +442,9 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
   }) {
     return confirmStarted?.call();
@@ -414,6 +456,9 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
   }) {
@@ -429,6 +474,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     required TResult Function(_Started value) started,
     required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmDeparted value) confirmDeparted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
     return confirmStarted(this);
@@ -440,6 +486,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
     return confirmStarted?.call(this);
@@ -451,6 +498,7 @@ class _$_ConfirmStarted implements _ConfirmStarted {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
   }) {
@@ -463,6 +511,175 @@ class _$_ConfirmStarted implements _ConfirmStarted {
 
 abstract class _ConfirmStarted implements InfoRequestEvent {
   const factory _ConfirmStarted() = _$_ConfirmStarted;
+}
+
+/// @nodoc
+abstract class _$$_ConfirmDepartedCopyWith<$Res> {
+  factory _$$_ConfirmDepartedCopyWith(
+          _$_ConfirmDeparted value, $Res Function(_$_ConfirmDeparted) then) =
+      __$$_ConfirmDepartedCopyWithImpl<$Res>;
+  $Res call({Function0<void> onRoute, Function1<String, void> sendMessage});
+}
+
+/// @nodoc
+class __$$_ConfirmDepartedCopyWithImpl<$Res>
+    extends _$InfoRequestEventCopyWithImpl<$Res>
+    implements _$$_ConfirmDepartedCopyWith<$Res> {
+  __$$_ConfirmDepartedCopyWithImpl(
+      _$_ConfirmDeparted _value, $Res Function(_$_ConfirmDeparted) _then)
+      : super(_value, (v) => _then(v as _$_ConfirmDeparted));
+
+  @override
+  _$_ConfirmDeparted get _value => super._value as _$_ConfirmDeparted;
+
+  @override
+  $Res call({
+    Object? onRoute = freezed,
+    Object? sendMessage = freezed,
+  }) {
+    return _then(_$_ConfirmDeparted(
+      onRoute: onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function0<void>,
+      sendMessage: sendMessage == freezed
+          ? _value.sendMessage
+          : sendMessage // ignore: cast_nullable_to_non_nullable
+              as Function1<String, void>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ConfirmDeparted implements _ConfirmDeparted {
+  const _$_ConfirmDeparted({required this.onRoute, required this.sendMessage});
+
+  @override
+  final Function0<void> onRoute;
+  @override
+  final Function1<String, void> sendMessage;
+
+  @override
+  String toString() {
+    return 'InfoRequestEvent.confirmDeparted(onRoute: $onRoute, sendMessage: $sendMessage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ConfirmDeparted &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
+            (identical(other.sendMessage, sendMessage) ||
+                other.sendMessage == sendMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onRoute, sendMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ConfirmDepartedCopyWith<_$_ConfirmDeparted> get copyWith =>
+      __$$_ConfirmDepartedCopyWithImpl<_$_ConfirmDeparted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(LatLng pos) locationUpdated,
+    required TResult Function() confirmStarted,
+    required TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)
+        confirmDeparted,
+    required TResult Function() confirmArrived,
+  }) {
+    return confirmDeparted(onRoute, sendMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
+    TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
+    TResult Function()? confirmArrived,
+  }) {
+    return confirmDeparted?.call(onRoute, sendMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LatLng pos)? locationUpdated,
+    TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
+    TResult Function()? confirmArrived,
+    required TResult orElse(),
+  }) {
+    if (confirmDeparted != null) {
+      return confirmDeparted(onRoute, sendMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_LocationUpdated value) locationUpdated,
+    required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmDeparted value) confirmDeparted,
+    required TResult Function(_ConfirmArrived value) confirmArrived,
+  }) {
+    return confirmDeparted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
+    TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
+    TResult Function(_ConfirmArrived value)? confirmArrived,
+  }) {
+    return confirmDeparted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_LocationUpdated value)? locationUpdated,
+    TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
+    TResult Function(_ConfirmArrived value)? confirmArrived,
+    required TResult orElse(),
+  }) {
+    if (confirmDeparted != null) {
+      return confirmDeparted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmDeparted implements InfoRequestEvent {
+  const factory _ConfirmDeparted(
+      {required final Function0<void> onRoute,
+      required final Function1<String, void> sendMessage}) = _$_ConfirmDeparted;
+
+  Function0<void> get onRoute;
+  Function1<String, void> get sendMessage;
+  @JsonKey(ignore: true)
+  _$$_ConfirmDepartedCopyWith<_$_ConfirmDeparted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -509,6 +726,9 @@ class _$_ConfirmArrived implements _ConfirmArrived {
     required TResult Function() started,
     required TResult Function(LatLng pos) locationUpdated,
     required TResult Function() confirmStarted,
+    required TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)
+        confirmDeparted,
     required TResult Function() confirmArrived,
   }) {
     return confirmArrived();
@@ -520,6 +740,9 @@ class _$_ConfirmArrived implements _ConfirmArrived {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
   }) {
     return confirmArrived?.call();
@@ -531,6 +754,9 @@ class _$_ConfirmArrived implements _ConfirmArrived {
     TResult Function()? started,
     TResult Function(LatLng pos)? locationUpdated,
     TResult Function()? confirmStarted,
+    TResult Function(
+            Function0<void> onRoute, Function1<String, void> sendMessage)?
+        confirmDeparted,
     TResult Function()? confirmArrived,
     required TResult orElse(),
   }) {
@@ -546,6 +772,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
     required TResult Function(_Started value) started,
     required TResult Function(_LocationUpdated value) locationUpdated,
     required TResult Function(_ConfirmStarted value) confirmStarted,
+    required TResult Function(_ConfirmDeparted value) confirmDeparted,
     required TResult Function(_ConfirmArrived value) confirmArrived,
   }) {
     return confirmArrived(this);
@@ -557,6 +784,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
   }) {
     return confirmArrived?.call(this);
@@ -568,6 +796,7 @@ class _$_ConfirmArrived implements _ConfirmArrived {
     TResult Function(_Started value)? started,
     TResult Function(_LocationUpdated value)? locationUpdated,
     TResult Function(_ConfirmStarted value)? confirmStarted,
+    TResult Function(_ConfirmDeparted value)? confirmDeparted,
     TResult Function(_ConfirmArrived value)? confirmArrived,
     required TResult orElse(),
   }) {

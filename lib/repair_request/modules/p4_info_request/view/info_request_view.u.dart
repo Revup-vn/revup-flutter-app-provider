@@ -1,17 +1,13 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:map_launcher/map_launcher.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../new_request/models/pending_repair_request.dart';
 import '../../../../router/router.dart';
+import '../../../../shared/utils/utils.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/info_request_bloc.dart';
@@ -47,7 +43,6 @@ class _InfoRequestViewState extends State<InfoRequestView> {
   @override
   void initState() {
     super.initState();
-    rtUpdateLocation();
   }
 
   @override
@@ -196,7 +191,34 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                         onPressed: () {
                           startMode = false;
                           movingMode = true;
-                          _openMapsFor(record);
+                          // send message provider start moving to consumer
+                          blocPage.add(
+                            InfoRequestEvent.confirmDeparted(
+                              onRoute: () => context.router.push(
+                                MapRouteRoute(
+                                  recordId: record.id,
+                                  consumerId: record.cid,
+                                ),
+                              ),
+                              sendMessage: (token) => context
+                                  .read<NotificationCubit>()
+                                  .sendMessageToToken(
+                                    SendMessage(
+                                      title: 'Revup',
+                                      body: l10n.startMovingLabel,
+                                      token: token,
+                                      icon: kRevupIconApp,
+                                      payload: MessageData(
+                                        type: NotificationType.NormalMessage,
+                                        payload: <String, dynamic>{
+                                          'subType': 'ProviderDeparted',
+                                          'providerId': record.pid,
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                            ),
+                          );
                         },
                       );
                     } else if (movingMode) {
@@ -233,41 +255,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
     );
   }
 
-  void rtUpdateLocation() {
-    // _timer = Timer.periodic(const Duration(seconds: 30), (timer) async {
-    // });
-    Geolocator.getPositionStream().listen((position) async {
-      print(position);
-      // update position to firestore
-    });
-  }
-
-  Future<void> _openMapsFor(PendingRepairRequest record) async {
-    final isGoogle = await MapLauncher.isMapAvailable(MapType.google);
-
-    final isApple = await MapLauncher.isMapAvailable(MapType.apple);
-    if (isGoogle ?? false) {
-      await MapLauncher.showDirections(
-        mapType: MapType.google,
-        destination: Coords(record.to.lat, record.to.long),
-        origin: Coords(record.from.lat, record.from.long),
-        destinationTitle: context.l10n.repairLocationLabel,
-        originTitle: context.l10n.currentLocationLabel,
-      );
-    } else if (isApple ?? false) {
-      await MapLauncher.showDirections(
-        mapType: MapType.apple,
-        destination: Coords(record.to.lat, record.to.long),
-        origin: Coords(record.from.lat, record.from.long),
-        destinationTitle: context.l10n.repairLocationLabel,
-        originTitle: context.l10n.currentLocationLabel,
-      );
-    }
-  }
-
   @override
   void dispose() {
-    // _timer.cancel();
     super.dispose();
   }
 }

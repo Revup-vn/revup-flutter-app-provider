@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import '../home/home.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
+import '../map_route/view/map_route_page.dart';
 import '../my_review/my_review.dart';
 import '../new_request/view/new_request_page.dart';
 import '../otp/view/otp_page.u.dart';
@@ -45,6 +46,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: AddProductPage),
     AdaptiveRoute<void>(page: PermissionPage),
+    AdaptiveRoute<void>(page: MapRoutePage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

@@ -8,6 +8,7 @@ import 'home_primary_view.u.dart';
 class HomePrimaryPage extends StatelessWidget {
   const HomePrimaryPage(this.user, {super.key});
   final AppUser user;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

@@ -7,6 +7,7 @@ import '../../../../new_request/models/pending_repair_request.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/info_request_bloc.dart';
+import '../cubit/realtime_location_cubit.dart';
 import 'info_request_view.u.dart';
 
 class InfoRequestPage extends StatelessWidget {
@@ -31,14 +32,22 @@ class InfoRequestPage extends StatelessWidget {
         sr.repairPaymentRepo(RepairRecordDummy.dummyStarted(record.id));
     final user = getUser(context.read<AuthenticateBloc>().state)
         .getOrElse(() => throw NullThrownError());
-    return BlocProvider(
-      create: (_) => InfoRequestBloc(
-        record,
-        context.read(),
-        context.read(),
-        paymentService,
-        user,
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => InfoRequestBloc(
+            record,
+            context.read(),
+            context.read(),
+            paymentService,
+            user,
+            context.read(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => RealtimeLocationCubit(context.read(), user),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(),
         body: InfoRequestView(

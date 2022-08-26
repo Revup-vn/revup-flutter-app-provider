@@ -20,14 +20,17 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     this._userRepos,
     this._paymentService,
     this.user,
+    this.storeRepository,
   ) : super(const _Initial()) {
     on<InfoRequestEvent>(_onEvent);
   }
   final PendingRepairRequest record;
   final IStore<RepairRecord> _repairRecord;
-  final IStore<RepairRecord> _userRepos;
+  final IStore<AppUser> _userRepos;
   final IStore<PaymentService> _paymentService;
+  final StoreRepository storeRepository;
   final AppUser user;
+  // final StreamSubscription<Position> _sPosition;
 
   Future<void> _onEvent(
     InfoRequestEvent event,
@@ -98,6 +101,28 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
             to: record.to, started: DateTime.now(),
           ),
         );
+      },
+      confirmDeparted: (onRoute, sendMessage) async {
+        // get latest consumer fcm token
+        final consumer = (await _userRepos.get(record.cid))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+
+        final tokens =
+            (await storeRepository.userNotificationTokenRepo(consumer).all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+        // send message to consumer
+        sendMessage(tokens.first.token);
+        // route to map route page
+        onRoute();
       },
       locationUpdated: (pos) async {
         final point = GeoFlutterFire()

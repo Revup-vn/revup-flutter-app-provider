@@ -224,5 +224,6 @@
   "enableLocationLabel": "Allow location access",
   "chooseAtLeastCompletedLabel": "Choose at least one service",
   "providerAcceptRequestLabel": "Your repair request has been accepted",
-  "providerDeclineRequestLabel": "The worker declined the request"
+  "providerDeclineRequestLabel": "The worker declined the request",
+  "startMovingLabel": "The repairman has departed"
 }

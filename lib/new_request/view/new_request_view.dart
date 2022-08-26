@@ -21,9 +21,13 @@ class NewRequestView extends StatelessWidget {
     final blocPage = context.watch<NewRequestBloc>();
     final cubitNotify = context.read<NotificationCubit>();
     blocPage.state.whenOrNull(
-      initial: () => blocPage.add(const NewRequestEvent.started()),
+      initial: () {
+        // context.read<RealtimeLocationCubit>().watch();
+        blocPage.add(const NewRequestEvent.started());
+      },
     );
-    final maybeUser = getUser(context.read<AuthenticateBloc>().state);
+    final user = getUser(context.read<AuthenticateBloc>().state)
+        .getOrElse(() => throw NullThrownError());
 
     return BlocBuilder<NewRequestBloc, NewRequestState>(
       builder: (context, state) {
@@ -101,10 +105,7 @@ class NewRequestView extends StatelessWidget {
                                                 onRoute: () =>
                                                     context.router.replace(
                                                   HomeRoute(
-                                                    user: maybeUser.getOrElse(
-                                                      () =>
-                                                          throw NullThrownError(),
-                                                    ),
+                                                    user: user,
                                                   ),
                                                 ),
                                                 sendMessage: (token) =>

@@ -191,8 +191,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         log('TOKEN:${tokens.first.token}');
 
         // send notification to consumer
-        final b = await sendMessage(tokens.first.token);
-        log(b);
+        await sendMessage(tokens.first.token);
         // route to info request
         onRoute();
       },
