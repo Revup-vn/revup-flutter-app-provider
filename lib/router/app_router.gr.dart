@@ -87,7 +87,7 @@ class AppRouter extends _i22.RootStackRouter {
           child: _i4.InfoRequestPage(
               key: args.key,
               consumer: args.consumer,
-              record: args.record,
+              recordId: args.recordId,
               distance: args.distance,
               pendingService: args.pendingService,
               pendingAmount: args.pendingAmount),
@@ -379,7 +379,7 @@ class InfoRequestRoute extends _i22.PageRouteInfo<InfoRequestRouteArgs> {
   InfoRequestRoute(
       {_i23.Key? key,
       required _i27.AppUser consumer,
-      required _i24.PendingRepairRequest record,
+      required String recordId,
       required double distance,
       required _i25.IList<_i6.PendingServiceModel> pendingService,
       required int pendingAmount})
@@ -388,7 +388,7 @@ class InfoRequestRoute extends _i22.PageRouteInfo<InfoRequestRouteArgs> {
             args: InfoRequestRouteArgs(
                 key: key,
                 consumer: consumer,
-                record: record,
+                recordId: recordId,
                 distance: distance,
                 pendingService: pendingService,
                 pendingAmount: pendingAmount));
@@ -400,7 +400,7 @@ class InfoRequestRouteArgs {
   const InfoRequestRouteArgs(
       {this.key,
       required this.consumer,
-      required this.record,
+      required this.recordId,
       required this.distance,
       required this.pendingService,
       required this.pendingAmount});
@@ -409,7 +409,7 @@ class InfoRequestRouteArgs {
 
   final _i27.AppUser consumer;
 
-  final _i24.PendingRepairRequest record;
+  final String recordId;
 
   final double distance;
 
@@ -419,7 +419,7 @@ class InfoRequestRouteArgs {
 
   @override
   String toString() {
-    return 'InfoRequestRouteArgs{key: $key, consumer: $consumer, record: $record, distance: $distance, pendingService: $pendingService, pendingAmount: $pendingAmount}';
+    return 'InfoRequestRouteArgs{key: $key, consumer: $consumer, recordId: $recordId, distance: $distance, pendingService: $pendingService, pendingAmount: $pendingAmount}';
   }
 }
 

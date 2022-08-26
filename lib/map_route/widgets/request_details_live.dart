@@ -5,7 +5,6 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../repair_request/modules/p4_info_request/cubit/realtime_location_cubit.dart';
-import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
 import '../bloc/map_route_bloc.dart';
 
@@ -39,9 +38,8 @@ class RequestDetailsLive extends StatelessWidget {
                 // send message provider arrival
                 context.read<MapRouteBloc>().add(
                       MapRouteEvent.providerStarted(
-                        onRoute: () => context.router.push(
-                          P12DetailRoute(recordId: recordId),
-                        ), // route to doing repair page
+                        onRoute: () =>
+                            context.router.pop(), // route to doing repair page
                         sendMessage: (token) => cubitNotify.sendMessageToToken(
                           SendMessage(
                             title: 'Revup',

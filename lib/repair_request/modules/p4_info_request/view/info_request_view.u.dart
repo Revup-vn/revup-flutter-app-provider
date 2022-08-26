@@ -37,12 +37,27 @@ class InfoRequestView extends StatefulWidget {
 
 class _InfoRequestViewState extends State<InfoRequestView> {
   bool startMode = false;
-  bool fixedMode = false;
-  bool movingMode = false;
-  // late Timer _timer;
   @override
   void initState() {
     super.initState();
+    context.read<NotificationCubit>().addForegroundListener((p0) {
+      final type = p0.payload.type;
+      switch (type) {
+        case NotificationType.NormalMessage:
+          final subType = p0.payload.payload['subType'] as String;
+          if (subType == 'ConsumerSelected') {
+            if (mounted) {
+              setState(() {
+                startMode = true;
+              });
+            }
+          }
+          break;
+        // ignore: no_default_cases
+        default:
+          break;
+      }
+    });
   }
 
   @override
@@ -66,6 +81,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
             needToVerifyService,
             record,
             len,
+            isReady,
           ) =>
               Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
@@ -184,13 +200,14 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                 ),
                 LayoutBuilder(
                   builder: (context, _) {
-                    if (needToVerifyService.isEmpty) startMode = true;
-                    if (startMode) {
+                    // if (needToVerifyService.isEmpty && isReady)
+                    //   startMode = true;
+                    if (record.recordType == 'pending' && startMode) {
                       return ActionButton(
                         text: l10n.startLabel,
                         onPressed: () {
                           startMode = false;
-                          movingMode = true;
+
                           // send message provider start moving to consumer
                           blocPage.add(
                             InfoRequestEvent.confirmDeparted(
@@ -221,17 +238,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                           );
                         },
                       );
-                    } else if (movingMode) {
-                      return ActionButton(
-                        text: l10n.providerArrivedLabel,
-                        onPressed: () {
-                          // update record to arrived
-                          movingMode = false;
-                          fixedMode = true;
-                          blocPage.add(const InfoRequestEvent.confirmArrived());
-                        },
-                      );
-                    } else if (fixedMode) {
+                    } else if (record.recordType == 'arrived') {
                       return ActionButton(
                         text: l10n.startRepairLabel,
                         onPressed: () {

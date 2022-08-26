@@ -68,6 +68,33 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
         );
       },
       providerStarted: (onRoute, sendMessage) async {
+        final record = (await _repairRecord.get(recordId))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                accepted: some,
+                orElse: none,
+              ),
+            )
+            .fold<Option<RepairRecord>>(
+              (l) => none(),
+              (r) => r,
+            )
+            .getOrElse(() => throw NullThrownError());
+        // update record to arrived
+        await _repairRecord.update(
+          RepairRecord.arrived(
+            id: record.id,
+            cid: record.cid,
+            pid: record.pid,
+            created: record.created,
+            desc: record.desc,
+            vehicle: record.vehicle,
+            money: record.money,
+            moving: DateTime.now(), // temp
+            from: record.from,
+            to: record.to, arrived: DateTime.now(),
+          ),
+        );
         // get latest consumer fcm token
         final consumer = (await _userStore.get(consumerId))
             .fold<Option<AppUser>>(

@@ -35,8 +35,8 @@ class _SplashPageState extends State<SplashPage> {
 
         case NotificationType.NormalMessage:
           final typeSub = p0.payload.payload['typeSub'] as String;
-          final recordId = p0.payload.payload['recordId'] as String;
           if (typeSub == 'accepted') {
+            final recordId = p0.payload.payload['recordId'] as String;
             context.router.push(
               P12DetailRoute(recordId: recordId),
             );

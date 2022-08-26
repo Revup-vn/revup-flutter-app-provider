@@ -15,7 +15,7 @@ part 'info_request_state.dart';
 
 class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   InfoRequestBloc(
-    this.record,
+    this.recordId,
     this._repairRecord,
     this._userRepos,
     this._paymentService,
@@ -24,7 +24,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   ) : super(const _Initial()) {
     on<InfoRequestEvent>(_onEvent);
   }
-  final PendingRepairRequest record;
+  final String recordId;
   final IStore<RepairRecord> _repairRecord;
   final IStore<AppUser> _userRepos;
   final IStore<PaymentService> _paymentService;
@@ -39,6 +39,16 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     await event.when(
       started: () async {
         emit(const InfoRequestState.loading());
+        final maybeRecord = (await _repairRecord.get(recordId))
+            .map<PendingRepairRequest>(
+              (r) => r.maybeMap(
+                accepted: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                arrived: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                orElse: () => throw NullThrownError(),
+              ),
+            )
+            .getOrElse(() => throw NullThrownError());
+
         final needToVerifyService = (await _paymentService.all())
             .map<IList<PaymentService>>(
               (r) => r.filter(
@@ -50,7 +60,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
         await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
           _paymentService.collection().snapshots(),
           onData: (data) {
-            final len = data.docs
+            final lst = data.docs
                 .map(_paymentService.parseRawData)
                 .fold<IList<PaymentService>>(
                   nil(),
@@ -58,53 +68,91 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
                     (l) => p,
                     (r) => cons(r, p),
                   ),
-                )
-                .length();
+                );
+
             return InfoRequestState.success(
               needToVerifyService: needToVerifyService,
-              record: record,
-              len: len,
+              record: maybeRecord,
+              len: lst.length(),
+              isReady: lst
+                  .filter(
+                    (a) =>
+                        a.maybeMap(pending: (v) => true, orElse: () => false),
+                  )
+                  .all(
+                    (a) => a.maybeMap(
+                      pending: (v) => v.products.isNotEmpty,
+                      orElse: () => false,
+                    ),
+                  ),
             );
           },
         );
       },
       confirmArrived: () async {
+        final maybeRecord = (await _repairRecord.get(recordId))
+            .map<PendingRepairRequest>(
+              (r) => r.maybeMap(
+                accepted: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                arrived: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                orElse: () => throw NullThrownError(),
+              ),
+            )
+            .getOrElse(() => throw NullThrownError());
         await _repairRecord.update(
           RepairRecord.arrived(
-            id: record.id,
-            cid: record.cid,
-            pid: record.pid,
-            created: record.created,
-            desc: record.desc,
-            vehicle: record.vehicle,
-            money: record.money,
+            id: maybeRecord.id,
+            cid: maybeRecord.cid,
+            pid: maybeRecord.pid,
+            created: maybeRecord.created,
+            desc: maybeRecord.desc,
+            vehicle: maybeRecord.vehicle,
+            money: maybeRecord.money,
             moving: DateTime.now(), // temp
             arrived: DateTime.now(),
-            from: record.from,
-            to: record.to,
+            from: maybeRecord.from,
+            to: maybeRecord.to,
           ),
         );
       },
       confirmStarted: () async {
+        final maybeRecord = (await _repairRecord.get(recordId))
+            .map<PendingRepairRequest>(
+              (r) => r.maybeMap(
+                accepted: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                arrived: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                orElse: () => throw NullThrownError(),
+              ),
+            )
+            .getOrElse(() => throw NullThrownError());
         // update record to started
         await _repairRecord.update(
           RepairRecord.started(
-            id: record.id,
-            cid: record.cid,
-            pid: record.pid,
-            created: record.created,
-            desc: record.desc,
-            vehicle: record.vehicle,
-            money: record.money,
+            id: maybeRecord.id,
+            cid: maybeRecord.cid,
+            pid: maybeRecord.pid,
+            created: maybeRecord.created,
+            desc: maybeRecord.desc,
+            vehicle: maybeRecord.vehicle,
+            money: maybeRecord.money,
             moving: DateTime.now(), // temp
-            from: record.from,
-            to: record.to, started: DateTime.now(),
+            from: maybeRecord.from,
+            to: maybeRecord.to, started: DateTime.now(),
           ),
         );
       },
       confirmDeparted: (onRoute, sendMessage) async {
+        final maybeRecord = (await _repairRecord.get(recordId))
+            .map<PendingRepairRequest>(
+              (r) => r.maybeMap(
+                accepted: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                arrived: (v) => PendingRepairRequest.fromDto(repairRecord: v),
+                orElse: () => throw NullThrownError(),
+              ),
+            )
+            .getOrElse(() => throw NullThrownError());
         // get latest consumer fcm token
-        final consumer = (await _userRepos.get(record.cid))
+        final consumer = (await _userRepos.get(maybeRecord.cid))
             .fold<Option<AppUser>>(
               (l) => none(),
               some,

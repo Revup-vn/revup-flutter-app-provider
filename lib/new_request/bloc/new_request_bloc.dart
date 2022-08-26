@@ -167,7 +167,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
           RepairRecordDummy.dummyStarted(record.id),
         );
 
-        record.optionalServices.map(
+        record.optionalServices?.map(
           (e) => _paymentServiceStore.create(
             PaymentService.needToVerify(serviceName: e.name, desc: e.desc),
           ),

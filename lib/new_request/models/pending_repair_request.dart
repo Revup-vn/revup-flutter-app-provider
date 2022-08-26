@@ -15,7 +15,8 @@ class PendingRepairRequest with _$PendingRepairRequest {
     required int money,
     required Location from,
     required Location to,
-    required List<OptionalService> optionalServices,
+    List<OptionalService>? optionalServices,
+    String? recordType,
   }) = _PendingRepairRequest;
 
   factory PendingRepairRequest.fromDto({required RepairRecord repairRecord}) =>
@@ -31,6 +32,31 @@ class PendingRepairRequest with _$PendingRepairRequest {
           from: repairRecord.from,
           to: repairRecord.to,
           optionalServices: v.services,
+          recordType: 'pending',
+        ),
+        accepted: (v) => PendingRepairRequest(
+          id: repairRecord.id,
+          cid: repairRecord.cid,
+          pid: repairRecord.pid,
+          created: repairRecord.created,
+          desc: repairRecord.desc,
+          vehicle: repairRecord.vehicle,
+          money: repairRecord.money,
+          from: repairRecord.from,
+          to: repairRecord.to,
+          recordType: 'pending',
+        ),
+        arrived: (v) => PendingRepairRequest(
+          id: repairRecord.id,
+          cid: repairRecord.cid,
+          pid: repairRecord.pid,
+          created: repairRecord.created,
+          desc: repairRecord.desc,
+          vehicle: repairRecord.vehicle,
+          money: repairRecord.money,
+          from: repairRecord.from,
+          to: repairRecord.to,
+          recordType: 'arrived',
         ),
         orElse: () => throw NullThrownError(),
       );

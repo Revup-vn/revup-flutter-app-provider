@@ -819,7 +819,7 @@ mixin _$InfoRequestState {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)
+            PendingRepairRequest record, int len, bool isReady)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -829,7 +829,7 @@ mixin _$InfoRequestState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -839,7 +839,7 @@ mixin _$InfoRequestState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
     required TResult orElse(),
   }) =>
@@ -932,7 +932,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)
+            PendingRepairRequest record, int len, bool isReady)
         success,
   }) {
     return initial();
@@ -945,7 +945,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
   }) {
     return initial?.call();
@@ -958,7 +958,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
     required TResult orElse(),
   }) {
@@ -1054,7 +1054,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)
+            PendingRepairRequest record, int len, bool isReady)
         success,
   }) {
     return loading();
@@ -1067,7 +1067,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
   }) {
     return loading?.call();
@@ -1080,7 +1080,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
     required TResult orElse(),
   }) {
@@ -1176,7 +1176,7 @@ class _$_Failure implements _Failure {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)
+            PendingRepairRequest record, int len, bool isReady)
         success,
   }) {
     return failure();
@@ -1189,7 +1189,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
   }) {
     return failure?.call();
@@ -1202,7 +1202,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
     required TResult orElse(),
   }) {
@@ -1262,7 +1262,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
   $Res call(
       {IList<PaymentService> needToVerifyService,
       PendingRepairRequest record,
-      int len});
+      int len,
+      bool isReady});
 
   $PendingRepairRequestCopyWith<$Res> get record;
 }
@@ -1282,6 +1283,7 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? needToVerifyService = freezed,
     Object? record = freezed,
     Object? len = freezed,
+    Object? isReady = freezed,
   }) {
     return _then(_$_Success(
       needToVerifyService: needToVerifyService == freezed
@@ -1296,6 +1298,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.len
           : len // ignore: cast_nullable_to_non_nullable
               as int,
+      isReady: isReady == freezed
+          ? _value.isReady
+          : isReady // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -1313,7 +1319,8 @@ class _$_Success implements _Success {
   const _$_Success(
       {required this.needToVerifyService,
       required this.record,
-      required this.len});
+      required this.len,
+      required this.isReady});
 
   @override
   final IList<PaymentService> needToVerifyService;
@@ -1321,10 +1328,12 @@ class _$_Success implements _Success {
   final PendingRepairRequest record;
   @override
   final int len;
+  @override
+  final bool isReady;
 
   @override
   String toString() {
-    return 'InfoRequestState.success(needToVerifyService: $needToVerifyService, record: $record, len: $len)';
+    return 'InfoRequestState.success(needToVerifyService: $needToVerifyService, record: $record, len: $len, isReady: $isReady)';
   }
 
   @override
@@ -1335,7 +1344,8 @@ class _$_Success implements _Success {
             const DeepCollectionEquality()
                 .equals(other.needToVerifyService, needToVerifyService) &&
             const DeepCollectionEquality().equals(other.record, record) &&
-            const DeepCollectionEquality().equals(other.len, len));
+            const DeepCollectionEquality().equals(other.len, len) &&
+            const DeepCollectionEquality().equals(other.isReady, isReady));
   }
 
   @override
@@ -1343,7 +1353,8 @@ class _$_Success implements _Success {
       runtimeType,
       const DeepCollectionEquality().hash(needToVerifyService),
       const DeepCollectionEquality().hash(record),
-      const DeepCollectionEquality().hash(len));
+      const DeepCollectionEquality().hash(len),
+      const DeepCollectionEquality().hash(isReady));
 
   @JsonKey(ignore: true)
   @override
@@ -1357,10 +1368,10 @@ class _$_Success implements _Success {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)
+            PendingRepairRequest record, int len, bool isReady)
         success,
   }) {
-    return success(needToVerifyService, record, len);
+    return success(needToVerifyService, record, len, isReady);
   }
 
   @override
@@ -1370,10 +1381,10 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
   }) {
-    return success?.call(needToVerifyService, record, len);
+    return success?.call(needToVerifyService, record, len, isReady);
   }
 
   @override
@@ -1383,12 +1394,12 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(IList<PaymentService> needToVerifyService,
-            PendingRepairRequest record, int len)?
+            PendingRepairRequest record, int len, bool isReady)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(needToVerifyService, record, len);
+      return success(needToVerifyService, record, len, isReady);
     }
     return orElse();
   }
@@ -1435,11 +1446,13 @@ abstract class _Success implements InfoRequestState {
   const factory _Success(
       {required final IList<PaymentService> needToVerifyService,
       required final PendingRepairRequest record,
-      required final int len}) = _$_Success;
+      required final int len,
+      required final bool isReady}) = _$_Success;
 
   IList<PaymentService> get needToVerifyService;
   PendingRepairRequest get record;
   int get len;
+  bool get isReady;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
