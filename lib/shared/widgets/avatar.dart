@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import '../utils/fallbacks.dart';
 import 'default_avatar.dart';
@@ -48,7 +47,7 @@ class Avatar extends StatelessWidget {
                     },
                     height: 64,
                     width: 64,
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fill,
                   )
                 : Image.file(localImg, fit: BoxFit.fill),
           ),
