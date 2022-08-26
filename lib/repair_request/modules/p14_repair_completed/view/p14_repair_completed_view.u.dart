@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -173,7 +172,7 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                                           type: NotificationType.NormalMessage,
                                           payload: <String, dynamic>{
                                             'providerId': b,
-                                            'typeSub': c,
+                                            'subType': c,
                                             'recordId': d,
                                           },
                                         ),

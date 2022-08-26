@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
@@ -65,6 +67,31 @@ class _SplashPageState extends State<SplashPage> {
             return unit;
           },
           orElse: () => unit,
+        );
+        final notifyCubit = context.read<NotificationCubit>();
+        final sr = context.read<StoreRepository>();
+        authBloc.state.maybeWhen(
+          authenticated: (authType) async {
+            await notifyCubit.requirePermission();
+            await notifyCubit.registerDevice();
+
+            final token = notifyCubit.state.maybeWhen(
+              registered: (token) => token,
+              failToRegister: () => '',
+              orElse: () => throw NullThrownError(),
+            );
+            final _iuntr = sr.userNotificationTokenRepo(
+              AppUserDummy.dummyConsumer(authType.user.uuid),
+            );
+            await _iuntr.create(
+              Token(
+                created: DateTime.now(),
+                platform: Platform.operatingSystem,
+                token: token,
+              ),
+            );
+          },
+          orElse: () => false,
         );
         context.router.pushAndPopUntil(
           authBloc.state.maybeWhen(
