@@ -10,6 +10,7 @@ import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
+import '../../../request.dart';
 import '../bloc/info_request_bloc.dart';
 import '../widgets/action_button.dart';
 import '../widgets/widgets.dart';
@@ -36,7 +37,7 @@ class InfoRequestView extends StatefulWidget {
 }
 
 class _InfoRequestViewState extends State<InfoRequestView> {
-  bool startMode = false;
+  bool ready = false;
   @override
   void initState() {
     super.initState();
@@ -48,9 +49,16 @@ class _InfoRequestViewState extends State<InfoRequestView> {
           if (subType == 'ConsumerSelected') {
             if (mounted) {
               setState(() {
-                startMode = true;
+                ready = true;
               });
             }
+          }
+          break;
+        case NotificationType.VerifiedArrival:
+          if (mounted) {
+            setState(() {
+              ready = true;
+            });
           }
           break;
         // ignore: no_default_cases
@@ -202,50 +210,57 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                   builder: (context, _) {
                     // if (needToVerifyService.isEmpty && isReady)
                     //   startMode = true;
-                    if (record.recordType == 'pending' && startMode) {
+                    if (record.recordType == 'pending') {
                       return ActionButton(
                         text: l10n.startLabel,
-                        onPressed: () {
-                          startMode = false;
-
-                          // send message provider start moving to consumer
-                          blocPage.add(
-                            InfoRequestEvent.confirmDeparted(
-                              onRoute: () => context.router.push(
-                                MapRouteRoute(
-                                  recordId: record.id,
-                                  consumerId: record.cid,
-                                ),
-                              ),
-                              sendMessage: (token) => context
-                                  .read<NotificationCubit>()
-                                  .sendMessageToToken(
-                                    SendMessage(
-                                      title: 'Revup',
-                                      body: l10n.startMovingLabel,
-                                      token: token,
-                                      icon: kRevupIconApp,
-                                      payload: MessageData(
-                                        type: NotificationType.NormalMessage,
-                                        payload: <String, dynamic>{
-                                          'subType': 'ProviderDeparted',
-                                          'providerId': record.pid,
-                                        },
+                        onPressed: !ready
+                            ? null
+                            : () {
+                                // send message provider start moving to consumer
+                                blocPage.add(
+                                  InfoRequestEvent.confirmDeparted(
+                                    onRoute: () => context.router.push(
+                                      MapRouteRoute(
+                                        recordId: record.id,
+                                        consumerId: record.cid,
                                       ),
                                     ),
+                                    sendMessage: (token) => context
+                                        .read<NotificationCubit>()
+                                        .sendMessageToToken(
+                                          SendMessage(
+                                            title: 'Revup',
+                                            body: l10n.startMovingLabel,
+                                            token: token,
+                                            icon: kRevupIconApp,
+                                            payload: MessageData(
+                                              type: NotificationType
+                                                  .NormalMessage,
+                                              payload: <String, dynamic>{
+                                                'subType': 'ProviderDeparted',
+                                                'providerId': record.pid,
+                                              },
+                                            ),
+                                          ),
+                                        ),
                                   ),
-                            ),
-                          );
-                        },
+                                );
+                              },
                       );
                     } else if (record.recordType == 'arrived') {
                       return ActionButton(
                         text: l10n.startRepairLabel,
-                        onPressed: () {
-                          // update record to started
-                          blocPage.add(const InfoRequestEvent.confirmStarted());
-                          context.router.replace(HomeRoute(user: user));
-                        },
+                        onPressed: !ready
+                            ? null
+                            : () {
+                                // update record to started
+                                blocPage.add(
+                                  const InfoRequestEvent.confirmStarted(),
+                                );
+                                // context.router.replace(HomeRoute(user: user));
+                                context.router
+                                    .push(P12DetailRoute(recordId: record.id));
+                              },
                       );
                     }
                     return ActionButton(text: l10n.startLabel);
