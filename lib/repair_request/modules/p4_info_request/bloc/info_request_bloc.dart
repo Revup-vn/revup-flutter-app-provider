@@ -39,6 +39,11 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     await event.when(
       started: () async {
         emit(const InfoRequestState.loading());
+        (await _repairRecord.get(recordId)).map((r) => r.maybeMap(
+            orElse: () => emit(const InfoRequestState.failure()),
+            accepted: (value) => value,
+            arrived: (value) => value));
+
         final maybeRecord = (await _repairRecord.get(recordId))
             .map<PendingRepairRequest>(
               (r) => r.maybeMap(

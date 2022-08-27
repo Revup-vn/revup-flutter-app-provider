@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:geolocator/geolocator.dart';
@@ -26,7 +25,7 @@ class HomePrimaryView extends StatelessWidget {
     final blocPage = context.watch<HomeBloc>();
     blocPage.state.maybeWhen(
       initial: () async {
-        final isGranted = await requestPermission();
+        final isGranted = await requestUserLocation();
         if (!isGranted) {
           await context.router.push(const PermissionRoute());
         } else {

@@ -67,12 +67,16 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
             created: val.created,
             desc: val.desc,
             vehicle: val.vehicle,
-            money: paid
-                    .map((e) => e.price)
-                    .reduce((value, element) => value + element) +
-                finished
-                    .map((e) => e.price)
-                    .reduce((value, element) => value + element),
+            money: (paid.isEmpty
+                    ? 0
+                    : paid
+                        .map((e) => e.price)
+                        .reduce((value, element) => value + element)) +
+                (paid.isEmpty
+                    ? 0
+                    : finished
+                        .map((e) => e.price)
+                        .reduce((value, element) => value + element)),
             moving: val.moving,
             started: val.started,
             completed: DateTime.now(),
@@ -99,7 +103,7 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
       sendMessage(
         tokens.first.token,
         repairRecord.pid,
-        'compltedRepair',
+        'completedRepair',
         repairRecord.id,
       );
     });

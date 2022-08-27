@@ -29,8 +29,7 @@ import 'package:revup_provider/new_request/models/pending_repair_request.dart'
     as _i24;
 import 'package:revup_provider/new_request/view/new_request_page.dart' as _i15;
 import 'package:revup_provider/otp/view/otp_page.u.dart' as _i13;
-import 'package:revup_provider/permission_page/view/permission_page.u.dart'
-    as _i19;
+import 'package:revup_provider/permission_page/permission_page.u.dart' as _i19;
 import 'package:revup_provider/repair_request/models/need_to_verify_model.dart'
     as _i26;
 import 'package:revup_provider/repair_request/modules/detail_request/p10_quote_price/view/p10_quote_price_page.dart'
