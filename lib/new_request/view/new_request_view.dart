@@ -8,6 +8,7 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../../shared/utils/utils.dart';
 import '../../shared/utils/utils_function.dart';
 import '../bloc/new_request_bloc.dart';
 import '../widgets/request_details_static.dart';
@@ -19,10 +20,15 @@ class NewRequestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final blocPage = context.watch<NewRequestBloc>();
+    final cubitNotify = context.read<NotificationCubit>();
     blocPage.state.whenOrNull(
-      initial: () => blocPage.add(const NewRequestEvent.started()),
+      initial: () {
+        // context.read<RealtimeLocationCubit>().watch();
+        blocPage.add(const NewRequestEvent.started());
+      },
     );
-    final maybeUser = getUser(context.read<AuthenticateBloc>().state);
+    final user = getUser(context.read<AuthenticateBloc>().state)
+        .getOrElse(() => throw NullThrownError());
 
     return BlocBuilder<NewRequestBloc, NewRequestState>(
       builder: (context, state) {
@@ -94,15 +100,35 @@ class NewRequestView extends StatelessWidget {
                                         ),
                                         ElevatedButton(
                                           onPressed: () {
-                                            context.router.replaceAll(
-                                              [
-                                                HomeRoute(
-                                                  user: maybeUser.getOrElse(
-                                                    () =>
-                                                        throw NullThrownError(),
+                                            blocPage.add(
+                                              NewRequestEvent.decline(
+                                                record: record,
+                                                onRoute: () =>
+                                                    context.router.replace(
+                                                  HomeRoute(
+                                                    user: user,
                                                   ),
-                                                )
-                                              ],
+                                                ),
+                                                sendMessage: (token) =>
+                                                    cubitNotify
+                                                        .sendMessageToToken(
+                                                  SendMessage(
+                                                    title: 'Revup',
+                                                    body: context.l10n
+                                                        .providerDeclineRequestLabel,
+                                                    token: token,
+                                                    icon: kRevupIconApp,
+                                                    payload: MessageData(
+                                                      type: NotificationType
+                                                          .ProviderDecline,
+                                                      payload: <String,
+                                                          dynamic>{
+                                                        'recordId': record.id,
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                             );
                                           },
                                           child:

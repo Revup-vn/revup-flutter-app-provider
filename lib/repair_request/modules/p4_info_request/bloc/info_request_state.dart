@@ -9,5 +9,6 @@ class InfoRequestState with _$InfoRequestState {
     required IList<PaymentService> needToVerifyService,
     required PendingRepairRequest record,
     required int len,
+    required bool isReady,
   }) = _Success;
 }

@@ -35,7 +35,6 @@ class AddProductView extends StatelessWidget {
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: AutoSizeText(
             productModel.productName.isEmpty
@@ -141,11 +140,10 @@ class AddProductView extends StatelessWidget {
                 ]
               : [],
         ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: SafeArea(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: SingleChildScrollView(
@@ -348,9 +346,7 @@ class AddProductView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              Container(
                 padding: const EdgeInsets.all(16),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Theme.of(context).cardColor),
@@ -381,8 +377,8 @@ class AddProductView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

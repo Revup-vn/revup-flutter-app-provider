@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -24,16 +25,17 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
   Future<Unit> submit(
     List<PendingServiceModel> finished,
     List<PaidServicesModel> paid,
+    Function4<String, String, String, String, void> sendMessage,
   ) async {
     final currRecord =
         await _irr.get(_rid); // The record must have type started
     currRecord.fold((l) => emit(const P14RepairCompletedState.failed()),
-        (r) async {
+        (repairRecord) async {
       // Save images
       final imgLinks = await _auxUploadImage(imgs);
 
       // Update service status
-      final _irp = _sr.repairPaymentRepo(r);
+      final _irp = _sr.repairPaymentRepo(repairRecord);
       for (final e in finished) {
         (await _irp.get(e.name)).fold(
           (l) => unit,
@@ -56,7 +58,7 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
 
       // Update record
       await _irr.update(
-        r.maybeMap(
+        repairRecord.maybeMap(
           orElse: () => throw NullThrownError(),
           started: (val) => RepairRecord.finished(
             id: val.id,
@@ -65,12 +67,16 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
             created: val.created,
             desc: val.desc,
             vehicle: val.vehicle,
-            money: paid
-                    .map((e) => e.price)
-                    .reduce((value, element) => value + element) +
-                finished
-                    .map((e) => e.price)
-                    .reduce((value, element) => value + element),
+            money: (paid.isEmpty
+                    ? 0
+                    : paid
+                        .map((e) => e.price)
+                        .reduce((value, element) => value + element)) +
+                (paid.isEmpty
+                    ? 0
+                    : finished
+                        .map((e) => e.price)
+                        .reduce((value, element) => value + element)),
             moving: val.moving,
             started: val.started,
             completed: DateTime.now(),
@@ -82,12 +88,32 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
           ),
         ),
       );
+      final tokens = (await _sr
+              .userNotificationTokenRepo(
+                AppUserDummy.dummyConsumer(repairRecord.cid),
+              )
+              .all())
+          .map(
+            (r) => r.sort(
+              orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+            ),
+          )
+          .fold((l) => throw NullThrownError(), (r) => r.toList());
+      log('TOKEN:${tokens.first.token}');
+      sendMessage(
+        tokens.first.token,
+        repairRecord.pid,
+        'completedRepair',
+        repairRecord.id,
+      );
     });
-
     return unit;
   }
 
   Future<List<String>> _auxUploadImage(List<StorageFile> imgs) async {
+    if (imgs.isEmpty) {
+      return Future.value([]);
+    }
     final isUploadCompleted = Completer<List<String>>();
     _sb.add(StorageEvent.uploadMany(files: IList.from(imgs)));
     final _l = _sb.stream.listen(

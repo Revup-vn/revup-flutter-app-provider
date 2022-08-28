@@ -53,7 +53,7 @@ class UploadPhotosItem extends StatelessWidget {
               child: SizedBox(
                 height: 64,
                 child: ListView.builder(
-                  itemCount: 2,
+                  itemCount: 0,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Image.asset(

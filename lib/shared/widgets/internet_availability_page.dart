@@ -44,23 +44,7 @@ class InternetAvailabilityPage extends StatelessWidget {
               ),
             ),
           ),
-          connected: () => showFlash(
-            context: context,
-            builder: (context, controller) => Flash<void>(
-              controller: controller,
-              behavior: FlashBehavior.fixed,
-              position: FlashPosition.top,
-              child: FlashBar(
-                title: const Text('Internet'),
-                content: const Text('Connected'),
-                showProgressIndicator: true,
-                primaryAction: TextButton(
-                  onPressed: () => controller.dismiss(),
-                  child: Text(l10n.ignoreLabel),
-                ),
-              ),
-            ),
-          ),
+          connected: () => unit,
           unknown: () => unit,
         );
       },

@@ -4,14 +4,16 @@ import '../change_language/view/change_language_page.dart';
 import '../home/home.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
+import '../map_route/view/map_route_page.dart';
 import '../my_review/my_review.dart';
 import '../new_request/view/new_request_page.dart';
 import '../otp/view/otp_page.u.dart';
-import '../permission_page/view/permission_page.u.dart';
-import '../repair_request/modules/detail_request/p10_quote_price/view/p10_quote_price_page.dart';
-import '../repair_request/modules/detail_request/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart';
-import '../repair_request/modules/detail_request/p3_request_detail/view/p3_request_detail.u.dart';
+import '../permission_page/permission_page.u.dart';
+import '../repair_request/modules/p10_quote_price/view/p10_quote_price_page.dart';
+import '../repair_request/modules/p12_detail_order/view/p12_detail_page.u.dart';
 import '../repair_request/modules/p14_repair_completed/view/p14_repair_completed_page.u.dart';
+import '../repair_request/modules/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart';
+import '../repair_request/modules/p3_request_detail/view/p3_request_detail.u.dart';
 import '../repair_request/modules/p4_info_request/view/info_request_page.u.dart';
 import '../repair_request/request.dart';
 import '../repair_service/add-product/view/add_product_page.u.dart';
@@ -27,7 +29,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: P3RequestDetailPage, maintainState: false),
-    AdaptiveRoute<void>(page: InfoRequestPage),
+    AdaptiveRoute<void>(page: InfoRequestPage, maintainState: false),
     AdaptiveRoute<void>(page: P14RepairCompletePage),
     AdaptiveRoute<void>(page: P13SelectOptionCompletePage),
     AdaptiveRoute<void>(page: P16FinishedOrderDetailPage),
@@ -46,6 +48,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: UpdateServicePage),
     AdaptiveRoute<void>(page: AddProductPage),
     AdaptiveRoute<void>(page: PermissionPage),
+    AdaptiveRoute<void>(page: MapRoutePage),
     AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(
       page: HomePage,

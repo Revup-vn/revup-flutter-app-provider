@@ -25,8 +25,9 @@ mixin _$PendingRepairRequest {
   int get money => throw _privateConstructorUsedError;
   Location get from => throw _privateConstructorUsedError;
   Location get to => throw _privateConstructorUsedError;
-  List<OptionalService> get optionalServices =>
+  List<OptionalService>? get optionalServices =>
       throw _privateConstructorUsedError;
+  String? get recordType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PendingRepairRequestCopyWith<PendingRepairRequest> get copyWith =>
@@ -48,7 +49,8 @@ abstract class $PendingRepairRequestCopyWith<$Res> {
       int money,
       Location from,
       Location to,
-      List<OptionalService> optionalServices});
+      List<OptionalService>? optionalServices,
+      String? recordType});
 
   $LocationCopyWith<$Res> get from;
   $LocationCopyWith<$Res> get to;
@@ -75,6 +77,7 @@ class _$PendingRepairRequestCopyWithImpl<$Res>
     Object? from = freezed,
     Object? to = freezed,
     Object? optionalServices = freezed,
+    Object? recordType = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -116,7 +119,11 @@ class _$PendingRepairRequestCopyWithImpl<$Res>
       optionalServices: optionalServices == freezed
           ? _value.optionalServices
           : optionalServices // ignore: cast_nullable_to_non_nullable
-              as List<OptionalService>,
+              as List<OptionalService>?,
+      recordType: recordType == freezed
+          ? _value.recordType
+          : recordType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -152,7 +159,8 @@ abstract class _$$_PendingRepairRequestCopyWith<$Res>
       int money,
       Location from,
       Location to,
-      List<OptionalService> optionalServices});
+      List<OptionalService>? optionalServices,
+      String? recordType});
 
   @override
   $LocationCopyWith<$Res> get from;
@@ -183,6 +191,7 @@ class __$$_PendingRepairRequestCopyWithImpl<$Res>
     Object? from = freezed,
     Object? to = freezed,
     Object? optionalServices = freezed,
+    Object? recordType = freezed,
   }) {
     return _then(_$_PendingRepairRequest(
       id: id == freezed
@@ -224,7 +233,11 @@ class __$$_PendingRepairRequestCopyWithImpl<$Res>
       optionalServices: optionalServices == freezed
           ? _value._optionalServices
           : optionalServices // ignore: cast_nullable_to_non_nullable
-              as List<OptionalService>,
+              as List<OptionalService>?,
+      recordType: recordType == freezed
+          ? _value.recordType
+          : recordType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -242,7 +255,8 @@ class _$_PendingRepairRequest implements _PendingRepairRequest {
       required this.money,
       required this.from,
       required this.to,
-      required final List<OptionalService> optionalServices})
+      final List<OptionalService>? optionalServices,
+      this.recordType})
       : _optionalServices = optionalServices;
 
   @override
@@ -263,16 +277,21 @@ class _$_PendingRepairRequest implements _PendingRepairRequest {
   final Location from;
   @override
   final Location to;
-  final List<OptionalService> _optionalServices;
+  final List<OptionalService>? _optionalServices;
   @override
-  List<OptionalService> get optionalServices {
+  List<OptionalService>? get optionalServices {
+    final value = _optionalServices;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_optionalServices);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
+  final String? recordType;
+
+  @override
   String toString() {
-    return 'PendingRepairRequest(id: $id, cid: $cid, pid: $pid, created: $created, desc: $desc, vehicle: $vehicle, money: $money, from: $from, to: $to, optionalServices: $optionalServices)';
+    return 'PendingRepairRequest(id: $id, cid: $cid, pid: $pid, created: $created, desc: $desc, vehicle: $vehicle, money: $money, from: $from, to: $to, optionalServices: $optionalServices, recordType: $recordType)';
   }
 
   @override
@@ -290,7 +309,9 @@ class _$_PendingRepairRequest implements _PendingRepairRequest {
             const DeepCollectionEquality().equals(other.from, from) &&
             const DeepCollectionEquality().equals(other.to, to) &&
             const DeepCollectionEquality()
-                .equals(other._optionalServices, _optionalServices));
+                .equals(other._optionalServices, _optionalServices) &&
+            const DeepCollectionEquality()
+                .equals(other.recordType, recordType));
   }
 
   @override
@@ -305,7 +326,8 @@ class _$_PendingRepairRequest implements _PendingRepairRequest {
       const DeepCollectionEquality().hash(money),
       const DeepCollectionEquality().hash(from),
       const DeepCollectionEquality().hash(to),
-      const DeepCollectionEquality().hash(_optionalServices));
+      const DeepCollectionEquality().hash(_optionalServices),
+      const DeepCollectionEquality().hash(recordType));
 
   @JsonKey(ignore: true)
   @override
@@ -316,17 +338,17 @@ class _$_PendingRepairRequest implements _PendingRepairRequest {
 
 abstract class _PendingRepairRequest implements PendingRepairRequest {
   const factory _PendingRepairRequest(
-          {required final String id,
-          required final String cid,
-          required final String pid,
-          required final DateTime created,
-          required final String desc,
-          required final String vehicle,
-          required final int money,
-          required final Location from,
-          required final Location to,
-          required final List<OptionalService> optionalServices}) =
-      _$_PendingRepairRequest;
+      {required final String id,
+      required final String cid,
+      required final String pid,
+      required final DateTime created,
+      required final String desc,
+      required final String vehicle,
+      required final int money,
+      required final Location from,
+      required final Location to,
+      final List<OptionalService>? optionalServices,
+      final String? recordType}) = _$_PendingRepairRequest;
 
   @override
   String get id;
@@ -347,7 +369,9 @@ abstract class _PendingRepairRequest implements PendingRepairRequest {
   @override
   Location get to;
   @override
-  List<OptionalService> get optionalServices;
+  List<OptionalService>? get optionalServices;
+  @override
+  String? get recordType;
   @override
   @JsonKey(ignore: true)
   _$$_PendingRepairRequestCopyWith<_$_PendingRepairRequest> get copyWith =>

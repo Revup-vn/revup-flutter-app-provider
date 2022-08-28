@@ -1,18 +1,17 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:map_launcher/map_launcher.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../new_request/models/pending_repair_request.dart';
-import '../../../../router/router.dart';
+import '../../../../router/app_router.gr.dart';
+import '../../../../shared/utils/utils.dart';
+import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
+import '../../../request.dart';
 import '../bloc/info_request_bloc.dart';
 import '../widgets/action_button.dart';
 import '../widgets/widgets.dart';
@@ -39,14 +38,35 @@ class InfoRequestView extends StatefulWidget {
 }
 
 class _InfoRequestViewState extends State<InfoRequestView> {
-  bool startMode = false;
-  bool fixedMode = false;
-  bool movingMode = false;
-  late Timer _timer;
+  bool ready = false;
   @override
   void initState() {
-    // updateLocation();
     super.initState();
+    context.read<NotificationCubit>().addForegroundListener((p0) {
+      final type = p0.payload.type;
+      switch (type) {
+        case NotificationType.NormalMessage:
+          final subType = p0.payload.payload['subType'] as String;
+          if (subType == 'ConsumerSelected') {
+            if (mounted) {
+              setState(() {
+                ready = true;
+              });
+            }
+          }
+          break;
+        case NotificationType.VerifiedArrival:
+          if (mounted) {
+            setState(() {
+              ready = true;
+            });
+          }
+          break;
+        // ignore: no_default_cases
+        default:
+          break;
+      }
+    });
   }
 
   @override
@@ -58,32 +78,10 @@ class _InfoRequestViewState extends State<InfoRequestView> {
         blocPage.add(const InfoRequestEvent.started());
       },
     );
-    // TODO (cantgim): listen for event choose product from consumer
 
-    // final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
-    //   () => throw NullThrownError(),
-    // );
-
-    final user = AppUser.provider(
-        uuid: 'geCHNSHZ2xg2GfMSfZpxAweWWln2',
-        firstName: 'firstName',
-        lastName: 'lastName',
-        phone: 'phone',
-        dob: DateTime.now(),
-        addr: 'addr',
-        email: 'email',
-        active: true,
-        avatarUrl: 'https://shibatoken.com/images/c1.png',
-        createdTime: DateTime.now(),
-        lastUpdatedTime: DateTime.now(),
-        idCardNum: 'idCardNum',
-        idCardImage: 'idCardImage',
-        backgroundUrl: 'https://shibatoken.com/images/c1.png',
-        bio: 'bio',
-        vac: VideoCallAccount(
-            id: 'id', username: 'username', pwd: 'pwd', email: 'email'),
-        online: true,
-        loc: Location(name: 'name', long: 1, lat: 1));
+    final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
+      () => throw NullThrownError(),
+    );
 
     return BlocBuilder<InfoRequestBloc, InfoRequestState>(
       builder: (context, state) {
@@ -92,6 +90,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
             needToVerifyService,
             record,
             len,
+            isReady,
           ) =>
               Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
@@ -210,34 +209,78 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                 ),
                 LayoutBuilder(
                   builder: (context, _) {
-                    if (needToVerifyService.isEmpty) startMode = true;
-                    if (startMode) {
+                    // if (needToVerifyService.isEmpty && isReady)
+                    //   startMode = true;
+                    if (record.recordType == 'pending') {
                       return ActionButton(
                         text: l10n.startLabel,
-                        onPressed: () {
-                          startMode = false;
-                          movingMode = true;
-                          _openMapsFor(record);
-                        },
+                        onPressed: !ready
+                            ? null
+                            : () {
+                                // send message provider start moving to consumer
+                                blocPage.add(
+                                  InfoRequestEvent.confirmDeparted(
+                                    onRoute: () => context.router.push(
+                                      MapRouteRoute(
+                                        recordId: record.id,
+                                        consumerId: record.cid,
+                                      ),
+                                    ),
+                                    sendMessage: (token) => context
+                                        .read<NotificationCubit>()
+                                        .sendMessageToToken(
+                                          SendMessage(
+                                            title: 'Revup',
+                                            body: l10n.startMovingLabel,
+                                            token: token,
+                                            icon: kRevupIconApp,
+                                            payload: MessageData(
+                                              type: NotificationType
+                                                  .NormalMessage,
+                                              payload: <String, dynamic>{
+                                                'subType': 'ProviderDeparted',
+                                                'providerId': record.pid,
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                  ),
+                                );
+                              },
                       );
-                    } else if (movingMode) {
-                      return ActionButton(
-                        text: l10n.providerArrivedLabel,
-                        onPressed: () {
-                          // update record to arrived
-                          movingMode = false;
-                          fixedMode = true;
-                          blocPage.add(const InfoRequestEvent.confirmArrived());
-                        },
-                      );
-                    } else if (fixedMode) {
+                    } else if (record.recordType == 'arrived') {
                       return ActionButton(
                         text: l10n.startRepairLabel,
-                        onPressed: () {
-                          // update record to started
-                          blocPage.add(const InfoRequestEvent.confirmStarted());
-                          context.router.replaceAll([HomeRoute(user: user)]);
-                        },
+                        onPressed: !ready
+                            ? null
+                            : () {
+                                // update record to started
+                                blocPage.add(
+                                  InfoRequestEvent.confirmStarted(
+                                    onRoute: () => context.router.push(
+                                        P12DetailRoute(recordId: record.id)),
+                                    sendMessage: (token, recordId) => context
+                                        .read<NotificationCubit>()
+                                        .sendMessageToToken(
+                                          SendMessage(
+                                            title: 'Revup',
+                                            body: '',
+                                            token: token,
+                                            icon: kRevupIconApp,
+                                            payload: MessageData(
+                                              type: NotificationType
+                                                  .NormalMessage,
+                                              payload: <String, dynamic>{
+                                                'subType': 'StartRepair',
+                                                'recordId': recordId,
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                  ),
+                                );
+                                // context.router.replace(HomeRoute(user: user));
+                              },
                       );
                     }
                     return ActionButton(text: l10n.startLabel);
@@ -254,32 +297,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
     );
   }
 
-  Future<void> _openMapsFor(PendingRepairRequest record) async {
-    final isGoogle = await MapLauncher.isMapAvailable(MapType.google);
-
-    final isApple = await MapLauncher.isMapAvailable(MapType.apple);
-    if (isGoogle ?? false) {
-      await MapLauncher.showDirections(
-        mapType: MapType.google,
-        destination: Coords(record.to.lat, record.to.long),
-        origin: Coords(record.from.lat, record.from.long),
-        destinationTitle: context.l10n.repairLocationLabel,
-        originTitle: context.l10n.currentLocationLabel,
-      );
-    } else if (isApple ?? false) {
-      await MapLauncher.showDirections(
-        mapType: MapType.apple,
-        destination: Coords(record.to.lat, record.to.long),
-        origin: Coords(record.from.lat, record.from.long),
-        destinationTitle: context.l10n.repairLocationLabel,
-        originTitle: context.l10n.currentLocationLabel,
-      );
-    }
-  }
-
   @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
   }
 }

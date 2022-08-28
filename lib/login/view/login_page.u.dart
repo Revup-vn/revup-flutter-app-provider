@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -26,8 +27,8 @@ class LoginPage extends StatelessWidget {
           partial: (appUser) => _onPartialAuth(appUser, context),
           orElse: () => unit,
         );
-    log(context.read<ConnectivityBloc>().state.toString());
-
+    final notifyCubit = context.read<NotificationCubit>();
+    final sr = context.read<StoreRepository>();
     return InternetAvailabilityPage(
       child: BlocProvider(
         create: (BuildContext context) => LoginBloc(),
@@ -119,10 +120,29 @@ class LoginPage extends StatelessWidget {
                     },
                   );
                 },
-                provider: (value) {
+                provider: (value) async {
+                  context.loaderOverlay.hide();
+                  await notifyCubit.requirePermission();
+                  await notifyCubit.registerDevice();
+                  final token = notifyCubit.state.maybeWhen(
+                    registered: (token) => token,
+                    failToRegister: () => '',
+                    orElse: () => throw NullThrownError(),
+                  );
+                  final _iuntr = sr.userNotificationTokenRepo(
+                    AppUserDummy.dummyConsumer(authType.user.uuid),
+                  );
+                  await _iuntr.create(
+                    Token(
+                      created: DateTime.now(),
+                      platform: Platform.operatingSystem,
+                      token: token,
+                    ),
+                  );
                   if (value.active == true) {
                     context.loaderOverlay.hide();
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (context) {
                         return Dialog(

@@ -26,7 +26,7 @@ class HomePrimaryView extends StatelessWidget {
     final blocPage = context.watch<HomeBloc>();
     blocPage.state.maybeWhen(
       initial: () async {
-        final isGranted = await requestPermission();
+        final isGranted = await requestUserLocation();
         if (!isGranted) {
           await context.router.push(const PermissionRoute());
         } else {
@@ -71,6 +71,7 @@ class HomePrimaryView extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Expanded(
+                    flex: 2,
                     child: AutoSizeText(
                       user.addr,
                       style: Theme.of(context)
@@ -80,10 +81,8 @@ class HomePrimaryView extends StatelessWidget {
                           const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
-                      maxLines: 1,
                     ),
                   ),
-                  const Spacer(),
                   Expanded(
                     child: AutoSizeText(
                       l10n.operationStatusLabel,
@@ -94,6 +93,7 @@ class HomePrimaryView extends StatelessWidget {
                           const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
+                      minFontSize: 5,
                       maxLines: 1,
                     ),
                   ),

@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../configs/map_config_pub.dart';
+import '../../../configs/map_config.dart';
 import '../models/directions_model.dart';
 import '../models/place_autocomplete_model.dart';
 import '../models/place_details_model.dart';

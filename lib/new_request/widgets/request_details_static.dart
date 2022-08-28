@@ -35,6 +35,7 @@ class RequestDetailsStatic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final cubitNotify = context.read<NotificationCubit>();
 
     return Positioned(
       bottom: 0,
@@ -191,18 +192,36 @@ class RequestDetailsStatic extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context
-                      .read<NewRequestBloc>()
-                      .add(NewRequestEvent.accepted(record: record));
-                  context.router.replace(
-                    InfoRequestRoute(
-                      consumer: consumer,
-                      record: record,
-                      distance: distance,
-                      pendingService: pendingService,
-                      pendingAmount: pendingAmount,
-                    ),
-                  );
+                  context.read<NewRequestBloc>().add(
+                        NewRequestEvent.accepted(
+                          record: record,
+                          onRoute: () => context.router.replace(
+                            InfoRequestRoute(
+                              consumer: consumer,
+                              recordId: record.id,
+                              distance: distance,
+                              pendingService: pendingService,
+                              pendingAmount: pendingAmount,
+                            ),
+                          ),
+                          sendMessage: (token) =>
+                              cubitNotify.sendMessageToToken(
+                            SendMessage(
+                              title: 'Revup',
+                              body: l10n.providerAcceptRequestLabel,
+                              token: token,
+                              icon: kRevupIconApp,
+                              payload: MessageData(
+                                type: NotificationType.ProviderAccept,
+                                payload: <String, dynamic>{
+                                  'providerId': record.pid,
+                                  'recordId': record.id,
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
                 },
                 child: AutoSizeText(l10n.acceptLabel),
               ),

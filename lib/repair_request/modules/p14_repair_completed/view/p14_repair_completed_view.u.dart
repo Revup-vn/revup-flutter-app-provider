@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../router/router.dart';
+import '../../../../shared/shared.dart';
 import '../../../models/models.dart';
 import '../cubit/p14_repair_completed_cubit.dart';
 import '../widgets/widgets.dart';
 
-class P14RepairCompleteView extends StatelessWidget {
+class P14RepairCompleteView extends StatefulWidget {
   const P14RepairCompleteView({
     super.key,
     required this.finished,
@@ -23,6 +24,34 @@ class P14RepairCompleteView extends StatelessWidget {
   final List<PendingServiceModel> finished;
   final List<PaidServicesModel> paid;
   final String vehicle;
+
+  @override
+  State<P14RepairCompleteView> createState() => _P14RepairCompleteViewState();
+}
+
+class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
+  late bool _isEnabled;
+  @override
+  void initState() {
+    super.initState();
+
+    _isEnabled = false;
+    context.read<NotificationCubit>().addForegroundListener((p0) {
+      final type = p0.payload.type;
+      switch (type) {
+        case NotificationType.ConsumerBilled:
+          if (mounted) {
+            setState(() {
+              _isEnabled = true;
+            });
+          }
+          break;
+        // ignore: no_default_cases
+        default:
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,21 +102,21 @@ class P14RepairCompleteView extends StatelessWidget {
                         BuildRowRepairCompletedItem(
                           title: l10n.collectMoneyCustomersLabel,
                           content: context.formatMoney(
-                            finished
+                            widget.finished
                                 .map((e) => e.price)
                                 .reduce((value, element) => value + element),
                           ),
                           textButtonName: l10n.detailLabel,
                           onPressed: () => context.router.push(
                             P16FinishedOrderDetailRoute(
-                              data: tuple2(finished, paid),
+                              data: tuple2(widget.finished, widget.paid),
                             ),
                           ),
                         ),
                         const SizedBox(height: 5),
                         BuildRowRepairCompletedItem(
                           title: l10n.vehicleTypeLabel,
-                          content: vehicle == 'motorbike'
+                          content: widget.vehicle == 'motorbike'
                               ? l10n.motorcycleLabel
                               : l10n.carLabel,
                           textButtonName: '',
@@ -96,7 +125,7 @@ class P14RepairCompleteView extends StatelessWidget {
                         BuildRowRepairCompletedItem(
                           title: l10n.completedItemLabel,
                           content:
-                              '''${l10n.totalLabel} ${finished.length} ${l10n.repairItemsLabel}''',
+                              '''${l10n.totalLabel} ${widget.finished.length} ${l10n.repairItemsLabel}''',
                           textButtonName: '',
                         ),
                         const SizedBox(height: 30),
@@ -124,11 +153,43 @@ class P14RepairCompleteView extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<P14RepairCompletedCubit>()
-                          .submit(finished, paid);
-                    },
+                    onPressed: _isEnabled
+                        ? () async {
+                            await context
+                                .read<P14RepairCompletedCubit>()
+                                .submit(
+                              widget.finished,
+                              widget.paid,
+                              (a, b, c, d) async {
+                                await context
+                                    .read<NotificationCubit>()
+                                    .sendMessageToToken(
+                                      SendMessage(
+                                        title: 'Revup',
+                                        body: 'body',
+                                        token: a,
+                                        icon: kRevupIconApp,
+                                        payload: MessageData(
+                                          type: NotificationType.NormalMessage,
+                                          payload: <String, dynamic>{
+                                            'providerId': b,
+                                            'subType': c,
+                                            'recordId': d,
+                                          },
+                                        ),
+                                      ),
+                                    )
+                                    .whenComplete(
+                                      () => context.router.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            HomeRoute.name,
+                                      ),
+                                    );
+                              },
+                            );
+                          }
+                        : null,
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(
                       l10n.completeLabel,
