@@ -1,7 +1,6 @@
-import 'package:flutter/widgets.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
@@ -73,13 +72,14 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
           some,
         )
         .getOrElse(() => throw NullThrownError());
-    final tokens = (await storeRepository
-            .userNotificationTokenRepo(consumer)
-            .all())
-        .fold((l) => throw NullThrownError(), (r) => r.toList())
-      ..sort(
-        (a, b) => -b.created.compareTo(a.created),
-      );
+    final tokens =
+        (await storeRepository.userNotificationTokenRepo(consumer).all())
+            .map(
+              (r) => r.sort(
+                orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+              ),
+            )
+            .fold((l) => throw NullThrownError(), (r) => r.toList());
     sendMessage(tokens.first.token, repairRecord.pid, rpid);
   }
 }
