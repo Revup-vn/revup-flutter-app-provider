@@ -230,5 +230,9 @@
   "vietnameseLabel": "Tiếng Việt",
   "englishLabel": "Tiếng Anh",
   "accountNotActiveLabel": "Tài khoản của bạn chưa được kích hoạt.",
-  "canLoginLabel": "Bạn vẫn có thể đăng nhập nhưng khách hàng sẽ không tìm thấy bạn."
+  "canLoginLabel": "Bạn vẫn có thể đăng nhập nhưng khách hàng sẽ không tìm thấy bạn.",
+  "analyticLabel": "Thống kê",
+  "totalIncome": "Tổng thu nhập",
+  "incomeAnalytics": "Thống kê thu nhập",
+  "transitionAnalytics": "Thống kê giao dịch"
 }

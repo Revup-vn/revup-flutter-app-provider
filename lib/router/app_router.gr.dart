@@ -11,71 +11,74 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i29;
 
-import 'dart:async' as _i28;
-
-import 'package:flutter/material.dart' as _i24;
-
-import 'package:auto_route/auto_route.dart' as _i23;
-import 'package:dartz/dartz.dart' as _i26;
-import 'package:revup_core/core.dart' as _i27;
-
-import 'package:revup_provider/home/home.dart' as _i11;
-import 'package:revup_provider/login/view/login_page.u.dart' as _i2;
-import 'package:revup_provider/map_route/view/map_route_page.dart' as _i21;
-import 'package:revup_provider/my_review/my_review.dart' as _i9;
-import 'package:revup_provider/new_request/view/new_request_page.dart' as _i15;
-import 'package:revup_provider/otp/view/otp_page.u.dart' as _i13;
-import 'package:revup_provider/permission_page/permission_page.u.dart' as _i20;
-import 'package:revup_provider/repair_request/request.dart' as _i6;
-import 'package:revup_provider/repair_service/repair_service.dart' as _i8;
-import 'package:revup_provider/signup/view/signup_page.u.dart' as _i12;
-import 'package:revup_provider/splash/splash.dart' as _i1;
-
+import 'package:auto_route/auto_route.dart' as _i24;
+import 'package:dartz/dartz.dart' as _i27;
+import 'package:flutter/material.dart' as _i25;
+import 'package:revup_core/core.dart' as _i28;
+import 'package:revup_provider/analytics/view/analytics_page.dart' as _i2;
 import 'package:revup_provider/change_language/view/change_language_page.dart'
-    as _i22;
+    as _i23;
+import 'package:revup_provider/home/home.dart' as _i12;
 import 'package:revup_provider/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i14;
+    as _i15;
+import 'package:revup_provider/login/view/login_page.u.dart' as _i3;
+import 'package:revup_provider/map_route/view/map_route_page.dart' as _i22;
+import 'package:revup_provider/my_review/my_review.dart' as _i10;
 import 'package:revup_provider/new_request/models/pending_repair_request.dart'
-    as _i25;
+    as _i26;
+import 'package:revup_provider/new_request/view/new_request_page.dart' as _i16;
+import 'package:revup_provider/otp/view/otp_page.u.dart' as _i14;
+import 'package:revup_provider/permission_page/permission_page.u.dart' as _i21;
 import 'package:revup_provider/repair_request/modules/p10_quote_price/view/p10_quote_price_page.dart'
-    as _i17;
-import 'package:revup_provider/repair_request/modules/p12_detail_order/view/p12_detail_page.u.dart'
-    as _i16;
-import 'package:revup_provider/repair_request/modules/p14_repair_completed/view/p14_repair_completed_page.u.dart'
-    as _i5;
-import 'package:revup_provider/repair_request/modules/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart'
-    as _i7;
-import 'package:revup_provider/repair_request/modules/p3_request_detail/view/p3_request_detail.u.dart'
-    as _i3;
-import 'package:revup_provider/repair_request/modules/p4_info_request/view/info_request_page.u.dart'
-    as _i4;
-import 'package:revup_provider/repair_service/add-product/view/add_product_page.u.dart'
-    as _i19;
-import 'package:revup_provider/repair_service/update_service/view/view.dart'
     as _i18;
+import 'package:revup_provider/repair_request/modules/p12_detail_order/view/p12_detail_page.u.dart'
+    as _i17;
+import 'package:revup_provider/repair_request/modules/p14_repair_completed/view/p14_repair_completed_page.u.dart'
+    as _i6;
+import 'package:revup_provider/repair_request/modules/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart'
+    as _i8;
+import 'package:revup_provider/repair_request/modules/p3_request_detail/view/p3_request_detail.u.dart'
+    as _i4;
+import 'package:revup_provider/repair_request/modules/p4_info_request/view/info_request_page.u.dart'
+    as _i5;
+import 'package:revup_provider/repair_request/request.dart' as _i7;
+import 'package:revup_provider/repair_service/add-product/view/add_product_page.u.dart'
+    as _i20;
+import 'package:revup_provider/repair_service/repair_service.dart' as _i9;
+import 'package:revup_provider/repair_service/update_service/view/view.dart'
+    as _i19;
+import 'package:revup_provider/signup/view/signup_page.u.dart' as _i13;
+import 'package:revup_provider/splash/splash.dart' as _i1;
 import 'package:revup_provider/vendor_authentication/vender_authentication.dart'
-    as _i10;
+    as _i11;
 
-class AppRouter extends _i23.RootStackRouter {
-  AppRouter([_i24.GlobalKey<_i24.NavigatorState>? navigatorKey])
+class AppRouter extends _i24.RootStackRouter {
+  AppRouter([_i25.GlobalKey<_i25.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i23.PageFactory> pagesMap = {
+  final Map<String, _i24.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData, child: const _i1.SplashPage());
     },
+    AnalyticsRoute.name: (routeData) {
+      final args = routeData.argsAs<AnalyticsRouteArgs>();
+      return _i24.AdaptivePage<void>(
+          routeData: routeData,
+          child: _i2.AnalyticsPage(args.providerID, key: args.key));
+    },
     LoginRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: const _i2.LoginPage());
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: const _i3.LoginPage());
     },
     P3RequestDetailRoute.name: (routeData) {
       final args = routeData.argsAs<P3RequestDetailRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i3.P3RequestDetailPage(
+          child: _i4.P3RequestDetailPage(
               key: args.key,
               record: args.record,
               pendingService: args.pendingService,
@@ -85,9 +88,9 @@ class AppRouter extends _i23.RootStackRouter {
     },
     InfoRequestRoute.name: (routeData) {
       final args = routeData.argsAs<InfoRequestRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i4.InfoRequestPage(
+          child: _i5.InfoRequestPage(
               key: args.key,
               consumer: args.consumer,
               recordId: args.recordId,
@@ -98,9 +101,9 @@ class AppRouter extends _i23.RootStackRouter {
     },
     P14RepairCompleteRoute.name: (routeData) {
       final args = routeData.argsAs<P14RepairCompleteRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i5.P14RepairCompletePage(
+          child: _i6.P14RepairCompletePage(
               key: args.key,
               finished: args.finished,
               paid: args.paid,
@@ -109,9 +112,9 @@ class AppRouter extends _i23.RootStackRouter {
     },
     P13SelectOptionCompleteRoute.name: (routeData) {
       final args = routeData.argsAs<P13SelectOptionCompleteRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i6.P13SelectOptionCompletePage(
+          child: _i7.P13SelectOptionCompletePage(
               key: args.key,
               id: args.id,
               paid: args.paid,
@@ -119,88 +122,88 @@ class AppRouter extends _i23.RootStackRouter {
     },
     P16FinishedOrderDetailRoute.name: (routeData) {
       final args = routeData.argsAs<P16FinishedOrderDetailRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
           child:
-              _i7.P16FinishedOrderDetailPage(key: args.key, data: args.data));
+              _i8.P16FinishedOrderDetailPage(key: args.key, data: args.data));
     },
     AddServiceRoute.name: (routeData) {
       final args = routeData.argsAs<AddServiceRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i8.AddServicePage(args.providerID, key: args.key));
+          child: _i9.AddServicePage(args.providerID, key: args.key));
     },
     MyReviewRoute.name: (routeData) {
       final args = routeData.argsAs<MyReviewRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i9.MyReviewPage(args.providerID, key: args.key));
+          child: _i10.MyReviewPage(args.providerID, key: args.key));
     },
     VendorAuthenticationRoute.name: (routeData) {
       final args = routeData.argsAs<VendorAuthenticationRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i10.VendorAuthenticationPage(args.user, key: args.key));
+          child: _i11.VendorAuthenticationPage(args.user, key: args.key));
     },
     ListServiceRoute.name: (routeData) {
       final args = routeData.argsAs<ListServiceRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i8.ListServicePage(args.providerID, key: args.key),
+          child: _i9.ListServicePage(args.providerID, key: args.key),
           maintainState: false);
     },
     DetailServiceRoute.name: (routeData) {
       final args = routeData.argsAs<DetailServiceRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i8.DetailServicePage(
+          child: _i9.DetailServicePage(
               args.providerID, args.serviceName, args.category,
               key: args.key),
           maintainState: false);
     },
     HistoryProviderDetailRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: const _i11.HistoryProviderDetailPage());
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: const _i12.HistoryProviderDetailPage());
     },
     SignupRoute.name: (routeData) {
       final args = routeData.argsAs<SignupRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i12.SignupPage(args.completer, args.phoneNumber,
+          child: _i13.SignupPage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
               key: args.key));
     },
     OTPRoute.name: (routeData) {
       final args = routeData.argsAs<OTPRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i13.OTPPage(args.phoneNumber, args.completer, key: args.key));
+          child: _i14.OTPPage(args.phoneNumber, args.completer, key: args.key));
     },
     LoginEnterPhoneRoute.name: (routeData) {
       final args = routeData.argsAs<LoginEnterPhoneRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i14.LoginEnterPhonePage(args.completer, args.phoneNumber,
+          child: _i15.LoginEnterPhonePage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
               key: args.key));
     },
     NewRequestRoute.name: (routeData) {
       final args = routeData.argsAs<NewRequestRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i15.NewRequestPage(key: args.key, recordId: args.recordId));
+          child: _i16.NewRequestPage(key: args.key, recordId: args.recordId));
     },
     P12DetailRoute.name: (routeData) {
       final args = routeData.argsAs<P12DetailRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i16.P12DetailPage(key: args.key, recordId: args.recordId));
+          child: _i17.P12DetailPage(key: args.key, recordId: args.recordId));
     },
     P10QuotePriceRoute.name: (routeData) {
       final args = routeData.argsAs<P10QuotePriceRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i17.P10QuotePricePage(
+          child: _i18.P10QuotePricePage(
               key: args.key,
               record: args.record,
               pendingService: args.pendingService,
@@ -208,107 +211,108 @@ class AppRouter extends _i23.RootStackRouter {
     },
     UpdateServiceRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateServiceRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i18.UpdateServicePage(
+          child: _i19.UpdateServicePage(
               args.providerID, args.category, args.sName,
               key: args.key));
     },
     AddProductRoute.name: (routeData) {
       final args = routeData.argsAs<AddProductRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i19.AddProductPage(
+          child: _i20.AddProductPage(
               args.providerID, args.cate, args.sName, args.pName, args.type,
               key: args.key));
     },
     PermissionRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: const _i20.PermissionPage());
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: const _i21.PermissionPage());
     },
     MapRouteRoute.name: (routeData) {
       final args = routeData.argsAs<MapRouteRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i21.MapRoutePage(
+          child: _i22.MapRoutePage(
               key: args.key,
               recordId: args.recordId,
               consumerId: args.consumerId));
     },
     ChangeLanguageRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: const _i22.ChangeLanguagePage());
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: const _i23.ChangeLanguagePage());
     },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: _i11.HomePage(args.user, key: args.key));
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: _i12.HomePage(args.user, key: args.key));
     },
     HomePrimaryRoute.name: (routeData) {
       final args = routeData.argsAs<HomePrimaryRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i11.HomePrimaryPage(args.user, key: args.key));
+          child: _i12.HomePrimaryPage(args.user, key: args.key));
     },
     HistoryProviderRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: const _i11.HistoryProviderPage());
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: const _i12.HistoryProviderPage());
     },
     NotificationProviderRoute.name: (routeData) {
-      return _i23.AdaptivePage<void>(
-          routeData: routeData, child: const _i11.NotificationProviderPage());
+      return _i24.AdaptivePage<void>(
+          routeData: routeData, child: const _i12.NotificationProviderPage());
     },
     AccountRoute.name: (routeData) {
       final args = routeData.argsAs<AccountRouteArgs>();
-      return _i23.AdaptivePage<void>(
+      return _i24.AdaptivePage<void>(
           routeData: routeData,
-          child: _i11.AccountPage(args.user, key: args.key));
+          child: _i12.AccountPage(args.user, key: args.key));
     }
   };
 
   @override
-  List<_i23.RouteConfig> get routes => [
-        _i23.RouteConfig(SplashRoute.name, path: '/'),
-        _i23.RouteConfig(LoginRoute.name, path: '/login-page'),
-        _i23.RouteConfig(P3RequestDetailRoute.name,
+  List<_i24.RouteConfig> get routes => [
+        _i24.RouteConfig(SplashRoute.name, path: '/'),
+        _i24.RouteConfig(AnalyticsRoute.name, path: '/analytics-page'),
+        _i24.RouteConfig(LoginRoute.name, path: '/login-page'),
+        _i24.RouteConfig(P3RequestDetailRoute.name,
             path: '/p3-request-detail-page'),
-        _i23.RouteConfig(InfoRequestRoute.name, path: '/info-request-page'),
-        _i23.RouteConfig(P14RepairCompleteRoute.name,
+        _i24.RouteConfig(InfoRequestRoute.name, path: '/info-request-page'),
+        _i24.RouteConfig(P14RepairCompleteRoute.name,
             path: '/p14-repair-complete-page'),
-        _i23.RouteConfig(P13SelectOptionCompleteRoute.name,
+        _i24.RouteConfig(P13SelectOptionCompleteRoute.name,
             path: '/p13-select-option-complete-page'),
-        _i23.RouteConfig(P16FinishedOrderDetailRoute.name,
+        _i24.RouteConfig(P16FinishedOrderDetailRoute.name,
             path: '/p16-finished-order-detail-page'),
-        _i23.RouteConfig(AddServiceRoute.name, path: '/add-service-page'),
-        _i23.RouteConfig(MyReviewRoute.name, path: '/my-review-page'),
-        _i23.RouteConfig(VendorAuthenticationRoute.name,
+        _i24.RouteConfig(AddServiceRoute.name, path: '/add-service-page'),
+        _i24.RouteConfig(MyReviewRoute.name, path: '/my-review-page'),
+        _i24.RouteConfig(VendorAuthenticationRoute.name,
             path: '/vendor-authentication-page'),
-        _i23.RouteConfig(ListServiceRoute.name, path: '/list-service-page'),
-        _i23.RouteConfig(DetailServiceRoute.name, path: '/detail-service-page'),
-        _i23.RouteConfig(HistoryProviderDetailRoute.name,
+        _i24.RouteConfig(ListServiceRoute.name, path: '/list-service-page'),
+        _i24.RouteConfig(DetailServiceRoute.name, path: '/detail-service-page'),
+        _i24.RouteConfig(HistoryProviderDetailRoute.name,
             path: '/history-provider-detail-page'),
-        _i23.RouteConfig(SignupRoute.name, path: '/signup-page'),
-        _i23.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
-        _i23.RouteConfig(LoginEnterPhoneRoute.name,
+        _i24.RouteConfig(SignupRoute.name, path: '/signup-page'),
+        _i24.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
+        _i24.RouteConfig(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page'),
-        _i23.RouteConfig(NewRequestRoute.name, path: '/new-request-page'),
-        _i23.RouteConfig(P12DetailRoute.name, path: '/p12-detail-page'),
-        _i23.RouteConfig(P10QuotePriceRoute.name,
+        _i24.RouteConfig(NewRequestRoute.name, path: '/new-request-page'),
+        _i24.RouteConfig(P12DetailRoute.name, path: '/p12-detail-page'),
+        _i24.RouteConfig(P10QuotePriceRoute.name,
             path: '/p10-quote-price-page'),
-        _i23.RouteConfig(UpdateServiceRoute.name, path: '/update-service-page'),
-        _i23.RouteConfig(AddProductRoute.name, path: '/add-product-page'),
-        _i23.RouteConfig(PermissionRoute.name, path: '/permission-page'),
-        _i23.RouteConfig(MapRouteRoute.name, path: '/map-route-page'),
-        _i23.RouteConfig(ChangeLanguageRoute.name,
+        _i24.RouteConfig(UpdateServiceRoute.name, path: '/update-service-page'),
+        _i24.RouteConfig(AddProductRoute.name, path: '/add-product-page'),
+        _i24.RouteConfig(PermissionRoute.name, path: '/permission-page'),
+        _i24.RouteConfig(MapRouteRoute.name, path: '/map-route-page'),
+        _i24.RouteConfig(ChangeLanguageRoute.name,
             path: '/change-language-page'),
-        _i23.RouteConfig(HomeRoute.name, path: '/home-page', children: [
-          _i23.RouteConfig(HomePrimaryRoute.name,
+        _i24.RouteConfig(HomeRoute.name, path: '/home-page', children: [
+          _i24.RouteConfig(HomePrimaryRoute.name,
               path: 'home-primary-page', parent: HomeRoute.name),
-          _i23.RouteConfig(HistoryProviderRoute.name,
+          _i24.RouteConfig(HistoryProviderRoute.name,
               path: 'history-provider-page', parent: HomeRoute.name),
-          _i23.RouteConfig(NotificationProviderRoute.name,
+          _i24.RouteConfig(NotificationProviderRoute.name,
               path: 'notification-provider-page', parent: HomeRoute.name),
-          _i23.RouteConfig(AccountRoute.name,
+          _i24.RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ])
       ];
@@ -316,29 +320,53 @@ class AppRouter extends _i23.RootStackRouter {
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i23.PageRouteInfo<void> {
+class SplashRoute extends _i24.PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
 
 /// generated route for
-/// [_i2.LoginPage]
-class LoginRoute extends _i23.PageRouteInfo<void> {
+/// [_i2.AnalyticsPage]
+class AnalyticsRoute extends _i24.PageRouteInfo<AnalyticsRouteArgs> {
+  AnalyticsRoute({required String providerID, _i25.Key? key})
+      : super(AnalyticsRoute.name,
+            path: '/analytics-page',
+            args: AnalyticsRouteArgs(providerID: providerID, key: key));
+
+  static const String name = 'AnalyticsRoute';
+}
+
+class AnalyticsRouteArgs {
+  const AnalyticsRouteArgs({required this.providerID, this.key});
+
+  final String providerID;
+
+  final _i25.Key? key;
+
+  @override
+  String toString() {
+    return 'AnalyticsRouteArgs{providerID: $providerID, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.LoginPage]
+class LoginRoute extends _i24.PageRouteInfo<void> {
   const LoginRoute() : super(LoginRoute.name, path: '/login-page');
 
   static const String name = 'LoginRoute';
 }
 
 /// generated route for
-/// [_i3.P3RequestDetailPage]
+/// [_i4.P3RequestDetailPage]
 class P3RequestDetailRoute
-    extends _i23.PageRouteInfo<P3RequestDetailRouteArgs> {
+    extends _i24.PageRouteInfo<P3RequestDetailRouteArgs> {
   P3RequestDetailRoute(
-      {_i24.Key? key,
-      required _i25.PendingRepairRequest record,
-      required _i26.IList<_i6.PendingServiceModel> pendingService,
-      required List<_i6.NeedToVerifyModel> needToVerify,
+      {_i25.Key? key,
+      required _i26.PendingRepairRequest record,
+      required _i27.IList<_i7.PendingServiceModel> pendingService,
+      required List<_i7.NeedToVerifyModel> needToVerify,
       required int pendingAmount})
       : super(P3RequestDetailRoute.name,
             path: '/p3-request-detail-page',
@@ -360,13 +388,13 @@ class P3RequestDetailRouteArgs {
       required this.needToVerify,
       required this.pendingAmount});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i25.PendingRepairRequest record;
+  final _i26.PendingRepairRequest record;
 
-  final _i26.IList<_i6.PendingServiceModel> pendingService;
+  final _i27.IList<_i7.PendingServiceModel> pendingService;
 
-  final List<_i6.NeedToVerifyModel> needToVerify;
+  final List<_i7.NeedToVerifyModel> needToVerify;
 
   final int pendingAmount;
 
@@ -377,14 +405,14 @@ class P3RequestDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i4.InfoRequestPage]
-class InfoRequestRoute extends _i23.PageRouteInfo<InfoRequestRouteArgs> {
+/// [_i5.InfoRequestPage]
+class InfoRequestRoute extends _i24.PageRouteInfo<InfoRequestRouteArgs> {
   InfoRequestRoute(
-      {_i24.Key? key,
-      required _i27.AppUser consumer,
+      {_i25.Key? key,
+      required _i28.AppUser consumer,
       required String recordId,
       required double distance,
-      required _i26.IList<_i6.PendingServiceModel> pendingService,
+      required _i27.IList<_i7.PendingServiceModel> pendingService,
       required int pendingAmount})
       : super(InfoRequestRoute.name,
             path: '/info-request-page',
@@ -408,15 +436,15 @@ class InfoRequestRouteArgs {
       required this.pendingService,
       required this.pendingAmount});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i27.AppUser consumer;
+  final _i28.AppUser consumer;
 
   final String recordId;
 
   final double distance;
 
-  final _i26.IList<_i6.PendingServiceModel> pendingService;
+  final _i27.IList<_i7.PendingServiceModel> pendingService;
 
   final int pendingAmount;
 
@@ -427,13 +455,13 @@ class InfoRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i5.P14RepairCompletePage]
+/// [_i6.P14RepairCompletePage]
 class P14RepairCompleteRoute
-    extends _i23.PageRouteInfo<P14RepairCompleteRouteArgs> {
+    extends _i24.PageRouteInfo<P14RepairCompleteRouteArgs> {
   P14RepairCompleteRoute(
-      {_i24.Key? key,
-      required List<_i6.PendingServiceModel> finished,
-      required List<_i6.PaidServicesModel> paid,
+      {_i25.Key? key,
+      required List<_i7.PendingServiceModel> finished,
+      required List<_i7.PaidServicesModel> paid,
       required String vehicle,
       required String recordId})
       : super(P14RepairCompleteRoute.name,
@@ -456,11 +484,11 @@ class P14RepairCompleteRouteArgs {
       required this.vehicle,
       required this.recordId});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final List<_i6.PendingServiceModel> finished;
+  final List<_i7.PendingServiceModel> finished;
 
-  final List<_i6.PaidServicesModel> paid;
+  final List<_i7.PaidServicesModel> paid;
 
   final String vehicle;
 
@@ -473,13 +501,13 @@ class P14RepairCompleteRouteArgs {
 }
 
 /// generated route for
-/// [_i6.P13SelectOptionCompletePage]
+/// [_i7.P13SelectOptionCompletePage]
 class P13SelectOptionCompleteRoute
-    extends _i23.PageRouteInfo<P13SelectOptionCompleteRouteArgs> {
+    extends _i24.PageRouteInfo<P13SelectOptionCompleteRouteArgs> {
   P13SelectOptionCompleteRoute(
-      {_i24.Key? key,
+      {_i25.Key? key,
       required String id,
-      required List<_i6.PaidServicesModel> paid,
+      required List<_i7.PaidServicesModel> paid,
       required String vehicle})
       : super(P13SelectOptionCompleteRoute.name,
             path: '/p13-select-option-complete-page',
@@ -493,11 +521,11 @@ class P13SelectOptionCompleteRouteArgs {
   const P13SelectOptionCompleteRouteArgs(
       {this.key, required this.id, required this.paid, required this.vehicle});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   final String id;
 
-  final List<_i6.PaidServicesModel> paid;
+  final List<_i7.PaidServicesModel> paid;
 
   final String vehicle;
 
@@ -508,13 +536,13 @@ class P13SelectOptionCompleteRouteArgs {
 }
 
 /// generated route for
-/// [_i7.P16FinishedOrderDetailPage]
+/// [_i8.P16FinishedOrderDetailPage]
 class P16FinishedOrderDetailRoute
-    extends _i23.PageRouteInfo<P16FinishedOrderDetailRouteArgs> {
+    extends _i24.PageRouteInfo<P16FinishedOrderDetailRouteArgs> {
   P16FinishedOrderDetailRoute(
-      {_i24.Key? key,
-      required _i26.Tuple2<List<_i6.PendingServiceModel>,
-              List<_i6.PaidServicesModel>>
+      {_i25.Key? key,
+      required _i27.Tuple2<List<_i7.PendingServiceModel>,
+              List<_i7.PaidServicesModel>>
           data})
       : super(P16FinishedOrderDetailRoute.name,
             path: '/p16-finished-order-detail-page',
@@ -526,9 +554,9 @@ class P16FinishedOrderDetailRoute
 class P16FinishedOrderDetailRouteArgs {
   const P16FinishedOrderDetailRouteArgs({this.key, required this.data});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i26.Tuple2<List<_i6.PendingServiceModel>, List<_i6.PaidServicesModel>>
+  final _i27.Tuple2<List<_i7.PendingServiceModel>, List<_i7.PaidServicesModel>>
       data;
 
   @override
@@ -538,9 +566,9 @@ class P16FinishedOrderDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i8.AddServicePage]
-class AddServiceRoute extends _i23.PageRouteInfo<AddServiceRouteArgs> {
-  AddServiceRoute({required String providerID, _i24.Key? key})
+/// [_i9.AddServicePage]
+class AddServiceRoute extends _i24.PageRouteInfo<AddServiceRouteArgs> {
+  AddServiceRoute({required String providerID, _i25.Key? key})
       : super(AddServiceRoute.name,
             path: '/add-service-page',
             args: AddServiceRouteArgs(providerID: providerID, key: key));
@@ -553,7 +581,7 @@ class AddServiceRouteArgs {
 
   final String providerID;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -562,9 +590,9 @@ class AddServiceRouteArgs {
 }
 
 /// generated route for
-/// [_i9.MyReviewPage]
-class MyReviewRoute extends _i23.PageRouteInfo<MyReviewRouteArgs> {
-  MyReviewRoute({required String providerID, _i24.Key? key})
+/// [_i10.MyReviewPage]
+class MyReviewRoute extends _i24.PageRouteInfo<MyReviewRouteArgs> {
+  MyReviewRoute({required String providerID, _i25.Key? key})
       : super(MyReviewRoute.name,
             path: '/my-review-page',
             args: MyReviewRouteArgs(providerID: providerID, key: key));
@@ -577,7 +605,7 @@ class MyReviewRouteArgs {
 
   final String providerID;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -586,10 +614,10 @@ class MyReviewRouteArgs {
 }
 
 /// generated route for
-/// [_i10.VendorAuthenticationPage]
+/// [_i11.VendorAuthenticationPage]
 class VendorAuthenticationRoute
-    extends _i23.PageRouteInfo<VendorAuthenticationRouteArgs> {
-  VendorAuthenticationRoute({required _i27.AppUser user, _i24.Key? key})
+    extends _i24.PageRouteInfo<VendorAuthenticationRouteArgs> {
+  VendorAuthenticationRoute({required _i28.AppUser user, _i25.Key? key})
       : super(VendorAuthenticationRoute.name,
             path: '/vendor-authentication-page',
             args: VendorAuthenticationRouteArgs(user: user, key: key));
@@ -600,9 +628,9 @@ class VendorAuthenticationRoute
 class VendorAuthenticationRouteArgs {
   const VendorAuthenticationRouteArgs({required this.user, this.key});
 
-  final _i27.AppUser user;
+  final _i28.AppUser user;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -611,9 +639,9 @@ class VendorAuthenticationRouteArgs {
 }
 
 /// generated route for
-/// [_i8.ListServicePage]
-class ListServiceRoute extends _i23.PageRouteInfo<ListServiceRouteArgs> {
-  ListServiceRoute({required String providerID, _i24.Key? key})
+/// [_i9.ListServicePage]
+class ListServiceRoute extends _i24.PageRouteInfo<ListServiceRouteArgs> {
+  ListServiceRoute({required String providerID, _i25.Key? key})
       : super(ListServiceRoute.name,
             path: '/list-service-page',
             args: ListServiceRouteArgs(providerID: providerID, key: key));
@@ -626,7 +654,7 @@ class ListServiceRouteArgs {
 
   final String providerID;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -635,13 +663,13 @@ class ListServiceRouteArgs {
 }
 
 /// generated route for
-/// [_i8.DetailServicePage]
-class DetailServiceRoute extends _i23.PageRouteInfo<DetailServiceRouteArgs> {
+/// [_i9.DetailServicePage]
+class DetailServiceRoute extends _i24.PageRouteInfo<DetailServiceRouteArgs> {
   DetailServiceRoute(
       {required String providerID,
       required String serviceName,
       required String category,
-      _i24.Key? key})
+      _i25.Key? key})
       : super(DetailServiceRoute.name,
             path: '/detail-service-page',
             args: DetailServiceRouteArgs(
@@ -666,7 +694,7 @@ class DetailServiceRouteArgs {
 
   final String category;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -675,8 +703,8 @@ class DetailServiceRouteArgs {
 }
 
 /// generated route for
-/// [_i11.HistoryProviderDetailPage]
-class HistoryProviderDetailRoute extends _i23.PageRouteInfo<void> {
+/// [_i12.HistoryProviderDetailPage]
+class HistoryProviderDetailRoute extends _i24.PageRouteInfo<void> {
   const HistoryProviderDetailRoute()
       : super(HistoryProviderDetailRoute.name,
             path: '/history-provider-detail-page');
@@ -685,15 +713,15 @@ class HistoryProviderDetailRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.SignupPage]
-class SignupRoute extends _i23.PageRouteInfo<SignupRouteArgs> {
+/// [_i13.SignupPage]
+class SignupRoute extends _i24.PageRouteInfo<SignupRouteArgs> {
   SignupRoute(
-      {required _i28.Completer<_i27.AppUser> completer,
+      {required _i29.Completer<_i28.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
       required String email,
-      _i24.Key? key})
+      _i25.Key? key})
       : super(SignupRoute.name,
             path: '/signup-page',
             args: SignupRouteArgs(
@@ -716,7 +744,7 @@ class SignupRouteArgs {
       required this.email,
       this.key});
 
-  final _i28.Completer<_i27.AppUser> completer;
+  final _i29.Completer<_i28.AppUser> completer;
 
   final String phoneNumber;
 
@@ -726,7 +754,7 @@ class SignupRouteArgs {
 
   final String email;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -735,12 +763,12 @@ class SignupRouteArgs {
 }
 
 /// generated route for
-/// [_i13.OTPPage]
-class OTPRoute extends _i23.PageRouteInfo<OTPRouteArgs> {
+/// [_i14.OTPPage]
+class OTPRoute extends _i24.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i28.Completer<String> completer,
-      _i24.Key? key})
+      required _i29.Completer<String> completer,
+      _i25.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
             args: OTPRouteArgs(
@@ -755,9 +783,9 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i28.Completer<String> completer;
+  final _i29.Completer<String> completer;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -766,16 +794,16 @@ class OTPRouteArgs {
 }
 
 /// generated route for
-/// [_i14.LoginEnterPhonePage]
+/// [_i15.LoginEnterPhonePage]
 class LoginEnterPhoneRoute
-    extends _i23.PageRouteInfo<LoginEnterPhoneRouteArgs> {
+    extends _i24.PageRouteInfo<LoginEnterPhoneRouteArgs> {
   LoginEnterPhoneRoute(
-      {required _i28.Completer<_i27.AppUser> completer,
+      {required _i29.Completer<_i28.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
       required String email,
-      _i24.Key? key})
+      _i25.Key? key})
       : super(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page',
             args: LoginEnterPhoneRouteArgs(
@@ -798,7 +826,7 @@ class LoginEnterPhoneRouteArgs {
       required this.email,
       this.key});
 
-  final _i28.Completer<_i27.AppUser> completer;
+  final _i29.Completer<_i28.AppUser> completer;
 
   final String phoneNumber;
 
@@ -808,7 +836,7 @@ class LoginEnterPhoneRouteArgs {
 
   final String email;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -817,9 +845,9 @@ class LoginEnterPhoneRouteArgs {
 }
 
 /// generated route for
-/// [_i15.NewRequestPage]
-class NewRequestRoute extends _i23.PageRouteInfo<NewRequestRouteArgs> {
-  NewRequestRoute({_i24.Key? key, required String recordId})
+/// [_i16.NewRequestPage]
+class NewRequestRoute extends _i24.PageRouteInfo<NewRequestRouteArgs> {
+  NewRequestRoute({_i25.Key? key, required String recordId})
       : super(NewRequestRoute.name,
             path: '/new-request-page',
             args: NewRequestRouteArgs(key: key, recordId: recordId));
@@ -830,7 +858,7 @@ class NewRequestRoute extends _i23.PageRouteInfo<NewRequestRouteArgs> {
 class NewRequestRouteArgs {
   const NewRequestRouteArgs({this.key, required this.recordId});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   final String recordId;
 
@@ -841,9 +869,9 @@ class NewRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i16.P12DetailPage]
-class P12DetailRoute extends _i23.PageRouteInfo<P12DetailRouteArgs> {
-  P12DetailRoute({_i24.Key? key, required String recordId})
+/// [_i17.P12DetailPage]
+class P12DetailRoute extends _i24.PageRouteInfo<P12DetailRouteArgs> {
+  P12DetailRoute({_i25.Key? key, required String recordId})
       : super(P12DetailRoute.name,
             path: '/p12-detail-page',
             args: P12DetailRouteArgs(key: key, recordId: recordId));
@@ -854,7 +882,7 @@ class P12DetailRoute extends _i23.PageRouteInfo<P12DetailRouteArgs> {
 class P12DetailRouteArgs {
   const P12DetailRouteArgs({this.key, required this.recordId});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   final String recordId;
 
@@ -865,12 +893,12 @@ class P12DetailRouteArgs {
 }
 
 /// generated route for
-/// [_i17.P10QuotePricePage]
-class P10QuotePriceRoute extends _i23.PageRouteInfo<P10QuotePriceRouteArgs> {
+/// [_i18.P10QuotePricePage]
+class P10QuotePriceRoute extends _i24.PageRouteInfo<P10QuotePriceRouteArgs> {
   P10QuotePriceRoute(
-      {_i24.Key? key,
-      required _i25.PendingRepairRequest record,
-      required _i26.IList<_i6.PendingServiceModel> pendingService,
+      {_i25.Key? key,
+      required _i26.PendingRepairRequest record,
+      required _i27.IList<_i7.PendingServiceModel> pendingService,
       required int pendingAmount})
       : super(P10QuotePriceRoute.name,
             path: '/p10-quote-price-page',
@@ -890,11 +918,11 @@ class P10QuotePriceRouteArgs {
       required this.pendingService,
       required this.pendingAmount});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i25.PendingRepairRequest record;
+  final _i26.PendingRepairRequest record;
 
-  final _i26.IList<_i6.PendingServiceModel> pendingService;
+  final _i27.IList<_i7.PendingServiceModel> pendingService;
 
   final int pendingAmount;
 
@@ -905,13 +933,13 @@ class P10QuotePriceRouteArgs {
 }
 
 /// generated route for
-/// [_i18.UpdateServicePage]
-class UpdateServiceRoute extends _i23.PageRouteInfo<UpdateServiceRouteArgs> {
+/// [_i19.UpdateServicePage]
+class UpdateServiceRoute extends _i24.PageRouteInfo<UpdateServiceRouteArgs> {
   UpdateServiceRoute(
       {required String providerID,
       required String category,
       required String sName,
-      _i24.Key? key})
+      _i25.Key? key})
       : super(UpdateServiceRoute.name,
             path: '/update-service-page',
             args: UpdateServiceRouteArgs(
@@ -936,7 +964,7 @@ class UpdateServiceRouteArgs {
 
   final String sName;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -945,15 +973,15 @@ class UpdateServiceRouteArgs {
 }
 
 /// generated route for
-/// [_i19.AddProductPage]
-class AddProductRoute extends _i23.PageRouteInfo<AddProductRouteArgs> {
+/// [_i20.AddProductPage]
+class AddProductRoute extends _i24.PageRouteInfo<AddProductRouteArgs> {
   AddProductRoute(
       {required String providerID,
       required String cate,
       required String sName,
       required String pName,
       required int type,
-      _i24.Key? key})
+      _i25.Key? key})
       : super(AddProductRoute.name,
             path: '/add-product-page',
             args: AddProductRouteArgs(
@@ -986,7 +1014,7 @@ class AddProductRouteArgs {
 
   final int type;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -995,8 +1023,8 @@ class AddProductRouteArgs {
 }
 
 /// generated route for
-/// [_i20.PermissionPage]
-class PermissionRoute extends _i23.PageRouteInfo<void> {
+/// [_i21.PermissionPage]
+class PermissionRoute extends _i24.PageRouteInfo<void> {
   const PermissionRoute()
       : super(PermissionRoute.name, path: '/permission-page');
 
@@ -1004,10 +1032,10 @@ class PermissionRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i21.MapRoutePage]
-class MapRouteRoute extends _i23.PageRouteInfo<MapRouteRouteArgs> {
+/// [_i22.MapRoutePage]
+class MapRouteRoute extends _i24.PageRouteInfo<MapRouteRouteArgs> {
   MapRouteRoute(
-      {_i24.Key? key, required String recordId, required String consumerId})
+      {_i25.Key? key, required String recordId, required String consumerId})
       : super(MapRouteRoute.name,
             path: '/map-route-page',
             args: MapRouteRouteArgs(
@@ -1020,7 +1048,7 @@ class MapRouteRouteArgs {
   const MapRouteRouteArgs(
       {this.key, required this.recordId, required this.consumerId});
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   final String recordId;
 
@@ -1033,8 +1061,8 @@ class MapRouteRouteArgs {
 }
 
 /// generated route for
-/// [_i22.ChangeLanguagePage]
-class ChangeLanguageRoute extends _i23.PageRouteInfo<void> {
+/// [_i23.ChangeLanguagePage]
+class ChangeLanguageRoute extends _i24.PageRouteInfo<void> {
   const ChangeLanguageRoute()
       : super(ChangeLanguageRoute.name, path: '/change-language-page');
 
@@ -1042,12 +1070,12 @@ class ChangeLanguageRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.HomePage]
-class HomeRoute extends _i23.PageRouteInfo<HomeRouteArgs> {
+/// [_i12.HomePage]
+class HomeRoute extends _i24.PageRouteInfo<HomeRouteArgs> {
   HomeRoute(
-      {required _i27.AppUser user,
-      _i24.Key? key,
-      List<_i23.PageRouteInfo>? children})
+      {required _i28.AppUser user,
+      _i25.Key? key,
+      List<_i24.PageRouteInfo>? children})
       : super(HomeRoute.name,
             path: '/home-page',
             args: HomeRouteArgs(user: user, key: key),
@@ -1059,9 +1087,9 @@ class HomeRoute extends _i23.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({required this.user, this.key});
 
-  final _i27.AppUser user;
+  final _i28.AppUser user;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -1070,9 +1098,9 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i11.HomePrimaryPage]
-class HomePrimaryRoute extends _i23.PageRouteInfo<HomePrimaryRouteArgs> {
-  HomePrimaryRoute({required _i27.AppUser user, _i24.Key? key})
+/// [_i12.HomePrimaryPage]
+class HomePrimaryRoute extends _i24.PageRouteInfo<HomePrimaryRouteArgs> {
+  HomePrimaryRoute({required _i28.AppUser user, _i25.Key? key})
       : super(HomePrimaryRoute.name,
             path: 'home-primary-page',
             args: HomePrimaryRouteArgs(user: user, key: key));
@@ -1083,9 +1111,9 @@ class HomePrimaryRoute extends _i23.PageRouteInfo<HomePrimaryRouteArgs> {
 class HomePrimaryRouteArgs {
   const HomePrimaryRouteArgs({required this.user, this.key});
 
-  final _i27.AppUser user;
+  final _i28.AppUser user;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {
@@ -1094,8 +1122,8 @@ class HomePrimaryRouteArgs {
 }
 
 /// generated route for
-/// [_i11.HistoryProviderPage]
-class HistoryProviderRoute extends _i23.PageRouteInfo<void> {
+/// [_i12.HistoryProviderPage]
+class HistoryProviderRoute extends _i24.PageRouteInfo<void> {
   const HistoryProviderRoute()
       : super(HistoryProviderRoute.name, path: 'history-provider-page');
 
@@ -1103,8 +1131,8 @@ class HistoryProviderRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.NotificationProviderPage]
-class NotificationProviderRoute extends _i23.PageRouteInfo<void> {
+/// [_i12.NotificationProviderPage]
+class NotificationProviderRoute extends _i24.PageRouteInfo<void> {
   const NotificationProviderRoute()
       : super(NotificationProviderRoute.name,
             path: 'notification-provider-page');
@@ -1113,9 +1141,9 @@ class NotificationProviderRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.AccountPage]
-class AccountRoute extends _i23.PageRouteInfo<AccountRouteArgs> {
-  AccountRoute({required _i27.AppUser user, _i24.Key? key})
+/// [_i12.AccountPage]
+class AccountRoute extends _i24.PageRouteInfo<AccountRouteArgs> {
+  AccountRoute({required _i28.AppUser user, _i25.Key? key})
       : super(AccountRoute.name,
             path: 'account-page', args: AccountRouteArgs(user: user, key: key));
 
@@ -1125,9 +1153,9 @@ class AccountRoute extends _i23.PageRouteInfo<AccountRouteArgs> {
 class AccountRouteArgs {
   const AccountRouteArgs({required this.user, this.key});
 
-  final _i27.AppUser user;
+  final _i28.AppUser user;
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
   @override
   String toString() {

@@ -233,5 +233,9 @@
   "vietnameseLabel": "Vietnamese",
   "englishLabel": "English",
   "accountNotActiveLabel": "Your account has not been active yet.",
-  "canLoginLabel": "You still can login but consumer can not book you."
+  "canLoginLabel": "You still can login but consumer can not book you.",
+  "analyticLabel": "Analytics",
+  "totalIncome": "Total Income",
+  "incomeAnalytics": "Income Analytics",
+  "transitionAnalytics": "Transition Analytics"
 }
