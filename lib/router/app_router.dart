@@ -22,6 +22,7 @@ import '../repair_service/repair_service.dart';
 import '../repair_service/update_service/view/view.dart';
 import '../signup/view/signup_page.u.dart';
 import '../splash/splash.dart';
+import '../test/test.dart';
 import '../vendor_authentication/vender_authentication.dart';
 
 @AdaptiveAutoRouter(
@@ -52,6 +53,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: PermissionPage),
     AdaptiveRoute<void>(page: MapRoutePage),
     AdaptiveRoute<void>(page: ChangeLanguagePage),
+    AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

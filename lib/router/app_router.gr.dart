@@ -244,8 +244,10 @@ class AppRouter extends _i25.RootStackRouter {
           routeData: routeData, child: const _i23.ChangeLanguagePage());
     },
     TestRoute.name: (routeData) {
+      final args = routeData.argsAs<TestRouteArgs>();
       return _i25.AdaptivePage<void>(
-          routeData: routeData, child: const _i24.TestPage());
+          routeData: routeData,
+          child: _i24.TestPage(args.providerID, key: args.key));
     },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
@@ -276,7 +278,7 @@ class AppRouter extends _i25.RootStackRouter {
 
   @override
   List<_i25.RouteConfig> get routes => [
-        _i25.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i25.RouteConfig(SplashRoute.name, path: '/'),
         _i25.RouteConfig(AnalyticsRoute.name, path: '/analytics-page'),
         _i25.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i25.RouteConfig(P3RequestDetailRoute.name,
@@ -310,7 +312,7 @@ class AppRouter extends _i25.RootStackRouter {
         _i25.RouteConfig(MapRouteRoute.name, path: '/map-route-page'),
         _i25.RouteConfig(ChangeLanguageRoute.name,
             path: '/change-language-page'),
-        _i25.RouteConfig(TestRoute.name, path: '/'),
+        _i25.RouteConfig(TestRoute.name, path: '/test-page'),
         _i25.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i25.RouteConfig(HomePrimaryRoute.name,
               path: 'home-primary-page', parent: HomeRoute.name),
@@ -327,7 +329,7 @@ class AppRouter extends _i25.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i25.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -1077,10 +1079,26 @@ class ChangeLanguageRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i24.TestPage]
-class TestRoute extends _i25.PageRouteInfo<void> {
-  const TestRoute() : super(TestRoute.name, path: '/');
+class TestRoute extends _i25.PageRouteInfo<TestRouteArgs> {
+  TestRoute({required String providerID, _i26.Key? key})
+      : super(TestRoute.name,
+            path: '/test-page',
+            args: TestRouteArgs(providerID: providerID, key: key));
 
   static const String name = 'TestRoute';
+}
+
+class TestRouteArgs {
+  const TestRouteArgs({required this.providerID, this.key});
+
+  final String providerID;
+
+  final _i26.Key? key;
+
+  @override
+  String toString() {
+    return 'TestRouteArgs{providerID: $providerID, key: $key}';
+  }
 }
 
 /// generated route for
