@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -61,12 +60,6 @@ class SignUpContent extends StatelessWidget {
                 .textTheme
                 .headlineSmall
                 ?.copyWith(fontWeight: FontWeight.bold),
-          ),
-          leading: BackButton(
-            onPressed: () {
-              if (context.loaderOverlay.visible) context.loaderOverlay.hide();
-              context.router.pop();
-            },
           ),
         ),
         body: ListView(
@@ -224,6 +217,11 @@ class SignUpContent extends StatelessWidget {
                             .subtract(const Duration(days: 356 * 18)),
                         lastDate: DateTime.now()
                             .subtract(const Duration(days: 356 * 18)),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: l10n.emptyLabel,
+                          ),
+                        ]),
                       ),
                       FormBuilderTextField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -262,40 +260,20 @@ class SignUpContent extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         name: 'bio',
                       ),
-                      FormBuilderTextField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        style: Theme.of(context).textTheme.labelLarge,
-                        decoration: InputDecoration(
-                          labelText: l10n.idCardLabel,
-                          labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold) ??
-                              const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                        keyboardType: TextInputType.number,
-                        name: 'idcardNum',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: l10n.emptyLabel,
-                          ),
-                          FormBuilderValidators.match(
-                            r'^((\d{9})|(\d{13}))$',
-                            errorText: l10n.invalidFormatLabel,
-                          ),
-                        ]),
-                      ),
                       const SizedBox(
                         height: 16,
                       ),
-                      AutoSizeText(
-                        l10n.imageCardLabel,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                      AutoSizeText.rich(
+                        TextSpan(
+                          text: l10n.imageCardLabel,
+                          style: Theme.of(context).textTheme.labelLarge,
+                          children: [
+                            TextSpan(
+                              text: '( ${l10n.blsLabel} )',
+                              style: Theme.of(context).textTheme.labelMedium,
+                            )
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -417,11 +395,18 @@ class SignUpContent extends StatelessWidget {
                                 true) {
                               context.loaderOverlay.show();
                               final data = _formKey.currentState?.value;
-                              final fName =
-                                  data?['fullName'].toString().split(' ')[0];
-                              final lName = data?['fullName']
-                                  .toString()
-                                  .split(fName ?? '')[1];
+                              final listName =
+                                  data?['fullName'].toString().split(' ');
+                              final fName = listName?[0];
+                              var lName = '';
+                              if (listName != null && listName.length > 1) {
+                                listName.remove(listName[0]);
+                                lName = listName.fold<String>(
+                                  '',
+                                  (previousValue, element) =>
+                                      '$previousValue $element',
+                                );
+                              }
                               var phoneNumber = data?['phone'].toString();
                               if (phoneNumber?.substring(0, 3) == '+84') {
                                 phoneNumber = phoneNumber?.substring(
@@ -465,9 +450,7 @@ class SignUpContent extends StatelessWidget {
                                           backgroundUrl: list[1],
                                           bio: data?['bio'].toString() ?? '',
                                           idCardImage: list[2],
-                                          idCardNum:
-                                              data?['idcardNum'].toString() ??
-                                                  '',
+                                          idCardNum: '',
                                           online: true,
                                           loc: const Location(
                                             name: 'home',
@@ -476,7 +459,7 @@ class SignUpContent extends StatelessWidget {
                                           ),
                                           uuid: uid,
                                           firstName: fName ?? '',
-                                          lastName: lName ?? '',
+                                          lastName: lName,
                                           phone: '+84$phoneNumber',
                                           dob: DateTime.parse(
                                             data?['date']
@@ -513,8 +496,7 @@ class SignUpContent extends StatelessWidget {
                                     backgroundUrl: '',
                                     bio: data?['bio'].toString() ?? '',
                                     idCardImage: '',
-                                    idCardNum:
-                                        data?['idcardNum'].toString() ?? '',
+                                    idCardNum: '',
                                     online: true,
                                     loc: const Location(
                                       name: 'home',
@@ -523,7 +505,7 @@ class SignUpContent extends StatelessWidget {
                                     ),
                                     uuid: uid,
                                     firstName: fName ?? '',
-                                    lastName: lName ?? '',
+                                    lastName: lName,
                                     phone: '+84$phoneNumber',
                                     dob: DateTime.parse(
                                       data?['date'].toString().split(' ')[0] ??

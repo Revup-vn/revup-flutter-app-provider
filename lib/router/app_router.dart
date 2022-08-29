@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
+import '../analytics/view/analytics_page.dart';
 import '../change_language/view/change_language_page.dart';
 import '../home/home.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
@@ -27,6 +28,7 @@ import '../vendor_authentication/vender_authentication.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AdaptiveRoute<void>(page: SplashPage, initial: true),
+    AdaptiveRoute<void>(page: AnalyticsPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: P3RequestDetailPage, maintainState: false),
     AdaptiveRoute<void>(page: InfoRequestPage, maintainState: false),

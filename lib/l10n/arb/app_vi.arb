@@ -230,5 +230,26 @@
   "vietnameseLabel": "Tiếng Việt",
   "englishLabel": "Tiếng Anh",
   "accountNotActiveLabel": "Tài khoản của bạn chưa được kích hoạt.",
-  "canLoginLabel": "Bạn vẫn có thể đăng nhập nhưng khách hàng sẽ không tìm thấy bạn."
+  "canLoginLabel": "Bạn vẫn có thể đăng nhập nhưng khách hàng sẽ không tìm thấy bạn.",
+  "analyticLabel": "Thống kê",
+  "totalIncome": "Tổng thu nhập",
+  "incomeAnalytics": "Thống kê thu nhập",
+  "transitionAnalytics": "Thống kê giao dịch",
+  "janLabel": "1",
+  "febLabel": "2",
+  "marLabel": "3",
+  "aprLabel": "4",
+  "mayLabel":"5",
+  "junLabel": "6",
+  "julLabel": "7",
+  "augLabel": "8",
+  "sepLabel": "9",
+  "octLabel": "10",
+  "novLabel": "11",
+  "decLabel": "12",
+  "monthLabel": "Tháng",
+  "incomePerMonthLabel": "Thu nhập / tháng",
+  "transPerMonthLabel": "Giao dịch / tháng",
+  "blsLabel": "Cung cấp ảnh giấy phép kinh doanh là cần thiết. Đây sẽ là căn cứ giúp chúng tôi xác thực tài khoản của bạn"
+
 }
