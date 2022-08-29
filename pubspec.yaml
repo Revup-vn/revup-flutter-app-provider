@@ -15,7 +15,7 @@ dependencies:
   dartz: ^0.10.1
   dio: ^4.0.1
   dotted_border: ^2.0.0+2
-  firebase_core: ^1.20.0
+  firebase_core: ^1.21.1
   fl_chart: ^0.55.1
   flash: ^2.0.3+3
   flutter:
