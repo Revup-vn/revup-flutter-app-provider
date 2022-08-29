@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
 import '../bloc/analytics_bloc.dart';
-import 'analytics_view.dart';
+import 'analytics_builder.dart';
 
 class AnalyticsPage extends StatelessWidget {
   const AnalyticsPage(this.providerID, {super.key});
@@ -21,7 +21,7 @@ class AnalyticsPage extends StatelessWidget {
         appBar: AppBar(
           title: AutoSizeText(context.l10n.analyticLabel),
         ),
-        body: const AnalyticsView(),
+        body: const AnalyticsBuilder(),
       ),
     );
   }

@@ -237,5 +237,20 @@
   "analyticLabel": "Analytics",
   "totalIncome": "Total Income",
   "incomeAnalytics": "Income Analytics",
-  "transitionAnalytics": "Transition Analytics"
+  "transitionAnalytics": "Transition Analytics",
+  "janLabel": "Jan",
+  "febLabel": "Feb",
+  "marLabel": "Mar",
+  "aprLabel": "Apr",
+  "mayLabel":"May",
+  "junLabel": "Jun",
+  "julLabel": "Jul",
+  "augLabel": "Aug",
+  "sepLabel": "Sep",
+  "octLabel": "Oct",
+  "novLabel": "Nov",
+  "decLabel": "Dec",
+  "incomePerMonthLabel": "Income per month",
+  "transPerMonthLabel": "Trans per month",
+  "blsLabel": "Taking an image of Business Lisence is required. This is used to verify your account"
 }
