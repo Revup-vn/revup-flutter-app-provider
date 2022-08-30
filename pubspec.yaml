@@ -82,3 +82,5 @@ flutter:
   generate: true
   assets:
     - assets/screens/
+    - assets/common_service.json
+

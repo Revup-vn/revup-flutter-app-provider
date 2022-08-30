@@ -55,7 +55,7 @@ class ListServiceBuilder extends StatelessWidget {
                                 .textTheme
                                 .bodyText2
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.error,
+                                  color: Theme.of(context).colorScheme.tertiary,
                                 ),
                             maxLines: 1,
                           ),
@@ -65,7 +65,7 @@ class ListServiceBuilder extends StatelessWidget {
                                 .textTheme
                                 .bodyText2
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.error,
+                                  color: Theme.of(context).colorScheme.tertiary,
                                 ),
                             maxLines: 1,
                           ),
@@ -80,8 +80,12 @@ class ListServiceBuilder extends StatelessWidget {
                           TextButton(
                             onPressed: () async {
                               await context.router.pop();
-                              await context.router
-                                  .push(TestRoute(providerID: providerID));
+                              await context.router.push(
+                                CommonServiceRoute(
+                                  providerID: providerID,
+                                  sortType: sortType,
+                                ),
+                              );
                             },
                             child: AutoSizeText(
                               context.l10n.doneLabel,

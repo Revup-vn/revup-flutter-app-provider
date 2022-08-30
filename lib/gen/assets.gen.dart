@@ -37,6 +37,7 @@ class $AssetsScreensGen {
 class Assets {
   Assets._();
 
+  static const String commonService = 'assets/common_service.json';
   static const $AssetsScreensGen screens = $AssetsScreensGen();
 }
 
