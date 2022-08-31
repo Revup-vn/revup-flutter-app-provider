@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -45,6 +46,32 @@ class _SplashPageState extends State<SplashPage> {
             break;
           }
           break;
+        case NotificationType.ProviderDecline:
+          //TODO(tcmhoang): Intl this line of string
+          context
+              .showToast<void>(
+                  'User aborted the request, you will get moving fees as '
+                  'compensation ')
+              .then(
+                (_) => context.read<IStore<AppUser>>().updateFields(
+                      AppUserDummy.dummyProvider(
+                        context.read<AuthenticateBloc>().state.maybeMap(
+                              orElse: () => throw NullThrownError(),
+                              authenticated: (value) =>
+                                  value.authType.user.uuid,
+                            ),
+                      ).maybeMap(
+                        orElse: () => throw NullThrownError(),
+                        provider: (p) => p.copyWith(
+                          online: true,
+                        ),
+                      ),
+                      cons(AppUserDummy.field(AppUserFields.Online), nil()),
+                    ),
+              )
+              .then((value) => context.router.popUntilRoot());
+          break;
+
         // ignore: no_default_cases
         default:
           break;
