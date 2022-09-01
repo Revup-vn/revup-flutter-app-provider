@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'list_service_bloc.dart';
+part of 'common_service_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,62 +15,71 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ListServiceEvent {
+mixin _$CommonServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int sortType) sortTypeChanged,
+    required TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int sortType)? sortTypeChanged,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int sortType)? sortTypeChanged,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SortTypeChanged value) sortTypeChanged,
+    required TResult Function(_Submited value) submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SortTypeChanged value)? sortTypeChanged,
+    TResult Function(_Submited value)? submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SortTypeChanged value)? sortTypeChanged,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListServiceEventCopyWith<$Res> {
-  factory $ListServiceEventCopyWith(
-          ListServiceEvent value, $Res Function(ListServiceEvent) then) =
-      _$ListServiceEventCopyWithImpl<$Res>;
+abstract class $CommonServiceEventCopyWith<$Res> {
+  factory $CommonServiceEventCopyWith(
+          CommonServiceEvent value, $Res Function(CommonServiceEvent) then) =
+      _$CommonServiceEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ListServiceEventCopyWithImpl<$Res>
-    implements $ListServiceEventCopyWith<$Res> {
-  _$ListServiceEventCopyWithImpl(this._value, this._then);
+class _$CommonServiceEventCopyWithImpl<$Res>
+    implements $CommonServiceEventCopyWith<$Res> {
+  _$CommonServiceEventCopyWithImpl(this._value, this._then);
 
-  final ListServiceEvent _value;
+  final CommonServiceEvent _value;
   // ignore: unused_field
-  final $Res Function(ListServiceEvent) _then;
+  final $Res Function(CommonServiceEvent) _then;
 }
 
 /// @nodoc
@@ -82,7 +91,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_StartedCopyWithImpl<$Res>
-    extends _$ListServiceEventCopyWithImpl<$Res>
+    extends _$CommonServiceEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -98,7 +107,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'ListServiceEvent.started()';
+    return 'CommonServiceEvent.started()';
   }
 
   @override
@@ -114,7 +123,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int sortType) sortTypeChanged,
+    required TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)
+        submited,
   }) {
     return started();
   }
@@ -123,7 +135,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int sortType)? sortTypeChanged,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
   }) {
     return started?.call();
   }
@@ -132,7 +147,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int sortType)? sortTypeChanged,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -145,7 +163,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SortTypeChanged value) sortTypeChanged,
+    required TResult Function(_Submited value) submited,
   }) {
     return started(this);
   }
@@ -154,7 +172,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SortTypeChanged value)? sortTypeChanged,
+    TResult Function(_Submited value)? submited,
   }) {
     return started?.call(this);
   }
@@ -163,7 +181,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SortTypeChanged value)? sortTypeChanged,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -173,99 +191,122 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements ListServiceEvent {
+abstract class _Started implements CommonServiceEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_SortTypeChangedCopyWith<$Res> {
-  factory _$$_SortTypeChangedCopyWith(
-          _$_SortTypeChanged value, $Res Function(_$_SortTypeChanged) then) =
-      __$$_SortTypeChangedCopyWithImpl<$Res>;
-  $Res call({int sortType});
+abstract class _$$_SubmitedCopyWith<$Res> {
+  factory _$$_SubmitedCopyWith(
+          _$_Submited value, $Res Function(_$_Submited) then) =
+      __$$_SubmitedCopyWithImpl<$Res>;
+  $Res call(
+      {List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+          saveList});
 }
 
 /// @nodoc
-class __$$_SortTypeChangedCopyWithImpl<$Res>
-    extends _$ListServiceEventCopyWithImpl<$Res>
-    implements _$$_SortTypeChangedCopyWith<$Res> {
-  __$$_SortTypeChangedCopyWithImpl(
-      _$_SortTypeChanged _value, $Res Function(_$_SortTypeChanged) _then)
-      : super(_value, (v) => _then(v as _$_SortTypeChanged));
+class __$$_SubmitedCopyWithImpl<$Res>
+    extends _$CommonServiceEventCopyWithImpl<$Res>
+    implements _$$_SubmitedCopyWith<$Res> {
+  __$$_SubmitedCopyWithImpl(
+      _$_Submited _value, $Res Function(_$_Submited) _then)
+      : super(_value, (v) => _then(v as _$_Submited));
 
   @override
-  _$_SortTypeChanged get _value => super._value as _$_SortTypeChanged;
+  _$_Submited get _value => super._value as _$_Submited;
 
   @override
   $Res call({
-    Object? sortType = freezed,
+    Object? saveList = freezed,
   }) {
-    return _then(_$_SortTypeChanged(
-      sortType: sortType == freezed
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$_Submited(
+      saveList: saveList == freezed
+          ? _value._saveList
+          : saveList // ignore: cast_nullable_to_non_nullable
+              as List<
+                  Tuple3<CommonService, List<Tuple2<RepairProduct, File>>,
+                      File>>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SortTypeChanged implements _SortTypeChanged {
-  const _$_SortTypeChanged({required this.sortType});
+class _$_Submited implements _Submited {
+  const _$_Submited(
+      {required final List<
+              Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+          saveList})
+      : _saveList = saveList;
 
+  final List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+      _saveList;
   @override
-  final int sortType;
+  List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+      get saveList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_saveList);
+  }
 
   @override
   String toString() {
-    return 'ListServiceEvent.sortTypeChanged(sortType: $sortType)';
+    return 'CommonServiceEvent.submited(saveList: $saveList)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SortTypeChanged &&
-            const DeepCollectionEquality().equals(other.sortType, sortType));
+            other is _$_Submited &&
+            const DeepCollectionEquality().equals(other._saveList, _saveList));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(sortType));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_saveList));
 
   @JsonKey(ignore: true)
   @override
-  _$$_SortTypeChangedCopyWith<_$_SortTypeChanged> get copyWith =>
-      __$$_SortTypeChangedCopyWithImpl<_$_SortTypeChanged>(this, _$identity);
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
+      __$$_SubmitedCopyWithImpl<_$_Submited>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int sortType) sortTypeChanged,
+    required TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)
+        submited,
   }) {
-    return sortTypeChanged(sortType);
+    return submited(saveList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int sortType)? sortTypeChanged,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
   }) {
-    return sortTypeChanged?.call(sortType);
+    return submited?.call(saveList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int sortType)? sortTypeChanged,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
     required TResult orElse(),
   }) {
-    if (sortTypeChanged != null) {
-      return sortTypeChanged(sortType);
+    if (submited != null) {
+      return submited(saveList);
     }
     return orElse();
   }
@@ -274,57 +315,57 @@ class _$_SortTypeChanged implements _SortTypeChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SortTypeChanged value) sortTypeChanged,
+    required TResult Function(_Submited value) submited,
   }) {
-    return sortTypeChanged(this);
+    return submited(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SortTypeChanged value)? sortTypeChanged,
+    TResult Function(_Submited value)? submited,
   }) {
-    return sortTypeChanged?.call(this);
+    return submited?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SortTypeChanged value)? sortTypeChanged,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) {
-    if (sortTypeChanged != null) {
-      return sortTypeChanged(this);
+    if (submited != null) {
+      return submited(this);
     }
     return orElse();
   }
 }
 
-abstract class _SortTypeChanged implements ListServiceEvent {
-  const factory _SortTypeChanged({required final int sortType}) =
-      _$_SortTypeChanged;
+abstract class _Submited implements CommonServiceEvent {
+  const factory _Submited(
+      {required final List<
+              Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+          saveList}) = _$_Submited;
 
-  int get sortType;
+  List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+      get saveList;
   @JsonKey(ignore: true)
-  _$$_SortTypeChangedCopyWith<_$_SortTypeChanged> get copyWith =>
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ListServiceState {
+mixin _$CommonServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        loadDataSuccess,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        empty,
+    required TResult Function(List<CommonService> list, String providerID)
+        success,
+    required TResult Function() submitSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -332,10 +373,8 @@ mixin _$ListServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -343,10 +382,8 @@ mixin _$ListServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -355,8 +392,8 @@ mixin _$ListServiceState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
-    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SubmitSuccess value) submitSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -364,8 +401,8 @@ mixin _$ListServiceState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -373,28 +410,28 @@ mixin _$ListServiceState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListServiceStateCopyWith<$Res> {
-  factory $ListServiceStateCopyWith(
-          ListServiceState value, $Res Function(ListServiceState) then) =
-      _$ListServiceStateCopyWithImpl<$Res>;
+abstract class $CommonServiceStateCopyWith<$Res> {
+  factory $CommonServiceStateCopyWith(
+          CommonServiceState value, $Res Function(CommonServiceState) then) =
+      _$CommonServiceStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ListServiceStateCopyWithImpl<$Res>
-    implements $ListServiceStateCopyWith<$Res> {
-  _$ListServiceStateCopyWithImpl(this._value, this._then);
+class _$CommonServiceStateCopyWithImpl<$Res>
+    implements $CommonServiceStateCopyWith<$Res> {
+  _$CommonServiceStateCopyWithImpl(this._value, this._then);
 
-  final ListServiceState _value;
+  final CommonServiceState _value;
   // ignore: unused_field
-  final $Res Function(ListServiceState) _then;
+  final $Res Function(CommonServiceState) _then;
 }
 
 /// @nodoc
@@ -406,7 +443,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$ListServiceStateCopyWithImpl<$Res>
+    extends _$CommonServiceStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -422,7 +459,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ListServiceState.initial()';
+    return 'CommonServiceState.initial()';
   }
 
   @override
@@ -440,12 +477,9 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        loadDataSuccess,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        empty,
+    required TResult Function(List<CommonService> list, String providerID)
+        success,
+    required TResult Function() submitSuccess,
   }) {
     return initial();
   }
@@ -456,10 +490,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
   }) {
     return initial?.call();
   }
@@ -470,10 +502,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -488,8 +518,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
-    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SubmitSuccess value) submitSuccess,
   }) {
     return initial(this);
   }
@@ -500,8 +530,8 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
   }) {
     return initial?.call(this);
   }
@@ -512,8 +542,8 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -523,7 +553,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ListServiceState {
+abstract class _Initial implements CommonServiceState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -536,7 +566,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$ListServiceStateCopyWithImpl<$Res>
+    extends _$CommonServiceStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -552,7 +582,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'ListServiceState.loading()';
+    return 'CommonServiceState.loading()';
   }
 
   @override
@@ -570,12 +600,9 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        loadDataSuccess,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        empty,
+    required TResult Function(List<CommonService> list, String providerID)
+        success,
+    required TResult Function() submitSuccess,
   }) {
     return loading();
   }
@@ -586,10 +613,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
   }) {
     return loading?.call();
   }
@@ -600,10 +625,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -618,8 +641,8 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
-    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SubmitSuccess value) submitSuccess,
   }) {
     return loading(this);
   }
@@ -630,8 +653,8 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
   }) {
     return loading?.call(this);
   }
@@ -642,8 +665,8 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -653,7 +676,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements ListServiceState {
+abstract class _Loading implements CommonServiceState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -666,7 +689,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<$Res>
-    extends _$ListServiceStateCopyWithImpl<$Res>
+    extends _$CommonServiceStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -682,7 +705,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'ListServiceState.failure()';
+    return 'CommonServiceState.failure()';
   }
 
   @override
@@ -700,12 +723,9 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        loadDataSuccess,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        empty,
+    required TResult Function(List<CommonService> list, String providerID)
+        success,
+    required TResult Function() submitSuccess,
   }) {
     return failure();
   }
@@ -716,10 +736,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
   }) {
     return failure?.call();
   }
@@ -730,10 +748,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -748,8 +764,8 @@ class _$_Failure implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
-    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SubmitSuccess value) submitSuccess,
   }) {
     return failure(this);
   }
@@ -760,8 +776,8 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
   }) {
     return failure?.call(this);
   }
@@ -772,8 +788,8 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -783,44 +799,38 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements ListServiceState {
+abstract class _Failure implements CommonServiceState {
   const factory _Failure() = _$_Failure;
 }
 
 /// @nodoc
-abstract class _$$_LoadDataSuccessCopyWith<$Res> {
-  factory _$$_LoadDataSuccessCopyWith(
-          _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
-      __$$_LoadDataSuccessCopyWithImpl<$Res>;
-  $Res call({IList<ServiceModel> data, int sortType, String providerID});
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({List<CommonService> list, String providerID});
 }
 
 /// @nodoc
-class __$$_LoadDataSuccessCopyWithImpl<$Res>
-    extends _$ListServiceStateCopyWithImpl<$Res>
-    implements _$$_LoadDataSuccessCopyWith<$Res> {
-  __$$_LoadDataSuccessCopyWithImpl(
-      _$_LoadDataSuccess _value, $Res Function(_$_LoadDataSuccess) _then)
-      : super(_value, (v) => _then(v as _$_LoadDataSuccess));
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$CommonServiceStateCopyWithImpl<$Res>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+      : super(_value, (v) => _then(v as _$_Success));
 
   @override
-  _$_LoadDataSuccess get _value => super._value as _$_LoadDataSuccess;
+  _$_Success get _value => super._value as _$_Success;
 
   @override
   $Res call({
-    Object? data = freezed,
-    Object? sortType = freezed,
+    Object? list = freezed,
     Object? providerID = freezed,
   }) {
-    return _then(_$_LoadDataSuccess(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as IList<ServiceModel>,
-      sortType: sortType == freezed
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$_Success(
+      list: list == freezed
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<CommonService>,
       providerID: providerID == freezed
           ? _value.providerID
           : providerID // ignore: cast_nullable_to_non_nullable
@@ -831,29 +841,32 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadDataSuccess implements _LoadDataSuccess {
-  const _$_LoadDataSuccess(
-      {required this.data, required this.sortType, required this.providerID});
+class _$_Success implements _Success {
+  const _$_Success(
+      {required final List<CommonService> list, required this.providerID})
+      : _list = list;
 
+  final List<CommonService> _list;
   @override
-  final IList<ServiceModel> data;
-  @override
-  final int sortType;
+  List<CommonService> get list {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
+
   @override
   final String providerID;
 
   @override
   String toString() {
-    return 'ListServiceState.loadDataSuccess(data: $data, sortType: $sortType, providerID: $providerID)';
+    return 'CommonServiceState.success(list: $list, providerID: $providerID)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadDataSuccess &&
-            const DeepCollectionEquality().equals(other.data, data) &&
-            const DeepCollectionEquality().equals(other.sortType, sortType) &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other._list, _list) &&
             const DeepCollectionEquality()
                 .equals(other.providerID, providerID));
   }
@@ -861,14 +874,13 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(data),
-      const DeepCollectionEquality().hash(sortType),
+      const DeepCollectionEquality().hash(_list),
       const DeepCollectionEquality().hash(providerID));
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
-      __$$_LoadDataSuccessCopyWithImpl<_$_LoadDataSuccess>(this, _$identity);
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -876,14 +888,11 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        loadDataSuccess,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        empty,
+    required TResult Function(List<CommonService> list, String providerID)
+        success,
+    required TResult Function() submitSuccess,
   }) {
-    return loadDataSuccess(data, sortType, providerID);
+    return success(list, providerID);
   }
 
   @override
@@ -892,12 +901,10 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
   }) {
-    return loadDataSuccess?.call(data, sortType, providerID);
+    return success?.call(list, providerID);
   }
 
   @override
@@ -906,14 +913,12 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
     required TResult orElse(),
   }) {
-    if (loadDataSuccess != null) {
-      return loadDataSuccess(data, sortType, providerID);
+    if (success != null) {
+      return success(list, providerID);
     }
     return orElse();
   }
@@ -924,10 +929,10 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
-    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SubmitSuccess value) submitSuccess,
   }) {
-    return loadDataSuccess(this);
+    return success(this);
   }
 
   @override
@@ -936,10 +941,10 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
   }) {
-    return loadDataSuccess?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -948,110 +953,66 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
     required TResult orElse(),
   }) {
-    if (loadDataSuccess != null) {
-      return loadDataSuccess(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadDataSuccess implements ListServiceState {
-  const factory _LoadDataSuccess(
-      {required final IList<ServiceModel> data,
-      required final int sortType,
-      required final String providerID}) = _$_LoadDataSuccess;
+abstract class _Success implements CommonServiceState {
+  const factory _Success(
+      {required final List<CommonService> list,
+      required final String providerID}) = _$_Success;
 
-  IList<ServiceModel> get data;
-  int get sortType;
+  List<CommonService> get list;
   String get providerID;
   @JsonKey(ignore: true)
-  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EmptyCopyWith<$Res> {
-  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
-      __$$_EmptyCopyWithImpl<$Res>;
-  $Res call({IList<ServiceModel> data, int sortType, String providerID});
+abstract class _$$_SubmitSuccessCopyWith<$Res> {
+  factory _$$_SubmitSuccessCopyWith(
+          _$_SubmitSuccess value, $Res Function(_$_SubmitSuccess) then) =
+      __$$_SubmitSuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_EmptyCopyWithImpl<$Res> extends _$ListServiceStateCopyWithImpl<$Res>
-    implements _$$_EmptyCopyWith<$Res> {
-  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
-      : super(_value, (v) => _then(v as _$_Empty));
+class __$$_SubmitSuccessCopyWithImpl<$Res>
+    extends _$CommonServiceStateCopyWithImpl<$Res>
+    implements _$$_SubmitSuccessCopyWith<$Res> {
+  __$$_SubmitSuccessCopyWithImpl(
+      _$_SubmitSuccess _value, $Res Function(_$_SubmitSuccess) _then)
+      : super(_value, (v) => _then(v as _$_SubmitSuccess));
 
   @override
-  _$_Empty get _value => super._value as _$_Empty;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-    Object? sortType = freezed,
-    Object? providerID = freezed,
-  }) {
-    return _then(_$_Empty(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as IList<ServiceModel>,
-      sortType: sortType == freezed
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as int,
-      providerID: providerID == freezed
-          ? _value.providerID
-          : providerID // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  _$_SubmitSuccess get _value => super._value as _$_SubmitSuccess;
 }
 
 /// @nodoc
 
-class _$_Empty implements _Empty {
-  const _$_Empty(
-      {required this.data, required this.sortType, required this.providerID});
-
-  @override
-  final IList<ServiceModel> data;
-  @override
-  final int sortType;
-  @override
-  final String providerID;
+class _$_SubmitSuccess implements _SubmitSuccess {
+  const _$_SubmitSuccess();
 
   @override
   String toString() {
-    return 'ListServiceState.empty(data: $data, sortType: $sortType, providerID: $providerID)';
+    return 'CommonServiceState.submitSuccess()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Empty &&
-            const DeepCollectionEquality().equals(other.data, data) &&
-            const DeepCollectionEquality().equals(other.sortType, sortType) &&
-            const DeepCollectionEquality()
-                .equals(other.providerID, providerID));
+        (other.runtimeType == runtimeType && other is _$_SubmitSuccess);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(data),
-      const DeepCollectionEquality().hash(sortType),
-      const DeepCollectionEquality().hash(providerID));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_EmptyCopyWith<_$_Empty> get copyWith =>
-      __$$_EmptyCopyWithImpl<_$_Empty>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1059,14 +1020,11 @@ class _$_Empty implements _Empty {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        loadDataSuccess,
-    required TResult Function(
-            IList<ServiceModel> data, int sortType, String providerID)
-        empty,
+    required TResult Function(List<CommonService> list, String providerID)
+        success,
+    required TResult Function() submitSuccess,
   }) {
-    return empty(data, sortType, providerID);
+    return submitSuccess();
   }
 
   @override
@@ -1075,12 +1033,10 @@ class _$_Empty implements _Empty {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
   }) {
-    return empty?.call(data, sortType, providerID);
+    return submitSuccess?.call();
   }
 
   @override
@@ -1089,14 +1045,12 @@ class _$_Empty implements _Empty {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        loadDataSuccess,
-    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
-        empty,
+    TResult Function(List<CommonService> list, String providerID)? success,
+    TResult Function()? submitSuccess,
     required TResult orElse(),
   }) {
-    if (empty != null) {
-      return empty(data, sortType, providerID);
+    if (submitSuccess != null) {
+      return submitSuccess();
     }
     return orElse();
   }
@@ -1107,10 +1061,10 @@ class _$_Empty implements _Empty {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
-    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SubmitSuccess value) submitSuccess,
   }) {
-    return empty(this);
+    return submitSuccess(this);
   }
 
   @override
@@ -1119,10 +1073,10 @@ class _$_Empty implements _Empty {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
   }) {
-    return empty?.call(this);
+    return submitSuccess?.call(this);
   }
 
   @override
@@ -1131,27 +1085,17 @@ class _$_Empty implements _Empty {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
-    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    TResult Function(_SubmitSuccess value)? submitSuccess,
     required TResult orElse(),
   }) {
-    if (empty != null) {
-      return empty(this);
+    if (submitSuccess != null) {
+      return submitSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _Empty implements ListServiceState {
-  const factory _Empty(
-      {required final IList<ServiceModel> data,
-      required final int sortType,
-      required final String providerID}) = _$_Empty;
-
-  IList<ServiceModel> get data;
-  int get sortType;
-  String get providerID;
-  @JsonKey(ignore: true)
-  _$$_EmptyCopyWith<_$_Empty> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _SubmitSuccess implements CommonServiceState {
+  const factory _SubmitSuccess() = _$_SubmitSuccess;
 }

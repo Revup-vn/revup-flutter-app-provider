@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -212,30 +211,32 @@ class AddServiceView extends StatelessWidget {
                             success: (value) => value,
                             orElse: () => items[0],
                           ),
-                          builder: (context, value) => DropdownButton(
-                            value: value,
-                            underline: const SizedBox(),
-                            isExpanded: true,
-                            icon: const Icon(Icons.keyboard_arrow_down),
-                            items: items.map((items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              if (newValue != null) {
-                                if (newValue.isNotEmpty) {
-                                  dropdownvalue = newValue;
-                                  context.read<DropdownListBloc>().add(
-                                        DropdownListEvent.dropdownChanged(
-                                          value: newValue,
-                                        ),
-                                      );
+                          builder: (context, value) {
+                            dropdownvalue = value;
+                            return DropdownButton(
+                              value: value,
+                              underline: const SizedBox(),
+                              isExpanded: true,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              items: items.map((items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                if (newValue != null) {
+                                  if (newValue.isNotEmpty) {
+                                    context.read<DropdownListBloc>().add(
+                                          DropdownListEvent.dropdownChanged(
+                                            value: newValue,
+                                          ),
+                                        );
+                                  }
                                 }
-                              }
-                            },
-                          ),
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
