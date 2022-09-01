@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,6 +11,7 @@ import '../../../../router/router.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../../shared/widgets/loading.u.dart';
 import '../../../home.dart';
+import '../cubit/home_primary_cubit.dart';
 
 class HomePrimaryView extends StatelessWidget {
   const HomePrimaryView({
@@ -24,6 +24,9 @@ class HomePrimaryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final blocPage = context.watch<HomeBloc>();
+    context.watch<HomePrimaryCubit>().state.whenOrNull(
+          initial: () => context.read<HomePrimaryCubit>().onStarted(),
+        );
     blocPage.state.maybeWhen(
       initial: () async {
         final isGranted = await requestUserLocation();
@@ -46,15 +49,20 @@ class HomePrimaryView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AutoSizeText(
-                '${l10n.hiLabel}, ${user.firstName}${user.lastName}',
-                style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall
-                        ?.copyWith(fontWeight: FontWeight.bold) ??
-                    const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+              BlocBuilder<HomePrimaryCubit, HomePrimaryState>(
+                builder: (context, state) => state.maybeWhen(
+                  orElse: Container.new,
+                  loaded: (aUser) => AutoSizeText(
+                    '${l10n.hiLabel}, ${aUser.firstName} ${aUser.lastName}',
+                    style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold) ??
+                        const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
               ),
               const SizedBox(height: 32),
               Row(
