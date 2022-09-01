@@ -260,5 +260,12 @@
   "addCommonLabel": "Choose common service",
   "moneyUnit": "VND",
   "noServiceLabel": "You have no service yet.",
-  "addCommonServiceQuestionLabel": "Do you want to use common service?"
+  "addCommonServiceQuestionLabel": "Do you want to use common service?",
+  "resultForLabel": "Results for",
+  "resultCountLabel": "founds",
+  "notFoundLabel": "Not Found",
+  "recentLabel": "Recent",
+  "clearAllLabel": "Clear all",
+  "searchLabel": "Search...",
+  "searchServiceOrProduct": "Search your service or product"
 }

@@ -258,7 +258,13 @@
   "addCommonLabel": "Chọn dịch vụ mẫu",
   "moneyUnit": "đ",
   "noServiceLabel": "Bạn không có dịch vụ nào.",
-  "addCommonServiceQuestionLabel": "Bạn có muốn sử dụng dịch vụ mẫu không?"
-
+  "addCommonServiceQuestionLabel": "Bạn có muốn sử dụng dịch vụ mẫu không?",
+  "resultForLabel": "Kết quả cho",
+  "resultCountLabel": "kết quả",
+  "notFoundLabel": "Không tìm thấy",
+  "recentLabel": "Gần đây",
+  "clearAllLabel": "Xoá tất cả",
+  "searchLabel": "Tìm kiếm...",
+  "searchServiceOrProduct": "Tìm kiếm dịch vụ hoặc sản phẩm của bạn"
 
 }
