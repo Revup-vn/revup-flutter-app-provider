@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:revup_core/core.dart';
 
 import '../models/commonservice.dart';
 import 'service_checkbox_tile.dart';
@@ -19,8 +23,11 @@ class ServiceCheckboxGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     final lst = <CommonService>[];
 
-    return FormBuilderField<List<CommonService>>(
-      initialValue: <CommonService>[].toList(),
+    return FormBuilderField<
+        List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>>(
+      initialValue:
+          <Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>[]
+              .toList(),
       name: 'data',
       builder: (field) => ListView.builder(
         physics: const NeverScrollableScrollPhysics(),

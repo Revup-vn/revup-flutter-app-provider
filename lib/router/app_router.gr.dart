@@ -12,6 +12,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i31;
+import 'dart:io' as _i32;
 
 import 'package:auto_route/auto_route.dart' as _i26;
 import 'package:dartz/dartz.dart' as _i29;
@@ -1123,7 +1124,8 @@ class CommonServiceRouteArgs {
 class CommonProductRoute extends _i26.PageRouteInfo<CommonProductRouteArgs> {
   CommonProductRoute(
       {required List<_i30.RepairProduct> products,
-      required _i31.Completer<List<_i30.RepairProduct>> complete,
+      required _i31.Completer<List<_i29.Tuple2<_i30.RepairProduct, _i32.File>>>
+          complete,
       _i27.Key? key})
       : super(CommonProductRoute.name,
             path: '/common-product-page',
@@ -1139,7 +1141,8 @@ class CommonProductRouteArgs {
 
   final List<_i30.RepairProduct> products;
 
-  final _i31.Completer<List<_i30.RepairProduct>> complete;
+  final _i31.Completer<List<_i29.Tuple2<_i30.RepairProduct, _i32.File>>>
+      complete;
 
   final _i27.Key? key;
 

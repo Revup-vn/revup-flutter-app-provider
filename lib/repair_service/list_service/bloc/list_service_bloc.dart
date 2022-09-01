@@ -208,13 +208,21 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
           },
         );
         final res = await data.future;
-        emit(
-          ListServiceState.loadDataSuccess(
-            data: ilist(res),
-            sortType: sortType,
-            providerID: providerID,
-          ),
-        );
+        res.isNotEmpty
+            ? emit(
+                ListServiceState.loadDataSuccess(
+                  data: ilist(res),
+                  sortType: sortType,
+                  providerID: providerID,
+                ),
+              )
+            : emit(
+                ListServiceState.empty(
+                  data: ilist(res),
+                  sortType: sortType,
+                  providerID: providerID,
+                ),
+              );
       },
     );
   }

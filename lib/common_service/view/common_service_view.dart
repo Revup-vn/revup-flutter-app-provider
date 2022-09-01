@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
@@ -19,24 +20,79 @@ class CommonServiceView extends StatelessWidget {
   final form = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
-    context.watch<CommonServiceBloc>().state.whenOrNull(
+    context.watch<CommonServiceBloc>().state.maybeWhen(
           initial: () => context
               .read<CommonServiceBloc>()
               .add(const CommonServiceEvent.started()),
+          orElse: () => null,
         );
     final l10n = context.l10n;
 
-    return BlocBuilder<CommonServiceBloc, CommonServiceState>(
+    return BlocConsumer<CommonServiceBloc, CommonServiceState>(
+      listener: (context, state) => state.whenOrNull(
+        submitSuccess: () {
+          showDialog<String>(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(10),
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 150,
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.done,
+                            color: Theme.of(context).colorScheme.onTertiary,
+                          ),
+                          AutoSizeText(
+                            context.l10n.doneLabel,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+          return Future.delayed(const Duration(seconds: 3), () {
+            var count = 0;
+            context.router.popUntil((_) => count++ == 2);
+          });
+        },
+      ),
       builder: (context, state) {
         return DismissKeyboard(
           child: SafeArea(
             child: Scaffold(
-              appBar: AppBar(),
+              appBar: AppBar(
+                title: AutoSizeText(
+                  l10n.addCommonLabel,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
               body: Stack(
                 fit: StackFit.expand,
                 clipBehavior: Clip.none,
                 children: [
                   SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.only(bottom: 100),
                     child: Column(
                       children: [
                         state.when(
@@ -66,17 +122,25 @@ class CommonServiceView extends StatelessWidget {
                       decoration:
                           BoxDecoration(color: Theme.of(context).cardColor),
                       child: ElevatedButton(
-                        onPressed: () {
-                          // get value from form
+                        onPressed: () async {
+                          final bloc = context.read<CommonServiceBloc>();
                           form.currentState?.save();
                           final saveLst =
                               form.currentState?.value['data'] != null
-                                  ? form.currentState?.value['data']
-                                      as List<CommonService>
-                                  : nil<CommonService>().toList();
+                                  ? form.currentState?.value['data'] as List<
+                                      Tuple3<
+                                          CommonService,
+                                          List<Tuple2<RepairProduct, File>>,
+                                          File>>
+                                  : nil<
+                                          Tuple3<
+                                              CommonService,
+                                              List<Tuple2<RepairProduct, File>>,
+                                              File>>()
+                                      .toList();
 
                           if (saveLst.isEmpty) {
-                            showDialog<String>(
+                            await showDialog<String>(
                               barrierDismissible: false,
                               context: context,
                               builder: (context) {
@@ -85,13 +149,21 @@ class CommonServiceView extends StatelessWidget {
                                   insetPadding: const EdgeInsets.all(10),
                                   child: Stack(
                                     children: [
-                                      SizedBox(
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(20),
+                                          ),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .inverseSurface,
+                                        ),
                                         width: double.infinity,
                                         height: 200,
                                         child: Column(
                                           children: [
                                             AutoSizeText(
-                                              'khong chon dich vu',
+                                              l10n.chooseNoService,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText2
@@ -127,7 +199,7 @@ class CommonServiceView extends StatelessWidget {
                                                   (route) => count++ == 2,
                                                 );
                                               },
-                                              child: Text(l10n.confirmLabel),
+                                              child: Text(l10n.yesLabel),
                                             ),
                                             TextButton(
                                               onPressed: () {
@@ -145,7 +217,12 @@ class CommonServiceView extends StatelessWidget {
                             );
                             return;
                           }
-                          log(saveLst.toString());
+
+                          bloc.add(
+                            CommonServiceEvent.submited(
+                              saveList: saveLst,
+                            ),
+                          );
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,
                         child: AutoSizeText(l10n.confirmLabel),

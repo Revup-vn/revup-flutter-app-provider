@@ -19,19 +19,28 @@ mixin _$CommonServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() submited,
+    required TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? submited,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? submited,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +123,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() submited,
+    required TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)
+        submited,
   }) {
     return started();
   }
@@ -123,7 +135,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? submited,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
   }) {
     return started?.call();
   }
@@ -132,7 +147,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? submited,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -182,6 +200,9 @@ abstract class _$$_SubmitedCopyWith<$Res> {
   factory _$$_SubmitedCopyWith(
           _$_Submited value, $Res Function(_$_Submited) then) =
       __$$_SubmitedCopyWithImpl<$Res>;
+  $Res call(
+      {List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+          saveList});
 }
 
 /// @nodoc
@@ -194,54 +215,98 @@ class __$$_SubmitedCopyWithImpl<$Res>
 
   @override
   _$_Submited get _value => super._value as _$_Submited;
+
+  @override
+  $Res call({
+    Object? saveList = freezed,
+  }) {
+    return _then(_$_Submited(
+      saveList: saveList == freezed
+          ? _value._saveList
+          : saveList // ignore: cast_nullable_to_non_nullable
+              as List<
+                  Tuple3<CommonService, List<Tuple2<RepairProduct, File>>,
+                      File>>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Submited implements _Submited {
-  const _$_Submited();
+  const _$_Submited(
+      {required final List<
+              Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+          saveList})
+      : _saveList = saveList;
+
+  final List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+      _saveList;
+  @override
+  List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+      get saveList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_saveList);
+  }
 
   @override
   String toString() {
-    return 'CommonServiceEvent.submited()';
+    return 'CommonServiceEvent.submited(saveList: $saveList)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Submited);
+        (other.runtimeType == runtimeType &&
+            other is _$_Submited &&
+            const DeepCollectionEquality().equals(other._saveList, _saveList));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_saveList));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
+      __$$_SubmitedCopyWithImpl<_$_Submited>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() submited,
+    required TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)
+        submited,
   }) {
-    return submited();
+    return submited(saveList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? submited,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
   }) {
-    return submited?.call();
+    return submited?.call(saveList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? submited,
+    TResult Function(
+            List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+                saveList)?
+        submited,
     required TResult orElse(),
   }) {
     if (submited != null) {
-      return submited();
+      return submited(saveList);
     }
     return orElse();
   }
@@ -279,7 +344,16 @@ class _$_Submited implements _Submited {
 }
 
 abstract class _Submited implements CommonServiceEvent {
-  const factory _Submited() = _$_Submited;
+  const factory _Submited(
+      {required final List<
+              Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+          saveList}) = _$_Submited;
+
+  List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>
+      get saveList;
+  @JsonKey(ignore: true)
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

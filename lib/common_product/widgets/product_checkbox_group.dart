@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:revup_core/core.dart';
@@ -15,8 +18,8 @@ class ServiceCheckboxGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField<List<RepairProduct>>(
-      initialValue: <RepairProduct>[].toList(),
+    return FormBuilderField<List<Tuple2<RepairProduct, File>>>(
+      initialValue: <Tuple2<RepairProduct, File>>[].toList(),
       name: 'product',
       builder: (field) => ListView.builder(
         physics: const NeverScrollableScrollPhysics(),

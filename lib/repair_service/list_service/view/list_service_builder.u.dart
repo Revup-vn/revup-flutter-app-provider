@@ -42,7 +42,7 @@ class ListServiceBuilder extends StatelessWidget {
                         color: Theme.of(context).colorScheme.inverseSurface,
                       ),
                       width: double.infinity,
-                      height: 200,
+                      height: 150,
                       child: Column(
                         children: [
                           Icon(
@@ -50,22 +50,24 @@ class ListServiceBuilder extends StatelessWidget {
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
                           AutoSizeText(
-                            'Bạn chưa có dịch vụ nào',
+                            context.l10n.noServiceLabel,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
                                 ),
                             maxLines: 1,
                           ),
                           AutoSizeText(
-                            'Bạn có muốn sử dụng data mẫu không?',
+                            context.l10n.addCommonServiceQuestionLabel,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
                                 ),
                             maxLines: 1,
                           ),
@@ -88,7 +90,7 @@ class ListServiceBuilder extends StatelessWidget {
                               );
                             },
                             child: AutoSizeText(
-                              context.l10n.doneLabel,
+                              context.l10n.yesLabel,
                             ),
                           ),
                           const SizedBox(
