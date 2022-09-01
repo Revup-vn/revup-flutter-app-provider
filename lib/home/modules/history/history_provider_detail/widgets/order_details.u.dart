@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../models/order_detail_model.dart';
@@ -17,7 +17,6 @@ class OrderDetailsItem extends StatelessWidget {
     final l10n = context.l10n;
 
     return Container(
-      height: 235,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,21 +52,32 @@ class OrderDetailsItem extends StatelessWidget {
             height: 6,
           ),
           AutoSizeText(
-            '${l10n.serviceLabel}${data.vehicleType} - ${data.serviceName}',
+            '${l10n.serviceLabel} :',
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemBuilder: (context, index) => AutoSizeText(
+                data.serviceName[index],
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              itemCount: data.serviceName.length,
+            ),
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          AutoSizeText(
+            '${l10n.addressLabel} ${data.address}',
             style: Theme.of(context).textTheme.labelLarge,
           ),
           const SizedBox(
             height: 6,
           ),
           AutoSizeText(
-            '${l10n.addressLabel}${data.address}',
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          AutoSizeText(
-            '${l10n.vehicleTypeLabel}${data.nameVehicleType}',
+            '''${l10n.vehicleTypeLabel}${data.vehicleType == 0 ? l10n.motorcycleLabel : l10n.carLabel}''',
             style: Theme.of(context).textTheme.labelLarge,
           ),
           const SizedBox(
@@ -132,7 +142,7 @@ class OrderDetailsItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
-                    data.totalServiceFee.toString(),
+                    context.formatMoney(data.totalServiceFee),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
@@ -146,7 +156,7 @@ class OrderDetailsItem extends StatelessWidget {
                     height: 6,
                   ),
                   AutoSizeText(
-                    data.feeTransport.toString(),
+                    context.formatMoney(data.feeTransport),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
@@ -160,7 +170,8 @@ class OrderDetailsItem extends StatelessWidget {
                     height: 6,
                   ),
                   AutoSizeText(
-                    data.intoMoney.toString(),
+                    context
+                        .formatMoney(data.feeTransport + data.totalServiceFee),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                             ) ??

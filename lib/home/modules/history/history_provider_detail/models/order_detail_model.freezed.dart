@@ -16,13 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrderDetailModel {
-  String get vehicleType => throw _privateConstructorUsedError;
-  String get serviceName => throw _privateConstructorUsedError;
+  int get vehicleType => throw _privateConstructorUsedError;
+  List<String> get serviceName => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get nameVehicleType => throw _privateConstructorUsedError;
   int get totalServiceFee => throw _privateConstructorUsedError;
   int get feeTransport => throw _privateConstructorUsedError;
-  int get intoMoney => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderDetailModelCopyWith<OrderDetailModel> get copyWith =>
@@ -35,13 +33,11 @@ abstract class $OrderDetailModelCopyWith<$Res> {
           OrderDetailModel value, $Res Function(OrderDetailModel) then) =
       _$OrderDetailModelCopyWithImpl<$Res>;
   $Res call(
-      {String vehicleType,
-      String serviceName,
+      {int vehicleType,
+      List<String> serviceName,
       String address,
-      String nameVehicleType,
       int totalServiceFee,
-      int feeTransport,
-      int intoMoney});
+      int feeTransport});
 }
 
 /// @nodoc
@@ -58,27 +54,21 @@ class _$OrderDetailModelCopyWithImpl<$Res>
     Object? vehicleType = freezed,
     Object? serviceName = freezed,
     Object? address = freezed,
-    Object? nameVehicleType = freezed,
     Object? totalServiceFee = freezed,
     Object? feeTransport = freezed,
-    Object? intoMoney = freezed,
   }) {
     return _then(_value.copyWith(
       vehicleType: vehicleType == freezed
           ? _value.vehicleType
           : vehicleType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       serviceName: serviceName == freezed
           ? _value.serviceName
           : serviceName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameVehicleType: nameVehicleType == freezed
-          ? _value.nameVehicleType
-          : nameVehicleType // ignore: cast_nullable_to_non_nullable
               as String,
       totalServiceFee: totalServiceFee == freezed
           ? _value.totalServiceFee
@@ -87,10 +77,6 @@ class _$OrderDetailModelCopyWithImpl<$Res>
       feeTransport: feeTransport == freezed
           ? _value.feeTransport
           : feeTransport // ignore: cast_nullable_to_non_nullable
-              as int,
-      intoMoney: intoMoney == freezed
-          ? _value.intoMoney
-          : intoMoney // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -104,13 +90,11 @@ abstract class _$$_OrderDetailModelCopyWith<$Res>
       __$$_OrderDetailModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String vehicleType,
-      String serviceName,
+      {int vehicleType,
+      List<String> serviceName,
       String address,
-      String nameVehicleType,
       int totalServiceFee,
-      int feeTransport,
-      int intoMoney});
+      int feeTransport});
 }
 
 /// @nodoc
@@ -129,27 +113,21 @@ class __$$_OrderDetailModelCopyWithImpl<$Res>
     Object? vehicleType = freezed,
     Object? serviceName = freezed,
     Object? address = freezed,
-    Object? nameVehicleType = freezed,
     Object? totalServiceFee = freezed,
     Object? feeTransport = freezed,
-    Object? intoMoney = freezed,
   }) {
     return _then(_$_OrderDetailModel(
       vehicleType: vehicleType == freezed
           ? _value.vehicleType
           : vehicleType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       serviceName: serviceName == freezed
-          ? _value.serviceName
+          ? _value._serviceName
           : serviceName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      nameVehicleType: nameVehicleType == freezed
-          ? _value.nameVehicleType
-          : nameVehicleType // ignore: cast_nullable_to_non_nullable
               as String,
       totalServiceFee: totalServiceFee == freezed
           ? _value.totalServiceFee
@@ -158,10 +136,6 @@ class __$$_OrderDetailModelCopyWithImpl<$Res>
       feeTransport: feeTransport == freezed
           ? _value.feeTransport
           : feeTransport // ignore: cast_nullable_to_non_nullable
-              as int,
-      intoMoney: intoMoney == freezed
-          ? _value.intoMoney
-          : intoMoney // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -172,31 +146,31 @@ class __$$_OrderDetailModelCopyWithImpl<$Res>
 class _$_OrderDetailModel implements _OrderDetailModel {
   const _$_OrderDetailModel(
       {required this.vehicleType,
-      required this.serviceName,
+      required final List<String> serviceName,
       required this.address,
-      required this.nameVehicleType,
       required this.totalServiceFee,
-      required this.feeTransport,
-      required this.intoMoney});
+      required this.feeTransport})
+      : _serviceName = serviceName;
 
   @override
-  final String vehicleType;
+  final int vehicleType;
+  final List<String> _serviceName;
   @override
-  final String serviceName;
+  List<String> get serviceName {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceName);
+  }
+
   @override
   final String address;
-  @override
-  final String nameVehicleType;
   @override
   final int totalServiceFee;
   @override
   final int feeTransport;
-  @override
-  final int intoMoney;
 
   @override
   String toString() {
-    return 'OrderDetailModel(vehicleType: $vehicleType, serviceName: $serviceName, address: $address, nameVehicleType: $nameVehicleType, totalServiceFee: $totalServiceFee, feeTransport: $feeTransport, intoMoney: $intoMoney)';
+    return 'OrderDetailModel(vehicleType: $vehicleType, serviceName: $serviceName, address: $address, totalServiceFee: $totalServiceFee, feeTransport: $feeTransport)';
   }
 
   @override
@@ -207,27 +181,22 @@ class _$_OrderDetailModel implements _OrderDetailModel {
             const DeepCollectionEquality()
                 .equals(other.vehicleType, vehicleType) &&
             const DeepCollectionEquality()
-                .equals(other.serviceName, serviceName) &&
+                .equals(other._serviceName, _serviceName) &&
             const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality()
-                .equals(other.nameVehicleType, nameVehicleType) &&
             const DeepCollectionEquality()
                 .equals(other.totalServiceFee, totalServiceFee) &&
             const DeepCollectionEquality()
-                .equals(other.feeTransport, feeTransport) &&
-            const DeepCollectionEquality().equals(other.intoMoney, intoMoney));
+                .equals(other.feeTransport, feeTransport));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(vehicleType),
-      const DeepCollectionEquality().hash(serviceName),
+      const DeepCollectionEquality().hash(_serviceName),
       const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(nameVehicleType),
       const DeepCollectionEquality().hash(totalServiceFee),
-      const DeepCollectionEquality().hash(feeTransport),
-      const DeepCollectionEquality().hash(intoMoney));
+      const DeepCollectionEquality().hash(feeTransport));
 
   @JsonKey(ignore: true)
   @override
@@ -237,28 +206,22 @@ class _$_OrderDetailModel implements _OrderDetailModel {
 
 abstract class _OrderDetailModel implements OrderDetailModel {
   const factory _OrderDetailModel(
-      {required final String vehicleType,
-      required final String serviceName,
+      {required final int vehicleType,
+      required final List<String> serviceName,
       required final String address,
-      required final String nameVehicleType,
       required final int totalServiceFee,
-      required final int feeTransport,
-      required final int intoMoney}) = _$_OrderDetailModel;
+      required final int feeTransport}) = _$_OrderDetailModel;
 
   @override
-  String get vehicleType;
+  int get vehicleType;
   @override
-  String get serviceName;
+  List<String> get serviceName;
   @override
   String get address;
-  @override
-  String get nameVehicleType;
   @override
   int get totalServiceFee;
   @override
   int get feeTransport;
-  @override
-  int get intoMoney;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDetailModelCopyWith<_$_OrderDetailModel> get copyWith =>
