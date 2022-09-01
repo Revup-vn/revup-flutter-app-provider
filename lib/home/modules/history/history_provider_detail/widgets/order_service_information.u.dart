@@ -85,7 +85,7 @@ class OrderServiceInformationItem extends StatelessWidget {
                           },
                           height: 64,
                           width: 64,
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
