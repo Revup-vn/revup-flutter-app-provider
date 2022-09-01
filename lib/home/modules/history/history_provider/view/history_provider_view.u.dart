@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../router/router.dart';
 import '../bloc/history_provider_bloc.dart';
-import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 class HistoryProviderView extends StatelessWidget {
@@ -56,11 +54,11 @@ class HistoryProviderView extends StatelessWidget {
                       itemBuilder: (context, index) => HistoryItem(
                         data: histories[index],
                         onTap: () => context.router.push(
-                          // Xem lai cai nay model vs display dung ko nhe
-                          // Anh ngoc viet tram cam qua
-                          const HistoryProviderDetailRoute(),
+                          HistoryProviderDetailRoute(
+                            rpID: histories[index].orderNumber,
+                          ),
                         ),
-                        textColor: histories[index].isComplete
+                        textColor: histories[index].orderStatus == 1
                             ? Theme.of(context).colorScheme.tertiary
                             : Theme.of(context).colorScheme.error,
                       ),

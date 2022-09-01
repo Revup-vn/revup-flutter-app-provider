@@ -56,8 +56,20 @@ class HistoryProviderBloc
         );
 
         // TODO(tcmhoang): Convert DTO to a newly modified model
-        final histories = <HistoryProviderModel>[];
-
+        final histories = mapRecordVsAppUserConsumer.entries.map((e) {
+          final user = e.value.getOrElse(() => throw NullThrownError());
+          return HistoryProviderModel(
+            imgUrl: user.avatarUrl,
+            orderNumber: e.key.id,
+            orderStatus: e.key.maybeMap(
+              orElse: () => 0,
+              finished: (value) => 1,
+            ),
+            timeCreated: e.key.created,
+            userName: '${user.firstName} ${user.lastName}',
+            vehicleType: e.key.vehicle == 'mortobike' ? 0 : 1,
+          );
+        }).toList();
         emit(
           HistoryProviderState.success(histories),
         );

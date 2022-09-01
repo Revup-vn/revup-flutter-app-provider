@@ -258,7 +258,7 @@
   "addCommonLabel": "Chọn dịch vụ mẫu",
   "moneyUnit": "đ",
   "noServiceLabel": "Bạn không có dịch vụ nào.",
-  "addCommonServiceQuestionLabel": "Bạn có muốn sử dụng dịch vụ mẫu không?"
-
+  "addCommonServiceQuestionLabel": "Bạn có muốn sử dụng dịch vụ mẫu không?",
+  "successLabel": "Hoàn thành"
 
 }

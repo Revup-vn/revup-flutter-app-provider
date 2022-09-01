@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -35,22 +34,21 @@ class HistoryItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
-                    '${l10n.codeOrderLabel}${data.recordId}',
+                    '''${l10n.codeOrderLabel}${data.orderNumber.length >= 7 ? data.orderNumber.substring(0, 8) : data.orderNumber}''',
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   AutoSizeText(
-                    '${l10n.serviceLabel}${data.vehicleType}'
-                    ' - ${data.serviceName}',
+                    '''${l10n.serviceLabel} ${data.vehicleType == 0 ? l10n.motorcycleLabel : l10n.carLabel}''',
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   AutoSizeText(
-                    context.formatDate(data.serviceStartBooking),
+                    context.formatDate(data.timeCreated),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
@@ -74,15 +72,15 @@ class HistoryItem extends StatelessWidget {
                           child: CachedNetworkImage(
                             fadeInDuration: const Duration(milliseconds: 50),
                             fadeOutDuration: const Duration(milliseconds: 50),
-                            imageUrl: data.cAvatar,
+                            imageUrl: data.imgUrl,
                             placeholder: (context, url) => DefaultAvatar(
                               textSize: Theme.of(context).textTheme.titleLarge,
-                              userName: data.cName,
+                              userName: data.userName,
                             ),
                             errorWidget: (context, url, dynamic error) =>
                                 DefaultAvatar(
                               textSize: Theme.of(context).textTheme.titleLarge,
-                              userName: data.cName,
+                              userName: data.userName,
                             ),
                             height: 64,
                             width: 64,
@@ -92,7 +90,7 @@ class HistoryItem extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       AutoSizeText(
-                        data.cName,
+                        data.userName,
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       const SizedBox(
@@ -109,7 +107,9 @@ class HistoryItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             AutoSizeText(
-              data.orderStatusNotification,
+              data.orderStatus == 0
+                  ? context.l10n.canceledLabel
+                  : context.l10n.successLabel,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: textColor,
                       ) ??

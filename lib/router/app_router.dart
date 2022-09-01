@@ -5,6 +5,7 @@ import '../change_language/view/change_language_page.dart';
 import '../common_product/view/common_product_page.dart';
 import '../common_service/view/common_service_page.dart';
 import '../home/home.dart';
+import '../home/modules/history/history_provider_detail/view/history_detail_page.u.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../map_route/view/map_route_page.dart';
@@ -64,6 +65,7 @@ import '../vendor_authentication/vender_authentication.dart';
         AdaptiveRoute<void>(page: NotificationProviderPage),
         AdaptiveRoute<void>(page: AccountPage),
       ],
+      maintainState: false,
     ),
   ],
 )

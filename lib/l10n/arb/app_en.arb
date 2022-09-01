@@ -260,5 +260,6 @@
   "addCommonLabel": "Choose common service",
   "moneyUnit": "VND",
   "noServiceLabel": "You have no service yet.",
-  "addCommonServiceQuestionLabel": "Do you want to use common service?"
+  "addCommonServiceQuestionLabel": "Do you want to use common service?",
+  "successLabel": "Finished"
 }

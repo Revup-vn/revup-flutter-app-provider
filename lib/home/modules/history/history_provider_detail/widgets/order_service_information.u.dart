@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
-import '../../../../../shared/shared.dart';
+import '../../../../../shared/widgets/default_avatar.dart';
 
 class OrderServiceInformationItem extends StatelessWidget {
   const OrderServiceInformationItem({
@@ -12,7 +12,7 @@ class OrderServiceInformationItem extends StatelessWidget {
     required this.user,
   });
 
-  final UserModel user;
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -56,51 +56,47 @@ class OrderServiceInformationItem extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
-                Expanded(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(48),
-                          child: CachedNetworkImage(
-                            fadeInDuration: const Duration(
-                              milliseconds: 50,
-                            ),
-                            fadeOutDuration: const Duration(
-                              milliseconds: 50,
-                            ),
-                            imageUrl: user.urlImage,
-                            placeholder: (context, url) {
-                              return DefaultAvatar(
-                                textSize:
-                                    Theme.of(context).textTheme.titleLarge,
-                                userName: user.name,
-                              );
-                            },
-                            errorWidget: (context, url, dynamic error) {
-                              return DefaultAvatar(
-                                textSize:
-                                    Theme.of(context).textTheme.titleLarge,
-                                userName: user.name,
-                              );
-                            },
-                            height: 64,
-                            width: 64,
-                            fit: BoxFit.fitWidth,
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(48),
+                        child: CachedNetworkImage(
+                          fadeInDuration: const Duration(
+                            milliseconds: 50,
                           ),
+                          fadeOutDuration: const Duration(
+                            milliseconds: 50,
+                          ),
+                          imageUrl: user.avatarUrl,
+                          placeholder: (context, url) {
+                            return DefaultAvatar(
+                              textSize: Theme.of(context).textTheme.titleLarge,
+                              userName: '${user.firstName} ${user.lastName}',
+                            );
+                          },
+                          errorWidget: (context, url, dynamic error) {
+                            return DefaultAvatar(
+                              textSize: Theme.of(context).textTheme.titleLarge,
+                              userName: '${user.firstName} ${user.lastName}',
+                            );
+                          },
+                          height: 64,
+                          width: 64,
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      AutoSizeText(
-                        user.name,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    AutoSizeText(
+                      '${user.firstName} ${user.lastName}',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
                 ),
                 Expanded(
                   child: Column(
@@ -120,7 +116,7 @@ class OrderServiceInformationItem extends StatelessWidget {
                             padding: EdgeInsets.only(right: 5),
                           ),
                           AutoSizeText(
-                            '${l10n.telLabel}${user.phone}',
+                            '${l10n.telLabel} ${user.phone}',
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
@@ -144,7 +140,7 @@ class OrderServiceInformationItem extends StatelessWidget {
                           ),
                           Expanded(
                             child: AutoSizeText(
-                              '${l10n.addressLabel}${user.address}',
+                              '${l10n.addressLabel}: ${user.addr}',
                               style: Theme.of(context).textTheme.labelLarge,
                               maxLines: 3,
                             ),
