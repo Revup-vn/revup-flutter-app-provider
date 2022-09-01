@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -279,7 +278,7 @@ class UpdateServiceView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
+                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -305,7 +304,7 @@ class UpdateServiceView extends StatelessWidget {
                                 errorText: l10n.emptyLabel,
                               ),
                               FormBuilderValidators.match(
-                                r'^[1-9].{4,}$',
+                                r'^[0-9]+$',
                                 errorText: l10n.invalidFormatLabel,
                               ),
                             ]),
@@ -327,10 +326,13 @@ class UpdateServiceView extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() == true) {
                       final dataForm = _formKey.currentState?.value;
+                      final fee = (dataForm?['fee'])
+                          .toString()
+                          .replaceAll(RegExp('/^0+/'), '');
                       final model = UpdateServiceModel(
                         img: imageLink.isEmpty ? data.img : imageLink,
                         serviceName: (dataForm?['serviceName']).toString(),
-                        serviceFee: int.parse((dataForm?['fee']).toString()),
+                        serviceFee: int.parse(fee),
                         cate: data.cate,
                       );
                       context.read<UpdateServiceBloc>().add(

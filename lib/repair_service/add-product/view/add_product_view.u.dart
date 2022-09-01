@@ -290,7 +290,7 @@ class AddProductView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
+                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -316,7 +316,7 @@ class AddProductView extends StatelessWidget {
                                 errorText: l10n.emptyLabel,
                               ),
                               FormBuilderValidators.match(
-                                r'^[1-9].{4,}$',
+                                r'^[0-9]+$',
                                 errorText: l10n.invalidFormatLabel,
                               ),
                             ]),
@@ -353,12 +353,15 @@ class AddProductView extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() == true) {
                       final data = _formKey.currentState?.value;
+                      final fee = (data?['fee'])
+                          .toString()
+                          .replaceAll(RegExp('/^0+/'), '');
                       final model = AddProductModel(
                         des: (data?['des']).toString(),
                         imageUrl: imageLink.isEmpty
                             ? productModel.imageUrl
                             : imageLink,
-                        productFee: int.parse((data?['fee']).toString()),
+                        productFee: int.parse(fee),
                         productName: (data?['productName']).toString(),
                       );
                       context.read<AddProductBloc>().add(
