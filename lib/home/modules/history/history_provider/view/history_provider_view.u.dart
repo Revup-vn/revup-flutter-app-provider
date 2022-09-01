@@ -54,10 +54,10 @@ class HistoryProviderView extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: histories.length,
                       itemBuilder: (context, index) => HistoryItem(
-                        data: HistoryItemModel.fromProviderModel(
-                          histories[index],
-                        ),
+                        data: histories[index],
                         onTap: () => context.router.push(
+                          // Xem lai cai nay model vs display dung ko nhe
+                          // Anh ngoc viet tram cam qua
                           const HistoryProviderDetailRoute(),
                         ),
                         textColor: histories[index].isComplete

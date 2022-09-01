@@ -7,12 +7,13 @@ part 'history_provider_model.freezed.dart';
 @freezed
 class HistoryProviderModel with _$HistoryProviderModel {
   const factory HistoryProviderModel({
+    required String recordId,
     required bool isComplete,
-    required String orderNumber,
     required String vehicleType,
-    required String serviceName,
+    required String serviceName, // Senior huy cuu kohai tuan
     required DateTime serviceStartBooking,
-    required String orderStatusNotification,
-    required UserModel user,
+    required String orderStatusNotification, // Senior huy cuu kohai tuan
+    required String cName,
+    required String cAvatar,
   }) = _HistoryProviderModel;
 }

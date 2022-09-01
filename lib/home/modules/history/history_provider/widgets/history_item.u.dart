@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:intl/intl.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../shared/widgets/widgets.dart';
@@ -15,16 +15,13 @@ class HistoryItem extends StatelessWidget {
     required this.onTap,
     required this.textColor,
   });
-  final HistoryItemModel data;
+  final HistoryProviderModel data;
   final VoidCallback onTap;
   final Color textColor;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    // TODO(tcmhoang): Get datformat from LanguageCubit
-    final formatterDate = DateFormat('dd/MM/yyyy hh:mm');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +35,7 @@ class HistoryItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
-                    '${l10n.codeOrderLabel}${data.orderNumber}',
+                    '${l10n.codeOrderLabel}${data.recordId}',
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(
@@ -53,7 +50,7 @@ class HistoryItem extends StatelessWidget {
                     height: 16,
                   ),
                   AutoSizeText(
-                    formatterDate.format(data.serviceStartBooking),
+                    context.formatDate(data.serviceStartBooking),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
@@ -77,15 +74,15 @@ class HistoryItem extends StatelessWidget {
                           child: CachedNetworkImage(
                             fadeInDuration: const Duration(milliseconds: 50),
                             fadeOutDuration: const Duration(milliseconds: 50),
-                            imageUrl: data.user.urlImage,
+                            imageUrl: data.cAvatar,
                             placeholder: (context, url) => DefaultAvatar(
                               textSize: Theme.of(context).textTheme.titleLarge,
-                              userName: data.user.name,
+                              userName: data.cName,
                             ),
                             errorWidget: (context, url, dynamic error) =>
                                 DefaultAvatar(
                               textSize: Theme.of(context).textTheme.titleLarge,
-                              userName: data.user.name,
+                              userName: data.cName,
                             ),
                             height: 64,
                             width: 64,
@@ -95,7 +92,7 @@ class HistoryItem extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       AutoSizeText(
-                        data.user.name,
+                        data.cName,
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       const SizedBox(
