@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../bloc/home_bloc.dart';
+import '../cubit/home_primary_cubit.dart';
 import 'home_primary_view.u.dart';
 
 class HomePrimaryPage extends StatelessWidget {
@@ -20,6 +20,10 @@ class HomePrimaryPage extends StatelessWidget {
             user,
           ),
         ),
+        BlocProvider(
+          create: (context) => HomePrimaryCubit(context.read(), user.uuid),
+          child: Container(),
+        )
       ],
       child: HomePrimaryView(
         user: user,

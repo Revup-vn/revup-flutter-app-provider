@@ -264,7 +264,9 @@ class AppRouter extends _i26.RootStackRouter {
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i26.AdaptivePage<void>(
-          routeData: routeData, child: _i12.HomePage(args.user, key: args.key));
+          routeData: routeData,
+          child: _i12.HomePage(args.user, key: args.key),
+          maintainState: false);
     },
     HomePrimaryRoute.name: (routeData) {
       final args = routeData.argsAs<HomePrimaryRouteArgs>();
