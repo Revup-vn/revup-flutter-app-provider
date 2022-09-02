@@ -268,9 +268,7 @@ class AppRouter extends _i27.RootStackRouter {
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i27.AdaptivePage<void>(
-          routeData: routeData,
-          child: _i26.HomePage(args.user, key: args.key),
-          maintainState: false);
+          routeData: routeData, child: _i26.HomePage(args.user, key: args.key));
     },
     HomePrimaryRoute.name: (routeData) {
       final args = routeData.argsAs<HomePrimaryRouteArgs>();
@@ -290,7 +288,8 @@ class AppRouter extends _i27.RootStackRouter {
       final args = routeData.argsAs<AccountRouteArgs>();
       return _i27.AdaptivePage<void>(
           routeData: routeData,
-          child: _i26.AccountPage(args.user, key: args.key));
+          child: _i26.AccountPage(args.user, key: args.key),
+          maintainState: false);
     }
   };
 
