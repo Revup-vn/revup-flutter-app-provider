@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
@@ -25,7 +24,7 @@ class UpdateProfileBuilder extends StatelessWidget {
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) => state.maybeWhen(
         orElse: () => false,
-        success: () {
+        success: (user) {
           showDialog<String>(
             context: context,
             builder: (context) {
@@ -65,7 +64,7 @@ class UpdateProfileBuilder extends StatelessWidget {
           return Future.delayed(const Duration(seconds: 3), () {
             var count = 0;
             context.router.popUntil(
-              (route) => count++ >= 2,
+              (route) => count++ >= 1,
             );
           });
         },
@@ -114,7 +113,7 @@ class UpdateProfileBuilder extends StatelessWidget {
         },
       ),
       builder: (context, state) => state.when(
-        success: Container.new,
+        success: UpdateProfileView.new,
         failure: Container.new,
         initial: Container.new,
         loadDataSuccess: UpdateProfileView.new,
