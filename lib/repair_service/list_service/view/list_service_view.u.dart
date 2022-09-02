@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -29,7 +28,12 @@ class ListServiceView extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 16,
+          right: 16,
+          bottom: 30,
+        ),
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -80,6 +84,7 @@ class ListServiceView extends StatelessWidget {
               height: 16,
             ),
             ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: listService.length,
               shrinkWrap: true,
               itemBuilder: (context, index) => CartServiceReview(
