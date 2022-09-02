@@ -250,6 +250,7 @@
   "monthLabel": "Tháng",
   "incomePerMonthLabel": "Thu nhập / tháng",
   "transPerMonthLabel": "Giao dịch / tháng",
-  "blsLabel": "Cung cấp ảnh giấy phép kinh doanh là cần thiết. Đây sẽ là căn cứ giúp chúng tôi xác thực tài khoản của bạn"
+  "blsLabel": "Cung cấp ảnh giấy phép kinh doanh là cần thiết. Đây sẽ là căn cứ giúp chúng tôi xác thực tài khoản của bạn",
+  "userDismissed": "Người dùng đã hủy bỏ yêu cầu, bạn sẽ nhận được phí di chuyển như một khoản bồi thường"
 
 }

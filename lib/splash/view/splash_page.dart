@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -47,11 +49,8 @@ class _SplashPageState extends State<SplashPage> {
           }
           break;
         case NotificationType.ProviderDecline:
-          //TODO(tcmhoang): Intl this line of string
           context
-              .showToast<void>(
-                  'User aborted the request, you will get moving fees as '
-                  'compensation ')
+              .showToast<void>(context.l10n.userDismissed)
               .then(
                 (_) => context.read<IStore<AppUser>>().updateFields(
                       AppUserDummy.dummyProvider(

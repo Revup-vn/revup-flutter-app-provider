@@ -252,5 +252,7 @@
   "decLabel": "Dec",
   "incomePerMonthLabel": "Income per month",
   "transPerMonthLabel": "Trans per month",
-  "blsLabel": "Taking an image of Business Lisence is required. This is used to verify your account"
+  "monthLabel": "month",
+  "blsLabel": "Taking an image of Business Lisence is required. This is used to verify your account",
+  "userDismissed": "User aborted the request, you will get moving fees as compensation "
 }
