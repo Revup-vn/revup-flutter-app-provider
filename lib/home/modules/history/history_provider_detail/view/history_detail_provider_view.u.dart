@@ -1,3 +1,4 @@
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -116,9 +117,8 @@ class HistoryProviderDetailView extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
               child: ElevatedButton(
-                onPressed: () {
-                  // TODO(namngoc231): Contact repair service
-                },
+                onPressed: () =>
+                    context.showToast<void>(context.l10n.notSupportLabel),
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: AutoSizeText(
                   l10n.contactRepairServiceLabel,

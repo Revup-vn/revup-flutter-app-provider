@@ -25,7 +25,6 @@ class PaidServiceItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               AutoSizeText(
-                // TODO(tcmhoang) : change this to `Paid Services`
                 l10n.bonusServicesLabel,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.outline,

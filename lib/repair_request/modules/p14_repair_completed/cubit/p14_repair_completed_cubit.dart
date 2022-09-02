@@ -28,6 +28,7 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
   final String _rid;
 
   List<StorageFile> imgs = [];
+  // ignore: use_setters_to_change_properties
   void setImgs(List<StorageFile> files) => imgs = files;
 
   Future<Unit> submit(

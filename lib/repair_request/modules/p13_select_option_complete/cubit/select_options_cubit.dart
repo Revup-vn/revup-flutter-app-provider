@@ -28,7 +28,8 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
         .map(
           (a) => a
               .filter(
-                  (a) => a.maybeMap(orElse: () => false, pending: (_) => true))
+                (a) => a.maybeMap(orElse: () => false, pending: (_) => true),
+              )
               .map(
                 (a) => a.maybeMap(
                   orElse: () => throw NullThrownError(),

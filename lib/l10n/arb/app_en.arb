@@ -254,5 +254,7 @@
   "transPerMonthLabel": "Trans per month",
   "monthLabel": "month",
   "blsLabel": "Taking an image of Business Lisence is required. This is used to verify your account",
-  "userDismissed": "User aborted the request, you will get moving fees as compensation "
+  "userDismissed": "User aborted the request, you will get moving fees as compensation ",
+  "notSupportLabel": "We currently don't support this feature. We will release soon"
+ 
 }

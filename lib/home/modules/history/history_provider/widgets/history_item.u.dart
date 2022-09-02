@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:intl/intl.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../shared/widgets/widgets.dart';
@@ -22,9 +22,6 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    // TODO(tcmhoang): Get datformat from LanguageCubit
-    final formatterDate = DateFormat('dd/MM/yyyy hh:mm');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +50,7 @@ class HistoryItem extends StatelessWidget {
                     height: 16,
                   ),
                   AutoSizeText(
-                    formatterDate.format(data.serviceStartBooking),
+                    context.formatDate(data.serviceStartBooking),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
