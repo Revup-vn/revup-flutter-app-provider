@@ -10,4 +10,9 @@ class ListServiceState with _$ListServiceState {
     required int sortType,
     required String providerID,
   }) = _LoadDataSuccess;
+  const factory ListServiceState.empty({
+    required IList<ServiceModel> data,
+    required int sortType,
+    required String providerID,
+  }) = _Empty;
 }

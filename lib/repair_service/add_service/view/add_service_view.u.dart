@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -162,7 +161,7 @@ class AddServiceView extends StatelessWidget {
                               errorText: l10n.emptyLabel,
                             ),
                             FormBuilderValidators.match(
-                              r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
+                              r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                               errorText: l10n.invalidFormatLabel,
                             ),
                           ],
@@ -187,7 +186,7 @@ class AddServiceView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[1-9].{4,}$',
+                            r'^[0-9]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -212,30 +211,32 @@ class AddServiceView extends StatelessWidget {
                             success: (value) => value,
                             orElse: () => items[0],
                           ),
-                          builder: (context, value) => DropdownButton(
-                            value: value,
-                            underline: const SizedBox(),
-                            isExpanded: true,
-                            icon: const Icon(Icons.keyboard_arrow_down),
-                            items: items.map((items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              if (newValue != null) {
-                                if (newValue.isNotEmpty) {
-                                  dropdownvalue = newValue;
-                                  context.read<DropdownListBloc>().add(
-                                        DropdownListEvent.dropdownChanged(
-                                          value: newValue,
-                                        ),
-                                      );
+                          builder: (context, value) {
+                            dropdownvalue = value;
+                            return DropdownButton(
+                              value: value,
+                              underline: const SizedBox(),
+                              isExpanded: true,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              items: items.map((items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                if (newValue != null) {
+                                  if (newValue.isNotEmpty) {
+                                    context.read<DropdownListBloc>().add(
+                                          DropdownListEvent.dropdownChanged(
+                                            value: newValue,
+                                          ),
+                                        );
+                                  }
                                 }
-                              }
-                            },
-                          ),
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -252,10 +253,13 @@ class AddServiceView extends StatelessWidget {
                     onPressed: () {
                       if (_formKey.currentState?.saveAndValidate() == true) {
                         final data = _formKey.currentState?.value;
+                        final fee = (data?['fee'])
+                            .toString()
+                            .replaceAll(RegExp('/^0+/'), '');
                         final model = AddServiceModel(
                           img: imageLink,
                           serviceName: (data?['serviceName']).toString(),
-                          serviceFee: int.parse((data?['fee']).toString()),
+                          serviceFee: int.parse(fee),
                           cate: dropdownvalue,
                         );
                         context.read<AddServiceBloc>().add(

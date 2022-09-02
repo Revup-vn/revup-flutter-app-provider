@@ -1,19 +1,21 @@
-import 'package:flash/flash.dart';
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../models/history_detail_model.dart';
 import '../widgets/order_details.u.dart';
 import '../widgets/order_feedback.u.dart';
-import '../widgets/order_payment_method.u.dart';
 import '../widgets/order_service_information.u.dart';
 import '../widgets/order_status.u.dart';
 
 class HistoryProviderDetailView extends StatelessWidget {
-  const HistoryProviderDetailView({super.key, required this.data});
+  const HistoryProviderDetailView({
+    super.key,
+    required this.data,
+    required this.rid,
+  });
   final HistoryDetailModel data;
+  final String rid;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -40,6 +42,7 @@ class HistoryProviderDetailView extends StatelessWidget {
                 children: <Widget>[
                   if (data.isComplete) ...[
                     OrderStatusItem(
+                      isComplete: data.isComplete,
                       orderNumber: data.orderNumber,
                       orderStatusNotification: l10n.completedOrderLabel,
                       textStyleNotification: Theme.of(context)
@@ -61,6 +64,7 @@ class HistoryProviderDetailView extends StatelessWidget {
                     ),
                   ] else ...[
                     OrderStatusItem(
+                      isComplete: data.isComplete,
                       orderNumber: data.orderNumber,
                       orderStatusNotification: l10n.cancelOrderLabel,
                       textStyleNotification:
@@ -90,40 +94,17 @@ class HistoryProviderDetailView extends StatelessWidget {
                     height: 1,
                     thickness: 10,
                   ),
-                  OrderServiceInformationItem(user: data.consumer),
-                  const Divider(
-                    height: 1,
-                    thickness: 10,
-                  ),
-                  OrderPaymentItem(
-                    paymentMethod: data.paymentMethod.toString(),
-                  ),
+                  OrderServiceInformationItem(user: data.provider),
                   const Divider(
                     height: 1,
                     thickness: 10,
                   ),
                   if (data.isComplete)
                     OrderFeedbackItem(
-                      rating: data.rating.toDouble(),
+                      rating: data.rating,
                       feedback: data.feedback,
                     ),
                 ],
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: Theme.of(context).cardColor),
-              child: ElevatedButton(
-                onPressed: () =>
-                    context.showToast<void>(context.l10n.notSupportLabel),
-                style: Theme.of(context).elevatedButtonTheme.style,
-                child: AutoSizeText(
-                  l10n.contactRepairServiceLabel,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
               ),
             ),
           ),

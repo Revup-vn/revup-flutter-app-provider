@@ -268,15 +268,17 @@ class UpdateProfileView extends StatelessWidget {
                             final data = _formKey.currentState?.value;
                             final listName =
                                 data?['fullName'].toString().split(' ');
-                            final fName = listName?[0];
+                            final fName = listName?[0].trim();
                             var lName = '';
                             if (listName != null && listName.length > 1) {
                               listName.remove(listName[0]);
-                              lName = listName.fold<String>(
-                                '',
-                                (previousValue, element) =>
-                                    '$previousValue $element',
-                              );
+                              lName = listName
+                                  .fold<String>(
+                                    '',
+                                    (previousValue, element) =>
+                                        '$previousValue $element',
+                                  )
+                                  .trim();
                             }
                             var phoneNumber = data?['phone'].toString();
                             if (phoneNumber?.substring(0, 3) == '+84') {
@@ -295,90 +297,62 @@ class UpdateProfileView extends StatelessWidget {
                             final ilistStorageFile = ilistFile
                                 .map((a) => StorageFile.profile(file: a));
 
-                            if (list[0].path.isNotEmpty &&
-                                list[1].path.isNotEmpty) {
-                              await cubit
-                                  .uploadImg(files: ilistStorageFile)
-                                  .whenComplete(
-                                () {
-                                  context.read<StorageBloc>().state.whenOrNull(
-                                    success: (eitherFailuresOrUrls) async {
-                                      final tmp = eitherFailuresOrUrls
-                                          .map<Option<String>>(
-                                        (a) => a.fold(
-                                          (l) => none(),
-                                          some,
-                                        ),
-                                      );
+                            await cubit
+                                .uploadImg(files: ilistStorageFile)
+                                .whenComplete(
+                              () {
+                                context.read<StorageBloc>().state.whenOrNull(
+                                  success: (eitherFailuresOrUrls) async {
+                                    final tmp = eitherFailuresOrUrls
+                                        .map<Option<String>>(
+                                      (a) => a.fold(
+                                        (l) => none(),
+                                        some,
+                                      ),
+                                    );
 
-                                      final listLink =
-                                          tmp.filter((a) => a.isSome()).map(
-                                                (a) => a.getOrElse(
-                                                  () => throw NullThrownError(),
-                                                ),
-                                              );
-                                      final list = listLink.toList();
+                                    final listLink =
+                                        tmp.filter((a) => a.isSome()).map(
+                                              (a) => a.getOrElse(
+                                                () => throw NullThrownError(),
+                                              ),
+                                            );
+                                    final list = listLink.toList();
 
-                                      final appUser =
-                                          AppUserDummy.dummyProvider(user.uuid)
-                                              .maybeMap(
-                                        orElse: () => throw NullThrownError(),
-                                        provider: (value) => value.copyWith(
-                                          avatarUrl: list[0].isEmpty
-                                              ? user.avatarUrl
-                                              : list[0],
-                                          backgroundUrl: list[1].isEmpty
-                                              ? user.maybeMap(
-                                                  orElse: () => '',
-                                                  provider: (value) =>
-                                                      value.backgroundUrl,
-                                                )
-                                              : list[1],
-                                          addr:
-                                              data?['address'].toString() ?? '',
-                                          firstName: fName ?? '',
-                                          lastName: lName,
-                                          dob: DateTime.parse(
-                                            data?['date']
-                                                    .toString()
-                                                    .split(' ')[0] ??
-                                                '',
-                                          ),
-                                          bio: data?['bio'].toString() ?? '',
+                                    final appUser =
+                                        AppUserDummy.dummyProvider(user.uuid)
+                                            .maybeMap(
+                                      orElse: () => throw NullThrownError(),
+                                      provider: (value) => value.copyWith(
+                                        avatarUrl: list[0].isEmpty
+                                            ? user.avatarUrl
+                                            : list[0],
+                                        backgroundUrl: list[1].isEmpty
+                                            ? user.maybeMap(
+                                                orElse: () => '',
+                                                provider: (value) =>
+                                                    value.backgroundUrl,
+                                              )
+                                            : list[1],
+                                        addr: data?['address'].toString() ?? '',
+                                        firstName: fName ?? '',
+                                        lastName: lName,
+                                        dob: DateTime.parse(
+                                          data?['date']
+                                                  .toString()
+                                                  .split(' ')[0] ??
+                                              '',
                                         ),
-                                      );
-                                      context.read<ProfileBloc>().add(
-                                            ProfileEvent.submitted(appUser),
-                                          );
-                                    },
-                                  );
-                                },
-                              );
-                            } else {
-                              final appUser =
-                                  AppUserDummy.dummyProvider(user.uuid)
-                                      .maybeMap(
-                                orElse: () => throw NullThrownError(),
-                                provider: (value) => value.copyWith(
-                                  avatarUrl: user.avatarUrl,
-                                  backgroundUrl: user.maybeMap(
-                                    orElse: () => '',
-                                    provider: (value) => value.backgroundUrl,
-                                  ),
-                                  addr: data?['address'].toString() ?? '',
-                                  firstName: fName ?? '',
-                                  lastName: lName,
-                                  dob: DateTime.parse(
-                                    data?['date'].toString().split(' ')[0] ??
-                                        '',
-                                  ),
-                                  bio: data?['bio'].toString() ?? '',
-                                ),
-                              );
-                              context.read<ProfileBloc>().add(
-                                    ProfileEvent.submitted(appUser),
-                                  );
-                            }
+                                        bio: data?['bio'].toString() ?? '',
+                                      ),
+                                    );
+                                    context.read<ProfileBloc>().add(
+                                          ProfileEvent.submitted(appUser),
+                                        );
+                                  },
+                                );
+                              },
+                            );
                           }
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,

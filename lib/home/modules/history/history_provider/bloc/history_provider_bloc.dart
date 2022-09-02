@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../../../shared/shared.dart';
 import '../models/models.dart';
 
 part 'history_provider_bloc.freezed.dart';
@@ -11,9 +11,13 @@ part 'history_provider_state.dart';
 
 class HistoryProviderBloc
     extends Bloc<HistoryProviderEvent, HistoryProviderState> {
-  HistoryProviderBloc() : super(const _Initial()) {
+  HistoryProviderBloc(this._irr, this._iau) : super(const _Initial()) {
     on<HistoryProviderEvent>(_onEventHistory);
   }
+
+  final IStore<RepairRecord> _irr;
+  final IStore<AppUser> _iau;
+
   Future<void> _onEventHistory(
     HistoryProviderEvent event,
     Emitter<HistoryProviderState> emit,
@@ -21,98 +25,46 @@ class HistoryProviderBloc
     await event.when(
       started: () async {
         emit(const HistoryProviderState.loading());
-        final histories = [
-          HistoryProviderModel(
-            isComplete: false,
-            orderNumber: '12345',
-            vehicleType: 'xe máy',
-            serviceName: 'Thay săm xe',
-            serviceStartBooking: DateTime.now(),
-            orderStatusNotification: 'Khách đã hủy',
-            user: UserModel.fromDto(
-              AppUser.consumer(
-                uuid: '1a',
-                firstName: 'Nam',
-                lastName: 'Ngoc',
-                phone: 'XXX-XXX-XXXX',
-                dob: DateTime.now(),
-                addr: 'Ninh Binh',
-                email: 'huyxam@huyxam.cm',
-                active: true,
-                avatarUrl:
-                    'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-                createdTime: DateTime.now(),
-                lastUpdatedTime: DateTime.now(),
-                vac: const VideoCallAccount(
-                  id: '',
-                  username: '',
-                  pwd: '',
-                  email: '',
-                ),
-              ),
+
+        final mapRecordVsAppUserConsumer = Map.fromEntries(
+          (await (await _irr.queryTs(
+            (a) => a
+                .where(
+                  'type',
+                  whereIn: [
+                    '6', // Finished
+                    '3', //Aborted
+                  ],
+                )
+                .orderBy(
+                  RepairRecordDummy.field(RepairRecordFields.CreateDate),
+                  descending: true,
+                )
+                .get(),
+          ))
+                  .toOption()
+                  .getOrElse(nil)
+                  .traverseFuture(
+                    (a) async =>
+                        MapEntry(a, (await _iau.get(a.cid)).toOption()),
+                  ))
+              .toIterable(),
+        );
+
+        final histories = mapRecordVsAppUserConsumer.entries.map((e) {
+          final user = e.value.getOrElse(() => throw NullThrownError());
+          return HistoryProviderModel(
+            imgUrl: user.avatarUrl,
+            orderNumber: e.key.id,
+            orderStatus: e.key.maybeMap(
+              orElse: () => 0,
+              finished: (value) => 1,
             ),
-          ),
-          HistoryProviderModel(
-            isComplete: true,
-            orderNumber: '23456',
-            vehicleType: 'ô tô',
-            serviceName: 'Hết xăng',
-            serviceStartBooking: DateTime.now(),
-            orderStatusNotification: 'Thanh toán thành công',
-            user: UserModel.fromDto(
-              AppUser.consumer(
-                uuid: '1a',
-                firstName: 'Nam',
-                lastName: 'Ngoc',
-                phone: 'XXX-XXX-XXXX',
-                dob: DateTime.now(),
-                addr: 'Ninh Binh',
-                email: 'huyxam@huyxam.cm',
-                active: true,
-                avatarUrl:
-                    'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg',
-                createdTime: DateTime.now(),
-                lastUpdatedTime: DateTime.now(),
-                vac: const VideoCallAccount(
-                  id: '',
-                  username: '',
-                  pwd: '',
-                  email: '',
-                ),
-              ),
-            ),
-          ),
-          HistoryProviderModel(
-            isComplete: false,
-            orderNumber: '34567',
-            vehicleType: 'xe máy',
-            serviceName: 'Thay phanh xe',
-            serviceStartBooking: DateTime.now(),
-            orderStatusNotification: 'Bạn đã từ chối yêu cầu',
-            user: UserModel.fromDto(
-              AppUser.consumer(
-                uuid: '1a',
-                firstName: 'Nam',
-                lastName: 'Ngoc',
-                phone: 'XXX-XXX-XXXX',
-                dob: DateTime.now(),
-                addr: 'Ninh Binh',
-                email: 'huyxam@huyxam.cm',
-                active: true,
-                avatarUrl:
-                    'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-                createdTime: DateTime.now(),
-                lastUpdatedTime: DateTime.now(),
-                vac: const VideoCallAccount(
-                  id: '',
-                  username: '',
-                  pwd: '',
-                  email: '',
-                ),
-              ),
-            ),
-          ),
-        ];
+            timeCreated: e.key.created,
+            userName: '${user.firstName} ${user.lastName}',
+            vehicleType: e.key.vehicle == 'mortobike' ? 0 : 1,
+          );
+        }).toList();
         emit(
           HistoryProviderState.success(histories),
         );

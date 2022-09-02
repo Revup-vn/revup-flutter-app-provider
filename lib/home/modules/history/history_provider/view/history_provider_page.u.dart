@@ -13,7 +13,7 @@ class HistoryProviderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HistoryProviderBloc()
+      create: (_) => HistoryProviderBloc(context.read(), context.read())
         ..add(
           const HistoryProviderEvent.started(),
         ),

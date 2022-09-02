@@ -322,6 +322,9 @@ mixin _$ListServiceState {
     required TResult Function(
             IList<ServiceModel> data, int sortType, String providerID)
         loadDataSuccess,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -331,6 +334,8 @@ mixin _$ListServiceState {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -340,6 +345,8 @@ mixin _$ListServiceState {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -349,6 +356,7 @@ mixin _$ListServiceState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Empty value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -357,6 +365,7 @@ mixin _$ListServiceState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -365,6 +374,7 @@ mixin _$ListServiceState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -433,6 +443,9 @@ class _$_Initial implements _Initial {
     required TResult Function(
             IList<ServiceModel> data, int sortType, String providerID)
         loadDataSuccess,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        empty,
   }) {
     return initial();
   }
@@ -445,6 +458,8 @@ class _$_Initial implements _Initial {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
   }) {
     return initial?.call();
   }
@@ -457,6 +472,8 @@ class _$_Initial implements _Initial {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -472,6 +489,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Empty value) empty,
   }) {
     return initial(this);
   }
@@ -483,6 +501,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
   }) {
     return initial?.call(this);
   }
@@ -494,6 +513,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -553,6 +573,9 @@ class _$_Loading implements _Loading {
     required TResult Function(
             IList<ServiceModel> data, int sortType, String providerID)
         loadDataSuccess,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        empty,
   }) {
     return loading();
   }
@@ -565,6 +588,8 @@ class _$_Loading implements _Loading {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
   }) {
     return loading?.call();
   }
@@ -577,6 +602,8 @@ class _$_Loading implements _Loading {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -592,6 +619,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Empty value) empty,
   }) {
     return loading(this);
   }
@@ -603,6 +631,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -614,6 +643,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -673,6 +703,9 @@ class _$_Failure implements _Failure {
     required TResult Function(
             IList<ServiceModel> data, int sortType, String providerID)
         loadDataSuccess,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        empty,
   }) {
     return failure();
   }
@@ -685,6 +718,8 @@ class _$_Failure implements _Failure {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
   }) {
     return failure?.call();
   }
@@ -697,6 +732,8 @@ class _$_Failure implements _Failure {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -712,6 +749,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Empty value) empty,
   }) {
     return failure(this);
   }
@@ -723,6 +761,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
   }) {
     return failure?.call(this);
   }
@@ -734,6 +773,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -839,6 +879,9 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function(
             IList<ServiceModel> data, int sortType, String providerID)
         loadDataSuccess,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        empty,
   }) {
     return loadDataSuccess(data, sortType, providerID);
   }
@@ -851,6 +894,8 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
   }) {
     return loadDataSuccess?.call(data, sortType, providerID);
   }
@@ -863,6 +908,8 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function()? failure,
     TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
         loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
@@ -878,6 +925,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Empty value) empty,
   }) {
     return loadDataSuccess(this);
   }
@@ -889,6 +937,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
   }) {
     return loadDataSuccess?.call(this);
   }
@@ -900,6 +949,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
@@ -920,5 +970,188 @@ abstract class _LoadDataSuccess implements ListServiceState {
   String get providerID;
   @JsonKey(ignore: true)
   _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EmptyCopyWith<$Res> {
+  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
+      __$$_EmptyCopyWithImpl<$Res>;
+  $Res call({IList<ServiceModel> data, int sortType, String providerID});
+}
+
+/// @nodoc
+class __$$_EmptyCopyWithImpl<$Res> extends _$ListServiceStateCopyWithImpl<$Res>
+    implements _$$_EmptyCopyWith<$Res> {
+  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
+      : super(_value, (v) => _then(v as _$_Empty));
+
+  @override
+  _$_Empty get _value => super._value as _$_Empty;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? sortType = freezed,
+    Object? providerID = freezed,
+  }) {
+    return _then(_$_Empty(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as IList<ServiceModel>,
+      sortType: sortType == freezed
+          ? _value.sortType
+          : sortType // ignore: cast_nullable_to_non_nullable
+              as int,
+      providerID: providerID == freezed
+          ? _value.providerID
+          : providerID // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Empty implements _Empty {
+  const _$_Empty(
+      {required this.data, required this.sortType, required this.providerID});
+
+  @override
+  final IList<ServiceModel> data;
+  @override
+  final int sortType;
+  @override
+  final String providerID;
+
+  @override
+  String toString() {
+    return 'ListServiceState.empty(data: $data, sortType: $sortType, providerID: $providerID)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Empty &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality().equals(other.sortType, sortType) &&
+            const DeepCollectionEquality()
+                .equals(other.providerID, providerID));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(sortType),
+      const DeepCollectionEquality().hash(providerID));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_EmptyCopyWith<_$_Empty> get copyWith =>
+      __$$_EmptyCopyWithImpl<_$_Empty>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        loadDataSuccess,
+    required TResult Function(
+            IList<ServiceModel> data, int sortType, String providerID)
+        empty,
+  }) {
+    return empty(data, sortType, providerID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
+  }) {
+    return empty?.call(data, sortType, providerID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        loadDataSuccess,
+    TResult Function(IList<ServiceModel> data, int sortType, String providerID)?
+        empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(data, sortType, providerID);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
+    required TResult Function(_Empty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
+    TResult Function(_Empty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Empty implements ListServiceState {
+  const factory _Empty(
+      {required final IList<ServiceModel> data,
+      required final int sortType,
+      required final String providerID}) = _$_Empty;
+
+  IList<ServiceModel> get data;
+  int get sortType;
+  String get providerID;
+  @JsonKey(ignore: true)
+  _$$_EmptyCopyWith<_$_Empty> get copyWith =>
       throw _privateConstructorUsedError;
 }
