@@ -6,7 +6,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -14,7 +13,6 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
-import '../cubit/product_cubit.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
   const ServiceCheckboxTile({
@@ -49,7 +47,6 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final cubit = context.read<ProductCubit>();
     return Card(
       child: Column(
         children: [

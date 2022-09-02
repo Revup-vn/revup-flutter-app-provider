@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -9,6 +10,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -45,6 +47,29 @@ class _SplashPageState extends State<SplashPage> {
             break;
           }
           break;
+        case NotificationType.ProviderDecline:
+          context
+              .showToast<void>(context.l10n.userDismissed)
+              .then(
+                (_) => context.read<IStore<AppUser>>().updateFields(
+                      AppUserDummy.dummyProvider(
+                        context.read<AuthenticateBloc>().state.maybeMap(
+                              orElse: () => throw NullThrownError(),
+                              authenticated: (value) =>
+                                  value.authType.user.uuid,
+                            ),
+                      ).maybeMap(
+                        orElse: () => throw NullThrownError(),
+                        provider: (p) => p.copyWith(
+                          online: true,
+                        ),
+                      ),
+                      cons(AppUserDummy.field(AppUserFields.Online), nil()),
+                    ),
+              )
+              .then((value) => context.router.popUntilRoot());
+          break;
+
         // ignore: no_default_cases
         default:
           break;

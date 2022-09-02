@@ -5,14 +5,13 @@ import 'package:dartz/dartz.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
+import '../../../../shared/utils/utils.dart';
 
 class UploadPhotosItem extends StatelessWidget {
   const UploadPhotosItem({
     super.key,
     required this.onUpdatedImageTile,
   });
-
-  // TODO(tcmhoang) : Get the actual img here
 
   final Function1<Future<List<StorageFile>>, void> onUpdatedImageTile;
 
@@ -57,9 +56,7 @@ class UploadPhotosItem extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Image.asset(
-                      // TODO(tcmhoang): Get a more
-                      // general image for place holder
-                      '',
+                      kFallbackImage,
                       height: 50,
                       width: 50,
                     );

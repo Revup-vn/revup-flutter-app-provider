@@ -9,7 +9,6 @@ import 'package:revup_core/core.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
-import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../../../request.dart';
 import '../bloc/info_request_bloc.dart';
@@ -77,10 +76,6 @@ class _InfoRequestViewState extends State<InfoRequestView> {
       initial: () async {
         blocPage.add(const InfoRequestEvent.started());
       },
-    );
-
-    final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
-      () => throw NullThrownError(),
     );
 
     return BlocBuilder<InfoRequestBloc, InfoRequestState>(
@@ -217,7 +212,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                         onPressed: !ready
                             ? null
                             : () {
-                                // send message provider start moving to consumer
+                                // send message provider start
+                                // moving to consumer
                                 blocPage.add(
                                   InfoRequestEvent.confirmDeparted(
                                     onRoute: () => context.router.push(
@@ -258,7 +254,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                 blocPage.add(
                                   InfoRequestEvent.confirmStarted(
                                     onRoute: () => context.router.push(
-                                        P12DetailRoute(recordId: record.id)),
+                                      P12DetailRoute(recordId: record.id),
+                                    ),
                                     sendMessage: (token, recordId) => context
                                         .read<NotificationCubit>()
                                         .sendMessageToToken(
@@ -279,7 +276,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                         ),
                                   ),
                                 );
-                                // context.router.replace(HomeRoute(user: user));
+                                // context.router.replace(HomeRoute(user:
+                                // user));
                               },
                       );
                     }

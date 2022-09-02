@@ -159,10 +159,15 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                         (repairService) async {
                           final t = await storeRepository
                               .repairProductRepo(
-                                  aUser, repairCate, repairService)
+                                aUser,
+                                repairCate,
+                                repairService,
+                              )
                               .all();
                           final listProduct = t.fold<IList<RepairProduct>>(
-                              (l) => nil(), (r) => r);
+                            (l) => nil(),
+                            (r) => r,
+                          );
                           final list = listProduct
                               .sortByDouble(
                                 (e1, e2) => e1.price.compareTo(e2.price),
