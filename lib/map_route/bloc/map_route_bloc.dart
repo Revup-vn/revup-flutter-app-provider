@@ -20,7 +20,7 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
     this.storeRepository,
     this.recordId,
     this.consumerId,
-  ) : super(_Initial()) {
+  ) : super(const _Initial()) {
     on<MapRouteEvent>(_onEvent);
   }
   final IStore<AppUser> _userStore;

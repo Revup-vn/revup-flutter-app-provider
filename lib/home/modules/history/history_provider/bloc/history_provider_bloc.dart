@@ -26,10 +26,6 @@ class HistoryProviderBloc
       started: () async {
         emit(const HistoryProviderState.loading());
 
-        // Always return Ilist
-        // Error => empty list
-        // Order by created Time
-        // Senior huy Giai quyet giup em
         final mapRecordVsAppUserConsumer = Map.fromEntries(
           (await (await _irr.queryTs(
             (a) => a
@@ -55,7 +51,6 @@ class HistoryProviderBloc
               .toIterable(),
         );
 
-        // TODO(tcmhoang): Convert DTO to a newly modified model
         final histories = mapRecordVsAppUserConsumer.entries.map((e) {
           final user = e.value.getOrElse(() => throw NullThrownError());
           return HistoryProviderModel(

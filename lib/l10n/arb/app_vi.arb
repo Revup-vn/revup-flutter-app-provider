@@ -259,6 +259,7 @@
   "moneyUnit": "đ",
   "noServiceLabel": "Bạn không có dịch vụ nào.",
   "addCommonServiceQuestionLabel": "Bạn có muốn sử dụng dịch vụ mẫu không?",
-  "successLabel": "Hoàn thành"
-
+  "successLabel": "Hoàn thành",
+  "userDismissed": "Người dùng đã hủy bỏ yêu cầu, bạn sẽ nhận được phí di chuyển như một khoản bồi thường",
+  "notSupportLabel": "Chúng tôi hiện không hỗ trợ tính năng này. Chúng tôi sẽ phát hành sớm"
 }

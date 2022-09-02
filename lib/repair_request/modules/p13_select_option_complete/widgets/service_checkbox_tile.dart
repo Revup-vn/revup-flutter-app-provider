@@ -46,7 +46,6 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
 
                       if (b ?? false) {
                         (widget.field.value)?.add(widget.pendingService);
-                        print(widget.field.value);
                       } else {
                         widget.field.value?.remove(widget.pendingService);
                       }

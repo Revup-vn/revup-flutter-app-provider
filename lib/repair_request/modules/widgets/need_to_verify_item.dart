@@ -25,7 +25,7 @@ class NeedToVerifyItem extends StatefulWidget {
 }
 
 class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
-  final _price = GlobalKey<FormBuilderFieldState>();
+  final _price = GlobalKey<FormBuilderFieldState<dynamic, dynamic>>();
   String quotePrice = '';
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,9 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
                   quotePrice = temp;
                 });
                 await cubit.quotePrice(
-                    widget.needToVerify, int.parse(quotePrice));
+                  widget.needToVerify,
+                  int.parse(quotePrice),
+                );
               },
               child: AutoSizeText(
                 context.l10n.touchToQuoteLabel,

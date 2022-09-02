@@ -21,7 +21,6 @@ class MyReviewView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(tcmhoang): Intl this page
     final l10n = context.l10n;
 
     return SingleChildScrollView(

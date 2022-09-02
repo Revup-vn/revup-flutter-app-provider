@@ -49,11 +49,96 @@ class LoginPage extends StatelessWidget {
               server: (message) => unit,
               orElse: () => false,
             ),
-            authenticated: (authType) {
-              authType.user.maybeMap(
-                orElse: () {
+            authenticated: (authType) => authType.user.maybeMap(
+              orElse: () {
+                context.loaderOverlay.hide();
+                showDialog<String>(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      backgroundColor: Colors.transparent,
+                      insetPadding: const EdgeInsets.all(10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              color:
+                                  Theme.of(context).colorScheme.inverseSurface,
+                            ),
+                            width: double.infinity,
+                            height: 70,
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.cancel_outlined,
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                                AutoSizeText(
+                                  context.l10n.loginFailLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
+                                        color:
+                                            Theme.of(context).colorScheme.error,
+                                      ),
+                                  maxLines: 1,
+                                ),
+                                AutoSizeText(
+                                  context.l10n.loginFailDescLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
+                                        color:
+                                            Theme.of(context).colorScheme.error,
+                                      ),
+                                  maxLines: 1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+                Future.delayed(
+                  const Duration(seconds: 5),
+                  () {
+                    context
+                        .read<AuthenticateBloc>()
+                        .add(AuthenticateEvent.signOut(authType: authType));
+                    context.router.pop();
+                  },
+                );
+                return null;
+              },
+              provider: (value) async {
+                context.loaderOverlay.hide();
+                await notifyCubit.requirePermission();
+                await notifyCubit.registerDevice();
+                final token = notifyCubit.state.maybeWhen(
+                  registered: (token) => token,
+                  failToRegister: () => '',
+                  orElse: () => throw NullThrownError(),
+                );
+                final _iuntr = sr.userNotificationTokenRepo(
+                  AppUserDummy.dummyConsumer(authType.user.uuid),
+                );
+                await _iuntr.create(
+                  Token(
+                    created: DateTime.now(),
+                    platform: Platform.operatingSystem,
+                    token: token,
+                  ),
+                );
+                if (value.active == true) {
                   context.loaderOverlay.hide();
-                  showDialog<String>(
+                  await showDialog<String>(
                     barrierDismissible: false,
                     context: context,
                     builder: (context) {
@@ -62,45 +147,27 @@ class LoginPage extends StatelessWidget {
                         insetPadding: const EdgeInsets.all(10),
                         child: Stack(
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(20)),
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .inverseSurface,
-                              ),
+                            SizedBox(
                               width: double.infinity,
-                              height: 70,
+                              height: 200,
                               child: Column(
                                 children: [
                                   Icon(
-                                    Icons.cancel_outlined,
-                                    color: Theme.of(context).colorScheme.error,
+                                    Icons.done,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onTertiary,
                                   ),
                                   AutoSizeText(
-                                    context.l10n.loginFailLabel,
+                                    context.l10n.loginSuccessLabel,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText2
                                         ?.copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .error,
+                                              .onTertiary,
                                         ),
-                                    maxLines: 1,
-                                  ),
-                                  AutoSizeText(
-                                    context.l10n.loginFailDescLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .error,
-                                        ),
-                                    maxLines: 1,
                                   ),
                                 ],
                               ),
@@ -110,202 +177,133 @@ class LoginPage extends StatelessWidget {
                       );
                     },
                   );
-                  Future.delayed(
-                    const Duration(seconds: 5),
-                    () {
-                      context
-                          .read<AuthenticateBloc>()
-                          .add(AuthenticateEvent.signOut(authType: authType));
-                      context.router.pop();
+
+                  return Future.delayed(
+                    const Duration(seconds: 3),
+                    () async {
+                      final boxAuthType =
+                          await Hive.openBox<dynamic>('authType');
+                      await boxAuthType.put(
+                        'auth',
+                        authType.map(
+                          google: (value) =>
+                              AuthType.google(user: value.user).toJson(),
+                          phone: (value) =>
+                              AuthType.phone(user: value.user).toJson(),
+                          email: (value) =>
+                              AuthType.email(user: value.user).toJson(),
+                        ),
+                      );
+
+                      await context.router.pushAndPopUntil(
+                        HomeRoute(user: authType.user),
+                        predicate: (_) => true,
+                      );
+                      return null;
                     },
                   );
-                },
-                provider: (value) async {
+                } else {
                   context.loaderOverlay.hide();
-                  await notifyCubit.requirePermission();
-                  await notifyCubit.registerDevice();
-                  final token = notifyCubit.state.maybeWhen(
-                    registered: (token) => token,
-                    failToRegister: () => '',
-                    orElse: () => throw NullThrownError(),
-                  );
-                  final _iuntr = sr.userNotificationTokenRepo(
-                    AppUserDummy.dummyConsumer(authType.user.uuid),
-                  );
-                  await _iuntr.create(
-                    Token(
-                      created: DateTime.now(),
-                      platform: Platform.operatingSystem,
-                      token: token,
-                    ),
-                  );
-                  if (value.active == true) {
-                    context.loaderOverlay.hide();
-                    showDialog<String>(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          backgroundColor: Colors.transparent,
-                          insetPadding: const EdgeInsets.all(10),
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                width: double.infinity,
-                                height: 200,
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.done,
+                  await showDialog<String>(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.surface,
+                              ),
+                              width: double.infinity,
+                              height: 200,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Icon(
+                                      Icons.warning,
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onTertiary,
                                     ),
-                                    AutoSizeText(
-                                      context.l10n.loginSuccessLabel,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onTertiary,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.accountNotActiveLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.canLoginLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailDescLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: TextButton(
+                                onPressed: () async {
+                                  final boxAuthType =
+                                      await Hive.openBox<dynamic>('authType');
+                                  await boxAuthType.put(
+                                    'auth',
+                                    authType.map(
+                                      google: (value) =>
+                                          AuthType.google(user: value.user)
+                                              .toJson(),
+                                      phone: (value) =>
+                                          AuthType.phone(user: value.user)
+                                              .toJson(),
+                                      email: (value) =>
+                                          AuthType.email(user: value.user)
+                                              .toJson(),
+                                    ),
+                                  );
 
-                    return Future.delayed(
-                      const Duration(seconds: 3),
-                      () async {
-                        final boxAuthType =
-                            await Hive.openBox<dynamic>('authType');
-                        await boxAuthType.put(
-                          'auth',
-                          authType.map(
-                            google: (value) =>
-                                AuthType.google(user: value.user).toJson(),
-                            phone: (value) =>
-                                AuthType.phone(user: value.user).toJson(),
-                            email: (value) =>
-                                AuthType.email(user: value.user).toJson(),
-                          ),
-                        );
-
-                        await context.router.pushAndPopUntil(
-                          HomeRoute(user: authType.user),
-                          predicate: (_) => true,
-                        );
-                      },
-                    );
-                  } else {
-                    context.loaderOverlay.hide();
-                    showDialog<String>(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          backgroundColor: Colors.transparent,
-                          insetPadding: const EdgeInsets.all(10),
-                          child: Stack(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.surface,
-                                ),
-                                width: double.infinity,
-                                height: 200,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Center(
-                                      child: Icon(
-                                        Icons.warning,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiary,
-                                      ),
-                                    ),
-                                    AutoSizeText(
-                                      context.l10n.accountNotActiveLabel,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                    ),
-                                    AutoSizeText(
-                                      context.l10n.canLoginLabel,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                    ),
-                                    AutoSizeText(
-                                      context.l10n.loginFailDescLabel,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                                  await context.router.pushAndPopUntil(
+                                    HomeRoute(user: authType.user),
+                                    predicate: (_) => true,
+                                  );
+                                },
+                                child: const AutoSizeText('Ok'),
                               ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: TextButton(
-                                  onPressed: () async {
-                                    final boxAuthType =
-                                        await Hive.openBox<dynamic>('authType');
-                                    await boxAuthType.put(
-                                      'auth',
-                                      authType.map(
-                                        google: (value) =>
-                                            AuthType.google(user: value.user)
-                                                .toJson(),
-                                        phone: (value) =>
-                                            AuthType.phone(user: value.user)
-                                                .toJson(),
-                                        email: (value) =>
-                                            AuthType.email(user: value.user)
-                                                .toJson(),
-                                      ),
-                                    );
-
-                                    await context.router.pushAndPopUntil(
-                                      HomeRoute(user: authType.user),
-                                      predicate: (_) => true,
-                                    );
-                                  },
-                                  child: const AutoSizeText('Ok'),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
-              );
-            },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                }
+                return null;
+              },
+            ),
             orElse: () => false,
           ),
           builder: (context, state) => state.maybeWhen(
