@@ -101,8 +101,8 @@ class AccountContent extends StatelessWidget {
             AccountItem(
               accountName: l10n.paymentLabel,
               accountIcon: const Icon(Icons.payment),
-              callback: () =>
-                  context.showToast<void>(context.l10n.notSupportLabel),
+              callback: () => context.showInfoBar<void>(
+                  content: Text(context.l10n.notSupportLabel)),
             ),
             AccountItem(
               accountName: l10n.organizationLabel,
