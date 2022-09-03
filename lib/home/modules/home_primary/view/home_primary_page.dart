@@ -21,7 +21,12 @@ class HomePrimaryPage extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => HomePrimaryCubit(context.read(), user.uuid),
+          create: (context) => HomePrimaryCubit(
+            context.read(),
+            user.uuid,
+            context.read(),
+            context.read(),
+          ),
           child: Container(),
         )
       ],

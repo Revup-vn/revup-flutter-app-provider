@@ -18,22 +18,37 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomePrimaryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(AppUser user) loaded,
+    required TResult Function(IVector<String> ads) initial,
+    required TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)
+        loaded,
+    required TResult Function(
+            AppUser user, IList<MyServiceData> listService, IVector<String> ads)
+        recentOrderEmpty,
     required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
     required TResult orElse(),
   }) =>
@@ -42,6 +57,7 @@ mixin _$HomePrimaryState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_OrderEmpty value) recentOrderEmpty,
     required TResult Function(_Loading value) loading,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +65,7 @@ mixin _$HomePrimaryState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +73,7 @@ mixin _$HomePrimaryState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) =>
@@ -84,6 +102,7 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
+  $Res call({IVector<String> ads});
 }
 
 /// @nodoc
@@ -95,57 +114,95 @@ class __$$_InitialCopyWithImpl<$Res>
 
   @override
   _$_Initial get _value => super._value as _$_Initial;
+
+  @override
+  $Res call({
+    Object? ads = freezed,
+  }) {
+    return _then(_$_Initial(
+      ads: ads == freezed
+          ? _value.ads
+          : ads // ignore: cast_nullable_to_non_nullable
+              as IVector<String>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial();
+  const _$_Initial({required this.ads});
+
+  @override
+  final IVector<String> ads;
 
   @override
   String toString() {
-    return 'HomePrimaryState.initial()';
+    return 'HomePrimaryState.initial(ads: $ads)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_Initial &&
+            const DeepCollectionEquality().equals(other.ads, ads));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(ads));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(AppUser user) loaded,
+    required TResult Function(IVector<String> ads) initial,
+    required TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)
+        loaded,
+    required TResult Function(
+            AppUser user, IList<MyServiceData> listService, IVector<String> ads)
+        recentOrderEmpty,
     required TResult Function() loading,
   }) {
-    return initial();
+    return initial(ads);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
   }) {
-    return initial?.call();
+    return initial?.call(ads);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(ads);
     }
     return orElse();
   }
@@ -155,6 +212,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_OrderEmpty value) recentOrderEmpty,
     required TResult Function(_Loading value) loading,
   }) {
     return initial(this);
@@ -165,6 +223,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
   }) {
     return initial?.call(this);
@@ -175,6 +234,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
@@ -186,16 +246,26 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements HomePrimaryState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial({required final IVector<String> ads}) = _$_Initial;
+
+  IVector<String> get ads;
+  @JsonKey(ignore: true)
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call({AppUser user});
+  $Res call(
+      {AppUser user,
+      RecentOrderData recentOrder,
+      IList<MyServiceData> listService,
+      IVector<String> ads});
 
   $AppUserCopyWith<$Res> get user;
+  $RecentOrderDataCopyWith<$Res> get recentOrder;
 }
 
 /// @nodoc
@@ -210,12 +280,238 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$HomePrimaryStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? recentOrder = freezed,
+    Object? listService = freezed,
+    Object? ads = freezed,
   }) {
     return _then(_$_Loaded(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
+      recentOrder: recentOrder == freezed
+          ? _value.recentOrder
+          : recentOrder // ignore: cast_nullable_to_non_nullable
+              as RecentOrderData,
+      listService: listService == freezed
+          ? _value.listService
+          : listService // ignore: cast_nullable_to_non_nullable
+              as IList<MyServiceData>,
+      ads: ads == freezed
+          ? _value.ads
+          : ads // ignore: cast_nullable_to_non_nullable
+              as IVector<String>,
+    ));
+  }
+
+  @override
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $RecentOrderDataCopyWith<$Res> get recentOrder {
+    return $RecentOrderDataCopyWith<$Res>(_value.recentOrder, (value) {
+      return _then(_value.copyWith(recentOrder: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Loaded implements _Loaded {
+  const _$_Loaded(
+      {required this.user,
+      required this.recentOrder,
+      required this.listService,
+      required this.ads});
+
+  @override
+  final AppUser user;
+  @override
+  final RecentOrderData recentOrder;
+  @override
+  final IList<MyServiceData> listService;
+  @override
+  final IVector<String> ads;
+
+  @override
+  String toString() {
+    return 'HomePrimaryState.loaded(user: $user, recentOrder: $recentOrder, listService: $listService, ads: $ads)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Loaded &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.recentOrder, recentOrder) &&
+            const DeepCollectionEquality()
+                .equals(other.listService, listService) &&
+            const DeepCollectionEquality().equals(other.ads, ads));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(recentOrder),
+      const DeepCollectionEquality().hash(listService),
+      const DeepCollectionEquality().hash(ads));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(IVector<String> ads) initial,
+    required TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)
+        loaded,
+    required TResult Function(
+            AppUser user, IList<MyServiceData> listService, IVector<String> ads)
+        recentOrderEmpty,
+    required TResult Function() loading,
+  }) {
+    return loaded(user, recentOrder, listService, ads);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
+    TResult Function()? loading,
+  }) {
+    return loaded?.call(user, recentOrder, listService, ads);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(user, recentOrder, listService, ads);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_OrderEmpty value) recentOrderEmpty,
+    required TResult Function(_Loading value) loading,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
+    TResult Function(_Loading value)? loading,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loaded implements HomePrimaryState {
+  const factory _Loaded(
+      {required final AppUser user,
+      required final RecentOrderData recentOrder,
+      required final IList<MyServiceData> listService,
+      required final IVector<String> ads}) = _$_Loaded;
+
+  AppUser get user;
+  RecentOrderData get recentOrder;
+  IList<MyServiceData> get listService;
+  IVector<String> get ads;
+  @JsonKey(ignore: true)
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OrderEmptyCopyWith<$Res> {
+  factory _$$_OrderEmptyCopyWith(
+          _$_OrderEmpty value, $Res Function(_$_OrderEmpty) then) =
+      __$$_OrderEmptyCopyWithImpl<$Res>;
+  $Res call(
+      {AppUser user, IList<MyServiceData> listService, IVector<String> ads});
+
+  $AppUserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$_OrderEmptyCopyWithImpl<$Res>
+    extends _$HomePrimaryStateCopyWithImpl<$Res>
+    implements _$$_OrderEmptyCopyWith<$Res> {
+  __$$_OrderEmptyCopyWithImpl(
+      _$_OrderEmpty _value, $Res Function(_$_OrderEmpty) _then)
+      : super(_value, (v) => _then(v as _$_OrderEmpty));
+
+  @override
+  _$_OrderEmpty get _value => super._value as _$_OrderEmpty;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+    Object? listService = freezed,
+    Object? ads = freezed,
+  }) {
+    return _then(_$_OrderEmpty(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser,
+      listService: listService == freezed
+          ? _value.listService
+          : listService // ignore: cast_nullable_to_non_nullable
+              as IList<MyServiceData>,
+      ads: ads == freezed
+          ? _value.ads
+          : ads // ignore: cast_nullable_to_non_nullable
+              as IVector<String>,
     ));
   }
 
@@ -229,64 +525,90 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$HomePrimaryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
-  const _$_Loaded({required this.user});
+class _$_OrderEmpty implements _OrderEmpty {
+  const _$_OrderEmpty(
+      {required this.user, required this.listService, required this.ads});
 
   @override
   final AppUser user;
+  @override
+  final IList<MyServiceData> listService;
+  @override
+  final IVector<String> ads;
 
   @override
   String toString() {
-    return 'HomePrimaryState.loaded(user: $user)';
+    return 'HomePrimaryState.recentOrderEmpty(user: $user, listService: $listService, ads: $ads)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other.user, user));
+            other is _$_OrderEmpty &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.listService, listService) &&
+            const DeepCollectionEquality().equals(other.ads, ads));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(listService),
+      const DeepCollectionEquality().hash(ads));
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
-      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
+  _$$_OrderEmptyCopyWith<_$_OrderEmpty> get copyWith =>
+      __$$_OrderEmptyCopyWithImpl<_$_OrderEmpty>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(AppUser user) loaded,
+    required TResult Function(IVector<String> ads) initial,
+    required TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)
+        loaded,
+    required TResult Function(
+            AppUser user, IList<MyServiceData> listService, IVector<String> ads)
+        recentOrderEmpty,
     required TResult Function() loading,
   }) {
-    return loaded(user);
+    return recentOrderEmpty(user, listService, ads);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
   }) {
-    return loaded?.call(user);
+    return recentOrderEmpty?.call(user, listService, ads);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(user);
+    if (recentOrderEmpty != null) {
+      return recentOrderEmpty(user, listService, ads);
     }
     return orElse();
   }
@@ -296,9 +618,10 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_OrderEmpty value) recentOrderEmpty,
     required TResult Function(_Loading value) loading,
   }) {
-    return loaded(this);
+    return recentOrderEmpty(this);
   }
 
   @override
@@ -306,9 +629,10 @@ class _$_Loaded implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
   }) {
-    return loaded?.call(this);
+    return recentOrderEmpty?.call(this);
   }
 
   @override
@@ -316,22 +640,28 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (recentOrderEmpty != null) {
+      return recentOrderEmpty(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements HomePrimaryState {
-  const factory _Loaded({required final AppUser user}) = _$_Loaded;
+abstract class _OrderEmpty implements HomePrimaryState {
+  const factory _OrderEmpty(
+      {required final AppUser user,
+      required final IList<MyServiceData> listService,
+      required final IVector<String> ads}) = _$_OrderEmpty;
 
   AppUser get user;
+  IList<MyServiceData> get listService;
+  IVector<String> get ads;
   @JsonKey(ignore: true)
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+  _$$_OrderEmptyCopyWith<_$_OrderEmpty> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -375,8 +705,13 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(AppUser user) loaded,
+    required TResult Function(IVector<String> ads) initial,
+    required TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)
+        loaded,
+    required TResult Function(
+            AppUser user, IList<MyServiceData> listService, IVector<String> ads)
+        recentOrderEmpty,
     required TResult Function() loading,
   }) {
     return loading();
@@ -385,8 +720,13 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
   }) {
     return loading?.call();
@@ -395,8 +735,13 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(AppUser user)? loaded,
+    TResult Function(IVector<String> ads)? initial,
+    TResult Function(AppUser user, RecentOrderData recentOrder,
+            IList<MyServiceData> listService, IVector<String> ads)?
+        loaded,
+    TResult Function(AppUser user, IList<MyServiceData> listService,
+            IVector<String> ads)?
+        recentOrderEmpty,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
@@ -411,6 +756,7 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_OrderEmpty value) recentOrderEmpty,
     required TResult Function(_Loading value) loading,
   }) {
     return loading(this);
@@ -421,6 +767,7 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
   }) {
     return loading?.call(this);
@@ -431,6 +778,7 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_OrderEmpty value)? recentOrderEmpty,
     TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
