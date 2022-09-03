@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -12,7 +11,7 @@ class OrderFeedbackItem extends StatelessWidget {
     required this.feedback,
   });
 
-  final double rating;
+  final int rating;
   final String feedback;
 
   @override
@@ -59,30 +58,22 @@ class OrderFeedbackItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                          child: RatingBar.builder(
-                            ignoreGestures: true,
-                            initialRating: rating,
-                            itemSize: 25,
-                            allowHalfRating: true,
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                            ),
-                            onRatingUpdate: print,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: RatingBar.builder(
+                  ignoreGestures: true,
+                  initialRating: rating.toDouble(),
+                  itemSize: 25,
+                  allowHalfRating: true,
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                  onRatingUpdate: print,
                 ),
               ),
             ],

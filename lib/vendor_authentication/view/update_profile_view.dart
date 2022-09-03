@@ -38,7 +38,7 @@ class UpdateProfileView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(
-            l10n.completeRegistrationLabel,
+            l10n.editProfileLabel,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall
@@ -268,15 +268,17 @@ class UpdateProfileView extends StatelessWidget {
                             final data = _formKey.currentState?.value;
                             final listName =
                                 data?['fullName'].toString().split(' ');
-                            final fName = listName?[0];
+                            final fName = listName?[0].trim();
                             var lName = '';
                             if (listName != null && listName.length > 1) {
                               listName.remove(listName[0]);
-                              lName = listName.fold<String>(
-                                '',
-                                (previousValue, element) =>
-                                    '$previousValue $element',
-                              );
+                              lName = listName
+                                  .fold<String>(
+                                    '',
+                                    (previousValue, element) =>
+                                        '$previousValue $element',
+                                  )
+                                  .trim();
                             }
                             var phoneNumber = data?['phone'].toString();
                             if (phoneNumber?.substring(0, 3) == '+84') {
@@ -291,12 +293,11 @@ class UpdateProfileView extends StatelessWidget {
                                 phoneNumber.length,
                               );
                             }
-                            final ilistFile = ilist(list);
-                            final ilistStorageFile = ilistFile
-                                .map((a) => StorageFile.profile(file: a));
+                            if (list[0].path.isEmpty && list[1].path.isEmpty) {
+                              final ilistFile = ilist(list);
+                              final ilistStorageFile = ilistFile
+                                  .map((a) => StorageFile.profile(file: a));
 
-                            if (list[0].path.isNotEmpty &&
-                                list[1].path.isNotEmpty) {
                               await cubit
                                   .uploadImg(files: ilistStorageFile)
                                   .whenComplete(

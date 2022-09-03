@@ -16,13 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HistoryProviderModel {
-  bool get isComplete => throw _privateConstructorUsedError;
   String get orderNumber => throw _privateConstructorUsedError;
-  String get vehicleType => throw _privateConstructorUsedError;
-  String get serviceName => throw _privateConstructorUsedError;
-  DateTime get serviceStartBooking => throw _privateConstructorUsedError;
-  String get orderStatusNotification => throw _privateConstructorUsedError;
-  UserModel get user => throw _privateConstructorUsedError;
+  int get vehicleType => throw _privateConstructorUsedError;
+  DateTime get timeCreated => throw _privateConstructorUsedError;
+  int get orderStatus => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
+  String get imgUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HistoryProviderModelCopyWith<HistoryProviderModel> get copyWith =>
@@ -35,15 +34,12 @@ abstract class $HistoryProviderModelCopyWith<$Res> {
           $Res Function(HistoryProviderModel) then) =
       _$HistoryProviderModelCopyWithImpl<$Res>;
   $Res call(
-      {bool isComplete,
-      String orderNumber,
-      String vehicleType,
-      String serviceName,
-      DateTime serviceStartBooking,
-      String orderStatusNotification,
-      UserModel user});
-
-  $UserModelCopyWith<$Res> get user;
+      {String orderNumber,
+      int vehicleType,
+      DateTime timeCreated,
+      int orderStatus,
+      String userName,
+      String imgUrl});
 }
 
 /// @nodoc
@@ -57,19 +53,14 @@ class _$HistoryProviderModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isComplete = freezed,
     Object? orderNumber = freezed,
     Object? vehicleType = freezed,
-    Object? serviceName = freezed,
-    Object? serviceStartBooking = freezed,
-    Object? orderStatusNotification = freezed,
-    Object? user = freezed,
+    Object? timeCreated = freezed,
+    Object? orderStatus = freezed,
+    Object? userName = freezed,
+    Object? imgUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      isComplete: isComplete == freezed
-          ? _value.isComplete
-          : isComplete // ignore: cast_nullable_to_non_nullable
-              as bool,
       orderNumber: orderNumber == freezed
           ? _value.orderNumber
           : orderNumber // ignore: cast_nullable_to_non_nullable
@@ -77,31 +68,24 @@ class _$HistoryProviderModelCopyWithImpl<$Res>
       vehicleType: vehicleType == freezed
           ? _value.vehicleType
           : vehicleType // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceName: serviceName == freezed
-          ? _value.serviceName
-          : serviceName // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceStartBooking: serviceStartBooking == freezed
-          ? _value.serviceStartBooking
-          : serviceStartBooking // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeCreated: timeCreated == freezed
+          ? _value.timeCreated
+          : timeCreated // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      orderStatusNotification: orderStatusNotification == freezed
-          ? _value.orderStatusNotification
-          : orderStatusNotification // ignore: cast_nullable_to_non_nullable
+      orderStatus: orderStatus == freezed
+          ? _value.orderStatus
+          : orderStatus // ignore: cast_nullable_to_non_nullable
+              as int,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      imgUrl: imgUrl == freezed
+          ? _value.imgUrl
+          : imgUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
-  }
-
-  @override
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
@@ -113,16 +97,12 @@ abstract class _$$_HistoryProviderModelCopyWith<$Res>
       __$$_HistoryProviderModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool isComplete,
-      String orderNumber,
-      String vehicleType,
-      String serviceName,
-      DateTime serviceStartBooking,
-      String orderStatusNotification,
-      UserModel user});
-
-  @override
-  $UserModelCopyWith<$Res> get user;
+      {String orderNumber,
+      int vehicleType,
+      DateTime timeCreated,
+      int orderStatus,
+      String userName,
+      String imgUrl});
 }
 
 /// @nodoc
@@ -138,19 +118,14 @@ class __$$_HistoryProviderModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isComplete = freezed,
     Object? orderNumber = freezed,
     Object? vehicleType = freezed,
-    Object? serviceName = freezed,
-    Object? serviceStartBooking = freezed,
-    Object? orderStatusNotification = freezed,
-    Object? user = freezed,
+    Object? timeCreated = freezed,
+    Object? orderStatus = freezed,
+    Object? userName = freezed,
+    Object? imgUrl = freezed,
   }) {
     return _then(_$_HistoryProviderModel(
-      isComplete: isComplete == freezed
-          ? _value.isComplete
-          : isComplete // ignore: cast_nullable_to_non_nullable
-              as bool,
       orderNumber: orderNumber == freezed
           ? _value.orderNumber
           : orderNumber // ignore: cast_nullable_to_non_nullable
@@ -158,23 +133,23 @@ class __$$_HistoryProviderModelCopyWithImpl<$Res>
       vehicleType: vehicleType == freezed
           ? _value.vehicleType
           : vehicleType // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceName: serviceName == freezed
-          ? _value.serviceName
-          : serviceName // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceStartBooking: serviceStartBooking == freezed
-          ? _value.serviceStartBooking
-          : serviceStartBooking // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeCreated: timeCreated == freezed
+          ? _value.timeCreated
+          : timeCreated // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      orderStatusNotification: orderStatusNotification == freezed
-          ? _value.orderStatusNotification
-          : orderStatusNotification // ignore: cast_nullable_to_non_nullable
+      orderStatus: orderStatus == freezed
+          ? _value.orderStatus
+          : orderStatus // ignore: cast_nullable_to_non_nullable
+              as int,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      imgUrl: imgUrl == freezed
+          ? _value.imgUrl
+          : imgUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -183,32 +158,29 @@ class __$$_HistoryProviderModelCopyWithImpl<$Res>
 
 class _$_HistoryProviderModel implements _HistoryProviderModel {
   const _$_HistoryProviderModel(
-      {required this.isComplete,
-      required this.orderNumber,
+      {required this.orderNumber,
       required this.vehicleType,
-      required this.serviceName,
-      required this.serviceStartBooking,
-      required this.orderStatusNotification,
-      required this.user});
+      required this.timeCreated,
+      required this.orderStatus,
+      required this.userName,
+      required this.imgUrl});
 
-  @override
-  final bool isComplete;
   @override
   final String orderNumber;
   @override
-  final String vehicleType;
+  final int vehicleType;
   @override
-  final String serviceName;
+  final DateTime timeCreated;
   @override
-  final DateTime serviceStartBooking;
+  final int orderStatus;
   @override
-  final String orderStatusNotification;
+  final String userName;
   @override
-  final UserModel user;
+  final String imgUrl;
 
   @override
   String toString() {
-    return 'HistoryProviderModel(isComplete: $isComplete, orderNumber: $orderNumber, vehicleType: $vehicleType, serviceName: $serviceName, serviceStartBooking: $serviceStartBooking, orderStatusNotification: $orderStatusNotification, user: $user)';
+    return 'HistoryProviderModel(orderNumber: $orderNumber, vehicleType: $vehicleType, timeCreated: $timeCreated, orderStatus: $orderStatus, userName: $userName, imgUrl: $imgUrl)';
   }
 
   @override
@@ -217,30 +189,26 @@ class _$_HistoryProviderModel implements _HistoryProviderModel {
         (other.runtimeType == runtimeType &&
             other is _$_HistoryProviderModel &&
             const DeepCollectionEquality()
-                .equals(other.isComplete, isComplete) &&
-            const DeepCollectionEquality()
                 .equals(other.orderNumber, orderNumber) &&
             const DeepCollectionEquality()
                 .equals(other.vehicleType, vehicleType) &&
             const DeepCollectionEquality()
-                .equals(other.serviceName, serviceName) &&
+                .equals(other.timeCreated, timeCreated) &&
             const DeepCollectionEquality()
-                .equals(other.serviceStartBooking, serviceStartBooking) &&
-            const DeepCollectionEquality().equals(
-                other.orderStatusNotification, orderStatusNotification) &&
-            const DeepCollectionEquality().equals(other.user, user));
+                .equals(other.orderStatus, orderStatus) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
+            const DeepCollectionEquality().equals(other.imgUrl, imgUrl));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(isComplete),
       const DeepCollectionEquality().hash(orderNumber),
       const DeepCollectionEquality().hash(vehicleType),
-      const DeepCollectionEquality().hash(serviceName),
-      const DeepCollectionEquality().hash(serviceStartBooking),
-      const DeepCollectionEquality().hash(orderStatusNotification),
-      const DeepCollectionEquality().hash(user));
+      const DeepCollectionEquality().hash(timeCreated),
+      const DeepCollectionEquality().hash(orderStatus),
+      const DeepCollectionEquality().hash(userName),
+      const DeepCollectionEquality().hash(imgUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -251,28 +219,25 @@ class _$_HistoryProviderModel implements _HistoryProviderModel {
 
 abstract class _HistoryProviderModel implements HistoryProviderModel {
   const factory _HistoryProviderModel(
-      {required final bool isComplete,
-      required final String orderNumber,
-      required final String vehicleType,
-      required final String serviceName,
-      required final DateTime serviceStartBooking,
-      required final String orderStatusNotification,
-      required final UserModel user}) = _$_HistoryProviderModel;
+      {required final String orderNumber,
+      required final int vehicleType,
+      required final DateTime timeCreated,
+      required final int orderStatus,
+      required final String userName,
+      required final String imgUrl}) = _$_HistoryProviderModel;
 
-  @override
-  bool get isComplete;
   @override
   String get orderNumber;
   @override
-  String get vehicleType;
+  int get vehicleType;
   @override
-  String get serviceName;
+  DateTime get timeCreated;
   @override
-  DateTime get serviceStartBooking;
+  int get orderStatus;
   @override
-  String get orderStatusNotification;
+  String get userName;
   @override
-  UserModel get user;
+  String get imgUrl;
   @override
   @JsonKey(ignore: true)
   _$$_HistoryProviderModelCopyWith<_$_HistoryProviderModel> get copyWith =>

@@ -161,7 +161,7 @@ class AddServiceView extends StatelessWidget {
                               errorText: l10n.emptyLabel,
                             ),
                             FormBuilderValidators.match(
-                              r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
+                              r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                               errorText: l10n.invalidFormatLabel,
                             ),
                           ],
@@ -186,7 +186,7 @@ class AddServiceView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[1-9].{4,}$',
+                            r'^[0-9]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -253,10 +253,13 @@ class AddServiceView extends StatelessWidget {
                     onPressed: () {
                       if (_formKey.currentState?.saveAndValidate() == true) {
                         final data = _formKey.currentState?.value;
+                        final fee = (data?['fee'])
+                            .toString()
+                            .replaceAll(RegExp('/^0+/'), '');
                         final model = AddServiceModel(
                           img: imageLink,
                           serviceName: (data?['serviceName']).toString(),
-                          serviceFee: int.parse((data?['fee']).toString()),
+                          serviceFee: int.parse(fee),
                           cate: dropdownvalue,
                         );
                         context.read<AddServiceBloc>().add(

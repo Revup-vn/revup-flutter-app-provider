@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
 
@@ -14,6 +13,7 @@ class OrderStatusItem extends StatelessWidget {
     required this.iconOrder,
     required this.serviceStartBooking,
     required this.serviceEndBooking,
+    required this.isComplete,
   });
   final String orderNumber;
   final String orderStatusNotification;
@@ -21,13 +21,11 @@ class OrderStatusItem extends StatelessWidget {
   final Icon iconOrder;
   final DateTime serviceStartBooking;
   final DateTime serviceEndBooking;
+  final bool isComplete;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    // TODO(tcmhoang): Get datformat from LanguageCubit
-    final formatterDate = DateFormat('dd/MM/yyyy hh:mm');
 
     return Container(
       height: 170,
@@ -41,7 +39,7 @@ class OrderStatusItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 AutoSizeText(
-                  l10n.codeOrderLabel + orderNumber,
+                  '''${l10n.codeOrderLabel} ${orderNumber.length >= 8 ? orderNumber.substring(0, 8) : orderNumber}''',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                           ) ??
@@ -93,8 +91,8 @@ class OrderStatusItem extends StatelessWidget {
                 ),
                 Expanded(
                   child: AutoSizeText(
+                    context.formatDate(serviceStartBooking),
                     textAlign: TextAlign.end,
-                    formatterDate.format(serviceStartBooking),
                     softWrap: true,
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
@@ -109,44 +107,47 @@ class OrderStatusItem extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: AutoSizeText(
-                    l10n.timeCancelLabel,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
-                            ) ??
-                        TextStyle(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+            if (isComplete)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: AutoSizeText(
+                      l10n.timeComletionLabel,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                              ) ??
+                          TextStyle(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 1,
-                  width: 20,
-                ),
-                Expanded(
-                  child: AutoSizeText(
-                    textAlign: TextAlign.end,
-                    formatterDate.format(serviceStartBooking),
-                    softWrap: true,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
-                            ) ??
-                        TextStyle(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                    maxLines: 2,
+                  const SizedBox(
+                    height: 1,
+                    width: 20,
                   ),
-                ),
-              ],
-            ),
+                  Expanded(
+                    child: AutoSizeText(
+                      textAlign: TextAlign.end,
+                      context.formatDate(serviceStartBooking),
+                      softWrap: true,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                              ) ??
+                          TextStyle(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

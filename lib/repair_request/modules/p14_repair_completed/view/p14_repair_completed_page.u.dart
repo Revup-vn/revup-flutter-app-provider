@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../models/models.dart';
 import '../cubit/p14_repair_completed_cubit.dart';
@@ -30,6 +31,11 @@ class P14RepairCompletePage extends StatelessWidget {
             recordId,
             context.read(),
             context.read(),
+            context.read(),
+            context.read<AuthenticateBloc>().state.maybeMap(
+                  orElse: () => throw NullThrownError(),
+                  authenticated: (type) => type.authType.user,
+                ),
           ),
         ),
       ],

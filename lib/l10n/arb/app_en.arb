@@ -252,6 +252,7 @@
   "decLabel": "Dec",
   "incomePerMonthLabel": "Income per month",
   "transPerMonthLabel": "Trans per month",
+  "monthLabel": "month",
   "blsLabel": "Taking an image of Business Lisence is required. This is used to verify your account",
   "chooseNoProduct": "You choose no product",
   "yesLabel": "Yes",
@@ -267,5 +268,9 @@
   "recentLabel": "Recent",
   "clearAllLabel": "Clear all",
   "searchLabel": "Search...",
-  "searchServiceOrProduct": "Search your service or product"
+  "searchServiceOrProduct": "Search your service or product",
+  "successLabel": "Finished",
+  "userDismissed": "User aborted the request, you will get moving fees as compensation ",
+  "notSupportLabel": "We currently don't support this feature. We will release soon"
+ 
 }

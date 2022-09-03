@@ -87,7 +87,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         res.fold(
           (l) => emit(l),
           (r) => emit(
-            const ProfileState.success(),
+            ProfileState.success(aUser: r),
           ),
         );
       },

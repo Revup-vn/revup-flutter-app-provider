@@ -21,10 +21,9 @@ mixin _$HistoryDetailModel {
   DateTime get serviceStartBooking => throw _privateConstructorUsedError;
   DateTime get serviceEndBooking => throw _privateConstructorUsedError;
   OrderDetailModel get orderDetailModel => throw _privateConstructorUsedError;
-  PaymentMethod get paymentMethod => throw _privateConstructorUsedError;
   int get rating => throw _privateConstructorUsedError;
   String get feedback => throw _privateConstructorUsedError;
-  UserModel get consumer => throw _privateConstructorUsedError;
+  AppUser get provider => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HistoryDetailModelCopyWith<HistoryDetailModel> get copyWith =>
@@ -42,13 +41,12 @@ abstract class $HistoryDetailModelCopyWith<$Res> {
       DateTime serviceStartBooking,
       DateTime serviceEndBooking,
       OrderDetailModel orderDetailModel,
-      PaymentMethod paymentMethod,
       int rating,
       String feedback,
-      UserModel consumer});
+      AppUser provider});
 
   $OrderDetailModelCopyWith<$Res> get orderDetailModel;
-  $UserModelCopyWith<$Res> get consumer;
+  $AppUserCopyWith<$Res> get provider;
 }
 
 /// @nodoc
@@ -67,10 +65,9 @@ class _$HistoryDetailModelCopyWithImpl<$Res>
     Object? serviceStartBooking = freezed,
     Object? serviceEndBooking = freezed,
     Object? orderDetailModel = freezed,
-    Object? paymentMethod = freezed,
     Object? rating = freezed,
     Object? feedback = freezed,
-    Object? consumer = freezed,
+    Object? provider = freezed,
   }) {
     return _then(_value.copyWith(
       isComplete: isComplete == freezed
@@ -93,10 +90,6 @@ class _$HistoryDetailModelCopyWithImpl<$Res>
           ? _value.orderDetailModel
           : orderDetailModel // ignore: cast_nullable_to_non_nullable
               as OrderDetailModel,
-      paymentMethod: paymentMethod == freezed
-          ? _value.paymentMethod
-          : paymentMethod // ignore: cast_nullable_to_non_nullable
-              as PaymentMethod,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -105,10 +98,10 @@ class _$HistoryDetailModelCopyWithImpl<$Res>
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
               as String,
-      consumer: consumer == freezed
-          ? _value.consumer
-          : consumer // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      provider: provider == freezed
+          ? _value.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as AppUser,
     ));
   }
 
@@ -120,9 +113,9 @@ class _$HistoryDetailModelCopyWithImpl<$Res>
   }
 
   @override
-  $UserModelCopyWith<$Res> get consumer {
-    return $UserModelCopyWith<$Res>(_value.consumer, (value) {
-      return _then(_value.copyWith(consumer: value));
+  $AppUserCopyWith<$Res> get provider {
+    return $AppUserCopyWith<$Res>(_value.provider, (value) {
+      return _then(_value.copyWith(provider: value));
     });
   }
 }
@@ -140,15 +133,14 @@ abstract class _$$_HistoryDetailModelCopyWith<$Res>
       DateTime serviceStartBooking,
       DateTime serviceEndBooking,
       OrderDetailModel orderDetailModel,
-      PaymentMethod paymentMethod,
       int rating,
       String feedback,
-      UserModel consumer});
+      AppUser provider});
 
   @override
   $OrderDetailModelCopyWith<$Res> get orderDetailModel;
   @override
-  $UserModelCopyWith<$Res> get consumer;
+  $AppUserCopyWith<$Res> get provider;
 }
 
 /// @nodoc
@@ -169,10 +161,9 @@ class __$$_HistoryDetailModelCopyWithImpl<$Res>
     Object? serviceStartBooking = freezed,
     Object? serviceEndBooking = freezed,
     Object? orderDetailModel = freezed,
-    Object? paymentMethod = freezed,
     Object? rating = freezed,
     Object? feedback = freezed,
-    Object? consumer = freezed,
+    Object? provider = freezed,
   }) {
     return _then(_$_HistoryDetailModel(
       isComplete: isComplete == freezed
@@ -195,10 +186,6 @@ class __$$_HistoryDetailModelCopyWithImpl<$Res>
           ? _value.orderDetailModel
           : orderDetailModel // ignore: cast_nullable_to_non_nullable
               as OrderDetailModel,
-      paymentMethod: paymentMethod == freezed
-          ? _value.paymentMethod
-          : paymentMethod // ignore: cast_nullable_to_non_nullable
-              as PaymentMethod,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -207,10 +194,10 @@ class __$$_HistoryDetailModelCopyWithImpl<$Res>
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
               as String,
-      consumer: consumer == freezed
-          ? _value.consumer
-          : consumer // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      provider: provider == freezed
+          ? _value.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as AppUser,
     ));
   }
 }
@@ -224,10 +211,9 @@ class _$_HistoryDetailModel implements _HistoryDetailModel {
       required this.serviceStartBooking,
       required this.serviceEndBooking,
       required this.orderDetailModel,
-      required this.paymentMethod,
       required this.rating,
       required this.feedback,
-      required this.consumer});
+      required this.provider});
 
   @override
   final bool isComplete;
@@ -240,17 +226,15 @@ class _$_HistoryDetailModel implements _HistoryDetailModel {
   @override
   final OrderDetailModel orderDetailModel;
   @override
-  final PaymentMethod paymentMethod;
-  @override
   final int rating;
   @override
   final String feedback;
   @override
-  final UserModel consumer;
+  final AppUser provider;
 
   @override
   String toString() {
-    return 'HistoryDetailModel(isComplete: $isComplete, orderNumber: $orderNumber, serviceStartBooking: $serviceStartBooking, serviceEndBooking: $serviceEndBooking, orderDetailModel: $orderDetailModel, paymentMethod: $paymentMethod, rating: $rating, feedback: $feedback, consumer: $consumer)';
+    return 'HistoryDetailModel(isComplete: $isComplete, orderNumber: $orderNumber, serviceStartBooking: $serviceStartBooking, serviceEndBooking: $serviceEndBooking, orderDetailModel: $orderDetailModel, rating: $rating, feedback: $feedback, provider: $provider)';
   }
 
   @override
@@ -268,11 +252,9 @@ class _$_HistoryDetailModel implements _HistoryDetailModel {
                 .equals(other.serviceEndBooking, serviceEndBooking) &&
             const DeepCollectionEquality()
                 .equals(other.orderDetailModel, orderDetailModel) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
             const DeepCollectionEquality().equals(other.rating, rating) &&
             const DeepCollectionEquality().equals(other.feedback, feedback) &&
-            const DeepCollectionEquality().equals(other.consumer, consumer));
+            const DeepCollectionEquality().equals(other.provider, provider));
   }
 
   @override
@@ -283,10 +265,9 @@ class _$_HistoryDetailModel implements _HistoryDetailModel {
       const DeepCollectionEquality().hash(serviceStartBooking),
       const DeepCollectionEquality().hash(serviceEndBooking),
       const DeepCollectionEquality().hash(orderDetailModel),
-      const DeepCollectionEquality().hash(paymentMethod),
       const DeepCollectionEquality().hash(rating),
       const DeepCollectionEquality().hash(feedback),
-      const DeepCollectionEquality().hash(consumer));
+      const DeepCollectionEquality().hash(provider));
 
   @JsonKey(ignore: true)
   @override
@@ -302,10 +283,9 @@ abstract class _HistoryDetailModel implements HistoryDetailModel {
       required final DateTime serviceStartBooking,
       required final DateTime serviceEndBooking,
       required final OrderDetailModel orderDetailModel,
-      required final PaymentMethod paymentMethod,
       required final int rating,
       required final String feedback,
-      required final UserModel consumer}) = _$_HistoryDetailModel;
+      required final AppUser provider}) = _$_HistoryDetailModel;
 
   @override
   bool get isComplete;
@@ -318,13 +298,11 @@ abstract class _HistoryDetailModel implements HistoryDetailModel {
   @override
   OrderDetailModel get orderDetailModel;
   @override
-  PaymentMethod get paymentMethod;
-  @override
   int get rating;
   @override
   String get feedback;
   @override
-  UserModel get consumer;
+  AppUser get provider;
   @override
   @JsonKey(ignore: true)
   _$$_HistoryDetailModelCopyWith<_$_HistoryDetailModel> get copyWith =>

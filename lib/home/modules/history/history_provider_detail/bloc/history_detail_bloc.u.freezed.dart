@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'profile_bloc.dart';
+part of 'history_detail_bloc.u.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,93 +15,90 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ProfileEvent {
+mixin _$HistoryProviderDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(AppUser user) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AppUser user)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AppUser user)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
+    required TResult Function(_Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileEventCopyWith<$Res> {
-  factory $ProfileEventCopyWith(
-          ProfileEvent value, $Res Function(ProfileEvent) then) =
-      _$ProfileEventCopyWithImpl<$Res>;
+abstract class $HistoryProviderDetailEventCopyWith<$Res> {
+  factory $HistoryProviderDetailEventCopyWith(HistoryProviderDetailEvent value,
+          $Res Function(HistoryProviderDetailEvent) then) =
+      _$HistoryProviderDetailEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
-  _$ProfileEventCopyWithImpl(this._value, this._then);
+class _$HistoryProviderDetailEventCopyWithImpl<$Res>
+    implements $HistoryProviderDetailEventCopyWith<$Res> {
+  _$HistoryProviderDetailEventCopyWithImpl(this._value, this._then);
 
-  final ProfileEvent _value;
+  final HistoryProviderDetailEvent _value;
   // ignore: unused_field
-  final $Res Function(ProfileEvent) _then;
+  final $Res Function(HistoryProviderDetailEvent) _then;
 }
 
 /// @nodoc
-abstract class _$$StartedCopyWith<$Res> {
-  factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
-      __$$StartedCopyWithImpl<$Res>;
+abstract class _$$_StartedCopyWith<$Res> {
+  factory _$$_StartedCopyWith(
+          _$_Started value, $Res Function(_$_Started) then) =
+      __$$_StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements _$$StartedCopyWith<$Res> {
-  __$$StartedCopyWithImpl(_$Started _value, $Res Function(_$Started) _then)
-      : super(_value, (v) => _then(v as _$Started));
+class __$$_StartedCopyWithImpl<$Res>
+    extends _$HistoryProviderDetailEventCopyWithImpl<$Res>
+    implements _$$_StartedCopyWith<$Res> {
+  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+      : super(_value, (v) => _then(v as _$_Started));
 
   @override
-  _$Started get _value => super._value as _$Started;
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
-    return 'ProfileEvent.started()';
+    return 'HistoryProviderDetailEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Started);
+        (other.runtimeType == runtimeType && other is _$_Started);
   }
 
   @override
@@ -111,7 +108,6 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(AppUser user) submitted,
   }) {
     return started();
   }
@@ -120,7 +116,6 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AppUser user)? submitted,
   }) {
     return started?.call();
   }
@@ -129,7 +124,6 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AppUser user)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -141,8 +135,7 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
+    required TResult Function(_Started value) started,
   }) {
     return started(this);
   }
@@ -150,8 +143,7 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
   }) {
     return started?.call(this);
   }
@@ -159,8 +151,7 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -170,161 +161,18 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements ProfileEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements HistoryProviderDetailEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$SubmittedCopyWith<$Res> {
-  factory _$$SubmittedCopyWith(
-          _$Submitted value, $Res Function(_$Submitted) then) =
-      __$$SubmittedCopyWithImpl<$Res>;
-  $Res call({AppUser user});
-
-  $AppUserCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$$SubmittedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements _$$SubmittedCopyWith<$Res> {
-  __$$SubmittedCopyWithImpl(
-      _$Submitted _value, $Res Function(_$Submitted) _then)
-      : super(_value, (v) => _then(v as _$Submitted));
-
-  @override
-  _$Submitted get _value => super._value as _$Submitted;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_$Submitted(
-      user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
-
-  @override
-  $AppUserCopyWith<$Res> get user {
-    return $AppUserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$Submitted implements Submitted {
-  const _$Submitted(this.user);
-
-  @override
-  final AppUser user;
-
-  @override
-  String toString() {
-    return 'ProfileEvent.submitted(user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Submitted &&
-            const DeepCollectionEquality().equals(other.user, user));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
-      __$$SubmittedCopyWithImpl<_$Submitted>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(AppUser user) submitted,
-  }) {
-    return submitted(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(AppUser user)? submitted,
-  }) {
-    return submitted?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(AppUser user)? submitted,
-    required TResult orElse(),
-  }) {
-    if (submitted != null) {
-      return submitted(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
-  }) {
-    return submitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-  }) {
-    return submitted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    required TResult orElse(),
-  }) {
-    if (submitted != null) {
-      return submitted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Submitted implements ProfileEvent {
-  const factory Submitted(final AppUser user) = _$Submitted;
-
-  AppUser get user;
-  @JsonKey(ignore: true)
-  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$ProfileState {
+mixin _$HistoryProviderDetailState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser) success,
-    required TResult Function(AppUser aUser) loadDataSuccess,
+    required TResult Function(HistoryDetailModel model, String cid) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -332,8 +180,7 @@ mixin _$ProfileState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -341,8 +188,7 @@ mixin _$ProfileState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -352,7 +198,6 @@ mixin _$ProfileState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -361,7 +206,6 @@ mixin _$ProfileState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -370,26 +214,26 @@ mixin _$ProfileState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileStateCopyWith<$Res> {
-  factory $ProfileStateCopyWith(
-          ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res>;
+abstract class $HistoryProviderDetailStateCopyWith<$Res> {
+  factory $HistoryProviderDetailStateCopyWith(HistoryProviderDetailState value,
+          $Res Function(HistoryProviderDetailState) then) =
+      _$HistoryProviderDetailStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
-  _$ProfileStateCopyWithImpl(this._value, this._then);
+class _$HistoryProviderDetailStateCopyWithImpl<$Res>
+    implements $HistoryProviderDetailStateCopyWith<$Res> {
+  _$HistoryProviderDetailStateCopyWithImpl(this._value, this._then);
 
-  final ProfileState _value;
+  final HistoryProviderDetailState _value;
   // ignore: unused_field
-  final $Res Function(ProfileState) _then;
+  final $Res Function(HistoryProviderDetailState) _then;
 }
 
 /// @nodoc
@@ -400,7 +244,8 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$HistoryProviderDetailStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -416,7 +261,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ProfileState.initial()';
+    return 'HistoryProviderDetailState.initial()';
   }
 
   @override
@@ -434,8 +279,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser) success,
-    required TResult Function(AppUser aUser) loadDataSuccess,
+    required TResult Function(HistoryDetailModel model, String cid) success,
   }) {
     return initial();
   }
@@ -446,8 +290,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
   }) {
     return initial?.call();
   }
@@ -458,8 +301,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -475,7 +317,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return initial(this);
   }
@@ -487,7 +328,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return initial?.call(this);
   }
@@ -499,7 +339,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -509,7 +348,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ProfileState {
+abstract class _Initial implements HistoryProviderDetailState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -521,7 +360,8 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$HistoryProviderDetailStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -537,7 +377,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'ProfileState.loading()';
+    return 'HistoryProviderDetailState.loading()';
   }
 
   @override
@@ -555,8 +395,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser) success,
-    required TResult Function(AppUser aUser) loadDataSuccess,
+    required TResult Function(HistoryDetailModel model, String cid) success,
   }) {
     return loading();
   }
@@ -567,8 +406,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
   }) {
     return loading?.call();
   }
@@ -579,8 +417,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -596,7 +433,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return loading(this);
   }
@@ -608,7 +444,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return loading?.call(this);
   }
@@ -620,7 +455,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -630,7 +464,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements ProfileState {
+abstract class _Loading implements HistoryProviderDetailState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -642,7 +476,8 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$HistoryProviderDetailStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -658,7 +493,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'ProfileState.failure()';
+    return 'HistoryProviderDetailState.failure()';
   }
 
   @override
@@ -676,8 +511,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser) success,
-    required TResult Function(AppUser aUser) loadDataSuccess,
+    required TResult Function(HistoryDetailModel model, String cid) success,
   }) {
     return failure();
   }
@@ -688,8 +522,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
   }) {
     return failure?.call();
   }
@@ -700,8 +533,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -717,7 +549,6 @@ class _$_Failure implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return failure(this);
   }
@@ -729,7 +560,6 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return failure?.call(this);
   }
@@ -741,7 +571,6 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -751,7 +580,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements ProfileState {
+abstract class _Failure implements HistoryProviderDetailState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -760,13 +589,14 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({AppUser aUser});
+  $Res call({HistoryDetailModel model, String cid});
 
-  $AppUserCopyWith<$Res> get aUser;
+  $HistoryDetailModelCopyWith<$Res> get model;
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$HistoryProviderDetailStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
@@ -776,20 +606,25 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? aUser = freezed,
+    Object? model = freezed,
+    Object? cid = freezed,
   }) {
     return _then(_$_Success(
-      aUser: aUser == freezed
-          ? _value.aUser
-          : aUser // ignore: cast_nullable_to_non_nullable
-              as AppUser,
+      model: model == freezed
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as HistoryDetailModel,
+      cid: cid == freezed
+          ? _value.cid
+          : cid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
   @override
-  $AppUserCopyWith<$Res> get aUser {
-    return $AppUserCopyWith<$Res>(_value.aUser, (value) {
-      return _then(_value.copyWith(aUser: value));
+  $HistoryDetailModelCopyWith<$Res> get model {
+    return $HistoryDetailModelCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value));
     });
   }
 }
@@ -797,14 +632,16 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.aUser});
+  const _$_Success({required this.model, required this.cid});
 
   @override
-  final AppUser aUser;
+  final HistoryDetailModel model;
+  @override
+  final String cid;
 
   @override
   String toString() {
-    return 'ProfileState.success(aUser: $aUser)';
+    return 'HistoryProviderDetailState.success(model: $model, cid: $cid)';
   }
 
   @override
@@ -812,12 +649,15 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other.aUser, aUser));
+            const DeepCollectionEquality().equals(other.model, model) &&
+            const DeepCollectionEquality().equals(other.cid, cid));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(aUser));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(model),
+      const DeepCollectionEquality().hash(cid));
 
   @JsonKey(ignore: true)
   @override
@@ -830,10 +670,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser) success,
-    required TResult Function(AppUser aUser) loadDataSuccess,
+    required TResult Function(HistoryDetailModel model, String cid) success,
   }) {
-    return success(aUser);
+    return success(model, cid);
   }
 
   @override
@@ -842,10 +681,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
   }) {
-    return success?.call(aUser);
+    return success?.call(model, cid);
   }
 
   @override
@@ -854,12 +692,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
+    TResult Function(HistoryDetailModel model, String cid)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(aUser);
+      return success(model, cid);
     }
     return orElse();
   }
@@ -871,7 +708,6 @@ class _$_Success implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return success(this);
   }
@@ -883,7 +719,6 @@ class _$_Success implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return success?.call(this);
   }
@@ -895,7 +730,6 @@ class _$_Success implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -905,169 +739,14 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements ProfileState {
-  const factory _Success({required final AppUser aUser}) = _$_Success;
+abstract class _Success implements HistoryProviderDetailState {
+  const factory _Success(
+      {required final HistoryDetailModel model,
+      required final String cid}) = _$_Success;
 
-  AppUser get aUser;
+  HistoryDetailModel get model;
+  String get cid;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_LoadedCopyWith<$Res> {
-  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
-      __$$_LoadedCopyWithImpl<$Res>;
-  $Res call({AppUser aUser});
-
-  $AppUserCopyWith<$Res> get aUser;
-}
-
-/// @nodoc
-class __$$_LoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$$_LoadedCopyWith<$Res> {
-  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
-      : super(_value, (v) => _then(v as _$_Loaded));
-
-  @override
-  _$_Loaded get _value => super._value as _$_Loaded;
-
-  @override
-  $Res call({
-    Object? aUser = freezed,
-  }) {
-    return _then(_$_Loaded(
-      aUser: aUser == freezed
-          ? _value.aUser
-          : aUser // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
-
-  @override
-  $AppUserCopyWith<$Res> get aUser {
-    return $AppUserCopyWith<$Res>(_value.aUser, (value) {
-      return _then(_value.copyWith(aUser: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_Loaded implements _Loaded {
-  const _$_Loaded({required this.aUser});
-
-  @override
-  final AppUser aUser;
-
-  @override
-  String toString() {
-    return 'ProfileState.loadDataSuccess(aUser: $aUser)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other.aUser, aUser));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(aUser));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
-      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(AppUser aUser) success,
-    required TResult Function(AppUser aUser) loadDataSuccess,
-  }) {
-    return loadDataSuccess(aUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
-  }) {
-    return loadDataSuccess?.call(aUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(AppUser aUser)? success,
-    TResult Function(AppUser aUser)? loadDataSuccess,
-    required TResult orElse(),
-  }) {
-    if (loadDataSuccess != null) {
-      return loadDataSuccess(aUser);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loadDataSuccess,
-  }) {
-    return loadDataSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
-  }) {
-    return loadDataSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loadDataSuccess,
-    required TResult orElse(),
-  }) {
-    if (loadDataSuccess != null) {
-      return loadDataSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loaded implements ProfileState {
-  const factory _Loaded({required final AppUser aUser}) = _$_Loaded;
-
-  AppUser get aUser;
-  @JsonKey(ignore: true)
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

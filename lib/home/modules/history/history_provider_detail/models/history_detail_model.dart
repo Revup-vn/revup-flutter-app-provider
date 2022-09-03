@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:revup_core/core.dart';
 
-import '../../../../../shared/shared.dart';
 import 'order_detail_model.dart';
 
 part 'history_detail_model.freezed.dart';
@@ -13,14 +13,13 @@ class HistoryDetailModel with _$HistoryDetailModel {
     required DateTime serviceStartBooking,
     required DateTime serviceEndBooking,
     required OrderDetailModel orderDetailModel,
-    required PaymentMethod paymentMethod,
     required int rating,
     required String feedback,
-    required UserModel consumer,
+    required AppUser provider,
   }) = _HistoryDetailModel;
 }
 
 enum PaymentMethod {
-  Zalo,
+  Cash,
   Momo,
 }

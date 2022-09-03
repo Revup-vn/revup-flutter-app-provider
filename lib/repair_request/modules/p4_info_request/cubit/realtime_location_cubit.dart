@@ -18,9 +18,9 @@ class RealtimeLocationCubit extends Cubit<RealtimeLocationState> {
   final AppUser user;
   Future<Unit> watch() async {
     _sPosition = Geolocator.getPositionStream(
-            locationSettings:
-                const LocationSettings(timeLimit: Duration(seconds: 10)))
-        .listen((position) async {
+      locationSettings:
+          const LocationSettings(timeLimit: Duration(seconds: 10)),
+    ).listen((position) async {
       final point = GeoFlutterFire()
           .point(latitude: position.latitude, longitude: position.longitude);
       final data = point.data as Map<String, dynamic>;

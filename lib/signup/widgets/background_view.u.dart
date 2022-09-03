@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import '../../shared/shared.dart';
 
@@ -22,31 +21,21 @@ class BackGroundView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (imgUrl.isEmpty)
-          SizedBox(
-            child: backgroundImg.path.isEmpty
-                ? CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: coverHeight,
-                    imageUrl: kFallbackBackground,
-                  )
-                : Image.file(
-                    backgroundImg,
-                    fit: BoxFit.fill,
-                    height: coverHeight,
-                    width: double.infinity,
-                  ),
-          )
-        else
-          SizedBox(
-            child: CachedNetworkImage(
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: coverHeight,
-              imageUrl: imgUrl,
-            ),
-          ),
+        SizedBox(
+          child: backgroundImg.path.isEmpty
+              ? CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: coverHeight,
+                  imageUrl: imgUrl.isEmpty ? kFallbackBackground : imgUrl,
+                )
+              : Image.file(
+                  backgroundImg,
+                  fit: BoxFit.fill,
+                  height: coverHeight,
+                  width: double.infinity,
+                ),
+        ),
         Positioned(
           bottom: 1,
           right: 1,

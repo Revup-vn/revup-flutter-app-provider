@@ -28,7 +28,12 @@ class ListServiceView extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 16,
+          right: 16,
+          bottom: 30,
+        ),
         child: Column(
           children: <Widget>[
             SizedBox(
