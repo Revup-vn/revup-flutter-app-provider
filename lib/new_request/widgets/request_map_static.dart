@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -26,7 +27,8 @@ class RequestMapStatic extends StatefulWidget {
 
 class _RequestMapStaticState extends State<RequestMapStatic> {
   late CameraPosition _initialLocation;
-  late GoogleMapController mapController;
+  // late GoogleMapController mapController;
+  Completer<GoogleMapController> _controller = Completer();
   Set<Marker> markers = {};
   late LatLng _startCoordinate;
 
@@ -53,8 +55,9 @@ class _RequestMapStaticState extends State<RequestMapStatic> {
       padding: const EdgeInsets.only(bottom: 320),
       initialCameraPosition: _initialLocation,
       onMapCreated: (GoogleMapController controller) {
-        mapController = controller;
+        // mapController = controller;
         fitPolylineToView(widget.directions.polylinePoints, controller);
+        _controller.complete(controller);
       },
       markers: Set<Marker>.from(markers),
       polylines: {

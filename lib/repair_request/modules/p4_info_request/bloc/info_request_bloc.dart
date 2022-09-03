@@ -48,14 +48,21 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
         );
 
         final maybeRecord = (await _repairRecord.get(recordId))
-            .map<PendingRepairRequest>(
-              (r) => r.maybeMap(
-                accepted: (v) => PendingRepairRequest.fromDto(repairRecord: v),
-                arrived: (v) => PendingRepairRequest.fromDto(repairRecord: v),
-                orElse: () => throw NullThrownError(),
+            .map(
+              (r) => r.maybeMap<Option<PendingRepairRequest>>(
+                accepted: (v) =>
+                    some(PendingRepairRequest.fromDto(repairRecord: v)),
+                arrived: (v) =>
+                    some(PendingRepairRequest.fromDto(repairRecord: v)),
+                orElse: none,
               ),
             )
-            .getOrElse(() => throw NullThrownError());
+            .fold<Option<PendingRepairRequest>>((l) => none(), (r) => r);
+
+        if (maybeRecord.isNone()) {
+          emit(const InfoRequestState.failure());
+        }
+        final record = maybeRecord.getOrElse(() => throw NullThrownError());
 
         final needToVerifyService = (await _paymentService.all())
             .map<IList<PaymentService>>(
@@ -80,7 +87,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
 
             return InfoRequestState.success(
               needToVerifyService: needToVerifyService,
-              record: maybeRecord,
+              record: record,
               len: lst.length(),
               isReady: lst
                   .filter(

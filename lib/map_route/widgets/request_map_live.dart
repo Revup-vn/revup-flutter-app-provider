@@ -1,9 +1,8 @@
 import 'dart:math' hide log;
 
-import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -143,7 +142,7 @@ class _RequestMapLiveState extends State<RequestMapLive> {
         polylineCoordinates[i + 1].longitude,
       );
     }
-    _distance = totalDistance.toStringAsFixed(2);
+    _distance = totalDistance.toStringAsFixed(1);
 
     return polylines;
   }
