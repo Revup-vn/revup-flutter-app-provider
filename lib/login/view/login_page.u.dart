@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -138,7 +137,7 @@ class LoginPage extends StatelessWidget {
                 );
                 if (value.active == true) {
                   context.loaderOverlay.hide();
-                  await showDialog<String>(
+                  unawaited(showDialog<String>(
                     barrierDismissible: false,
                     context: context,
                     builder: (context) {
@@ -176,7 +175,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       );
                     },
-                  );
+                  ));
 
                   return Future.delayed(
                     const Duration(seconds: 3),
@@ -204,7 +203,7 @@ class LoginPage extends StatelessWidget {
                   );
                 } else {
                   context.loaderOverlay.hide();
-                  await showDialog<String>(
+                  unawaited(showDialog<String>(
                     context: context,
                     builder: (context) {
                       return Dialog(
@@ -299,7 +298,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       );
                     },
-                  );
+                  ));
                 }
                 return null;
               },

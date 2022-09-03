@@ -11,12 +11,14 @@ part 'history_provider_state.dart';
 
 class HistoryProviderBloc
     extends Bloc<HistoryProviderEvent, HistoryProviderState> {
-  HistoryProviderBloc(this._irr, this._iau) : super(const _Initial()) {
+  HistoryProviderBloc(this._irr, this._iau, this.pid)
+      : super(const _Initial()) {
     on<HistoryProviderEvent>(_onEventHistory);
   }
 
   final IStore<RepairRecord> _irr;
   final IStore<AppUser> _iau;
+  final String pid;
 
   Future<void> _onEventHistory(
     HistoryProviderEvent event,
@@ -29,6 +31,8 @@ class HistoryProviderBloc
         final mapRecordVsAppUserConsumer = Map.fromEntries(
           (await (await _irr.queryTs(
             (a) => a
+                .where(RepairRecordDummy.field(RepairRecordFields.ProviderId),
+                    isEqualTo: pid)
                 .where(
                   'type',
                   whereIn: [
@@ -48,6 +52,7 @@ class HistoryProviderBloc
                     (a) async =>
                         MapEntry(a, (await _iau.get(a.cid)).toOption()),
                   ))
+              .filter((a) => a.value.isSome())
               .toIterable(),
         );
 
