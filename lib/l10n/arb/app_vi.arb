@@ -239,7 +239,7 @@
   "febLabel": "2",
   "marLabel": "3",
   "aprLabel": "4",
-  "mayLabel":"5",
+  "mayLabel": "5",
   "junLabel": "6",
   "julLabel": "7",
   "augLabel": "8",
@@ -268,5 +268,6 @@
   "searchServiceOrProduct": "Tìm kiếm dịch vụ hoặc sản phẩm của bạn",
   "successLabel": "Hoàn thành",
   "userDismissed": "Người dùng đã hủy bỏ yêu cầu, bạn sẽ nhận được phí di chuyển như một khoản bồi thường",
-  "notSupportLabel": "Chúng tôi hiện không hỗ trợ tính năng này. Chúng tôi sẽ phát hành sớm"
+  "notSupportLabel": "Chúng tôi hiện không hỗ trợ tính năng này. Chúng tôi sẽ phát hành sớm",
+  "consumerAbortLabel": "Đơn hàng đã bị huỷ"
 }
