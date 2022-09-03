@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
+import '../../../../router/router.dart';
 import '../../../../shared/shared.dart';
 import '../../models/servicerawdata.dart';
 
@@ -14,11 +16,13 @@ class SearchResult extends StatelessWidget {
     required this.keyword,
     required this.resultCount,
     required this.type,
+    required this.providerID,
   });
   final String keyword;
   final int resultCount;
   final int type;
   final List<ServiceRawData> results;
+  final String providerID;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +94,30 @@ class SearchResult extends StatelessWidget {
                               children: [
                                 ListTile(
                                   onTap: () {
-                                    //todo route to detail
+                                    type == 0
+                                        ? context.router.push(
+                                            DetailServiceRoute(
+                                              providerID: providerID,
+                                              serviceName: results[index].name,
+                                              category: results[index].cate == 0
+                                                  ? 'Xe máy'
+                                                  : 'Oto',
+                                            ),
+                                          )
+                                        : context.router.push(
+                                            AddProductRoute(
+                                              providerID: providerID,
+                                              cate: results[index].cate == 0
+                                                  ? 'Xe máy'
+                                                  : 'Oto',
+                                              sName: results[index].maybeMap(
+                                                orElse: () => '',
+                                                product: (value) => value.sName,
+                                              ),
+                                              pName: results[index].name,
+                                              type: 1,
+                                            ),
+                                          );
                                   },
                                   leading: SizedBox(
                                     width: 54,
@@ -139,12 +166,10 @@ class SearchResult extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             child: IconButton(
-                              onPressed: () {
-                                //route to detail
-                              },
-                              icon: const Icon(
+                              onPressed: null,
+                              icon: Icon(
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),

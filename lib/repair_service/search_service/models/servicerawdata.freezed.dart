@@ -18,23 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ServiceRawData {
   String get name => throw _privateConstructorUsedError;
   String get imgUrl => throw _privateConstructorUsedError;
+  int get cate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, String imgUrl, String feeRange)
+    required TResult Function(
+            String name, String imgUrl, String feeRange, int cate)
         service,
-    required TResult Function(String name, String imgUrl, int fee) product,
+    required TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)
+        product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String imgUrl, String feeRange)? service,
-    TResult Function(String name, String imgUrl, int fee)? product,
+    TResult Function(String name, String imgUrl, String feeRange, int cate)?
+        service,
+    TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)?
+        product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String imgUrl, String feeRange)? service,
-    TResult Function(String name, String imgUrl, int fee)? product,
+    TResult Function(String name, String imgUrl, String feeRange, int cate)?
+        service,
+    TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)?
+        product,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +78,7 @@ abstract class $ServiceRawDataCopyWith<$Res> {
   factory $ServiceRawDataCopyWith(
           ServiceRawData value, $Res Function(ServiceRawData) then) =
       _$ServiceRawDataCopyWithImpl<$Res>;
-  $Res call({String name, String imgUrl});
+  $Res call({String name, String imgUrl, int cate});
 }
 
 /// @nodoc
@@ -84,6 +94,7 @@ class _$ServiceRawDataCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? imgUrl = freezed,
+    Object? cate = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -94,6 +105,10 @@ class _$ServiceRawDataCopyWithImpl<$Res>
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      cate: cate == freezed
+          ? _value.cate
+          : cate // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -105,7 +120,7 @@ abstract class _$$_serviceCopyWith<$Res>
           _$_service value, $Res Function(_$_service) then) =
       __$$_serviceCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String imgUrl, String feeRange});
+  $Res call({String name, String imgUrl, String feeRange, int cate});
 }
 
 /// @nodoc
@@ -122,6 +137,7 @@ class __$$_serviceCopyWithImpl<$Res> extends _$ServiceRawDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? imgUrl = freezed,
     Object? feeRange = freezed,
+    Object? cate = freezed,
   }) {
     return _then(_$_service(
       name: name == freezed
@@ -136,6 +152,10 @@ class __$$_serviceCopyWithImpl<$Res> extends _$ServiceRawDataCopyWithImpl<$Res>
           ? _value.feeRange
           : feeRange // ignore: cast_nullable_to_non_nullable
               as String,
+      cate: cate == freezed
+          ? _value.cate
+          : cate // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -144,7 +164,10 @@ class __$$_serviceCopyWithImpl<$Res> extends _$ServiceRawDataCopyWithImpl<$Res>
 
 class _$_service implements _service {
   _$_service(
-      {required this.name, required this.imgUrl, required this.feeRange});
+      {required this.name,
+      required this.imgUrl,
+      required this.feeRange,
+      required this.cate});
 
   @override
   final String name;
@@ -152,10 +175,12 @@ class _$_service implements _service {
   final String imgUrl;
   @override
   final String feeRange;
+  @override
+  final int cate;
 
   @override
   String toString() {
-    return 'ServiceRawData.service(name: $name, imgUrl: $imgUrl, feeRange: $feeRange)';
+    return 'ServiceRawData.service(name: $name, imgUrl: $imgUrl, feeRange: $feeRange, cate: $cate)';
   }
 
   @override
@@ -165,7 +190,8 @@ class _$_service implements _service {
             other is _$_service &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.imgUrl, imgUrl) &&
-            const DeepCollectionEquality().equals(other.feeRange, feeRange));
+            const DeepCollectionEquality().equals(other.feeRange, feeRange) &&
+            const DeepCollectionEquality().equals(other.cate, cate));
   }
 
   @override
@@ -173,7 +199,8 @@ class _$_service implements _service {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(imgUrl),
-      const DeepCollectionEquality().hash(feeRange));
+      const DeepCollectionEquality().hash(feeRange),
+      const DeepCollectionEquality().hash(cate));
 
   @JsonKey(ignore: true)
   @override
@@ -183,31 +210,40 @@ class _$_service implements _service {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, String imgUrl, String feeRange)
+    required TResult Function(
+            String name, String imgUrl, String feeRange, int cate)
         service,
-    required TResult Function(String name, String imgUrl, int fee) product,
+    required TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)
+        product,
   }) {
-    return service(name, imgUrl, feeRange);
+    return service(name, imgUrl, feeRange, cate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String imgUrl, String feeRange)? service,
-    TResult Function(String name, String imgUrl, int fee)? product,
+    TResult Function(String name, String imgUrl, String feeRange, int cate)?
+        service,
+    TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)?
+        product,
   }) {
-    return service?.call(name, imgUrl, feeRange);
+    return service?.call(name, imgUrl, feeRange, cate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String imgUrl, String feeRange)? service,
-    TResult Function(String name, String imgUrl, int fee)? product,
+    TResult Function(String name, String imgUrl, String feeRange, int cate)?
+        service,
+    TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)?
+        product,
     required TResult orElse(),
   }) {
     if (service != null) {
-      return service(name, imgUrl, feeRange);
+      return service(name, imgUrl, feeRange, cate);
     }
     return orElse();
   }
@@ -248,13 +284,16 @@ abstract class _service implements ServiceRawData {
   factory _service(
       {required final String name,
       required final String imgUrl,
-      required final String feeRange}) = _$_service;
+      required final String feeRange,
+      required final int cate}) = _$_service;
 
   @override
   String get name;
   @override
   String get imgUrl;
   String get feeRange;
+  @override
+  int get cate;
   @override
   @JsonKey(ignore: true)
   _$$_serviceCopyWith<_$_service> get copyWith =>
@@ -268,7 +307,7 @@ abstract class _$$_productCopyWith<$Res>
           _$_product value, $Res Function(_$_product) then) =
       __$$_productCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String imgUrl, int fee});
+  $Res call({String name, String imgUrl, int fee, String sName, int cate});
 }
 
 /// @nodoc
@@ -285,6 +324,8 @@ class __$$_productCopyWithImpl<$Res> extends _$ServiceRawDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? imgUrl = freezed,
     Object? fee = freezed,
+    Object? sName = freezed,
+    Object? cate = freezed,
   }) {
     return _then(_$_product(
       name: name == freezed
@@ -299,6 +340,14 @@ class __$$_productCopyWithImpl<$Res> extends _$ServiceRawDataCopyWithImpl<$Res>
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
               as int,
+      sName: sName == freezed
+          ? _value.sName
+          : sName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cate: cate == freezed
+          ? _value.cate
+          : cate // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -306,7 +355,12 @@ class __$$_productCopyWithImpl<$Res> extends _$ServiceRawDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_product implements _product {
-  _$_product({required this.name, required this.imgUrl, required this.fee});
+  _$_product(
+      {required this.name,
+      required this.imgUrl,
+      required this.fee,
+      required this.sName,
+      required this.cate});
 
   @override
   final String name;
@@ -314,10 +368,14 @@ class _$_product implements _product {
   final String imgUrl;
   @override
   final int fee;
+  @override
+  final String sName;
+  @override
+  final int cate;
 
   @override
   String toString() {
-    return 'ServiceRawData.product(name: $name, imgUrl: $imgUrl, fee: $fee)';
+    return 'ServiceRawData.product(name: $name, imgUrl: $imgUrl, fee: $fee, sName: $sName, cate: $cate)';
   }
 
   @override
@@ -327,7 +385,9 @@ class _$_product implements _product {
             other is _$_product &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.imgUrl, imgUrl) &&
-            const DeepCollectionEquality().equals(other.fee, fee));
+            const DeepCollectionEquality().equals(other.fee, fee) &&
+            const DeepCollectionEquality().equals(other.sName, sName) &&
+            const DeepCollectionEquality().equals(other.cate, cate));
   }
 
   @override
@@ -335,7 +395,9 @@ class _$_product implements _product {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(imgUrl),
-      const DeepCollectionEquality().hash(fee));
+      const DeepCollectionEquality().hash(fee),
+      const DeepCollectionEquality().hash(sName),
+      const DeepCollectionEquality().hash(cate));
 
   @JsonKey(ignore: true)
   @override
@@ -345,31 +407,40 @@ class _$_product implements _product {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, String imgUrl, String feeRange)
+    required TResult Function(
+            String name, String imgUrl, String feeRange, int cate)
         service,
-    required TResult Function(String name, String imgUrl, int fee) product,
+    required TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)
+        product,
   }) {
-    return product(name, imgUrl, fee);
+    return product(name, imgUrl, fee, sName, cate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String imgUrl, String feeRange)? service,
-    TResult Function(String name, String imgUrl, int fee)? product,
+    TResult Function(String name, String imgUrl, String feeRange, int cate)?
+        service,
+    TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)?
+        product,
   }) {
-    return product?.call(name, imgUrl, fee);
+    return product?.call(name, imgUrl, fee, sName, cate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String imgUrl, String feeRange)? service,
-    TResult Function(String name, String imgUrl, int fee)? product,
+    TResult Function(String name, String imgUrl, String feeRange, int cate)?
+        service,
+    TResult Function(
+            String name, String imgUrl, int fee, String sName, int cate)?
+        product,
     required TResult orElse(),
   }) {
     if (product != null) {
-      return product(name, imgUrl, fee);
+      return product(name, imgUrl, fee, sName, cate);
     }
     return orElse();
   }
@@ -410,13 +481,18 @@ abstract class _product implements ServiceRawData {
   factory _product(
       {required final String name,
       required final String imgUrl,
-      required final int fee}) = _$_product;
+      required final int fee,
+      required final String sName,
+      required final int cate}) = _$_product;
 
   @override
   String get name;
   @override
   String get imgUrl;
   int get fee;
+  String get sName;
+  @override
+  int get cate;
   @override
   @JsonKey(ignore: true)
   _$$_productCopyWith<_$_product> get copyWith =>

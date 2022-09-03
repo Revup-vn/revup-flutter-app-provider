@@ -9,6 +9,7 @@ class ServiceRawData with _$ServiceRawData {
     required String name,
     required String imgUrl,
     required String feeRange,
+    required int cate,
   }) = _service;
 
   @FreezedUnionValue('2')
@@ -16,5 +17,7 @@ class ServiceRawData with _$ServiceRawData {
     required String name,
     required String imgUrl,
     required int fee,
+    required String sName,
+    required int cate,
   }) = _product;
 }

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
+import '../../search_service/search/cubit/search_cubit.dart';
 import '../bloc/detail_service_bloc.dart';
 import 'detail_service_builder.u.dart';
 
@@ -21,14 +21,25 @@ class DetailServicePage extends StatelessWidget {
   final String category;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DetailServiceBloc(
-        providerID,
-        context.read(),
-        context.read(),
-        category,
-        serviceName,
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DetailServiceBloc(
+            providerID,
+            context.read(),
+            context.read(),
+            category,
+            serviceName,
+          ),
+        ),
+        BlocProvider(
+          create: (context) => SearchCubit(
+            providerID,
+            context.read(),
+            context.read(),
+          ),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(

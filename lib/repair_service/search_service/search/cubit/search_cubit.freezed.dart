@@ -19,56 +19,56 @@ mixin _$SearchState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function(String keyword, int resultCount) empty,
     required TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)
+            List<ServiceRawData> results, String providerId)
         result,
+    required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Empty value) empty,
     required TResult Function(_Success value) result,
+    required TResult Function(_Loading value) loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -130,11 +130,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function(String keyword, int resultCount) empty,
     required TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)
+            List<ServiceRawData> results, String providerId)
         result,
+    required TResult Function() loading,
   }) {
     return initial();
   }
@@ -143,11 +143,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
   }) {
     return initial?.call();
   }
@@ -156,11 +156,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -173,9 +173,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Empty value) empty,
     required TResult Function(_Success value) result,
+    required TResult Function(_Loading value) loading,
   }) {
     return initial(this);
   }
@@ -184,9 +184,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
   }) {
     return initial?.call(this);
   }
@@ -195,9 +195,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -209,127 +209,6 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements SearchState {
   const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
-
-  @override
-  _$_Loading get _value => super._value as _$_Loading;
-}
-
-/// @nodoc
-
-class _$_Loading implements _Loading {
-  const _$_Loading();
-
-  @override
-  String toString() {
-    return 'SearchState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(String keyword, int resultCount) empty,
-    required TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)
-        result,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(String keyword, int resultCount)? empty,
-    TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
-        result,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(String keyword, int resultCount)? empty,
-    TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
-        result,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Empty value) empty,
-    required TResult Function(_Success value) result,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Empty value)? empty,
-    TResult Function(_Success value)? result,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Empty value)? empty,
-    TResult Function(_Success value)? result,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements SearchState {
-  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -406,11 +285,11 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function(String keyword, int resultCount) empty,
     required TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)
+            List<ServiceRawData> results, String providerId)
         result,
+    required TResult Function() loading,
   }) {
     return empty(keyword, resultCount);
   }
@@ -419,11 +298,11 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
   }) {
     return empty?.call(keyword, resultCount);
   }
@@ -432,11 +311,11 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -449,9 +328,9 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Empty value) empty,
     required TResult Function(_Success value) result,
+    required TResult Function(_Loading value) loading,
   }) {
     return empty(this);
   }
@@ -460,9 +339,9 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
   }) {
     return empty?.call(this);
   }
@@ -471,9 +350,9 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -504,7 +383,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
       {String keyword,
       int resultCount,
       int type,
-      List<ServiceRawData> results});
+      List<ServiceRawData> results,
+      String providerId});
 }
 
 /// @nodoc
@@ -522,6 +402,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
     Object? resultCount = freezed,
     Object? type = freezed,
     Object? results = freezed,
+    Object? providerId = freezed,
   }) {
     return _then(_$_Success(
       keyword: keyword == freezed
@@ -540,6 +421,10 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<ServiceRawData>,
+      providerId: providerId == freezed
+          ? _value.providerId
+          : providerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -551,7 +436,8 @@ class _$_Success implements _Success {
       {required this.keyword,
       required this.resultCount,
       required this.type,
-      required final List<ServiceRawData> results})
+      required final List<ServiceRawData> results,
+      required this.providerId})
       : _results = results;
 
   @override
@@ -568,8 +454,11 @@ class _$_Success implements _Success {
   }
 
   @override
+  final String providerId;
+
+  @override
   String toString() {
-    return 'SearchState.result(keyword: $keyword, resultCount: $resultCount, type: $type, results: $results)';
+    return 'SearchState.result(keyword: $keyword, resultCount: $resultCount, type: $type, results: $results, providerId: $providerId)';
   }
 
   @override
@@ -581,7 +470,9 @@ class _$_Success implements _Success {
             const DeepCollectionEquality()
                 .equals(other.resultCount, resultCount) &&
             const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other._results, _results));
+            const DeepCollectionEquality().equals(other._results, _results) &&
+            const DeepCollectionEquality()
+                .equals(other.providerId, providerId));
   }
 
   @override
@@ -590,7 +481,8 @@ class _$_Success implements _Success {
       const DeepCollectionEquality().hash(keyword),
       const DeepCollectionEquality().hash(resultCount),
       const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(_results));
+      const DeepCollectionEquality().hash(_results),
+      const DeepCollectionEquality().hash(providerId));
 
   @JsonKey(ignore: true)
   @override
@@ -601,41 +493,41 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function(String keyword, int resultCount) empty,
     required TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)
+            List<ServiceRawData> results, String providerId)
         result,
+    required TResult Function() loading,
   }) {
-    return result(keyword, resultCount, type, results);
+    return result(keyword, resultCount, type, results, providerId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
   }) {
-    return result?.call(keyword, resultCount, type, results);
+    return result?.call(keyword, resultCount, type, results, providerId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function(String keyword, int resultCount)? empty,
     TResult Function(String keyword, int resultCount, int type,
-            List<ServiceRawData> results)?
+            List<ServiceRawData> results, String providerId)?
         result,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (result != null) {
-      return result(keyword, resultCount, type, results);
+      return result(keyword, resultCount, type, results, providerId);
     }
     return orElse();
   }
@@ -644,9 +536,9 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Empty value) empty,
     required TResult Function(_Success value) result,
+    required TResult Function(_Loading value) loading,
   }) {
     return result(this);
   }
@@ -655,9 +547,9 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
   }) {
     return result?.call(this);
   }
@@ -666,9 +558,9 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Empty value)? empty,
     TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (result != null) {
@@ -683,13 +575,136 @@ abstract class _Success implements SearchState {
       {required final String keyword,
       required final int resultCount,
       required final int type,
-      required final List<ServiceRawData> results}) = _$_Success;
+      required final List<ServiceRawData> results,
+      required final String providerId}) = _$_Success;
 
   String get keyword;
   int get resultCount;
   int get type;
   List<ServiceRawData> get results;
+  String get providerId;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'SearchState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String keyword, int resultCount) empty,
+    required TResult Function(String keyword, int resultCount, int type,
+            List<ServiceRawData> results, String providerId)
+        result,
+    required TResult Function() loading,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String keyword, int resultCount)? empty,
+    TResult Function(String keyword, int resultCount, int type,
+            List<ServiceRawData> results, String providerId)?
+        result,
+    TResult Function()? loading,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String keyword, int resultCount)? empty,
+    TResult Function(String keyword, int resultCount, int type,
+            List<ServiceRawData> results, String providerId)?
+        result,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) result,
+    required TResult Function(_Loading value) loading,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? result,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements SearchState {
+  const factory _Loading() = _$_Loading;
 }

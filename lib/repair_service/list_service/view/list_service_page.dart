@@ -22,7 +22,11 @@ class ListServicePage extends StatelessWidget {
                 ListServiceBloc(providerID, context.read(), context.read()),
           ),
           BlocProvider(
-            create: (context) => SearchCubit(),
+            create: (context) => SearchCubit(
+              providerID,
+              context.read(),
+              context.read(),
+            ),
           ),
         ],
         child: Scaffold(
@@ -35,23 +39,29 @@ class ListServicePage extends StatelessWidget {
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
             actions: <Widget>[
-              Builder(builder: (context) {
-                return IconButton(
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: ProviderSearch(
-                        searchCubit: BlocProvider.of<SearchCubit>(context),
-                        hintText: context.l10n.searchLabel,
-                        searchFieldStyle:
-                            Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      useRootNavigator: false,
-                    );
-                  },
-                  icon: const Icon(Icons.search_rounded),
-                );
-              }),
+              Builder(
+                builder: (context) {
+                  return IconButton(
+                    onPressed: () {
+                      final t = BlocProvider.of<SearchCubit>(context);
+                      showSearch(
+                        context: context,
+                        delegate: ProviderSearch(
+                          0,
+                          1,
+                          '',
+                          searchBloc: t,
+                          hintText: context.l10n.searchLabel,
+                          searchFieldStyle:
+                              Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        useRootNavigator: false,
+                      );
+                    },
+                    icon: const Icon(Icons.search_rounded),
+                  );
+                },
+              ),
               TextButton(
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context)

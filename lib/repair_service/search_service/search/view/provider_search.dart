@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart' hide SearchDelegate;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -11,8 +10,11 @@ import '../widgets/search_initial.dart';
 import '../widgets/search_result.dart';
 
 class ProviderSearch extends SearchDelegate<String> {
-  ProviderSearch({
-    required this.searchCubit,
+  ProviderSearch(
+    this.type,
+    this.cate,
+    this.sName, {
+    required this.searchBloc,
     required String hintText,
     required super.searchFieldStyle,
   }) : super(
@@ -20,9 +22,10 @@ class ProviderSearch extends SearchDelegate<String> {
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.search,
         );
-  final SearchCubit searchCubit;
-  final _rangeFieldKey =
-      GlobalKey<FormBuilderFieldState<FormBuilderField<double>, double>>();
+  final SearchCubit searchBloc;
+  final int type;
+  final int cate;
+  final String sName;
 
   @override
   Widget? buildLeading(BuildContext context) {
@@ -36,9 +39,9 @@ class ProviderSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    searchCubit.searchByKeyword(query);
+    searchBloc.searchByKeyword(query, type, sName, cate);
     return BlocBuilder<SearchCubit, SearchState>(
-      bloc: searchCubit,
+      bloc: searchBloc,
       builder: (context, state) => state.when(
         initial: SearchInitial.new,
         loading: () => Center(
@@ -48,11 +51,12 @@ class ProviderSearch extends SearchDelegate<String> {
           keyword: keyword,
           resultCount: resultCount,
         ),
-        result: (keyword, resultCount, type, results) => SearchResult(
+        result: (keyword, resultCount, type, results, pro) => SearchResult(
           keyword: keyword,
           resultCount: resultCount,
           results: results,
           type: type,
+          providerID: pro,
         ),
       ),
     );

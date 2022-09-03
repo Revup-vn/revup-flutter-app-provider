@@ -53,6 +53,7 @@ dependencies:
       version: ^6.3.5-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
+  tiengviet: ^0.5.0
   url_launcher: ^6.1.5
 
 dev_dependencies:
