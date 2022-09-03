@@ -262,6 +262,13 @@
   "moneyUnit": "VND",
   "noServiceLabel": "You have no service yet.",
   "addCommonServiceQuestionLabel": "Do you want to use common service?",
+  "resultForLabel": "Results for",
+  "resultCountLabel": "founds",
+  "notFoundLabel": "Not Found",
+  "recentLabel": "Recent",
+  "clearAllLabel": "Clear all",
+  "searchLabel": "Search...",
+  "searchServiceOrProduct": "Search your service or product",
   "successLabel": "Finished",
   "userDismissed": "User aborted the request, you will get moving fees as compensation ",
   "notSupportLabel": "We currently don't support this feature. We will release soon"

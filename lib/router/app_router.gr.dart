@@ -156,8 +156,7 @@ class AppRouter extends _i27.RootStackRouter {
       final args = routeData.argsAs<ListServiceRouteArgs>();
       return _i27.AdaptivePage<void>(
           routeData: routeData,
-          child: _i9.ListServicePage(args.providerID, key: args.key),
-          maintainState: false);
+          child: _i9.ListServicePage(args.providerID, key: args.key));
     },
     DetailServiceRoute.name: (routeData) {
       final args = routeData.argsAs<DetailServiceRouteArgs>();
@@ -165,8 +164,7 @@ class AppRouter extends _i27.RootStackRouter {
           routeData: routeData,
           child: _i9.DetailServicePage(
               args.providerID, args.serviceName, args.category,
-              key: args.key),
-          maintainState: false);
+              key: args.key));
     },
     HistoryProviderDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryProviderDetailRouteArgs>();

@@ -1,14 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart' hide showSearch;
 import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
 import '../../../shared/shared.dart';
+import '../../../shared/widgets/search_custom.dart';
+import '../../search_service/search/cubit/search_cubit.dart';
+import '../../search_service/search/view/provider_search.dart';
 import '../widgets/card_service_detail.u.dart';
 
 class DetailServiceView extends StatelessWidget {
@@ -17,12 +19,14 @@ class DetailServiceView extends StatelessWidget {
     required this.listProduct,
     required this.providerID,
     required this.cate,
+    required this.searchCubit,
     super.key,
   });
   final RepairService service;
   final IList<RepairProduct> listProduct;
   final String providerID;
   final String cate;
+  final SearchCubit searchCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +131,25 @@ class DetailServiceView extends StatelessWidget {
                 const SizedBox(
                   height: 1,
                   width: 20,
+                ),
+                IconButton(
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: ProviderSearch(
+                        1,
+                        cate == 'Xe máy' ? 0 : 1,
+                        service.name,
+                        searchBloc: searchCubit,
+                        hintText: context.l10n.searchLabel,
+                        searchFieldStyle:
+                            Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      useRootNavigator: false,
+                    );
+                  },
+                  icon: const Icon(Icons.search_rounded),
+                  iconSize: 24,
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
