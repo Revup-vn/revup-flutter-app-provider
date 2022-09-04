@@ -101,6 +101,9 @@ class AddProductBloc extends Bloc<AddProductEvent, AddProductState> {
                 productName: '',
                 productFee: 0,
                 des: '',
+                cate: cate,
+                sName: sName,
+                isActive: true,
               ),
               cate: cate,
               providerID: providerID,
@@ -142,6 +145,9 @@ class AddProductBloc extends Bloc<AddProductEvent, AddProductState> {
                                   productName: a.name,
                                   productFee: a.price,
                                   des: a.desc,
+                                  cate: cate.name,
+                                  sName: sName,
+                                  isActive: a.active,
                                 ),
                               ),
                             ),
@@ -249,6 +255,7 @@ class AddProductBloc extends Bloc<AddProductEvent, AddProductState> {
                                 desc: data.des,
                                 img: data.imageUrl,
                                 price: data.productFee,
+                                active: data.isActive,
                               );
                               final t = await storeRepository
                                   .repairProductRepo(aUser, cate, repaiService)
