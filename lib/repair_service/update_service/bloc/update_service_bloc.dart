@@ -104,6 +104,7 @@ class UpdateServiceBloc extends Bloc<UpdateServiceEvent, UpdateServiceState> {
                             serviceName: repaiService.name,
                             serviceFee: repaiService.fee,
                             cate: cate.name,
+                            active: repaiService.active,
                           ),
                         );
                       },
@@ -115,9 +116,9 @@ class UpdateServiceBloc extends Bloc<UpdateServiceEvent, UpdateServiceState> {
           },
         );
         final res1 = await repairService.future;
-        emit(UpdateServiceState.loadDataSuccess(model: res1));
+        emit(UpdateServiceState.loadDataSuccess(model: res1, pid: providerID));
       },
-      submitted: (model) async {
+      submitted: (model, oldName) async {
         final completer = Completer<Either<StoreFailure, Unit>>();
         emit(const UpdateServiceState.loading());
         await (await _userRepos.get(providerID))
@@ -139,25 +140,45 @@ class UpdateServiceBloc extends Bloc<UpdateServiceEvent, UpdateServiceState> {
                 (cate) async {
                   (await storeRepository
                           .repairServiceRepo(aUser, cate)
-                          .where('name', isEqualTo: serviceName))
+                          .get(oldName))
                       .map(
-                    (r) => r.map(
-                      (repaiService) async {
-                        final t = await storeRepository
-                            .repairServiceRepo(aUser, cate)
-                            .update(
-                              RepairService(
-                                name: model.serviceName,
-                                fee: model.serviceFee,
-                                img: model.img,
-                              ),
-                            );
-                        t.fold(
-                          (l) => completer.complete(left(l)),
-                          (r) => completer.complete(right(r)),
+                    (repairSv) async {
+                      final listProduct = (await storeRepository
+                              .repairProductRepo(aUser, cate, repairSv)
+                              .all())
+                          .fold((l) => nil<RepairProduct>(), (r) => r);
+                      final t = await storeRepository
+                          .repairServiceRepo(aUser, cate)
+                          .update(
+                            RepairService(
+                              name: model.serviceName,
+                              fee: model.serviceFee,
+                              img: model.img,
+                              active: model.active,
+                            ),
+                            RepairServiceDummy.dummy(oldName),
+                          );
+
+                      t.fold(
+                          (l) => completer.complete(
+                                left(l),
+                              ), (r) async {
+                        await Future.wait(
+                          listProduct.map((a) async {
+                            final ttttttt =
+                                await (storeRepository.repairProductRepo(
+                              aUser,
+                              cate,
+                              RepairServiceDummy.dummy(model.serviceName),
+                            )).create(a);
+                            return ttttttt;
+                          }).toList(),
                         );
-                      },
-                    ),
+                        completer.complete(
+                          right(r),
+                        );
+                      });
+                    },
                   );
                 },
               ),

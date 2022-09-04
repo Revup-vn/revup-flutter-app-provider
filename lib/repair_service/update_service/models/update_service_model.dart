@@ -9,5 +9,6 @@ class UpdateServiceModel with _$UpdateServiceModel {
     required String serviceName,
     required int serviceFee,
     required String cate,
+    required bool active,
   }) = _UpdateServiceModel;
 }

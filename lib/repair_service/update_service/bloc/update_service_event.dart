@@ -6,5 +6,6 @@ class UpdateServiceEvent with _$UpdateServiceEvent {
   const factory UpdateServiceEvent.deleted() = _Deleted;
   const factory UpdateServiceEvent.submitted({
     required UpdateServiceModel model,
+    required String oldName,
   }) = _Submitted;
 }

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -12,6 +13,7 @@ import '../../../l10n/l10n.dart';
 import '../../../shared/shared.dart';
 import '../bloc/add_product_bloc.dart';
 import '../bloc/upload_image_bloc.dart';
+import '../cubit/add_product_cubit.dart';
 import '../models/add_product_model.dart';
 
 class AddProductView extends StatelessWidget {
@@ -30,7 +32,7 @@ class AddProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final oldName = productModel.productName;
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
@@ -255,18 +257,102 @@ class AddProductView extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          AutoSizeText(
-                            l10n.productInfoLabel,
-                            style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(
+                          Row(
+                            children: [
+                              AutoSizeText(
+                                l10n.productInfoLabel,
+                                style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .outline,
+                                        ) ??
+                                    TextStyle(
                                       color:
                                           Theme.of(context).colorScheme.outline,
-                                    ) ??
-                                TextStyle(
-                                  color: Theme.of(context).colorScheme.outline,
+                                    ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    AutoSizeText(
+                                      l10n.availableLabel,
+                                      style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium
+                                              ?.copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline,
+                                              ) ??
+                                          TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .outline,
+                                          ),
+                                    ),
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    BlocBuilder<AddProductCubit,
+                                        AddProductCubitState>(
+                                      builder: (context, state) => state.when(
+                                        initial: () => FlutterSwitch(
+                                          value: productModel.isActive,
+                                          width: 45,
+                                          height: 25,
+                                          activeColor: Theme.of(context)
+                                              .colorScheme
+                                              .inversePrimary,
+                                          inactiveColor: Theme.of(context)
+                                              .colorScheme
+                                              .outline,
+                                          onToggle: (value) {
+                                            context
+                                                .read<AddProductCubit>()
+                                                .changeStatus(
+                                                  curStatus: value,
+                                                  providerID: providerID,
+                                                  sName: serviceName,
+                                                  cate: cate,
+                                                  pName:
+                                                      productModel.productName,
+                                                );
+                                          },
+                                        ),
+                                        changeActiveStatusSuccess: (status) =>
+                                            FlutterSwitch(
+                                          value: status,
+                                          width: 45,
+                                          height: 25,
+                                          activeColor: Theme.of(context)
+                                              .colorScheme
+                                              .inversePrimary,
+                                          inactiveColor: Theme.of(context)
+                                              .colorScheme
+                                              .outline,
+                                          onToggle: (value) {
+                                            context
+                                                .read<AddProductCubit>()
+                                                .changeStatus(
+                                                  curStatus: value,
+                                                  providerID: providerID,
+                                                  sName: serviceName,
+                                                  cate: cate,
+                                                  pName:
+                                                      productModel.productName,
+                                                );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 10),
                           AutoSizeText(
@@ -276,7 +362,7 @@ class AddProductView extends StatelessWidget {
                           const SizedBox(height: 5),
                           FormBuilderTextField(
                             initialValue: productModel.productName,
-                            enabled: productModel.productName.isEmpty,
+                            //enabled: productModel.productName.isEmpty,
                             name: 'productName',
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -349,34 +435,76 @@ class AddProductView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Theme.of(context).cardColor),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() == true) {
-                      final data = _formKey.currentState?.value;
-                      final fee = (data?['fee'])
-                          .toString()
-                          .replaceAll(RegExp('/^0+/'), '');
-                      final model = AddProductModel(
-                        des: (data?['des']).toString(),
-                        imageUrl: imageLink.isEmpty
-                            ? productModel.imageUrl
-                            : imageLink,
-                        productFee: int.parse(fee),
-                        productName: (data?['productName']).toString(),
-                      );
-                      context.read<AddProductBloc>().add(
-                            AddProductEvent.submitted(
-                              data: model,
-                              type: productModel.productName.isEmpty ? 0 : 1,
-                            ),
-                          );
-                    }
+                child: BlocBuilder<AddProductCubit, AddProductCubitState>(
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      onPressed: state.when(
+                        initial: () => () {
+                          if (_formKey.currentState?.saveAndValidate() ==
+                              true) {
+                            final data = _formKey.currentState?.value;
+                            final fee = (data?['fee'])
+                                .toString()
+                                .replaceAll(RegExp('/^0+/'), '');
+                            final model = AddProductModel(
+                              des: (data?['des']).toString(),
+                              imageUrl: imageLink.isEmpty
+                                  ? productModel.imageUrl
+                                  : imageLink,
+                              productFee: int.parse(fee),
+                              productName: (data?['productName']).toString(),
+                              cate: cate,
+                              isActive: productModel.isActive,
+                              sName: serviceName,
+                            );
+                            context.read<AddProductBloc>().add(
+                                  AddProductEvent.submitted(
+                                    data: model,
+                                    type: productModel.productName.isEmpty
+                                        ? 0
+                                        : 1,
+                                    oldName: oldName,
+                                  ),
+                                );
+                          }
+                        },
+                        changeActiveStatusSuccess: (status) => () {
+                          if (_formKey.currentState?.saveAndValidate() ==
+                              true) {
+                            final data = _formKey.currentState?.value;
+                            final fee = (data?['fee'])
+                                .toString()
+                                .replaceAll(RegExp('/^0+/'), '');
+                            final model = AddProductModel(
+                              des: (data?['des']).toString(),
+                              imageUrl: imageLink.isEmpty
+                                  ? productModel.imageUrl
+                                  : imageLink,
+                              productFee: int.parse(fee),
+                              productName: (data?['productName']).toString(),
+                              cate: cate,
+                              isActive: status,
+                              sName: serviceName,
+                            );
+                            context.read<AddProductBloc>().add(
+                                  AddProductEvent.submitted(
+                                    data: model,
+                                    type: productModel.productName.isEmpty
+                                        ? 0
+                                        : 1,
+                                    oldName: oldName,
+                                  ),
+                                );
+                          }
+                        },
+                      ),
+                      style: Theme.of(context).elevatedButtonTheme.style,
+                      child: AutoSizeText(
+                        l10n.saveLabel,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    );
                   },
-                  style: Theme.of(context).elevatedButtonTheme.style,
-                  child: AutoSizeText(
-                    l10n.saveLabel,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
                 ),
               ),
             ],

@@ -49,8 +49,8 @@ dependencies:
     # path: ../revup-core
     git:
       url: https://github.com/Revup-vn/revup-core.git
-      ref: main
-      version: ^6.3.5-dev
+      ref: hotfix/istore-update
+      version: ^6.3.6-dev+1
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   tiengviet: ^0.5.0

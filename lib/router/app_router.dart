@@ -67,7 +67,6 @@ import '../vendor_authentication/vender_authentication.dart';
         AdaptiveRoute<void>(page: NotificationProviderPage),
         AdaptiveRoute<void>(page: AccountPage),
       ],
-      maintainState: false,
     ),
   ],
 )
