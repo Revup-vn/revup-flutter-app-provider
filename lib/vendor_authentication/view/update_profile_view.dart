@@ -294,6 +294,30 @@ class UpdateProfileView extends StatelessWidget {
                               );
                             }
                             if (list[0].path.isEmpty && list[1].path.isEmpty) {
+                              final appUser =
+                                  AppUserDummy.dummyProvider(user.uuid)
+                                      .maybeMap(
+                                orElse: () => throw NullThrownError(),
+                                provider: (value) => value.copyWith(
+                                  avatarUrl: user.avatarUrl,
+                                  backgroundUrl: user.maybeMap(
+                                    orElse: () => '',
+                                    provider: (value) => value.backgroundUrl,
+                                  ),
+                                  addr: data?['address'].toString() ?? '',
+                                  firstName: fName ?? '',
+                                  lastName: lName,
+                                  dob: DateTime.parse(
+                                    data?['date'].toString().split(' ')[0] ??
+                                        '',
+                                  ),
+                                  bio: data?['bio'].toString() ?? '',
+                                ),
+                              );
+                              context.read<ProfileBloc>().add(
+                                    ProfileEvent.submitted(appUser),
+                                  );
+                            } else {
                               final ilistFile = ilist(list);
                               final ilistStorageFile = ilistFile
                                   .map((a) => StorageFile.profile(file: a));
@@ -355,30 +379,6 @@ class UpdateProfileView extends StatelessWidget {
                                   );
                                 },
                               );
-                            } else {
-                              final appUser =
-                                  AppUserDummy.dummyProvider(user.uuid)
-                                      .maybeMap(
-                                orElse: () => throw NullThrownError(),
-                                provider: (value) => value.copyWith(
-                                  avatarUrl: user.avatarUrl,
-                                  backgroundUrl: user.maybeMap(
-                                    orElse: () => '',
-                                    provider: (value) => value.backgroundUrl,
-                                  ),
-                                  addr: data?['address'].toString() ?? '',
-                                  firstName: fName ?? '',
-                                  lastName: lName,
-                                  dob: DateTime.parse(
-                                    data?['date'].toString().split(' ')[0] ??
-                                        '',
-                                  ),
-                                  bio: data?['bio'].toString() ?? '',
-                                ),
-                              );
-                              context.read<ProfileBloc>().add(
-                                    ProfileEvent.submitted(appUser),
-                                  );
                             }
                           }
                         },
