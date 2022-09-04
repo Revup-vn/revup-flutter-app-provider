@@ -17,6 +17,7 @@ import '../../../../shared/widgets/default_avatar.dart';
 import '../../../../shared/widgets/loading.u.dart';
 import '../../../home.dart';
 import '../cubit/home_primary_cubit.dart';
+import '../widgets/card_service.u.dart';
 
 class HomePrimaryView extends StatelessWidget {
   const HomePrimaryView({
@@ -377,15 +378,16 @@ class HomePrimaryView extends StatelessWidget {
                     ),
                     loaded: (user, recentOrder, listService, ads) => Swiper(
                       autoplay: true,
+                      duration: 500,
                       layout: SwiperLayout.STACK,
-                      itemCount: listService.toList().length,
+                      itemCount: listService.length,
                       itemBuilder: (context, index) {
-                        final data = listService.toList();
-                        return CartServiceReview(
-                          isActive: data[index].isActive,
-                          imgUrl: data[index].imgUrl,
-                          serviceName: data[index].name,
-                          priceRange: context.formatMoney(data[index].fee),
+                        return CartService(
+                          isActive: listService[index].isActive,
+                          imgUrl: listService[index].imgUrl,
+                          serviceName: listService[index].name,
+                          priceRange:
+                              context.formatMoney(listService[index].fee),
                           callback: () {
                             context.router.push(
                               ListServiceRoute(
@@ -403,14 +405,14 @@ class HomePrimaryView extends StatelessWidget {
                     recentOrderEmpty: (aS, listService, ads) => Swiper(
                       autoplay: true,
                       layout: SwiperLayout.STACK,
-                      itemCount: listService.toList().length,
+                      itemCount: listService.length,
                       itemBuilder: (context, index) {
-                        final data = listService.toList();
                         return CartServiceReview(
-                          isActive: data[index].isActive,
-                          imgUrl: data[index].imgUrl,
-                          serviceName: data[index].name,
-                          priceRange: context.formatMoney(data[index].fee),
+                          isActive: listService[index].isActive,
+                          imgUrl: listService[index].imgUrl,
+                          serviceName: listService[index].name,
+                          priceRange:
+                              context.formatMoney(listService[index].fee),
                           callback: () {
                             context.router.push(
                               ListServiceRoute(
