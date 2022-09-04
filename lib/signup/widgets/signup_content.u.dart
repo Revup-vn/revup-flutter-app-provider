@@ -14,7 +14,6 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
 
-import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 import '../bloc/signup_bloc.u.dart';
@@ -480,7 +479,6 @@ class SignUpContent extends StatelessWidget {
                                           vac: VideoCallAccount(
                                             id: uid,
                                             username: '+84$phoneNumber',
-                                            pwd: DEFAULT_PASS,
                                             email:
                                                 data?['email'].toString() ?? '',
                                           ),
@@ -520,7 +518,6 @@ class SignUpContent extends StatelessWidget {
                                     vac: VideoCallAccount(
                                       id: uid,
                                       username: '+84$phoneNumber',
-                                      pwd: DEFAULT_PASS,
                                       email: data?['email'].toString() ?? '',
                                     ),
                                   ),

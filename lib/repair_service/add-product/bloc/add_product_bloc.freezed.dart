@@ -20,21 +20,22 @@ mixin _$AddProductEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int type) started,
     required TResult Function() deleteProduct,
-    required TResult Function(AddProductModel data, int type) submitted,
+    required TResult Function(AddProductModel data, int type, String oldName)
+        submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,7 +145,8 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(int type) started,
     required TResult Function() deleteProduct,
-    required TResult Function(AddProductModel data, int type) submitted,
+    required TResult Function(AddProductModel data, int type, String oldName)
+        submitted,
   }) {
     return started(type);
   }
@@ -154,7 +156,7 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
   }) {
     return started?.call(type);
   }
@@ -164,7 +166,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -257,7 +259,8 @@ class _$_Delete implements _Delete {
   TResult when<TResult extends Object?>({
     required TResult Function(int type) started,
     required TResult Function() deleteProduct,
-    required TResult Function(AddProductModel data, int type) submitted,
+    required TResult Function(AddProductModel data, int type, String oldName)
+        submitted,
   }) {
     return deleteProduct();
   }
@@ -267,7 +270,7 @@ class _$_Delete implements _Delete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
   }) {
     return deleteProduct?.call();
   }
@@ -277,7 +280,7 @@ class _$_Delete implements _Delete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -330,7 +333,7 @@ abstract class _$$_SubmittedCopyWith<$Res> {
   factory _$$_SubmittedCopyWith(
           _$_Submitted value, $Res Function(_$_Submitted) then) =
       __$$_SubmittedCopyWithImpl<$Res>;
-  $Res call({AddProductModel data, int type});
+  $Res call({AddProductModel data, int type, String oldName});
 
   $AddProductModelCopyWith<$Res> get data;
 }
@@ -350,6 +353,7 @@ class __$$_SubmittedCopyWithImpl<$Res>
   $Res call({
     Object? data = freezed,
     Object? type = freezed,
+    Object? oldName = freezed,
   }) {
     return _then(_$_Submitted(
       data: data == freezed
@@ -360,6 +364,10 @@ class __$$_SubmittedCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as int,
+      oldName: oldName == freezed
+          ? _value.oldName
+          : oldName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -374,16 +382,19 @@ class __$$_SubmittedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Submitted implements _Submitted {
-  const _$_Submitted({required this.data, required this.type});
+  const _$_Submitted(
+      {required this.data, required this.type, required this.oldName});
 
   @override
   final AddProductModel data;
   @override
   final int type;
+  @override
+  final String oldName;
 
   @override
   String toString() {
-    return 'AddProductEvent.submitted(data: $data, type: $type)';
+    return 'AddProductEvent.submitted(data: $data, type: $type, oldName: $oldName)';
   }
 
   @override
@@ -392,14 +403,16 @@ class _$_Submitted implements _Submitted {
         (other.runtimeType == runtimeType &&
             other is _$_Submitted &&
             const DeepCollectionEquality().equals(other.data, data) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.oldName, oldName));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(data),
-      const DeepCollectionEquality().hash(type));
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(oldName));
 
   @JsonKey(ignore: true)
   @override
@@ -411,9 +424,10 @@ class _$_Submitted implements _Submitted {
   TResult when<TResult extends Object?>({
     required TResult Function(int type) started,
     required TResult Function() deleteProduct,
-    required TResult Function(AddProductModel data, int type) submitted,
+    required TResult Function(AddProductModel data, int type, String oldName)
+        submitted,
   }) {
-    return submitted(data, type);
+    return submitted(data, type, oldName);
   }
 
   @override
@@ -421,9 +435,9 @@ class _$_Submitted implements _Submitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
   }) {
-    return submitted?.call(data, type);
+    return submitted?.call(data, type, oldName);
   }
 
   @override
@@ -431,11 +445,11 @@ class _$_Submitted implements _Submitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int type)? started,
     TResult Function()? deleteProduct,
-    TResult Function(AddProductModel data, int type)? submitted,
+    TResult Function(AddProductModel data, int type, String oldName)? submitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
-      return submitted(data, type);
+      return submitted(data, type, oldName);
     }
     return orElse();
   }
@@ -478,10 +492,12 @@ class _$_Submitted implements _Submitted {
 abstract class _Submitted implements AddProductEvent {
   const factory _Submitted(
       {required final AddProductModel data,
-      required final int type}) = _$_Submitted;
+      required final int type,
+      required final String oldName}) = _$_Submitted;
 
   AddProductModel get data;
   int get type;
+  String get oldName;
   @JsonKey(ignore: true)
   _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
       throw _privateConstructorUsedError;

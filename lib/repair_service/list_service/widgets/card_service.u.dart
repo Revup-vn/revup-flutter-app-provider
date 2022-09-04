@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import '../../../shared/utils/fallbacks.dart';
 
@@ -11,11 +10,13 @@ class CartServiceReview extends StatelessWidget {
     required this.imgUrl,
     required this.serviceName,
     required this.priceRange,
+    required this.isActive,
     this.callback,
   });
   final String imgUrl;
   final String serviceName;
   final String priceRange;
+  final bool isActive;
   final VoidCallback? callback;
 
   @override
@@ -23,7 +24,9 @@ class CartServiceReview extends StatelessWidget {
     return InkWell(
       onTap: callback,
       child: Card(
-        color: Theme.of(context).colorScheme.surface,
+        color: isActive
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

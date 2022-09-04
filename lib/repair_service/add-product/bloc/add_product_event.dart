@@ -7,5 +7,6 @@ class AddProductEvent with _$AddProductEvent {
   const factory AddProductEvent.submitted({
     required AddProductModel data,
     required int type,
+    required String oldName,
   }) = _Submitted;
 }
