@@ -9,8 +9,5 @@ class AddProductModel with _$AddProductModel {
     required String productName,
     required int productFee,
     required String des,
-    required String sName,
-    required String cate,
-    required bool isActive,
   }) = _AddProductModel;
 }

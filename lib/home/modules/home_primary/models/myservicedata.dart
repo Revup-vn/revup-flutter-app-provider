@@ -8,6 +8,5 @@ class MyServiceData with _$MyServiceData {
     required String name,
     required String imgUrl,
     required int fee,
-    required bool isActive,
   }) = _MyServiceData;
 }

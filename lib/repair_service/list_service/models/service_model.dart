@@ -9,6 +9,5 @@ class ServiceModel with _$ServiceModel {
     required int sortType,
     required String price,
     required String imageUrl,
-    required bool isActive,
   }) = _ServiceModel;
 }

@@ -20,7 +20,6 @@ mixin _$UpdateServiceModel {
   String get serviceName => throw _privateConstructorUsedError;
   int get serviceFee => throw _privateConstructorUsedError;
   String get cate => throw _privateConstructorUsedError;
-  bool get active => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UpdateServiceModelCopyWith<UpdateServiceModel> get copyWith =>
@@ -32,12 +31,7 @@ abstract class $UpdateServiceModelCopyWith<$Res> {
   factory $UpdateServiceModelCopyWith(
           UpdateServiceModel value, $Res Function(UpdateServiceModel) then) =
       _$UpdateServiceModelCopyWithImpl<$Res>;
-  $Res call(
-      {String img,
-      String serviceName,
-      int serviceFee,
-      String cate,
-      bool active});
+  $Res call({String img, String serviceName, int serviceFee, String cate});
 }
 
 /// @nodoc
@@ -55,7 +49,6 @@ class _$UpdateServiceModelCopyWithImpl<$Res>
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
     Object? cate = freezed,
-    Object? active = freezed,
   }) {
     return _then(_value.copyWith(
       img: img == freezed
@@ -74,10 +67,6 @@ class _$UpdateServiceModelCopyWithImpl<$Res>
           ? _value.cate
           : cate // ignore: cast_nullable_to_non_nullable
               as String,
-      active: active == freezed
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -89,12 +78,7 @@ abstract class _$$_UpdateServiceModelCopyWith<$Res>
           $Res Function(_$_UpdateServiceModel) then) =
       __$$_UpdateServiceModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String img,
-      String serviceName,
-      int serviceFee,
-      String cate,
-      bool active});
+  $Res call({String img, String serviceName, int serviceFee, String cate});
 }
 
 /// @nodoc
@@ -114,7 +98,6 @@ class __$$_UpdateServiceModelCopyWithImpl<$Res>
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
     Object? cate = freezed,
-    Object? active = freezed,
   }) {
     return _then(_$_UpdateServiceModel(
       img: img == freezed
@@ -133,10 +116,6 @@ class __$$_UpdateServiceModelCopyWithImpl<$Res>
           ? _value.cate
           : cate // ignore: cast_nullable_to_non_nullable
               as String,
-      active: active == freezed
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -148,8 +127,7 @@ class _$_UpdateServiceModel implements _UpdateServiceModel {
       {required this.img,
       required this.serviceName,
       required this.serviceFee,
-      required this.cate,
-      required this.active});
+      required this.cate});
 
   @override
   final String img;
@@ -159,12 +137,10 @@ class _$_UpdateServiceModel implements _UpdateServiceModel {
   final int serviceFee;
   @override
   final String cate;
-  @override
-  final bool active;
 
   @override
   String toString() {
-    return 'UpdateServiceModel(img: $img, serviceName: $serviceName, serviceFee: $serviceFee, cate: $cate, active: $active)';
+    return 'UpdateServiceModel(img: $img, serviceName: $serviceName, serviceFee: $serviceFee, cate: $cate)';
   }
 
   @override
@@ -177,8 +153,7 @@ class _$_UpdateServiceModel implements _UpdateServiceModel {
                 .equals(other.serviceName, serviceName) &&
             const DeepCollectionEquality()
                 .equals(other.serviceFee, serviceFee) &&
-            const DeepCollectionEquality().equals(other.cate, cate) &&
-            const DeepCollectionEquality().equals(other.active, active));
+            const DeepCollectionEquality().equals(other.cate, cate));
   }
 
   @override
@@ -187,8 +162,7 @@ class _$_UpdateServiceModel implements _UpdateServiceModel {
       const DeepCollectionEquality().hash(img),
       const DeepCollectionEquality().hash(serviceName),
       const DeepCollectionEquality().hash(serviceFee),
-      const DeepCollectionEquality().hash(cate),
-      const DeepCollectionEquality().hash(active));
+      const DeepCollectionEquality().hash(cate));
 
   @JsonKey(ignore: true)
   @override
@@ -202,8 +176,7 @@ abstract class _UpdateServiceModel implements UpdateServiceModel {
       {required final String img,
       required final String serviceName,
       required final int serviceFee,
-      required final String cate,
-      required final bool active}) = _$_UpdateServiceModel;
+      required final String cate}) = _$_UpdateServiceModel;
 
   @override
   String get img;
@@ -213,8 +186,6 @@ abstract class _UpdateServiceModel implements UpdateServiceModel {
   int get serviceFee;
   @override
   String get cate;
-  @override
-  bool get active;
   @override
   @JsonKey(ignore: true)
   _$$_UpdateServiceModelCopyWith<_$_UpdateServiceModel> get copyWith =>

@@ -382,7 +382,6 @@ class HomePrimaryView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final data = listService.toList();
                         return CartServiceReview(
-                          isActive: data[index].isActive,
                           imgUrl: data[index].imgUrl,
                           serviceName: data[index].name,
                           priceRange: context.formatMoney(data[index].fee),
@@ -407,7 +406,6 @@ class HomePrimaryView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final data = listService.toList();
                         return CartServiceReview(
-                          isActive: data[index].isActive,
                           imgUrl: data[index].imgUrl,
                           serviceName: data[index].name,
                           priceRange: context.formatMoney(data[index].fee),

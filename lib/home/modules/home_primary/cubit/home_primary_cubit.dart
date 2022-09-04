@@ -71,7 +71,6 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
             fee: sv.fee,
             imgUrl: sv.img ?? '',
             name: sv.name,
-            isActive: sv.active,
           ),
         );
     final list = listRecentOrder.toList();

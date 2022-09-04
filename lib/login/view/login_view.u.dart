@@ -256,7 +256,6 @@ class LoginView extends StatelessWidget {
                                       username: user.phoneNumber ?? '',
                                       pwd: 'DEFAULT_PASS',
                                     ),
-                                    violatedTimes: 0,
                                   ),
                                 );
                               }

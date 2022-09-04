@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -12,18 +11,15 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../../l10n/l10n.dart';
 import '../../../shared/shared.dart';
 import '../bloc/upload_image_bloc.dart';
-import '../cubit/detail_service_cubit.dart';
 import '../update_service.dart';
 
 class UpdateServiceView extends StatelessWidget {
   UpdateServiceView(
-    this.data,
-    this.pid, {
+    this.data, {
     super.key,
   });
   final _formKey = GlobalKey<FormBuilderState>();
   final UpdateServiceModel data;
-  final String pid;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -247,98 +243,18 @@ class UpdateServiceView extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              AutoSizeText(
-                                l10n.serviceInforLabel,
-                                style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .outline,
-                                        ) ??
-                                    TextStyle(
+                          AutoSizeText(
+                            l10n.serviceInforLabel,
+                            style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
                                       color:
                                           Theme.of(context).colorScheme.outline,
-                                    ),
-                              ),
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    AutoSizeText(
-                                      l10n.availableLabel,
-                                      style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium
-                                              ?.copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .outline,
-                                              ) ??
-                                          TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .outline,
-                                          ),
-                                    ),
-                                    const SizedBox(
-                                      width: 15,
-                                    ),
-                                    BlocBuilder<DetailServiceCubit,
-                                        DetailServiceState>(
-                                      builder: (context, state) => state.when(
-                                        initial: () => FlutterSwitch(
-                                          value: data.active,
-                                          width: 45,
-                                          height: 25,
-                                          activeColor: Theme.of(context)
-                                              .colorScheme
-                                              .inversePrimary,
-                                          inactiveColor: Theme.of(context)
-                                              .colorScheme
-                                              .outline,
-                                          onToggle: (value) {
-                                            context
-                                                .read<DetailServiceCubit>()
-                                                .changeStatus(
-                                                  curStatus: value,
-                                                  providerID: pid,
-                                                  sName: data.serviceName,
-                                                  cate: data.cate,
-                                                );
-                                          },
-                                        ),
-                                        changeActiveStatusSuccess: (status) =>
-                                            FlutterSwitch(
-                                          value: status,
-                                          width: 45,
-                                          height: 25,
-                                          activeColor: Theme.of(context)
-                                              .colorScheme
-                                              .inversePrimary,
-                                          inactiveColor: Theme.of(context)
-                                              .colorScheme
-                                              .outline,
-                                          onToggle: (value) {
-                                            context
-                                                .read<DetailServiceCubit>()
-                                                .changeStatus(
-                                                  curStatus: value,
-                                                  providerID: pid,
-                                                  sName: data.serviceName,
-                                                  cate: data.cate,
-                                                );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                    ) ??
+                                TextStyle(
+                                  color: Theme.of(context).colorScheme.outline,
                                 ),
-                              ),
-                            ],
                           ),
                           const SizedBox(height: 10),
                           AutoSizeText(
@@ -406,69 +322,29 @@ class UpdateServiceView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 height: 80,
                 width: MediaQuery.of(context).size.width,
-                child: BlocBuilder<DetailServiceCubit, DetailServiceState>(
-                  builder: (context, state) {
-                    return ElevatedButton(
-                      onPressed: state.when(
-                        initial: () => data.active
-                            ? () {
-                                if (_formKey.currentState?.saveAndValidate() ==
-                                    true) {
-                                  final dataForm = _formKey.currentState?.value;
-                                  final fee = (dataForm?['fee'])
-                                      .toString()
-                                      .replaceAll(RegExp('/^0+/'), '');
-                                  final model = UpdateServiceModel(
-                                    img: imageLink.isEmpty
-                                        ? data.img
-                                        : imageLink,
-                                    serviceName:
-                                        (dataForm?['serviceName']).toString(),
-                                    serviceFee: int.parse(fee),
-                                    cate: data.cate,
-                                    active: data.active,
-                                  );
-                                  context.read<UpdateServiceBloc>().add(
-                                        UpdateServiceEvent.submitted(
-                                          model: model,
-                                        ),
-                                      );
-                                }
-                              }
-                            : null,
-                        changeActiveStatusSuccess: (status) => status
-                            ? () {
-                                if (_formKey.currentState?.saveAndValidate() ==
-                                    true) {
-                                  final dataForm = _formKey.currentState?.value;
-                                  final fee = (dataForm?['fee'])
-                                      .toString()
-                                      .replaceAll(RegExp('/^0+/'), '');
-                                  final model = UpdateServiceModel(
-                                    img: imageLink.isEmpty
-                                        ? data.img
-                                        : imageLink,
-                                    serviceName:
-                                        (dataForm?['serviceName']).toString(),
-                                    serviceFee: int.parse(fee),
-                                    cate: data.cate,
-                                    active: status,
-                                  );
-                                  context.read<UpdateServiceBloc>().add(
-                                        UpdateServiceEvent.submitted(
-                                            model: model),
-                                      );
-                                }
-                              }
-                            : null,
-                      ),
-                      style: Theme.of(context).elevatedButtonTheme.style,
-                      child: AutoSizeText(
-                        l10n.saveLabel,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    );
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState?.saveAndValidate() == true) {
+                      final dataForm = _formKey.currentState?.value;
+                      final fee = (dataForm?['fee'])
+                          .toString()
+                          .replaceAll(RegExp('/^0+/'), '');
+                      final model = UpdateServiceModel(
+                        img: imageLink.isEmpty ? data.img : imageLink,
+                        serviceName: (dataForm?['serviceName']).toString(),
+                        serviceFee: int.parse(fee),
+                        cate: data.cate,
+                      );
+                      context.read<UpdateServiceBloc>().add(
+                            UpdateServiceEvent.submitted(model: model),
+                          );
+                    }
                   },
+                  style: Theme.of(context).elevatedButtonTheme.style,
+                  child: AutoSizeText(
+                    l10n.saveLabel,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                 ),
               ),
             ],

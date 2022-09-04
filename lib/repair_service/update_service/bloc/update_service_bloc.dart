@@ -104,7 +104,6 @@ class UpdateServiceBloc extends Bloc<UpdateServiceEvent, UpdateServiceState> {
                             serviceName: repaiService.name,
                             serviceFee: repaiService.fee,
                             cate: cate.name,
-                            active: repaiService.active,
                           ),
                         );
                       },
@@ -116,7 +115,7 @@ class UpdateServiceBloc extends Bloc<UpdateServiceEvent, UpdateServiceState> {
           },
         );
         final res1 = await repairService.future;
-        emit(UpdateServiceState.loadDataSuccess(model: res1, pid: providerID));
+        emit(UpdateServiceState.loadDataSuccess(model: res1));
       },
       submitted: (model) async {
         final completer = Completer<Either<StoreFailure, Unit>>();

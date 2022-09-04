@@ -87,7 +87,6 @@ class ListServiceView extends StatelessWidget {
               itemCount: listService.length,
               shrinkWrap: true,
               itemBuilder: (context, index) => CartServiceReview(
-                isActive: listService[index].isActive,
                 imgUrl: listService[index].imageUrl,
                 serviceName: listService[index].serviceName,
                 priceRange: listService[index].price.split('-').length > 1
