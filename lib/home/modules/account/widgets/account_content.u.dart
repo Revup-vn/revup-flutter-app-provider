@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -100,16 +101,17 @@ class AccountContent extends StatelessWidget {
             AccountItem(
               accountName: l10n.paymentLabel,
               accountIcon: const Icon(Icons.payment),
-              callback: () {
-                // TODO(namngoc231): Go to payment
-              },
+              callback: () => context.showInfoBar<void>(
+                  content: Text(context.l10n.notSupportLabel)),
             ),
             AccountItem(
               accountName: l10n.organizationLabel,
               accountIcon: const Icon(Icons.business),
-              callback: () {
-                // TODO(namngoc231): Go to Organization account
-              },
+              callback: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: AutoSizeText(context.l10n.notSupportLabel),
+                ),
+              ),
             ),
             AccountItem(
               accountName: l10n.changeLanguageLabel,
@@ -140,23 +142,23 @@ class AccountContent extends StatelessWidget {
             AccountItem(
               accountName: l10n.faqsLabel,
               accountIcon: const Icon(Icons.quiz),
-              callback: () {
-                // TODO(namngoc231): Go to faq
-              },
+              callback: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: AutoSizeText(context.l10n.notSupportLabel),
+                ),
+              ),
             ),
             AccountItem(
               accountName: l10n.termsOfServiceLabel,
               accountIcon: const Icon(Icons.fact_check),
-              callback: () {
-                // TODO(namngoc231): Go to term of service
-              },
+              callback: () =>
+                  context.showToast<void>(context.l10n.notSupportLabel),
             ),
             AccountItem(
               accountName: l10n.aboutUsLabel,
               accountIcon: const Icon(Icons.people),
-              callback: () {
-                // TODO(namngoc231): Go to about us
-              },
+              callback: () =>
+                  context.showToast<void>(context.l10n.notSupportLabel),
             ),
             AccountItem(
               accountName: l10n.logoutLabel,

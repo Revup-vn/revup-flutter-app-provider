@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -41,10 +41,57 @@ class _SplashPageState extends State<SplashPage> {
             context.router.push(
               P12DetailRoute(recordId: recordId),
             );
+          } else if (subType == 'ConsumerCanceled') {
+            showDialog<void>(
+              context: context,
+              builder: (context) => AlertDialog(
+                content: Text(context.l10n.consumerAbortLabel),
+                actions: [
+                  TextButton(
+                    onPressed: () => context.router.pop(),
+                    child: Text(context.l10n.confirmLabel),
+                  ),
+                ],
+              ),
+            ).then((_) => context.router
+                .popUntil((route) => route.settings.name == HomeRoute.name));
           } else {
             break;
           }
           break;
+        case NotificationType.ProviderDecline:
+          showDialog<void>(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: Text(context.l10n.userDismissed),
+              actions: [
+                TextButton(
+                  onPressed: () => context.router.pop(),
+                  child: Text(context.l10n.confirmLabel),
+                ),
+              ],
+            ),
+          )
+              .then(
+                (_) => context.read<IStore<AppUser>>().updateFields(
+                      AppUserDummy.dummyProvider(
+                        context.read<AuthenticateBloc>().state.maybeMap(
+                              orElse: () => throw NullThrownError(),
+                              authenticated: (value) =>
+                                  value.authType.user.uuid,
+                            ),
+                      ).maybeMap(
+                        orElse: () => throw NullThrownError(),
+                        provider: (p) => p.copyWith(
+                          online: true,
+                        ),
+                      ),
+                      cons(AppUserDummy.field(AppUserFields.Online), nil()),
+                    ),
+              )
+              .then((value) => context.router.popUntilRoot());
+          break;
+
         // ignore: no_default_cases
         default:
           break;

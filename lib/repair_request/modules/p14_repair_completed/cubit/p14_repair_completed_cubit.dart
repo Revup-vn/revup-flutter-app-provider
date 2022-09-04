@@ -12,14 +12,23 @@ part 'p14_repair_completed_cubit.freezed.dart';
 part 'p14_repair_completed_state.dart';
 
 class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
-  P14RepairCompletedCubit(this._irr, this._rid, this._sb, this._sr)
-      : super(const P14RepairCompletedState.initial());
+  P14RepairCompletedCubit(
+    this._irr,
+    this._rid,
+    this._sb,
+    this._sr,
+    this._iau,
+    this._user,
+  ) : super(const P14RepairCompletedState.initial());
   final IStore<RepairRecord> _irr;
+  final IStore<AppUser> _iau;
+  final AppUser _user;
   final StoreRepository _sr;
   final StorageBloc _sb;
   final String _rid;
 
   List<StorageFile> imgs = [];
+  // ignore: use_setters_to_change_properties
   void setImgs(List<StorageFile> files) => imgs = files;
 
   Future<Unit> submit(
@@ -87,6 +96,16 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
             to: val.to,
           ),
         ),
+      );
+
+      _iau.updateFields(
+        _user.maybeMap(
+          orElse: () => throw NullThrownError(),
+          provider: (p) => p.copyWith(
+            online: true,
+          ),
+        ),
+        cons(AppUserDummy.field(AppUserFields.Online), nil()),
       );
       final tokens = (await _sr
               .userNotificationTokenRepo(

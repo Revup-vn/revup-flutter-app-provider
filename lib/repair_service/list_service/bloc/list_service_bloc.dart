@@ -79,6 +79,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                           price:
                               '''${lp + repairService.fee} - ${hp + repairService.fee}''',
                           imageUrl: repairService.img ?? '',
+                          isActive: repairService.active,
                         );
                       } else if (list.length == 1) {
                         final price = list.last.price + repairService.fee;
@@ -87,6 +88,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                           sortType: 0,
                           price: price.toString(),
                           imageUrl: repairService.img ?? '',
+                          isActive: repairService.active,
                         );
                       } else {
                         return ServiceModel(
@@ -94,6 +96,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                           sortType: 0,
                           price: repairService.fee.toString(),
                           imageUrl: repairService.img ?? '',
+                          isActive: repairService.active,
                         );
                       }
                     },
@@ -159,10 +162,15 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                         (repairService) async {
                           final t = await storeRepository
                               .repairProductRepo(
-                                  aUser, repairCate, repairService)
+                                aUser,
+                                repairCate,
+                                repairService,
+                              )
                               .all();
                           final listProduct = t.fold<IList<RepairProduct>>(
-                              (l) => nil(), (r) => r);
+                            (l) => nil(),
+                            (r) => r,
+                          );
                           final list = listProduct
                               .sortByDouble(
                                 (e1, e2) => e1.price.compareTo(e2.price),
@@ -177,6 +185,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                               price:
                                   '''${lp + repairService.fee} - ${hp + repairService.fee}''',
                               imageUrl: repairService.img ?? '',
+                              isActive: repairService.active,
                             );
                           } else if (list.length == 1) {
                             final price = list.first.price + repairService.fee;
@@ -185,6 +194,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                               sortType: 0,
                               price: price.toString(),
                               imageUrl: repairService.img ?? '',
+                              isActive: repairService.active,
                             );
                           } else {
                             return ServiceModel(
@@ -192,6 +202,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                               sortType: 0,
                               price: repairService.fee.toString(),
                               imageUrl: repairService.img ?? '',
+                              isActive: repairService.active,
                             );
                           }
                         },

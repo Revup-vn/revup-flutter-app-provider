@@ -21,8 +21,6 @@ class ServiceCheckboxGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lst = <CommonService>[];
-
     return FormBuilderField<
         List<Tuple3<CommonService, List<Tuple2<RepairProduct, File>>, File>>>(
       initialValue:

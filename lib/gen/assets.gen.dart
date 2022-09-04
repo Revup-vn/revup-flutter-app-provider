@@ -22,9 +22,15 @@ class $AssetsScreensGen {
   SvgGenImage get googleOriginal =>
       const SvgGenImage('assets/screens/Google_Original.svg');
 
+  /// File path: assets/screens/empty.svg
+  SvgGenImage get empty => const SvgGenImage('assets/screens/empty.svg');
+
   /// File path: assets/screens/flag_VietNam.svg
   SvgGenImage get flagVietNam =>
       const SvgGenImage('assets/screens/flag_VietNam.svg');
+
+  /// File path: assets/screens/loading_primary_color.json
+  String get loadingPrimaryColor => 'assets/screens/loading_primary_color.json';
 
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>

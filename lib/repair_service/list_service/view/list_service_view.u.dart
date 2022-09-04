@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide showSearch;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -38,8 +38,7 @@ class ListServiceView extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               height: 50,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+              child: Row(
                 children: <Widget>[
                   VehicleTypeItem(
                     vehicleName: l10n.motorcycleLabel,
@@ -88,6 +87,7 @@ class ListServiceView extends StatelessWidget {
               itemCount: listService.length,
               shrinkWrap: true,
               itemBuilder: (context, index) => CartServiceReview(
+                isActive: listService[index].isActive,
                 imgUrl: listService[index].imageUrl,
                 serviceName: listService[index].serviceName,
                 priceRange: listService[index].price.split('-').length > 1

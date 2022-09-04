@@ -11,12 +11,14 @@ part 'history_provider_state.dart';
 
 class HistoryProviderBloc
     extends Bloc<HistoryProviderEvent, HistoryProviderState> {
-  HistoryProviderBloc(this._irr, this._iau) : super(const _Initial()) {
+  HistoryProviderBloc(this._irr, this._iau, this.pid)
+      : super(const _Initial()) {
     on<HistoryProviderEvent>(_onEventHistory);
   }
 
   final IStore<RepairRecord> _irr;
   final IStore<AppUser> _iau;
+  final String pid;
 
   Future<void> _onEventHistory(
     HistoryProviderEvent event,
@@ -26,13 +28,11 @@ class HistoryProviderBloc
       started: () async {
         emit(const HistoryProviderState.loading());
 
-        // Always return Ilist
-        // Error => empty list
-        // Order by created Time
-        // Senior huy Giai quyet giup em
         final mapRecordVsAppUserConsumer = Map.fromEntries(
           (await (await _irr.queryTs(
             (a) => a
+                .where(RepairRecordDummy.field(RepairRecordFields.ProviderId),
+                    isEqualTo: pid)
                 .where(
                   'type',
                   whereIn: [
@@ -52,10 +52,10 @@ class HistoryProviderBloc
                     (a) async =>
                         MapEntry(a, (await _iau.get(a.cid)).toOption()),
                   ))
+              .filter((a) => a.value.isSome())
               .toIterable(),
         );
 
-        // TODO(tcmhoang): Convert DTO to a newly modified model
         final histories = mapRecordVsAppUserConsumer.entries.map((e) {
           final user = e.value.getOrElse(() => throw NullThrownError());
           return HistoryProviderModel(

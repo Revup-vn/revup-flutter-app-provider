@@ -38,7 +38,7 @@ class UpdateProfileView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(
-            l10n.completeRegistrationLabel,
+            l10n.editProfileLabel,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall

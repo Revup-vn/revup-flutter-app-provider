@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
-import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../../../request.dart';
 import '../bloc/info_request_bloc.dart';
@@ -79,10 +77,6 @@ class _InfoRequestViewState extends State<InfoRequestView> {
       },
     );
 
-    final user = getUser(context.read<AuthenticateBloc>().state).getOrElse(
-      () => throw NullThrownError(),
-    );
-
     return BlocBuilder<InfoRequestBloc, InfoRequestState>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -121,7 +115,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                         BuildRowItem(
                           iconData: Icons.social_distance,
                           text: l10n.distanceLabel,
-                          textBold: '${widget.distance.toStringAsFixed(2)} km',
+                          textBold: '${widget.distance.toStringAsFixed(1)} km',
                         ),
                         BuildRowItem(
                           iconData: Icons.directions_run,
@@ -131,7 +125,9 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                         BuildRowItem(
                           iconData: Icons.directions_bike,
                           text: l10n.vehicleTypeLabel,
-                          textBold: record.vehicle,
+                          textBold: record.vehicle == 'car'
+                              ? l10n.carLabel
+                              : l10n.motorcycleLabel,
                         ),
                         if (record.desc.isNotEmpty)
                           Row(
@@ -217,7 +213,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                         onPressed: !ready
                             ? null
                             : () {
-                                // send message provider start moving to consumer
+                                // send message provider start
+                                // moving to consumer
                                 blocPage.add(
                                   InfoRequestEvent.confirmDeparted(
                                     onRoute: () => context.router.push(
@@ -258,7 +255,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                 blocPage.add(
                                   InfoRequestEvent.confirmStarted(
                                     onRoute: () => context.router.push(
-                                        P12DetailRoute(recordId: record.id)),
+                                      P12DetailRoute(recordId: record.id),
+                                    ),
                                     sendMessage: (token, recordId) => context
                                         .read<NotificationCubit>()
                                         .sendMessageToToken(
@@ -279,7 +277,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                         ),
                                   ),
                                 );
-                                // context.router.replace(HomeRoute(user: user));
+                                // context.router.replace(HomeRoute(user:
+                                // user));
                               },
                       );
                     }

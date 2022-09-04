@@ -175,6 +175,7 @@ class LoginEnterPhoneView extends StatelessWidget {
                                     id: uid,
                                     username: phoneNumber,
                                   ),
+                                  violatedTimes: 0,
                                 ),
                               );
                               context.router.pop();

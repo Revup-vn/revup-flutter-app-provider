@@ -131,7 +131,8 @@ class P10QuotePriceView extends StatelessWidget {
                   ),
                   // BlocBuilder<TotalAmountCubit, TotalAmountState>(
                   //   builder: (context, state) => state.when(
-                  //     refresh: (v) => TotalServicePriceItem(pendingAmount: v),
+                  //     refresh: (v) => TotalServicePriceItem(pendingAmount:
+                  // v),
                   //   ),
                   // ),
                   TotalServicePriceItem(

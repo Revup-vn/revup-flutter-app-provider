@@ -41,8 +41,10 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: AddServicePage),
     AdaptiveRoute<void>(page: MyReviewPage),
     AdaptiveRoute<void>(page: VendorAuthenticationPage),
-    AdaptiveRoute<void>(page: ListServicePage, maintainState: false),
-    AdaptiveRoute<void>(page: DetailServicePage, maintainState: false),
+    AdaptiveRoute<void>(page: ListServicePage),
+    AdaptiveRoute<void>(
+      page: DetailServicePage,
+    ),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),

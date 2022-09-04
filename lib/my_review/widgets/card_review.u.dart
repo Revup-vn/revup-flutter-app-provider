@@ -21,9 +21,8 @@ class CardReview extends StatelessWidget {
     final l10n = context.l10n;
 
     return InkWell(
-      onTap: () {
-        // TODO(namngoc231): Go to card detail
-      },
+      // TODO(namngoc231): Go to card detail onTap?
+
       child: Card(
         color: Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
