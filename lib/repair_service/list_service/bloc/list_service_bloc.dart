@@ -22,11 +22,13 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
     this.serviceRepos2,
   ) : super(const _Initial()) {
     on<ListServiceEvent>(_onEvent);
-    _s2 = serviceRepos2.collection().snapshots().listen((event) {
-      add(const ListServiceEvent.sortTypeChanged(sortType: 1));
-    });
+
     _s = serviceRepos.collection().snapshots().listen((event) {
       add(const ListServiceEvent.sortTypeChanged(sortType: 0));
+    });
+
+    _s2 = serviceRepos2.collection().snapshots().listen((event) {
+      add(const ListServiceEvent.sortTypeChanged(sortType: 1));
     });
   }
   final String providerID;
