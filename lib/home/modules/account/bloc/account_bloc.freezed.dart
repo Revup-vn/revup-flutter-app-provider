@@ -19,18 +19,22 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(QuerySnapshot<Map<String, dynamic>> data)
+        dataChanged,
     required TResult Function(ImageSource source) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
     TResult Function(ImageSource source)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
     TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) =>
@@ -38,18 +42,21 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) =>
@@ -112,6 +119,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(QuerySnapshot<Map<String, dynamic>> data)
+        dataChanged,
     required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return started();
@@ -121,6 +130,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
     TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return started?.call();
@@ -130,6 +140,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
     TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
@@ -143,6 +154,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return started(this);
@@ -152,6 +164,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return started?.call(this);
@@ -161,6 +174,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
@@ -173,6 +187,149 @@ class _$_Started implements _Started {
 
 abstract class _Started implements AccountEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_DataChangedCopyWith<$Res> {
+  factory _$$_DataChangedCopyWith(
+          _$_DataChanged value, $Res Function(_$_DataChanged) then) =
+      __$$_DataChangedCopyWithImpl<$Res>;
+  $Res call({QuerySnapshot<Map<String, dynamic>> data});
+}
+
+/// @nodoc
+class __$$_DataChangedCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res>
+    implements _$$_DataChangedCopyWith<$Res> {
+  __$$_DataChangedCopyWithImpl(
+      _$_DataChanged _value, $Res Function(_$_DataChanged) _then)
+      : super(_value, (v) => _then(v as _$_DataChanged));
+
+  @override
+  _$_DataChanged get _value => super._value as _$_DataChanged;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_$_DataChanged(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as QuerySnapshot<Map<String, dynamic>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DataChanged implements _DataChanged {
+  const _$_DataChanged({required this.data});
+
+  @override
+  final QuerySnapshot<Map<String, dynamic>> data;
+
+  @override
+  String toString() {
+    return 'AccountEvent.dataChanged(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DataChanged &&
+            const DeepCollectionEquality().equals(other.data, data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_DataChangedCopyWith<_$_DataChanged> get copyWith =>
+      __$$_DataChangedCopyWithImpl<_$_DataChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(QuerySnapshot<Map<String, dynamic>> data)
+        dataChanged,
+    required TResult Function(ImageSource source) imageUploadSelected,
+  }) {
+    return dataChanged(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
+    TResult Function(ImageSource source)? imageUploadSelected,
+  }) {
+    return dataChanged?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
+    TResult Function(ImageSource source)? imageUploadSelected,
+    required TResult orElse(),
+  }) {
+    if (dataChanged != null) {
+      return dataChanged(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_DataChanged value) dataChanged,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+  }) {
+    return dataChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+  }) {
+    return dataChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    required TResult orElse(),
+  }) {
+    if (dataChanged != null) {
+      return dataChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataChanged implements AccountEvent {
+  const factory _DataChanged(
+          {required final QuerySnapshot<Map<String, dynamic>> data}) =
+      _$_DataChanged;
+
+  QuerySnapshot<Map<String, dynamic>> get data;
+  @JsonKey(ignore: true)
+  _$$_DataChangedCopyWith<_$_DataChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -242,6 +399,8 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(QuerySnapshot<Map<String, dynamic>> data)
+        dataChanged,
     required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return imageUploadSelected(source);
@@ -251,6 +410,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
     TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return imageUploadSelected?.call(source);
@@ -260,6 +420,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(QuerySnapshot<Map<String, dynamic>> data)? dataChanged,
     TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
@@ -273,6 +434,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return imageUploadSelected(this);
@@ -282,6 +444,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return imageUploadSelected?.call(this);
@@ -291,6 +454,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {

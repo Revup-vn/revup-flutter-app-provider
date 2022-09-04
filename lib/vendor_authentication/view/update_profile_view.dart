@@ -293,66 +293,93 @@ class UpdateProfileView extends StatelessWidget {
                                 phoneNumber.length,
                               );
                             }
-                            final ilistFile = ilist(list);
-                            final ilistStorageFile = ilistFile
-                                .map((a) => StorageFile.profile(file: a));
+                            if (list[0].path.isEmpty && list[1].path.isEmpty) {
+                              final appUser =
+                                  AppUserDummy.dummyProvider(user.uuid)
+                                      .maybeMap(
+                                orElse: () => throw NullThrownError(),
+                                provider: (value) => value.copyWith(
+                                  avatarUrl: user.avatarUrl,
+                                  backgroundUrl: user.maybeMap(
+                                    orElse: () => '',
+                                    provider: (value) => value.backgroundUrl,
+                                  ),
+                                  addr: data?['address'].toString() ?? '',
+                                  firstName: fName ?? '',
+                                  lastName: lName,
+                                  dob: DateTime.parse(
+                                    data?['date'].toString().split(' ')[0] ??
+                                        '',
+                                  ),
+                                  bio: data?['bio'].toString() ?? '',
+                                ),
+                              );
+                              context.read<ProfileBloc>().add(
+                                    ProfileEvent.submitted(appUser),
+                                  );
+                            } else {
+                              final ilistFile = ilist(list);
+                              final ilistStorageFile = ilistFile
+                                  .map((a) => StorageFile.profile(file: a));
 
-                            await cubit
-                                .uploadImg(files: ilistStorageFile)
-                                .whenComplete(
-                              () {
-                                context.read<StorageBloc>().state.whenOrNull(
-                                  success: (eitherFailuresOrUrls) async {
-                                    final tmp = eitherFailuresOrUrls
-                                        .map<Option<String>>(
-                                      (a) => a.fold(
-                                        (l) => none(),
-                                        some,
-                                      ),
-                                    );
-
-                                    final listLink =
-                                        tmp.filter((a) => a.isSome()).map(
-                                              (a) => a.getOrElse(
-                                                () => throw NullThrownError(),
-                                              ),
-                                            );
-                                    final list = listLink.toList();
-
-                                    final appUser =
-                                        AppUserDummy.dummyProvider(user.uuid)
-                                            .maybeMap(
-                                      orElse: () => throw NullThrownError(),
-                                      provider: (value) => value.copyWith(
-                                        avatarUrl: list[0].isEmpty
-                                            ? user.avatarUrl
-                                            : list[0],
-                                        backgroundUrl: list[1].isEmpty
-                                            ? user.maybeMap(
-                                                orElse: () => '',
-                                                provider: (value) =>
-                                                    value.backgroundUrl,
-                                              )
-                                            : list[1],
-                                        addr: data?['address'].toString() ?? '',
-                                        firstName: fName ?? '',
-                                        lastName: lName,
-                                        dob: DateTime.parse(
-                                          data?['date']
-                                                  .toString()
-                                                  .split(' ')[0] ??
-                                              '',
+                              await cubit
+                                  .uploadImg(files: ilistStorageFile)
+                                  .whenComplete(
+                                () {
+                                  context.read<StorageBloc>().state.whenOrNull(
+                                    success: (eitherFailuresOrUrls) async {
+                                      final tmp = eitherFailuresOrUrls
+                                          .map<Option<String>>(
+                                        (a) => a.fold(
+                                          (l) => none(),
+                                          some,
                                         ),
-                                        bio: data?['bio'].toString() ?? '',
-                                      ),
-                                    );
-                                    context.read<ProfileBloc>().add(
-                                          ProfileEvent.submitted(appUser),
-                                        );
-                                  },
-                                );
-                              },
-                            );
+                                      );
+
+                                      final listLink =
+                                          tmp.filter((a) => a.isSome()).map(
+                                                (a) => a.getOrElse(
+                                                  () => throw NullThrownError(),
+                                                ),
+                                              );
+                                      final list = listLink.toList();
+
+                                      final appUser =
+                                          AppUserDummy.dummyProvider(user.uuid)
+                                              .maybeMap(
+                                        orElse: () => throw NullThrownError(),
+                                        provider: (value) => value.copyWith(
+                                          avatarUrl: list[0].isEmpty
+                                              ? user.avatarUrl
+                                              : list[0],
+                                          backgroundUrl: list[1].isEmpty
+                                              ? user.maybeMap(
+                                                  orElse: () => '',
+                                                  provider: (value) =>
+                                                      value.backgroundUrl,
+                                                )
+                                              : list[1],
+                                          addr:
+                                              data?['address'].toString() ?? '',
+                                          firstName: fName ?? '',
+                                          lastName: lName,
+                                          dob: DateTime.parse(
+                                            data?['date']
+                                                    .toString()
+                                                    .split(' ')[0] ??
+                                                '',
+                                          ),
+                                          bio: data?['bio'].toString() ?? '',
+                                        ),
+                                      );
+                                      context.read<ProfileBloc>().add(
+                                            ProfileEvent.submitted(appUser),
+                                          );
+                                    },
+                                  );
+                                },
+                              );
+                            }
                           }
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,

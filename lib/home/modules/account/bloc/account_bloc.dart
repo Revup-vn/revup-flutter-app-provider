@@ -21,7 +21,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     this.storageBloc,
   ) : super(const _Initial()) {
     on<AccountEvent>(_onEvent);
+    _s = _userRepos.collection().snapshots().listen((event) async {
+      add(AccountEvent.dataChanged(data: event));
+    });
   }
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
   final String providerID;
   final IStore<AppUser> _userRepos;
   final StoreRepository storeRepository;
@@ -33,6 +37,56 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     await event.when(
+      dataChanged: (data) async {
+        emit(const AccountState.loading());
+        final feedbackData =
+            (await _repairRecord.where('pid', isEqualTo: providerID))
+                .map(
+                  (r) => r.map(
+                    (a) => a.maybeMap<Future<Option<ReportFeedback>>>(
+                      orElse: () => Future.value(none()),
+                      finished: (v) async => some(
+                        v.feedback,
+                      ),
+                    ),
+                  ),
+                )
+                .fold<IList<Future<Option<ReportFeedback>>>>(
+                  (l) => throw NullThrownError(),
+                  (r) => r,
+                );
+
+        final feedbacksIterable = (await Future.wait(feedbackData.toIterable()))
+            .where((e) => e.isSome())
+            .map((e) => e.getOrElse(() => throw NullThrownError()));
+        final feedbackTotalRating = feedbacksIterable.fold<int>(
+          0,
+          (previousValue, element) => previousValue + element.rating,
+        );
+
+        final everageRating = feedbackTotalRating / feedbacksIterable.length;
+
+        (await _userRepos.get(providerID))
+            .map(
+              (r) => r.maybeMap<Option<AppUser>>(
+                orElse: none,
+                provider: some,
+              ),
+            )
+            .fold<Option<AppUser>>((l) => none(), (r) => r)
+            .fold(
+          () => emit(const AccountState.failure()),
+          (aUser) {
+            emit(
+              AccountState.success(
+                aUser: aUser,
+                rating: everageRating,
+                newImgUrl: '',
+              ),
+            );
+          },
+        );
+      },
       started: () async {
         emit(const AccountState.loading());
         final feedbackData =
@@ -228,5 +282,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     );
 
     return unit;
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    return super.close();
   }
 }
