@@ -49,7 +49,7 @@ dependencies:
     # path: ../revup-core
     git:
       url: https://github.com/Revup-vn/revup-core.git
-      ref: main
+      ref: hotfix/props-service-product
       version: ^6.3.5-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0

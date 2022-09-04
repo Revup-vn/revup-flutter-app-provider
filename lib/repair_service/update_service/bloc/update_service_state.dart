@@ -5,6 +5,7 @@ class UpdateServiceState with _$UpdateServiceState {
   const factory UpdateServiceState.initial() = _Initial;
   const factory UpdateServiceState.loadDataSuccess({
     required UpdateServiceModel model,
+    required String pid,
   }) = _LoadDataSuccess;
   const factory UpdateServiceState.loading() = _Loading;
   const factory UpdateServiceState.failure() = _Failure;

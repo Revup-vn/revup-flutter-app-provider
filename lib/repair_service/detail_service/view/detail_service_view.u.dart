@@ -181,6 +181,7 @@ class DetailServiceView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: listData.length,
                 itemBuilder: (context, index) => ServiceProduct(
+                  isActive: listData[index].active,
                   img: listData[index].img,
                   serviceName: listData[index].name,
                   priceRange: listData[index].price,
