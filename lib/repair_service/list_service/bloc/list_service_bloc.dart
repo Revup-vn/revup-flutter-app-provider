@@ -18,13 +18,24 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
     this.providerID,
     this._userRepos,
     this.storeRepository,
+    this.serviceRepos,
+    this.serviceRepos2,
   ) : super(const _Initial()) {
     on<ListServiceEvent>(_onEvent);
+    _s2 = serviceRepos2.collection().snapshots().listen((event) {
+      add(const ListServiceEvent.sortTypeChanged(sortType: 1));
+    });
+    _s = serviceRepos.collection().snapshots().listen((event) {
+      add(const ListServiceEvent.sortTypeChanged(sortType: 0));
+    });
   }
   final String providerID;
   final IStore<AppUser> _userRepos;
   final StoreRepository storeRepository;
-
+  final IStore<RepairService> serviceRepos;
+  final IStore<RepairService> serviceRepos2;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s2;
   FutureOr<void> _onEvent(
     ListServiceEvent event,
     Emitter<ListServiceState> emit,
@@ -236,5 +247,12 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
               );
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    await _s2.cancel();
+    return super.close();
   }
 }
