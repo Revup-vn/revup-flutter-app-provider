@@ -16,14 +16,27 @@ class DetailServiceBloc extends Bloc<DetailServiceEvent, DetailServiceState> {
     this.storeRepository,
     this.category,
     this.serviceName,
+    this.serviceRepos,
+    this.productRepos,
   ) : super(const _Initial()) {
     on<DetailServiceEvent>(_onEvent);
+    _s = serviceRepos.collection().snapshots().listen((event) {
+      add(const DetailServiceEvent.started());
+    });
+    _s2 = productRepos.collection().snapshots().listen((event) {
+      add(const DetailServiceEvent.started());
+    });
   }
   final IStore<AppUser> _userRepos;
   final StoreRepository storeRepository;
   final String providerID;
   final String category;
   final String serviceName;
+  final IStore<RepairService> serviceRepos;
+  final IStore<RepairProduct> productRepos;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s2;
+
   Future<void> _onEvent(
     DetailServiceEvent event,
     Emitter<DetailServiceState> emit,
@@ -83,5 +96,12 @@ class DetailServiceBloc extends Bloc<DetailServiceEvent, DetailServiceState> {
         );
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    await _s2.cancel();
+    return super.close();
   }
 }
