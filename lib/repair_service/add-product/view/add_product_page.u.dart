@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../bloc/add_product_bloc.dart';
 import '../bloc/upload_image_bloc.dart';
-import '../cubit/add_product_cubit.dart';
 import 'add_product_builder.u.dart';
 
 class AddProductPage extends StatelessWidget {
@@ -38,9 +38,6 @@ class AddProductPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => UploadImageBloc(ImagePicker(), context.read()),
-        ),
-        BlocProvider(
-          create: (context) => AddProductCubit(context.read(), context.read()),
         ),
       ],
       child: AddProductBuilder(type),

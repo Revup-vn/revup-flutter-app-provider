@@ -269,6 +269,5 @@
   "successLabel": "Hoàn thành",
   "userDismissed": "Người dùng đã hủy bỏ yêu cầu, bạn sẽ nhận được phí di chuyển như một khoản bồi thường",
   "notSupportLabel": "Chúng tôi hiện không hỗ trợ tính năng này. Chúng tôi sẽ phát hành sớm",
-  "consumerAbortLabel": "Đơn hàng đã bị huỷ",
-  "availableLabel": "Khả dụng"
+  "consumerAbortLabel": "Đơn hàng đã bị huỷ"
 }

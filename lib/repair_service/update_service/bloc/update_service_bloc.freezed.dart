@@ -454,8 +454,7 @@ mixin _$UpdateServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
@@ -465,7 +464,7 @@ mixin _$UpdateServiceState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -475,7 +474,7 @@ mixin _$UpdateServiceState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -574,8 +573,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
@@ -588,7 +586,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -601,7 +599,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -667,7 +665,7 @@ abstract class _$$_LoadDataSuccessCopyWith<$Res> {
   factory _$$_LoadDataSuccessCopyWith(
           _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
       __$$_LoadDataSuccessCopyWithImpl<$Res>;
-  $Res call({UpdateServiceModel model, String pid});
+  $Res call({UpdateServiceModel model});
 
   $UpdateServiceModelCopyWith<$Res> get model;
 }
@@ -686,17 +684,12 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? model = freezed,
-    Object? pid = freezed,
   }) {
     return _then(_$_LoadDataSuccess(
       model: model == freezed
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as UpdateServiceModel,
-      pid: pid == freezed
-          ? _value.pid
-          : pid // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 
@@ -711,16 +704,14 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadDataSuccess implements _LoadDataSuccess {
-  const _$_LoadDataSuccess({required this.model, required this.pid});
+  const _$_LoadDataSuccess({required this.model});
 
   @override
   final UpdateServiceModel model;
-  @override
-  final String pid;
 
   @override
   String toString() {
-    return 'UpdateServiceState.loadDataSuccess(model: $model, pid: $pid)';
+    return 'UpdateServiceState.loadDataSuccess(model: $model)';
   }
 
   @override
@@ -728,15 +719,12 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadDataSuccess &&
-            const DeepCollectionEquality().equals(other.model, model) &&
-            const DeepCollectionEquality().equals(other.pid, pid));
+            const DeepCollectionEquality().equals(other.model, model));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(model),
-      const DeepCollectionEquality().hash(pid));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
 
   @JsonKey(ignore: true)
   @override
@@ -747,34 +735,33 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
     required TResult Function() deleteSuccess,
   }) {
-    return loadDataSuccess(model, pid);
+    return loadDataSuccess(model);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
     TResult Function()? deleteSuccess,
   }) {
-    return loadDataSuccess?.call(model, pid);
+    return loadDataSuccess?.call(model);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -782,7 +769,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
-      return loadDataSuccess(model, pid);
+      return loadDataSuccess(model);
     }
     return orElse();
   }
@@ -832,12 +819,10 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
 }
 
 abstract class _LoadDataSuccess implements UpdateServiceState {
-  const factory _LoadDataSuccess(
-      {required final UpdateServiceModel model,
-      required final String pid}) = _$_LoadDataSuccess;
+  const factory _LoadDataSuccess({required final UpdateServiceModel model}) =
+      _$_LoadDataSuccess;
 
   UpdateServiceModel get model;
-  String get pid;
   @JsonKey(ignore: true)
   _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -884,8 +869,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
@@ -898,7 +882,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -911,7 +895,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -1013,8 +997,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
@@ -1027,7 +1010,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -1040,7 +1023,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -1143,8 +1126,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
@@ -1157,7 +1139,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -1170,7 +1152,7 @@ class _$_SumbitSuccess implements _SumbitSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -1273,8 +1255,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UpdateServiceModel model, String pid)
-        loadDataSuccess,
+    required TResult Function(UpdateServiceModel model) loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() sumbitSuccess,
@@ -1287,7 +1268,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,
@@ -1300,7 +1281,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UpdateServiceModel model, String pid)? loadDataSuccess,
+    TResult Function(UpdateServiceModel model)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? sumbitSuccess,

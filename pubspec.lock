@@ -497,7 +497,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "13.0.0"
+    version: "12.0.3"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
@@ -1215,11 +1215,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "hotfix/props-service-product"
-      resolved-ref: "5a1eb4caa896019a8f7d6cb7bc98b3df6119fc00"
+      ref: main
+      resolved-ref: a4ce52ea32086af3506dc490254baf4933441a99
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "6.3.5-dev+1"
+    version: "6.3.5-dev"
   rxdart:
     dependency: transitive
     description:
@@ -1406,7 +1406,7 @@ packages:
       name: synchronized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0+3"
+    version: "3.0.0+2"
   term_glyph:
     dependency: transitive
     description:
@@ -1448,7 +1448,7 @@ packages:
       name: time
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
+    version: "2.1.2"
   timing:
     dependency: transitive
     description:

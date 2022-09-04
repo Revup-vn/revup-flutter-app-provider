@@ -19,7 +19,6 @@ mixin _$MyServiceData {
   String get name => throw _privateConstructorUsedError;
   String get imgUrl => throw _privateConstructorUsedError;
   int get fee => throw _privateConstructorUsedError;
-  bool get isActive => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyServiceDataCopyWith<MyServiceData> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $MyServiceDataCopyWith<$Res> {
   factory $MyServiceDataCopyWith(
           MyServiceData value, $Res Function(MyServiceData) then) =
       _$MyServiceDataCopyWithImpl<$Res>;
-  $Res call({String name, String imgUrl, int fee, bool isActive});
+  $Res call({String name, String imgUrl, int fee});
 }
 
 /// @nodoc
@@ -48,7 +47,6 @@ class _$MyServiceDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? imgUrl = freezed,
     Object? fee = freezed,
-    Object? isActive = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -63,10 +61,6 @@ class _$MyServiceDataCopyWithImpl<$Res>
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
               as int,
-      isActive: isActive == freezed
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -78,7 +72,7 @@ abstract class _$$_MyServiceDataCopyWith<$Res>
           _$_MyServiceData value, $Res Function(_$_MyServiceData) then) =
       __$$_MyServiceDataCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String imgUrl, int fee, bool isActive});
+  $Res call({String name, String imgUrl, int fee});
 }
 
 /// @nodoc
@@ -97,7 +91,6 @@ class __$$_MyServiceDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? imgUrl = freezed,
     Object? fee = freezed,
-    Object? isActive = freezed,
   }) {
     return _then(_$_MyServiceData(
       name: name == freezed
@@ -112,10 +105,6 @@ class __$$_MyServiceDataCopyWithImpl<$Res>
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
               as int,
-      isActive: isActive == freezed
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -124,10 +113,7 @@ class __$$_MyServiceDataCopyWithImpl<$Res>
 
 class _$_MyServiceData implements _MyServiceData {
   _$_MyServiceData(
-      {required this.name,
-      required this.imgUrl,
-      required this.fee,
-      required this.isActive});
+      {required this.name, required this.imgUrl, required this.fee});
 
   @override
   final String name;
@@ -135,12 +121,10 @@ class _$_MyServiceData implements _MyServiceData {
   final String imgUrl;
   @override
   final int fee;
-  @override
-  final bool isActive;
 
   @override
   String toString() {
-    return 'MyServiceData(name: $name, imgUrl: $imgUrl, fee: $fee, isActive: $isActive)';
+    return 'MyServiceData(name: $name, imgUrl: $imgUrl, fee: $fee)';
   }
 
   @override
@@ -150,8 +134,7 @@ class _$_MyServiceData implements _MyServiceData {
             other is _$_MyServiceData &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.imgUrl, imgUrl) &&
-            const DeepCollectionEquality().equals(other.fee, fee) &&
-            const DeepCollectionEquality().equals(other.isActive, isActive));
+            const DeepCollectionEquality().equals(other.fee, fee));
   }
 
   @override
@@ -159,8 +142,7 @@ class _$_MyServiceData implements _MyServiceData {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(imgUrl),
-      const DeepCollectionEquality().hash(fee),
-      const DeepCollectionEquality().hash(isActive));
+      const DeepCollectionEquality().hash(fee));
 
   @JsonKey(ignore: true)
   @override
@@ -172,8 +154,7 @@ abstract class _MyServiceData implements MyServiceData {
   factory _MyServiceData(
       {required final String name,
       required final String imgUrl,
-      required final int fee,
-      required final bool isActive}) = _$_MyServiceData;
+      required final int fee}) = _$_MyServiceData;
 
   @override
   String get name;
@@ -181,8 +162,6 @@ abstract class _MyServiceData implements MyServiceData {
   String get imgUrl;
   @override
   int get fee;
-  @override
-  bool get isActive;
   @override
   @JsonKey(ignore: true)
   _$$_MyServiceDataCopyWith<_$_MyServiceData> get copyWith =>
