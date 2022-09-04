@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -61,8 +60,18 @@ class _SplashPageState extends State<SplashPage> {
           }
           break;
         case NotificationType.ProviderDecline:
-          context
-              .showToast<void>(context.l10n.userDismissed)
+          showDialog<void>(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: Text(context.l10n.userDismissed),
+              actions: [
+                TextButton(
+                  onPressed: () => context.router.pop(),
+                  child: Text(context.l10n.confirmLabel),
+                ),
+              ],
+            ),
+          )
               .then(
                 (_) => context.read<IStore<AppUser>>().updateFields(
                       AppUserDummy.dummyProvider(
