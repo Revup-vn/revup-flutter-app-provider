@@ -79,6 +79,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                           price:
                               '''${lp + repairService.fee} - ${hp + repairService.fee}''',
                           imageUrl: repairService.img ?? '',
+                          isActive: repairService.active,
                         );
                       } else if (list.length == 1) {
                         final price = list.last.price + repairService.fee;
@@ -87,6 +88,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                           sortType: 0,
                           price: price.toString(),
                           imageUrl: repairService.img ?? '',
+                          isActive: repairService.active,
                         );
                       } else {
                         return ServiceModel(
@@ -94,6 +96,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                           sortType: 0,
                           price: repairService.fee.toString(),
                           imageUrl: repairService.img ?? '',
+                          isActive: repairService.active,
                         );
                       }
                     },
@@ -182,6 +185,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                               price:
                                   '''${lp + repairService.fee} - ${hp + repairService.fee}''',
                               imageUrl: repairService.img ?? '',
+                              isActive: repairService.active,
                             );
                           } else if (list.length == 1) {
                             final price = list.first.price + repairService.fee;
@@ -190,6 +194,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                               sortType: 0,
                               price: price.toString(),
                               imageUrl: repairService.img ?? '',
+                              isActive: repairService.active,
                             );
                           } else {
                             return ServiceModel(
@@ -197,6 +202,7 @@ class ListServiceBloc extends Bloc<ListServiceEvent, ListServiceState> {
                               sortType: 0,
                               price: repairService.fee.toString(),
                               imageUrl: repairService.img ?? '',
+                              isActive: repairService.active,
                             );
                           }
                         },
