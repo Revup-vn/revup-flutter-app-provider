@@ -1215,11 +1215,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "hotfix/istore-update"
-      resolved-ref: "5c4eccf17da3c4454323f7ed3e73707c082bd694"
+      ref: main
+      resolved-ref: "8bce7825c8b6052396c8f46db9ab41f153ad55e7"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "6.3.6-dev+1"
+    version: "6.3.7-dev"
   rxdart:
     dependency: transitive
     description:

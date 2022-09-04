@@ -1,7 +1,8 @@
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-void fitPolylineToView(List<PointLatLng> p, GoogleMapController? controller) {
+void fitPolylineToView(
+    List<PointLatLng> p, GoogleMapController? controller) async {
   var minLat = p.first.latitude;
   var minLng = p.first.longitude;
   var maxLat = p.first.latitude;
@@ -12,7 +13,7 @@ void fitPolylineToView(List<PointLatLng> p, GoogleMapController? controller) {
     if (e.longitude < minLng) minLng = e.longitude;
     if (e.longitude > maxLng) maxLng = e.longitude;
   }
-  controller!.animateCamera(
+  await controller!.animateCamera(
     CameraUpdate.newLatLngBounds(
       LatLngBounds(
         southwest: LatLng(minLat, minLng),
@@ -21,4 +22,5 @@ void fitPolylineToView(List<PointLatLng> p, GoogleMapController? controller) {
       100,
     ),
   );
+  // isDone.complete(unit);
 }

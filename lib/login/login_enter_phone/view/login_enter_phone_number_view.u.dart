@@ -174,7 +174,6 @@ class LoginEnterPhoneView extends StatelessWidget {
                                     email: email,
                                     id: uid,
                                     username: phoneNumber,
-                                    pwd: '',
                                   ),
                                   violatedTimes: 0,
                                 ),
