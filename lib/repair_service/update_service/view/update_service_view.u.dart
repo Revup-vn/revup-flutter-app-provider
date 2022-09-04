@@ -27,7 +27,7 @@ class UpdateServiceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final oldName = data.serviceName;
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
@@ -349,7 +349,7 @@ class UpdateServiceView extends StatelessWidget {
                           FormBuilderTextField(
                             name: 'serviceName',
                             initialValue: data.serviceName,
-                            enabled: false,
+                            //enabled: false,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               hintText: l10n.enterServiceNameLabel,
@@ -410,57 +410,52 @@ class UpdateServiceView extends StatelessWidget {
                   builder: (context, state) {
                     return ElevatedButton(
                       onPressed: state.when(
-                        initial: () => data.active
-                            ? () {
-                                if (_formKey.currentState?.saveAndValidate() ==
-                                    true) {
-                                  final dataForm = _formKey.currentState?.value;
-                                  final fee = (dataForm?['fee'])
-                                      .toString()
-                                      .replaceAll(RegExp('/^0+/'), '');
-                                  final model = UpdateServiceModel(
-                                    img: imageLink.isEmpty
-                                        ? data.img
-                                        : imageLink,
-                                    serviceName:
-                                        (dataForm?['serviceName']).toString(),
-                                    serviceFee: int.parse(fee),
-                                    cate: data.cate,
-                                    active: data.active,
-                                  );
-                                  context.read<UpdateServiceBloc>().add(
-                                        UpdateServiceEvent.submitted(
-                                          model: model,
-                                        ),
-                                      );
-                                }
-                              }
-                            : null,
-                        changeActiveStatusSuccess: (status) => status
-                            ? () {
-                                if (_formKey.currentState?.saveAndValidate() ==
-                                    true) {
-                                  final dataForm = _formKey.currentState?.value;
-                                  final fee = (dataForm?['fee'])
-                                      .toString()
-                                      .replaceAll(RegExp('/^0+/'), '');
-                                  final model = UpdateServiceModel(
-                                    img: imageLink.isEmpty
-                                        ? data.img
-                                        : imageLink,
-                                    serviceName:
-                                        (dataForm?['serviceName']).toString(),
-                                    serviceFee: int.parse(fee),
-                                    cate: data.cate,
-                                    active: status,
-                                  );
-                                  context.read<UpdateServiceBloc>().add(
-                                        UpdateServiceEvent.submitted(
-                                            model: model),
-                                      );
-                                }
-                              }
-                            : null,
+                        initial: () => () {
+                          if (_formKey.currentState?.saveAndValidate() ==
+                              true) {
+                            final dataForm = _formKey.currentState?.value;
+                            final fee = (dataForm?['fee'])
+                                .toString()
+                                .replaceAll(RegExp('/^0+/'), '');
+                            final model = UpdateServiceModel(
+                              img: imageLink.isEmpty ? data.img : imageLink,
+                              serviceName:
+                                  (dataForm?['serviceName']).toString(),
+                              serviceFee: int.parse(fee),
+                              cate: data.cate,
+                              active: data.active,
+                            );
+                            context.read<UpdateServiceBloc>().add(
+                                  UpdateServiceEvent.submitted(
+                                    model: model,
+                                    oldName: oldName,
+                                  ),
+                                );
+                          }
+                        },
+                        changeActiveStatusSuccess: (status) => () {
+                          if (_formKey.currentState?.saveAndValidate() ==
+                              true) {
+                            final dataForm = _formKey.currentState?.value;
+                            final fee = (dataForm?['fee'])
+                                .toString()
+                                .replaceAll(RegExp('/^0+/'), '');
+                            final model = UpdateServiceModel(
+                              img: imageLink.isEmpty ? data.img : imageLink,
+                              serviceName:
+                                  (dataForm?['serviceName']).toString(),
+                              serviceFee: int.parse(fee),
+                              cate: data.cate,
+                              active: status,
+                            );
+                            context.read<UpdateServiceBloc>().add(
+                                  UpdateServiceEvent.submitted(
+                                    model: model,
+                                    oldName: oldName,
+                                  ),
+                                );
+                          }
+                        },
                       ),
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(

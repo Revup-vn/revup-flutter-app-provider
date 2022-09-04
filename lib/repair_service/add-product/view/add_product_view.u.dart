@@ -32,7 +32,7 @@ class AddProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final oldName = productModel.productName;
     var imageLink = '';
     return DismissKeyboard(
       child: Scaffold(
@@ -362,7 +362,7 @@ class AddProductView extends StatelessWidget {
                           const SizedBox(height: 5),
                           FormBuilderTextField(
                             initialValue: productModel.productName,
-                            enabled: productModel.productName.isEmpty,
+                            //enabled: productModel.productName.isEmpty,
                             name: 'productName',
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -439,68 +439,64 @@ class AddProductView extends StatelessWidget {
                   builder: (context, state) {
                     return ElevatedButton(
                       onPressed: state.when(
-                        initial: () => productModel.isActive
-                            ? () {
-                                if (_formKey.currentState?.saveAndValidate() ==
-                                    true) {
-                                  final data = _formKey.currentState?.value;
-                                  final fee = (data?['fee'])
-                                      .toString()
-                                      .replaceAll(RegExp('/^0+/'), '');
-                                  final model = AddProductModel(
-                                    des: (data?['des']).toString(),
-                                    imageUrl: imageLink.isEmpty
-                                        ? productModel.imageUrl
-                                        : imageLink,
-                                    productFee: int.parse(fee),
-                                    productName:
-                                        (data?['productName']).toString(),
-                                    cate: cate,
-                                    isActive: productModel.isActive,
-                                    sName: serviceName,
-                                  );
-                                  context.read<AddProductBloc>().add(
-                                        AddProductEvent.submitted(
-                                          data: model,
-                                          type: productModel.productName.isEmpty
-                                              ? 0
-                                              : 1,
-                                        ),
-                                      );
-                                }
-                              }
-                            : null,
-                        changeActiveStatusSuccess: (status) => status
-                            ? () {
-                                if (_formKey.currentState?.saveAndValidate() ==
-                                    true) {
-                                  final data = _formKey.currentState?.value;
-                                  final fee = (data?['fee'])
-                                      .toString()
-                                      .replaceAll(RegExp('/^0+/'), '');
-                                  final model = AddProductModel(
-                                    des: (data?['des']).toString(),
-                                    imageUrl: imageLink.isEmpty
-                                        ? productModel.imageUrl
-                                        : imageLink,
-                                    productFee: int.parse(fee),
-                                    productName:
-                                        (data?['productName']).toString(),
-                                    cate: cate,
-                                    isActive: status,
-                                    sName: serviceName,
-                                  );
-                                  context.read<AddProductBloc>().add(
-                                        AddProductEvent.submitted(
-                                          data: model,
-                                          type: productModel.productName.isEmpty
-                                              ? 0
-                                              : 1,
-                                        ),
-                                      );
-                                }
-                              }
-                            : null,
+                        initial: () => () {
+                          if (_formKey.currentState?.saveAndValidate() ==
+                              true) {
+                            final data = _formKey.currentState?.value;
+                            final fee = (data?['fee'])
+                                .toString()
+                                .replaceAll(RegExp('/^0+/'), '');
+                            final model = AddProductModel(
+                              des: (data?['des']).toString(),
+                              imageUrl: imageLink.isEmpty
+                                  ? productModel.imageUrl
+                                  : imageLink,
+                              productFee: int.parse(fee),
+                              productName: (data?['productName']).toString(),
+                              cate: cate,
+                              isActive: productModel.isActive,
+                              sName: serviceName,
+                            );
+                            context.read<AddProductBloc>().add(
+                                  AddProductEvent.submitted(
+                                    data: model,
+                                    type: productModel.productName.isEmpty
+                                        ? 0
+                                        : 1,
+                                    oldName: oldName,
+                                  ),
+                                );
+                          }
+                        },
+                        changeActiveStatusSuccess: (status) => () {
+                          if (_formKey.currentState?.saveAndValidate() ==
+                              true) {
+                            final data = _formKey.currentState?.value;
+                            final fee = (data?['fee'])
+                                .toString()
+                                .replaceAll(RegExp('/^0+/'), '');
+                            final model = AddProductModel(
+                              des: (data?['des']).toString(),
+                              imageUrl: imageLink.isEmpty
+                                  ? productModel.imageUrl
+                                  : imageLink,
+                              productFee: int.parse(fee),
+                              productName: (data?['productName']).toString(),
+                              cate: cate,
+                              isActive: status,
+                              sName: serviceName,
+                            );
+                            context.read<AddProductBloc>().add(
+                                  AddProductEvent.submitted(
+                                    data: model,
+                                    type: productModel.productName.isEmpty
+                                        ? 0
+                                        : 1,
+                                    oldName: oldName,
+                                  ),
+                                );
+                          }
+                        },
                       ),
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(

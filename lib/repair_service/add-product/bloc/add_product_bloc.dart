@@ -171,7 +171,7 @@ class AddProductBloc extends Bloc<AddProductEvent, AddProductState> {
           );
         }
       },
-      submitted: (data, type) async {
+      submitted: (data, type, oldName) async {
         final completer = Completer<Either<StoreFailure, Unit>>();
         if (type == 0) {
           await (await _userRepos.get(providerID))
@@ -259,7 +259,10 @@ class AddProductBloc extends Bloc<AddProductEvent, AddProductState> {
                               );
                               final t = await storeRepository
                                   .repairProductRepo(aUser, cate, repaiService)
-                                  .update(newProduct);
+                                  .update(
+                                    newProduct,
+                                    RepairProductDummy.dummy(oldName),
+                                  );
                               t.fold(
                                 (l) => completer.complete(left(l)),
                                 (r) => completer.complete(
