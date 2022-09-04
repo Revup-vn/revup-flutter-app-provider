@@ -80,7 +80,7 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
         HomePrimaryState.recentOrderEmpty(
           user: user,
           ads: imageList,
-          listService: data,
+          listService: data.toList(),
         ),
       );
     } else {
@@ -100,7 +100,7 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
         HomePrimaryState.loaded(
           user: user,
           recentOrder: rc,
-          listService: data,
+          listService: data.toList(),
           ads: imageList,
         ),
       );

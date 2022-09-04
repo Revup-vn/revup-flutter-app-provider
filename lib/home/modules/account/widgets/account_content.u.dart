@@ -107,8 +107,11 @@ class AccountContent extends StatelessWidget {
             AccountItem(
               accountName: l10n.organizationLabel,
               accountIcon: const Icon(Icons.business),
-              callback: () =>
-                  context.showToast<void>(context.l10n.notSupportLabel),
+              callback: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: AutoSizeText(context.l10n.notSupportLabel),
+                ),
+              ),
             ),
             AccountItem(
               accountName: l10n.changeLanguageLabel,
@@ -139,8 +142,11 @@ class AccountContent extends StatelessWidget {
             AccountItem(
               accountName: l10n.faqsLabel,
               accountIcon: const Icon(Icons.quiz),
-              callback: () =>
-                  context.showToast<void>(context.l10n.notSupportLabel),
+              callback: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: AutoSizeText(context.l10n.notSupportLabel),
+                ),
+              ),
             ),
             AccountItem(
               accountName: l10n.termsOfServiceLabel,
