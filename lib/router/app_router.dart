@@ -25,6 +25,7 @@ import '../repair_service/repair_service.dart';
 import '../repair_service/update_service/view/view.dart';
 import '../signup/view/signup_page.u.dart';
 import '../splash/splash.dart';
+import '../test/test.dart';
 import '../vendor_authentication/vender_authentication.dart';
 
 @AdaptiveAutoRouter(
@@ -33,8 +34,8 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: AnalyticsPage),
     AdaptiveRoute<void>(page: LoginPage),
-    AdaptiveRoute<void>(page: P3RequestDetailPage, maintainState: false),
-    AdaptiveRoute<void>(page: InfoRequestPage, maintainState: false),
+    AdaptiveRoute<void>(page: P3RequestDetailPage),
+    AdaptiveRoute<void>(page: InfoRequestPage),
     AdaptiveRoute<void>(page: P14RepairCompletePage),
     AdaptiveRoute<void>(page: P13SelectOptionCompletePage),
     AdaptiveRoute<void>(page: P16FinishedOrderDetailPage),
@@ -48,6 +49,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),
+    AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: NewRequestPage),
     AdaptiveRoute<void>(page: P12DetailPage),

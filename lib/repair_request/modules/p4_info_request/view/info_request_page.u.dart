@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/info_request_bloc.dart';
-import '../cubit/realtime_location_cubit.dart';
 import 'info_request_view.u.dart';
 
 class InfoRequestPage extends StatelessWidget {
@@ -43,9 +41,6 @@ class InfoRequestPage extends StatelessWidget {
             user,
             context.read(),
           ),
-        ),
-        BlocProvider(
-          create: (context) => RealtimeLocationCubit(context.read(), user),
         ),
       ],
       child: Scaffold(
