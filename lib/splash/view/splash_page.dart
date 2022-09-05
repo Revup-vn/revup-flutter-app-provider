@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -26,6 +27,7 @@ class _SplashPageState extends State<SplashPage> {
       final type = p0.payload.type;
       switch (type) {
         case NotificationType.ConsumerRequestRepair:
+          log('in');
           final recordId = p0.payload.payload['recordId'] as String;
           context.router.push(
             NewRequestRoute(
