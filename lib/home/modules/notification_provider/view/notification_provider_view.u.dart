@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/l10n.dart';
+import '../../../../shared/widgets/loading.u.dart';
+import '../../../../shared/widgets/unknown_failure.dart';
 import '../bloc/notification_provider_bloc.dart';
 import '../widgets/widgets.dart';
 
@@ -45,10 +46,9 @@ class NotificationProviderView extends StatelessWidget {
                         NotificationProviderState>(
                       builder: (context, state) {
                         return state.when(
-                          initial: () => const Text('Empty'),
-                          loading: () =>
-                              const Center(child: CircularProgressIndicator()),
-                          failure: () => const Text('Failed'),
+                          initial: Container.new,
+                          loading: Loading.new,
+                          failure: UnknownFailure.new,
                           success: (notifications) => ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),

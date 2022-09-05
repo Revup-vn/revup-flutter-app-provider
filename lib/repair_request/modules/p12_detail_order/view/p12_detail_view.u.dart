@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../router/router.dart';
+import '../../../../shared/widgets/loading.u.dart';
 import '../../widgets/record_detail.dart';
 import '../bloc/p12_detail_bloc.dart';
 
@@ -47,8 +47,7 @@ class P12DetailView extends StatelessWidget {
       ),
       body: context.watch<P12DetailBloc>().state.when(
             initial: Container.new,
-            loading: () =>
-                const Center(child: CircularProgressIndicator.adaptive()),
+            loading: Loading.new,
             populated: (unpaid, paid) => RecordDetail(
               title: l10n.underRepairLabel,
               unpaidServices: unpaid,

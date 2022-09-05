@@ -273,5 +273,6 @@
   "userDismissed": "User aborted the request, you will get moving fees as compensation ",
   "notSupportLabel": "We currently don't support this feature. We will release soon",
   "consumerAbortLabel": "Order has been canceled",
-  "availableLabel": "Available"
+  "availableLabel": "Available",
+  "unknownFailureLabel": "Sorry, an error occurred"
 }
