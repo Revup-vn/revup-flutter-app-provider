@@ -9,12 +9,12 @@ import 'package:revup_core/core.dart';
 
 import '../../../../new_request/models/pending_repair_request.dart';
 
-part 'info_request_bloc.freezed.dart';
-part 'info_request_event.dart';
-part 'info_request_state.dart';
+part 'start_repair_bloc.freezed.dart';
+part 'start_repair_event.dart';
+part 'start_repair_state.dart';
 
-class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
-  InfoRequestBloc(
+class StartRepairBloc extends Bloc<StartRepairEvent, StartRepairState> {
+  StartRepairBloc(
     this.recordId,
     this._repairRecord,
     this._userRepos,
@@ -22,9 +22,9 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     this.user,
     this.storeRepository,
   ) : super(const _Initial()) {
-    on<InfoRequestEvent>(_onEvent);
+    on<StartRepairEvent>(_onEvent);
     _sPosition = _repairRecord.collection().snapshots().listen((event) {
-      add(const InfoRequestEvent.started());
+      add(const StartRepairEvent.started());
     });
   }
   final String recordId;
@@ -36,24 +36,24 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _sPosition;
 
   Future<void> _onEvent(
-    InfoRequestEvent event,
-    Emitter<InfoRequestState> emit,
+    StartRepairEvent event,
+    Emitter<StartRepairState> emit,
   ) async {
     await event.when(
       started: () async {
-        emit(const InfoRequestState.loading());
+        emit(const StartRepairState.loading());
         (await _repairRecord.get(recordId)).map(
           (r) => r.maybeMap(
-            orElse: () => emit(const InfoRequestState.failure()),
+            orElse: () => emit(const StartRepairState.failure()),
+            started: (value) => value,
             accepted: (value) => value,
-            arrived: (value) => value,
           ),
         );
 
         final maybeRecord = (await _repairRecord.get(recordId))
             .map(
               (r) => r.maybeMap<Option<PendingRepairRequest>>(
-                accepted: (v) =>
+                started: (v) =>
                     some(PendingRepairRequest.fromDto(repairRecord: v)),
                 arrived: (v) =>
                     some(PendingRepairRequest.fromDto(repairRecord: v)),
@@ -63,39 +63,42 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
             .fold<Option<PendingRepairRequest>>((l) => none(), (r) => r);
 
         if (maybeRecord.isNone()) {
-          emit(const InfoRequestState.failure());
-        }
-        final record = maybeRecord.getOrElse(() => throw NullThrownError());
+          emit(const StartRepairState.failure());
+        } else {
+          final record = maybeRecord.getOrElse(() => throw NullThrownError());
 
-        final needToVerifyService = (await _paymentService.all())
-            .map<IList<PaymentService>>(
-              (r) => r.filter(
-                (a) =>
-                    a.maybeMap(needToVerify: (_) => true, orElse: () => false),
-              ),
-            )
-            .fold((l) => ilist(<PaymentService>[]), (r) => r);
-        await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
-          _paymentService.collection().snapshots(),
-          onData: (data) {
-            final lst = data.docs
-                .map(_paymentService.parseRawData)
-                .fold<IList<PaymentService>>(
-                  nil(),
-                  (p, e) => e.fold(
-                    (l) => p,
-                    (r) => cons(r, p),
+          final needToVerifyService = (await _paymentService.all())
+              .map<IList<PaymentService>>(
+                (r) => r.filter(
+                  (a) => a.maybeMap(
+                    needToVerify: (_) => true,
+                    orElse: () => false,
                   ),
-                );
+                ),
+              )
+              .fold((l) => ilist(<PaymentService>[]), (r) => r);
+          await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
+            _paymentService.collection().snapshots(),
+            onData: (data) {
+              final lst = data.docs
+                  .map(_paymentService.parseRawData)
+                  .fold<IList<PaymentService>>(
+                    nil(),
+                    (p, e) => e.fold(
+                      (l) => p,
+                      (r) => cons(r, p),
+                    ),
+                  );
 
-            return InfoRequestState.success(
-              needToVerifyService: needToVerifyService,
-              record: record,
-              len: lst.length(),
-              isReady: record.recordType != 'arrived',
-            );
-          },
-        );
+              return StartRepairState.success(
+                needToVerifyService: needToVerifyService,
+                record: record,
+                len: lst.length(),
+                isReady: record.recordType != 'arrived',
+              );
+            },
+          );
+        }
       },
       confirmArrived: () async {
         final maybeRecord = (await _repairRecord.get(recordId))

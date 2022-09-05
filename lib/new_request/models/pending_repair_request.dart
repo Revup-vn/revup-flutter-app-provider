@@ -58,6 +58,17 @@ class PendingRepairRequest with _$PendingRepairRequest {
           to: repairRecord.to,
           recordType: 'arrived',
         ),
+        started: (value) => PendingRepairRequest(
+          id: value.id,
+          cid: value.cid,
+          pid: value.pid,
+          created: value.created,
+          desc: value.desc,
+          vehicle: value.vehicle,
+          money: value.money,
+          from: value.from,
+          to: value.to,
+        ),
         orElse: () => throw NullThrownError(),
       );
 }

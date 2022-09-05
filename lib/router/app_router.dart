@@ -19,6 +19,7 @@ import '../repair_request/modules/p14_repair_completed/view/p14_repair_completed
 import '../repair_request/modules/p16_finished_order_detail/view/p16_finished_order_detail_page.u.dart';
 import '../repair_request/modules/p3_request_detail/view/p3_request_detail.u.dart';
 import '../repair_request/modules/p4_info_request/view/info_request_page.u.dart';
+import '../repair_request/modules/p4_start_repair/view/start_repair_page.u.dart';
 import '../repair_request/request.dart';
 import '../repair_service/add-product/view/add_product_page.u.dart';
 import '../repair_service/repair_service.dart';
@@ -34,6 +35,7 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: AnalyticsPage),
     AdaptiveRoute<void>(page: LoginPage),
+    AdaptiveRoute<void>(page: StartRepairPage),
     AdaptiveRoute<void>(page: P3RequestDetailPage),
     AdaptiveRoute<void>(page: InfoRequestPage),
     AdaptiveRoute<void>(page: P14RepairCompletePage),
