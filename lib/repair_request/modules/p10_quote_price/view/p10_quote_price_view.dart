@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../router/router.dart';
+import '../../../../shared/widgets/loading.u.dart';
 import '../../widgets/need_to_verify_list.u.dart';
 import '../../widgets/service_request_item.u.dart';
 import '../../widgets/total_service_price_item.u.dart';
@@ -146,9 +146,7 @@ class P10QuotePriceView extends StatelessWidget {
               ),
             );
           },
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
         );
   }
 }

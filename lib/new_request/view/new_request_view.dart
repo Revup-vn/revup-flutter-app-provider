@@ -1,10 +1,9 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -12,6 +11,7 @@ import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
 import '../../shared/utils/utils_function.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/new_request_bloc.dart';
 import '../widgets/request_details_static.dart';
 import '../widgets/request_map_static.dart';
@@ -25,7 +25,6 @@ class NewRequestView extends StatelessWidget {
     final cubitNotify = context.read<NotificationCubit>();
     blocPage.state.whenOrNull(
       initial: () {
-        // context.read<RealtimeLocationCubit>().watch();
         blocPage.add(const NewRequestEvent.started());
       },
     );
@@ -160,9 +159,7 @@ class NewRequestView extends StatelessWidget {
               ],
             );
           },
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
         );
       },
     );

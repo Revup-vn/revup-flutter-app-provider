@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' hide MapType;
 import 'package:map_launcher/map_launcher.dart';
@@ -8,6 +7,7 @@ import 'package:revup_core/core.dart';
 import '../../l10n/l10n.dart';
 import '../../repair_request/modules/p4_info_request/cubit/realtime_location_cubit.dart';
 import '../../shared/utils/utils_function.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/map_route_bloc.dart';
 import '../widgets/request_details_live.dart';
 import '../widgets/request_map_live.dart';
@@ -59,9 +59,7 @@ class MapRouteView extends StatelessWidget {
               ],
             );
           },
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
         );
       },
     );
