@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../router/router.dart';
+import '../../../../../shared/widgets/loading.u.dart';
+import '../../../../../shared/widgets/unknown_failure.dart';
 import '../bloc/history_provider_bloc.dart';
 import '../widgets/widgets.dart';
 
@@ -43,10 +45,9 @@ class HistoryProviderView extends StatelessWidget {
               BlocBuilder<HistoryProviderBloc, HistoryProviderState>(
                 builder: (context, state) {
                   return state.when(
-                    initial: () => const Text('Empty'),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
-                    failure: () => const Text('Failed'),
+                    initial: Container.new,
+                    loading: Loading.new,
+                    failure: UnknownFailure.new,
                     success: (histories) => ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

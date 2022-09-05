@@ -50,13 +50,19 @@ class _SplashPageState extends State<SplashPage> {
                 content: Text(context.l10n.consumerAbortLabel),
                 actions: [
                   TextButton(
-                    onPressed: () => context.router.pop(),
+                    onPressed: () {
+                      context.router.pop();
+                    },
                     child: Text(context.l10n.confirmLabel),
                   ),
                 ],
               ),
-            ).then((_) => context.router
-                .popUntil((route) => route.settings.name == HomeRoute.name));
+            ).then(
+              (_) {
+                context.router
+                    .popUntil((route) => route.settings.name == HomeRoute.name);
+              },
+            );
           } else {
             break;
           }
@@ -91,7 +97,10 @@ class _SplashPageState extends State<SplashPage> {
                       cons(AppUserDummy.field(AppUserFields.Online), nil()),
                     ),
               )
-              .then((value) => context.router.popUntilRoot());
+              .then(
+                (value) => context.router
+                    .popUntil((route) => route.settings.name == HomeRoute.name),
+              );
           break;
 
         // ignore: no_default_cases

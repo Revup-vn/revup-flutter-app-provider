@@ -8,6 +8,7 @@ import 'package:revup_core/core.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
+import '../../../../shared/widgets/loading.u.dart';
 import '../../../models/pending_service_model.dart';
 import '../../../request.dart';
 import '../bloc/info_request_bloc.dart';
@@ -205,8 +206,6 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                 ),
                 LayoutBuilder(
                   builder: (context, _) {
-                    // if (needToVerifyService.isEmpty && isReady)
-                    //   startMode = true;
                     if (record.recordType == 'pending') {
                       return ActionButton(
                         text: l10n.startLabel,
@@ -288,9 +287,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
               ],
             ),
           ),
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
         );
       },
     );
