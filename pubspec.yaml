@@ -43,7 +43,7 @@ dependencies:
   loader_overlay: ^2.0.10
   lottie: ^1.4.2
   map_launcher: ^2.3.0+1
-  modal_bottom_sheet: ^2.1.0
+  modal_bottom_sheet: ^2.1.2
   pin_code_fields: ^7.4.0
   revup_core:
     # path: ../revup-core
