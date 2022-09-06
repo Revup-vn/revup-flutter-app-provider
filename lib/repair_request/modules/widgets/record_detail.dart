@@ -1,56 +1,175 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
+import '../../../gen/assets.gen.dart';
+import '../../../l10n/l10n.dart';
+import '../../../shared/utils/fallbacks.dart';
 import '../../models/models.dart';
-import 'paid_service_item.u.dart';
-import 'service_request_item.u.dart';
+import 'need_to_verify_item.dart';
 import 'total_service_price_item.u.dart';
 
 class RecordDetail extends StatelessWidget {
   const RecordDetail({
     super.key,
     required this.title,
-    required this.unpaidServices,
-    required this.paidServices,
+    required this.services,
   });
 
   final String title;
-  final List<PendingServiceModel> unpaidServices;
-  final List<PaidServicesModel> paidServices;
+  final List<PendingServiceModel> services;
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Expanded(
-            flex: 8,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-              child: SingleChildScrollView(
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return Column(
+      children: [
+        Expanded(
+          flex: 8,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16),
                 child: Column(
                   children: [
-                    SizedBox(
-                      child: Row(
-                        children: <Widget>[
-                          AutoSizeText(
-                            title,
-                            style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.copyWith(fontWeight: FontWeight.bold) ??
-                                const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: services.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var statusLabel = l10n.pendingLabel;
+                        var statusColor = Colors.blueAccent;
+                        if (services[index].status == 'paid') {
+                          statusLabel = l10n.paidLabel;
+                          statusColor = Colors.greenAccent;
+                        } else if (services[index].status == 'waiting') {
+                          statusLabel = l10n.waitingLabel;
+                          statusColor = Colors.orangeAccent;
+                        }
+                        return Card(
+                          elevation: 0,
+                          child: SizedBox(
+                            height: 96,
+                            child: ListTile(
+                              leading: SizedBox(
+                                height: 64,
+                                width: 64,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: CachedNetworkImage(
+                                    imageUrl: services[index].imageUrl ??
+                                        kFallbackServiceImg,
+                                    placeholder: (context, url) =>
+                                        Assets.screens.setting.svg(
+                                      fit: BoxFit.fill,
+                                      height: 64,
+                                      width: 64,
+                                    ),
+                                    errorWidget: (
+                                      context,
+                                      url,
+                                      dynamic error,
+                                    ) =>
+                                        Assets.screens.setting.svg(
+                                      fit: BoxFit.fill,
+                                      height: 64,
+                                      width: 64,
+                                    ),
+                                    height: 80,
+                                    width: 80,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
+                              ),
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AutoSizeText(
+                                    services[index].name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          services[index].price == -1
+                                              ? l10n.needPriceQuotationLabel
+                                              : context.formatMoney(
+                                                  services[index].price +
+                                                      (services[index]
+                                                              .products
+                                                              .isEmpty
+                                                          ? 0
+                                                          : services[index]
+                                                              .products
+                                                              .fold(
+                                                                0,
+                                                                (p, e) =>
+                                                                    p +
+                                                                    e.unitPrice *
+                                                                        e.quantity,
+                                                              )),
+                                                ),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      if (services[index].status == 'waiting')
+                                        NeedToVerifyItem(
+                                          key: UniqueKey(),
+                                          needToVerify: services[index],
+                                          pendingAmount: services.fold(
+                                            0,
+                                            (p, e) =>
+                                                p +
+                                                (e.price == -1 ? 0 : e.price) +
+                                                (e.products.isEmpty
+                                                    ? 0
+                                                    : e.products.first
+                                                            .unitPrice *
+                                                        e.products.first
+                                                            .quantity),
+                                          ),
+                                        )
+                                      else
+                                        AutoSizeText(
+                                          statusLabel,
+                                          style: TextStyle(
+                                            color: statusColor,
+                                          ),
+                                          maxFontSize: 12,
+                                          minFontSize: 8,
+                                        ),
+                                    ],
+                                  ),
+                                  AutoSizeText(
+                                    '''${l10n.productLabel}: ${services[index].products.isEmpty ? l10n.noneLabel : ('${services[index].products.first.name} x ${services[index].products.first.quantity}')}''',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    ServiceRequestItem(pendingService: unpaidServices),
-                    const SizedBox(
-                      height: 16,
+                        );
+                      },
                     ),
                     const Divider(
                       height: 1,
@@ -59,29 +178,24 @@ class RecordDetail extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    if (paidServices.isNotEmpty)
-                      PaidServiceItem(paidService: paidServices),
-                    const SizedBox(
-                      height: 16,
-                    ),
                   ],
                 ),
               ),
             ),
           ),
-          TotalServicePriceItem(
-            pendingAmount: (paidServices.isEmpty
+        ),
+        TotalServicePriceItem(
+          pendingAmount: services.fold(
+            0,
+            (p, e) =>
+                p +
+                (e.price == -1 ? 0 : e.price) +
+                (e.products.isEmpty
                     ? 0
-                    : paidServices
-                        .map((e) => e.price)
-                        .toList()
-                        .reduce((value, element) => value + element)) +
-                (unpaidServices.isEmpty
-                    ? 0
-                    : unpaidServices
-                        .map((e) => e.price)
-                        .reduce((value, element) => value + element)),
+                    : e.products.first.unitPrice * e.products.first.quantity),
           ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 }

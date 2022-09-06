@@ -274,5 +274,9 @@
   "notSupportLabel": "We currently don't support this feature. We will release soon",
   "consumerAbortLabel": "Order has been canceled",
   "availableLabel": "Available",
-  "unknownFailureLabel": "Sorry, an error occurred"
+  "unknownFailureLabel": "Sorry, an error occurred",
+  "pendingLabel": "Unpaid",
+  "waitingLabel": "Waiting",
+  "noneLabel": "None",
+  "productLabel": "Product"
 }

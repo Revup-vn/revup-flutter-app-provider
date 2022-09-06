@@ -17,13 +17,13 @@ class P13SelectOptionCompleteView extends StatelessWidget {
   const P13SelectOptionCompleteView({
     super.key,
     required this.form,
-    required this.paid,
+    required this.services,
     required this.vehicle,
     required this.id,
   });
 
   final GlobalKey<FormBuilderState> form;
-  final List<PaidServicesModel> paid;
+  final List<PendingServiceModel> services;
   final String vehicle;
   final String id;
 
@@ -32,139 +32,149 @@ class P13SelectOptionCompleteView extends StatelessWidget {
     final l10n = context.l10n;
     final cubit = context.watch<SelectOptionsCubit>();
     cubit.state.maybeWhen(
-      initial: () => cubit.fetchUnpaidServices(
-        () => context.router.pop(),
-      ),
+      initial: () => cubit.fetchUnpaidServices(() => context.router.pop()),
       orElse: () => false,
     );
-    return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            onPressed: () {
-              form.currentState?.save();
-              final saveLst =
-                  form.currentState?.value['data'] as List<PendingServiceModel>;
-              if (saveLst.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(l10n.chooseAtLeastCompletedLabel)),
-                );
-                return;
-              } else {
-                context.read<SelectOptionsCubit>().sendMessage(id, (a, b, c) {
-                  context.read<NotificationCubit>().sendMessageToToken(
-                        SendMessage(
-                          title: 'Revup',
-                          body: 'Done',
-                          token: a,
-                          icon: kRevupIconApp,
-                          payload: MessageData(
-                            type: NotificationType.ProviderRepaired,
-                            payload: <String, dynamic>{
-                              'providerId': b,
-                              'recordId': c,
-                            },
-                          ),
-                        ),
-                      );
-                });
-              }
+    return BlocBuilder<SelectOptionsCubit, SelectOptionsState>(
+      builder: (context, state) {
+        return state.when(
+            initial: Container.new,
+            loading: Loading.new,
+            populated: (data) {
+              return Scaffold(
+                appBar: AppBar(
+                  actions: <Widget>[
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {
+                        form.currentState?.save();
+                        final saveLst = form.currentState?.value['data']
+                            as List<PendingServiceModel>;
+                        if (saveLst.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content:
+                                    Text(l10n.chooseAtLeastCompletedLabel)),
+                          );
+                          return;
+                        } else {
+                          context.read<SelectOptionsCubit>().sendMessage(id,
+                              (token, providerId, recordId) {
+                            context
+                                .read<NotificationCubit>()
+                                .sendMessageToToken(
+                                  SendMessage(
+                                    title: 'Revup',
+                                    body: 'Done',
+                                    token: token,
+                                    icon: kRevupIconApp,
+                                    payload: MessageData(
+                                      type: NotificationType.ProviderRepaired,
+                                      payload: <String, dynamic>{
+                                        'providerId': providerId,
+                                        'recordId': recordId,
+                                      },
+                                    ),
+                                  ),
+                                );
+                          });
+                        }
 
-              context.router.push(
-                P14RepairCompleteRoute(
-                  finished: (form.currentState?.value ??
-                          <String, dynamic>{'data': <dynamic>[]})['data']
-                      as List<PendingServiceModel>,
-                  paid: paid,
-                  vehicle: vehicle,
-                  recordId: id,
+                        context.router.push(
+                          P14RepairCompleteRoute(
+                            finished: (form.currentState?.value ??
+                                <String, dynamic>{
+                                  'data': <dynamic>[]
+                                })['data'] as List<PendingServiceModel>,
+                            paid: services
+                                .where((e) => e.status == 'paid')
+                                .map(
+                                  (v) => PaidServicesModel.fromDto(
+                                    pendingService: v,
+                                  ),
+                                )
+                                .toList(),
+                            vehicle: vehicle,
+                            recordId: id,
+                          ),
+                        );
+                      },
+                      child: Text(l10n.nextLabel),
+                    ),
+                  ],
+                ),
+                body: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              child: Row(
+                                children: <Widget>[
+                                  AutoSizeText(
+                                    l10n.selectCompletedItemLabel,
+                                    style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge
+                                            ?.copyWith(
+                                                fontWeight: FontWeight.bold) ??
+                                        const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            SizedBox(
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: AutoSizeText(
+                                      l10n.messagesSelectItemLabel,
+                                      style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium
+                                              ?.copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onSurfaceVariant,
+                                              ) ??
+                                          TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSurfaceVariant,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            SelectServiceRequestForm(
+                              services: data,
+                              formKey: form,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
-            },
-            child: Text(l10n.nextLabel),
-          ),
-        ],
-      ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    child: Row(
-                      children: <Widget>[
-                        AutoSizeText(
-                          l10n.selectCompletedItemLabel,
-                          style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold) ??
-                              const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  SizedBox(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: AutoSizeText(
-                            l10n.messagesSelectItemLabel,
-                            style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant,
-                                    ) ??
-                                TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  cubit.state.when(
-                    initial: Container.new,
-                    loading: Loading.new,
-                    populated: (data) => SelectServiceRequestForm(
-                      services: data,
-                      formKey: form,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+            });
+      },
     );
   }
 }

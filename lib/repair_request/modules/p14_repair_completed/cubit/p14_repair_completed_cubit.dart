@@ -35,9 +35,11 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
     List<PendingServiceModel> finished,
     List<PaidServicesModel> paid,
     Function4<String, String, String, String, void> sendMessage,
+    Function0<void> onRoute,
   ) async {
     final currRecord =
         await _irr.get(_rid); // The record must have type started
+
     currRecord.fold((l) => emit(const P14RepairCompletedState.failed()),
         (repairRecord) async {
       // Save images
@@ -45,6 +47,7 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
 
       // Update service status
       final _irp = _sr.repairPaymentRepo(repairRecord);
+
       for (final e in finished) {
         (await _irp.get(e.name)).fold(
           (l) => unit,
@@ -125,6 +128,7 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
         'completedRepair',
         repairRecord.id,
       );
+      onRoute();
     });
     return unit;
   }

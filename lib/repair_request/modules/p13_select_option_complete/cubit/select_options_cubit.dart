@@ -42,6 +42,7 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
                                 .map((e) => e.unitPrice * e.quantity)
                                 .reduce((value, element) => value + element)),
                     isOptional: val.isOptional,
+                    products: val.products,
                   ),
                 ),
               ),

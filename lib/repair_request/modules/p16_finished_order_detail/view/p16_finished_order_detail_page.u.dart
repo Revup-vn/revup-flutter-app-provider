@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/paid_services_model.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/p16_finished_order_detail_bloc.dart';
 import 'p16_finished_order_detail_view.u.dart';
@@ -11,14 +8,14 @@ import 'p16_finished_order_detail_view.u.dart';
 class P16FinishedOrderDetailPage extends StatelessWidget {
   const P16FinishedOrderDetailPage({
     super.key,
-    required this.data,
+    required this.services,
   });
 
-  final Tuple2<List<PendingServiceModel>, List<PaidServicesModel>> data;
+  final List<PendingServiceModel> services;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => P16FinishedOrderDetailBloc(data),
+      create: (_) => P16FinishedOrderDetailBloc(services),
       child: const P16FinishedOrderDetail(),
     );
   }

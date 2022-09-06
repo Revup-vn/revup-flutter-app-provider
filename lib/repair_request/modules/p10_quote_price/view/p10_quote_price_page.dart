@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../new_request/models/pending_repair_request.dart';
 import '../../../models/pending_service_model.dart';
+import '../../p12_detail_order/cubit/quote_price_cubit.dart';
 import '../cubit/p10_quote_price_cubit.dart';
 import '../cubit/total_amount_cubit.dart';
 import 'p10_quote_price_view.dart';
@@ -27,6 +27,7 @@ class P10QuotePricePage extends StatelessWidget {
         sr.repairPaymentRepo(RepairRecordDummy.dummyStarted(record.id));
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => QuotePriceCubit(paymentService)),
         BlocProvider(
           create: (context) => P10QuotePriceCubit(
             paymentService,

@@ -16,6 +16,9 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
   P12DetailBloc(this._ips, this.id, this._irr)
       : super(const P12DetailState.initial()) {
     on<P12DetailEvent>(_onEvent);
+    _s = _ips.collection().snapshots().listen((event) {
+      add(const P12DetailEvent.fetched());
+    });
   }
 
   FutureOr<void> _onEvent(
@@ -27,57 +30,29 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
         (l) => emit(const P12DetailState.failure()),
         (r) => onRoute(r.vehicle),
       ),
-      fetched: () async => (await _ips.all()).toOption().fold(
-            () => emit(const P12DetailState.failure()),
-            (a) => a
-                .filter(
-                  (a) => a.maybeMap(
-                    orElse: () => true,
-                    needToVerify: (_) => false,
-                  ),
-                )
-                .map(
-                  (a) => a.map(
-                    pending: (val) => PendingServiceModel(
-                      name: val.serviceName,
-                      price: val.moneyAmount +
-                          ((val.isOptional || val.products.isEmpty)
-                              ? 0
-                              : val.products
-                                  .map((e) => e.quantity * e.unitPrice)
-                                  .reduce(
-                                    (value, element) => value + element,
-                                  )),
-                      isOptional: val.isOptional,
-                    ),
-                    paid: (val) => PaidServicesModel(
-                      name: val.serviceName,
-                      price: val.moneyAmount +
-                          (val.products.isEmpty
-                              ? 0
-                              : val.products
-                                  .map((e) => e.quantity * e.unitPrice)
-                                  .reduce(
-                                    (value, element) => value + element,
-                                  )),
-                    ),
-                    needToVerify: (_) => throw NullThrownError(),
-                  ),
-                )
-                .partition((a) => a is PaidServicesModel)
-                .apply(
-                  (a, b) => emit(
-                    P12DetailState.populated(
-                      unpaid: b.toList().cast<PendingServiceModel>(),
-                      paid: a.toList().cast<PaidServicesModel>(),
-                    ),
-                  ),
+      fetched: () async {
+        final services = (await _ips.all())
+            .toOption()
+            .fold<IList<PendingServiceModel>>(
+              nil,
+              (a) => a.map(
+                (a) => a.map(
+                  pending: (v) =>
+                      PendingServiceModel.fromDto(paymentService: v),
+                  paid: (v) => PendingServiceModel.fromDto(paymentService: v),
+                  needToVerify: (v) =>
+                      PendingServiceModel.fromDto(paymentService: v),
                 ),
-          ),
+              ),
+            )
+            .toList();
+        emit(P12DetailState.populated(services: services));
+      },
     );
   }
 
   final IStore<PaymentService> _ips;
   final String id;
   final IStore<RepairRecord> _irr;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
 }

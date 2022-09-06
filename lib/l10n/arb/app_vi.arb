@@ -271,5 +271,9 @@
   "notSupportLabel": "Chúng tôi hiện không hỗ trợ tính năng này. Chúng tôi sẽ phát hành sớm",
   "consumerAbortLabel": "Đơn hàng đã bị huỷ",
   "availableLabel": "Khả dụng",
-  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra"
+  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra",
+  "pendingLabel": "Chưa thanh toán",
+  "waitingLabel": "Đang chờ",
+  "noneLabel": "Không",
+  "productLabel": "Sản phẩm"
 }

@@ -21,9 +21,7 @@ mixin _$P10QuotePriceState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)
-        success,
+    required TResult Function(List<PendingServiceModel> services) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,9 +29,7 @@ mixin _$P10QuotePriceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,9 +37,7 @@ mixin _$P10QuotePriceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,9 +128,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)
-        success,
+    required TResult Function(List<PendingServiceModel> services) success,
   }) {
     return initial();
   }
@@ -147,9 +139,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
   }) {
     return initial?.call();
   }
@@ -160,9 +150,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -256,9 +244,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)
-        success,
+    required TResult Function(List<PendingServiceModel> services) success,
   }) {
     return loading();
   }
@@ -269,9 +255,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
   }) {
     return loading?.call();
   }
@@ -282,9 +266,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -378,9 +360,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)
-        success,
+    required TResult Function(List<PendingServiceModel> services) success,
   }) {
     return failure();
   }
@@ -391,9 +371,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
   }) {
     return failure?.call();
   }
@@ -404,9 +382,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -462,9 +438,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call(
-      {List<PendingServiceModel> pendingService,
-      List<NeedToVerifyModel> needToVerifyService});
+  $Res call({List<PendingServiceModel> services});
 }
 
 /// @nodoc
@@ -479,18 +453,13 @@ class __$$_SuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? pendingService = freezed,
-    Object? needToVerifyService = freezed,
+    Object? services = freezed,
   }) {
     return _then(_$_Success(
-      pendingService: pendingService == freezed
-          ? _value._pendingService
-          : pendingService // ignore: cast_nullable_to_non_nullable
+      services: services == freezed
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
               as List<PendingServiceModel>,
-      needToVerifyService: needToVerifyService == freezed
-          ? _value._needToVerifyService
-          : needToVerifyService // ignore: cast_nullable_to_non_nullable
-              as List<NeedToVerifyModel>,
     ));
   }
 }
@@ -498,29 +467,19 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(
-      {required final List<PendingServiceModel> pendingService,
-      required final List<NeedToVerifyModel> needToVerifyService})
-      : _pendingService = pendingService,
-        _needToVerifyService = needToVerifyService;
+  const _$_Success({required final List<PendingServiceModel> services})
+      : _services = services;
 
-  final List<PendingServiceModel> _pendingService;
+  final List<PendingServiceModel> _services;
   @override
-  List<PendingServiceModel> get pendingService {
+  List<PendingServiceModel> get services {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pendingService);
-  }
-
-  final List<NeedToVerifyModel> _needToVerifyService;
-  @override
-  List<NeedToVerifyModel> get needToVerifyService {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_needToVerifyService);
+    return EqualUnmodifiableListView(_services);
   }
 
   @override
   String toString() {
-    return 'P10QuotePriceState.success(pendingService: $pendingService, needToVerifyService: $needToVerifyService)';
+    return 'P10QuotePriceState.success(services: $services)';
   }
 
   @override
@@ -528,17 +487,12 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality()
-                .equals(other._pendingService, _pendingService) &&
-            const DeepCollectionEquality()
-                .equals(other._needToVerifyService, _needToVerifyService));
+            const DeepCollectionEquality().equals(other._services, _services));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_pendingService),
-      const DeepCollectionEquality().hash(_needToVerifyService));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_services));
 
   @JsonKey(ignore: true)
   @override
@@ -551,11 +505,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)
-        success,
+    required TResult Function(List<PendingServiceModel> services) success,
   }) {
-    return success(pendingService, needToVerifyService);
+    return success(services);
   }
 
   @override
@@ -564,11 +516,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
   }) {
-    return success?.call(pendingService, needToVerifyService);
+    return success?.call(services);
   }
 
   @override
@@ -577,13 +527,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<PendingServiceModel> pendingService,
-            List<NeedToVerifyModel> needToVerifyService)?
-        success,
+    TResult Function(List<PendingServiceModel> services)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(pendingService, needToVerifyService);
+      return success(services);
     }
     return orElse();
   }
@@ -627,12 +575,10 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements P10QuotePriceState {
-  const factory _Success(
-      {required final List<PendingServiceModel> pendingService,
-      required final List<NeedToVerifyModel> needToVerifyService}) = _$_Success;
+  const factory _Success({required final List<PendingServiceModel> services}) =
+      _$_Success;
 
-  List<PendingServiceModel> get pendingService;
-  List<NeedToVerifyModel> get needToVerifyService;
+  List<PendingServiceModel> get services;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

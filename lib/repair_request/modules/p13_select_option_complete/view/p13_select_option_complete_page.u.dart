@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -11,11 +10,11 @@ class P13SelectOptionCompletePage extends StatelessWidget {
   const P13SelectOptionCompletePage({
     super.key,
     required this.id,
-    required this.paid,
+    required this.services,
     required this.vehicle,
   });
   final String id;
-  final List<PaidServicesModel> paid;
+  final List<PendingServiceModel> services;
   final String vehicle;
 
   @override
@@ -32,7 +31,7 @@ class P13SelectOptionCompletePage extends StatelessWidget {
       child: P13SelectOptionCompleteView(
         form: GlobalKey(),
         id: id,
-        paid: paid,
+        services: services,
         vehicle: vehicle,
       ),
     );

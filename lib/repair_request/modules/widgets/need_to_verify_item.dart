@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
-import '../../models/need_to_verify_model.dart';
-import '../p10_quote_price/cubit/p10_quote_price_cubit.dart';
+import '../../models/pending_service_model.dart';
+import '../p12_detail_order/cubit/quote_price_cubit.dart';
 
 class NeedToVerifyItem extends StatefulWidget {
   const NeedToVerifyItem({
@@ -16,7 +15,7 @@ class NeedToVerifyItem extends StatefulWidget {
     required this.needToVerify,
     required this.pendingAmount,
   });
-  final NeedToVerifyModel needToVerify;
+  final PendingServiceModel needToVerify;
   final int pendingAmount;
 
   @override
@@ -25,46 +24,23 @@ class NeedToVerifyItem extends StatefulWidget {
 
 class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
   final _price = GlobalKey<FormBuilderFieldState<dynamic, dynamic>>();
-  String quotePrice = '';
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<P10QuotePriceCubit>();
-    return SizedBox(
-      height: 50,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          AutoSizeText(
-            widget.needToVerify.serviceName,
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          if (quotePrice.isEmpty)
-            TextButton(
-              onPressed: () async {
-                await quotePriceDialog().then(
-                  (value) {
-                    setState(() {
-                      quotePrice = value ?? '';
-                    });
-                  },
-                ).then((value) async {
-                  await cubit.quotePrice(
-                    widget.needToVerify,
-                    int.parse(quotePrice),
-                  );
-                });
-              },
-              child: AutoSizeText(
-                context.l10n.touchToQuoteLabel,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(color: Theme.of(context).primaryColor),
-              ),
-            )
-          else
-            Text(context.formatMoney(int.parse(quotePrice))),
-        ],
+    final cubit = context.read<QuotePriceCubit>();
+    return TextButton(
+      onPressed: () async {
+        await quotePriceDialog().then((value) async {
+          await cubit.quotePrice(
+            widget.needToVerify,
+            int.parse(value ?? ''),
+          );
+        });
+      },
+      child: AutoSizeText(
+        context.l10n.quoteLabel,
+        style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        maxFontSize: 12,
+        minFontSize: 8,
       ),
     );
   }
