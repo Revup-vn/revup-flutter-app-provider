@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../shared/shared.dart';
 
 class BackGroundView extends StatelessWidget {
@@ -28,6 +29,10 @@ class BackGroundView extends StatelessWidget {
                   width: double.infinity,
                   height: coverHeight,
                   imageUrl: imgUrl.isEmpty ? kFallbackBackground : imgUrl,
+                  errorWidget: (context, url, dynamic error) =>
+                      Assets.screens.brgimg.image(
+                    fit: BoxFit.fill,
+                  ),
                 )
               : Image.file(
                   backgroundImg,

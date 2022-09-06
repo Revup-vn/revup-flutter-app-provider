@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,11 +16,20 @@ class HistoryProviderBloc
   HistoryProviderBloc(this._irr, this._iau, this.pid)
       : super(const _Initial()) {
     on<HistoryProviderEvent>(_onEventHistory);
+
+    _s = _irr
+        .collection()
+        .where('pid', isEqualTo: pid)
+        .snapshots()
+        .listen((event) {
+      add(const HistoryProviderEvent.started());
+    });
   }
 
   final IStore<RepairRecord> _irr;
   final IStore<AppUser> _iau;
   final String pid;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
 
   Future<void> _onEventHistory(
     HistoryProviderEvent event,
@@ -69,7 +80,11 @@ class HistoryProviderBloc
             userName: '${user.firstName} ${user.lastName}',
             vehicleType: e.key.vehicle == 'mortobike' ? 0 : 1,
           );
-        }).toList();
+        }).toList()
+          ..sort(
+            (a, b) => b.timeCreated.millisecondsSinceEpoch
+                .compareTo(a.timeCreated.millisecondsSinceEpoch),
+          );
         emit(
           HistoryProviderState.success(histories),
         );

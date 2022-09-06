@@ -16,6 +16,7 @@ import 'package:revup_core/core.dart';
 import '../../../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 import '../../signup/widgets/background_view.u.dart';
+import '../../signup/widgets/id_image.u.dart';
 import '../bloc/bloc/upload_image_bloc.dart';
 import '../bloc/profile_bloc.dart';
 import '../cubit/upload_image_cubit.u.dart';
@@ -29,6 +30,7 @@ class UpdateProfileView extends StatelessWidget {
     final cubit = context.watch<UploadImageCubit>();
     final _formKey = GlobalKey<FormBuilderState>();
     var list = <File>[
+      File(''),
       File(''),
       File(''),
     ];
@@ -258,6 +260,90 @@ class UpdateProfileView extends StatelessWidget {
                         name: 'bio',
                       ),
                       const SizedBox(
+                        height: 16,
+                      ),
+                      AutoSizeText.rich(
+                        TextSpan(
+                          text: l10n.imageCardLabel,
+                          style: Theme.of(context).textTheme.labelLarge,
+                          children: [
+                            TextSpan(
+                              text: '( ${l10n.blsLabel} )',
+                              style: Theme.of(context).textTheme.labelMedium,
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Center(
+                            child: Container(
+                              height: 96,
+                              width: 96,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onInverseSurface,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: BlocBuilder<UploadImageBloc,
+                                  UploadImageState>(
+                                builder: (context, state) => state.when(
+                                  initial: () => Center(
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _showModalButtonSheet(context, 2, list);
+                                      },
+                                      icon: Icon(
+                                        Icons.add_photo_alternate_outlined,
+                                        size: 40,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      ),
+                                    ),
+                                  ),
+                                  choosePhotoSuccess: (file) => Center(
+                                    child: file[2].path.isEmpty
+                                        ? IconButton(
+                                            onPressed: () {
+                                              _showModalButtonSheet(
+                                                context,
+                                                2,
+                                                list,
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons
+                                                  .add_photo_alternate_outlined,
+                                              size: 40,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .outline,
+                                            ),
+                                          )
+                                        : IdImage(
+                                            96,
+                                            file[2],
+                                            callback: () {
+                                              list[2] = File('');
+                                              context
+                                                  .read<UploadImageBloc>()
+                                                  .add(
+                                                    const UploadImageEvent
+                                                        .started(),
+                                                  );
+                                            },
+                                          ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
                         height: 20,
                       ),
                       ElevatedButton(
@@ -293,7 +379,9 @@ class UpdateProfileView extends StatelessWidget {
                                 phoneNumber.length,
                               );
                             }
-                            if (list[0].path.isEmpty && list[1].path.isEmpty) {
+                            if (list[0].path.isEmpty &&
+                                list[1].path.isEmpty &&
+                                list[2].path.isEmpty) {
                               final appUser =
                                   AppUserDummy.dummyProvider(user.uuid)
                                       .maybeMap(
@@ -370,6 +458,13 @@ class UpdateProfileView extends StatelessWidget {
                                                 '',
                                           ),
                                           bio: data?['bio'].toString() ?? '',
+                                          idCardImage: list[0].isEmpty
+                                              ? user.mapOrNull(
+                                                    provider: (value) =>
+                                                        value.idCardImage,
+                                                  ) ??
+                                                  ''
+                                              : list[0],
                                         ),
                                       );
                                       context.read<ProfileBloc>().add(
