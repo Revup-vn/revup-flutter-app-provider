@@ -276,5 +276,6 @@
   "availableLabel": "Available",
   "needToUpdateInfoLabel": "Your information may not match. Please reupload your infomation (include business lisence).",
   "needToUpdateInfoDesLabel": "That is the basis for your account to be approved in the fastest way",
-  "understoodLabel": "Understood"
+  "understoodLabel": "Understood",
+  "unknownFailureLabel": "Sorry, an error occurred"
 }

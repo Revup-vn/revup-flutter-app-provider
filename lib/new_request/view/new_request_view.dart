@@ -12,6 +12,7 @@ import '../../router/router.dart';
 import '../../shared/utils/utils.dart';
 import '../../shared/utils/utils_function.dart';
 import '../../shared/widgets/custom_dialog.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/new_request_bloc.dart';
 import '../widgets/request_details_static.dart';
 import '../widgets/request_map_static.dart';
@@ -25,7 +26,6 @@ class NewRequestView extends StatelessWidget {
     final cubitNotify = context.read<NotificationCubit>();
     blocPage.state.whenOrNull(
       initial: () {
-        // context.read<RealtimeLocationCubit>().watch();
         blocPage.add(const NewRequestEvent.started());
       },
     );
@@ -132,9 +132,7 @@ class NewRequestView extends StatelessWidget {
               ],
             );
           },
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
         );
       },
     );

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -26,6 +27,7 @@ class _SplashPageState extends State<SplashPage> {
       final type = p0.payload.type;
       switch (type) {
         case NotificationType.ConsumerRequestRepair:
+          log('in');
           final recordId = p0.payload.payload['recordId'] as String;
           context.router.push(
             NewRequestRoute(
@@ -48,14 +50,18 @@ class _SplashPageState extends State<SplashPage> {
                 content: Text(context.l10n.consumerAbortLabel),
                 actions: [
                   TextButton(
-                    onPressed: () => context.router.pop(),
+                    onPressed: () {
+                      context.router.pop();
+                    },
                     child: Text(context.l10n.confirmLabel),
                   ),
                 ],
               ),
             ).then(
-              (_) => context.router
-                  .popUntil((route) => route.settings.name == HomeRoute.name),
+              (_) {
+                context.router
+                    .popUntil((route) => route.settings.name == HomeRoute.name);
+              },
             );
           } else {
             break;
@@ -91,7 +97,10 @@ class _SplashPageState extends State<SplashPage> {
                       cons(AppUserDummy.field(AppUserFields.Online), nil()),
                     ),
               )
-              .then((value) => context.router.popUntilRoot());
+              .then(
+                (value) => context.router
+                    .popUntil((route) => route.settings.name == HomeRoute.name),
+              );
           break;
 
         // ignore: no_default_cases

@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../router/router.dart';
 import '../../../../shared/shared.dart';
+import '../../../../shared/widgets/loading.u.dart';
 import '../../../models/models.dart';
 import '../cubit/p14_repair_completed_cubit.dart';
 import '../widgets/widgets.dart';
@@ -65,9 +65,7 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
         ),
         builder: (context, state) => state.maybeWhen(
           orElse: Container.new,
-          uploading: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          uploading: Loading.new,
           initial: () => Column(
             children: [
               Expanded(

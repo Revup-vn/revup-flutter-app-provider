@@ -1,5 +1,5 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' hide MapType;
 import 'package:map_launcher/map_launcher.dart';
@@ -7,14 +7,27 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../repair_request/modules/p4_info_request/cubit/realtime_location_cubit.dart';
+import '../../repair_request/request.dart';
 import '../../shared/utils/utils_function.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/map_route_bloc.dart';
 import '../widgets/request_details_live.dart';
 import '../widgets/request_map_live.dart';
 
 class MapRouteView extends StatelessWidget {
-  const MapRouteView({super.key});
-
+  const MapRouteView({
+    super.key,
+    required this.recordId,
+    required this.consumer,
+    required this.distance,
+    required this.pendingService,
+    required this.pendingAmount,
+  });
+  final String recordId;
+  final AppUser consumer;
+  final double distance;
+  final IList<PendingServiceModel> pendingService;
+  final int pendingAmount;
   @override
   Widget build(BuildContext context) {
     final blocPage = context.watch<MapRouteBloc>();
@@ -55,13 +68,17 @@ class MapRouteView extends StatelessWidget {
                     child: const Icon(Icons.navigation_rounded),
                   ),
                 ),
-                RequestDetailsLive(recordId),
+                RequestDetailsLive(
+                  recordId,
+                  consumer,
+                  distance,
+                  pendingService,
+                  pendingAmount,
+                ),
               ],
             );
           },
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
         );
       },
     );
