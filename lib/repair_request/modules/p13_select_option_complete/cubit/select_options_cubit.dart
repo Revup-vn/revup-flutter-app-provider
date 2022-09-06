@@ -51,9 +51,10 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
     return unit;
   }
 
-  Future<void> sendMessage(
+  Future<void> submitCompleted(
     String rpid,
     Function3<String, String, String, void> sendMessage,
+    List<PendingServiceModel> completed,
   ) async {
     emit(const SelectOptionsState.loading());
     final repairRecord = (await repairRepos.get(rpid))
@@ -68,6 +69,27 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
           (r) => r,
         )
         .getOrElse(() => throw NullThrownError());
+
+    // save list completed
+    for (final e in completed) {
+      (await _irs.get(e.name)).fold(
+        (l) => unit,
+        (r) => r
+            .maybeMap<Option<PaymentService>>(
+              pending: (v) => some(
+                PaymentService.pending(
+                  serviceName: v.serviceName,
+                  moneyAmount: v.moneyAmount,
+                  products: v.products,
+                  isOptional: v.isOptional,
+                  isComplete: true,
+                ),
+              ),
+              orElse: none,
+            )
+            .traverseFuture((a) async => _irs.update(a)),
+      );
+    }
     final consumer = (await userRepos.get(repairRecord.cid))
         .fold<Option<AppUser>>(
           (l) => none(),

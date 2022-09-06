@@ -46,11 +46,14 @@ class NewRequestView extends StatelessWidget {
           ) {
             return Stack(
               children: <Widget>[
-                RequestMapStatic(
-                  directions: directions,
-                  fromMaker: fromMaker,
-                  toMarker: toMarker,
-                  consumer: consumer,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 100),
+                  child: RequestMapStatic(
+                    directions: directions,
+                    fromMaker: fromMaker,
+                    toMarker: toMarker,
+                    consumer: consumer,
+                  ),
                 ),
                 Positioned(
                   top: 56,
