@@ -35,12 +35,7 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
                   orElse: () => throw NullThrownError(),
                   pending: (val) => PendingServiceModel(
                     name: val.serviceName,
-                    price: val.moneyAmount +
-                        ((val.isOptional || val.products.isEmpty)
-                            ? 0
-                            : val.products
-                                .map((e) => e.unitPrice * e.quantity)
-                                .reduce((value, element) => value + element)),
+                    price: val.moneyAmount,
                     isOptional: val.isOptional,
                     products: val.products,
                   ),

@@ -58,7 +58,7 @@ class AccountContent extends StatelessWidget {
                   MyReviewRoute(providerID: user.uuid),
                 );
               },
-              rating: rating,
+              rating: double.parse(rating.toStringAsFixed(1)),
             ),
             const SizedBox(
               height: 32,

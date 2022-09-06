@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,11 +17,14 @@ class P16FinishedOrderDetailBloc
     on<P16FinishedOrderDetailEvent>((event, emit) {
       event.when(
         started: () => unit,
-        populateData: () => emit(
-          P16FinishedOrderDetailState.loadSuccess(
-            services: services,
-          ),
-        ),
+        populateData: () {
+          log(services.toString());
+          emit(
+            P16FinishedOrderDetailState.loadSuccess(
+              services: services,
+            ),
+          );
+        },
       );
     });
   }
