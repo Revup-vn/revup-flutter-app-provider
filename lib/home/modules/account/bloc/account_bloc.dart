@@ -21,7 +21,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     this.storageBloc,
   ) : super(const _Initial()) {
     on<AccountEvent>(_onEvent);
-    _s = _userRepos.collection().snapshots().listen((event) async {
+    _s = _userRepos
+        .collection()
+        .where('uuid', isEqualTo: providerID)
+        .snapshots()
+        .listen((event) async {
       add(AccountEvent.dataChanged(data: event));
     });
   }

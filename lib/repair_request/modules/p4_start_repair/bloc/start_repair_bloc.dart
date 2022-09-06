@@ -23,7 +23,11 @@ class StartRepairBloc extends Bloc<StartRepairEvent, StartRepairState> {
     this.storeRepository,
   ) : super(const _Initial()) {
     on<StartRepairEvent>(_onEvent);
-    _sPosition = _repairRecord.collection().snapshots().listen((event) {
+    _sPosition = _repairRecord
+        .collection()
+        .where('id', isEqualTo: recordId)
+        .snapshots()
+        .listen((event) {
       add(const StartRepairEvent.started());
     });
   }

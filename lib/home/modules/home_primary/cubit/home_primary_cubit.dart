@@ -39,7 +39,11 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
     'https://e-magazine.asiamedia.vn/wp-content/uploads/2021/07/top-10-hang-dau-nhot-noi-tieng-nhat-tai-viet-nam-21.jpg',
   ]);
   Future<Unit> onStarted() async {
-    _s = userRepos.collection().snapshots().listen((event) async {
+    _s = userRepos
+        .collection()
+        .where('uuid', isEqualTo: userId)
+        .snapshots()
+        .listen((event) async {
       final user = (await userRepos.get(userId))
           .getOrElse(() => throw NullThrownError());
       final listRecentOrder =
