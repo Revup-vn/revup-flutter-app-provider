@@ -44,6 +44,7 @@ class AddServicePage extends StatelessWidget {
         listener: (context, state) => state.maybeWhen(
           addServiceSuccess: () {
             showDialog<String>(
+              barrierDismissible: false,
               context: context,
               builder: (context) {
                 return Dialog(
@@ -86,6 +87,7 @@ class AddServicePage extends StatelessWidget {
           },
           failure: () {
             showDialog<String>(
+              barrierDismissible: false,
               context: context,
               builder: (context) {
                 return Dialog(

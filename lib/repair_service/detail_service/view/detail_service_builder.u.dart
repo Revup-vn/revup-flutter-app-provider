@@ -50,6 +50,7 @@ class DetailServiceBuilder extends StatelessWidget {
 
   Future<String?> showFailureDialog(BuildContext context) {
     return showDialog<String>(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return Dialog(

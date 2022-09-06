@@ -270,5 +270,8 @@
   "userDismissed": "Người dùng đã hủy bỏ yêu cầu, bạn sẽ nhận được phí di chuyển như một khoản bồi thường",
   "notSupportLabel": "Chúng tôi hiện không hỗ trợ tính năng này. Chúng tôi sẽ phát hành sớm",
   "consumerAbortLabel": "Đơn hàng đã bị huỷ",
-  "availableLabel": "Khả dụng"
+  "availableLabel": "Khả dụng",
+  "needToUpdateInfoLabel": "Có vẻ như thông tin đăng kí của bạn không đúng. Bạn vui lòng cập nhật lại thông tin (bao gồm ảnh chụp giấy phép kinh doanh).",
+  "needToUpdateInfoDesLabel": "Đó là căn cứ để tài khoản của bạn có thể được duyệt một cách nhanh nhất",
+  "understoodLabel": "Đã hiểu"
 }

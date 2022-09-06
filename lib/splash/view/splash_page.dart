@@ -53,8 +53,10 @@ class _SplashPageState extends State<SplashPage> {
                   ),
                 ],
               ),
-            ).then((_) => context.router
-                .popUntil((route) => route.settings.name == HomeRoute.name));
+            ).then(
+              (_) => context.router
+                  .popUntil((route) => route.settings.name == HomeRoute.name),
+            );
           } else {
             break;
           }

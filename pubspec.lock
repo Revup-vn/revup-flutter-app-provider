@@ -1215,11 +1215,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "8bce7825c8b6052396c8f46db9ab41f153ad55e7"
+      ref: "feature/notify-provider-info-update"
+      resolved-ref: "2f53fca036f301a58ab5fa49cc322d37d4138a85"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "6.3.7-dev"
+    version: "6.3.7-dev+1"
   rxdart:
     dependency: transitive
     description:

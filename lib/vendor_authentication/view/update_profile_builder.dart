@@ -26,6 +26,7 @@ class UpdateProfileBuilder extends StatelessWidget {
         orElse: () => false,
         success: (user) {
           showDialog<String>(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return Dialog(
@@ -70,6 +71,7 @@ class UpdateProfileBuilder extends StatelessWidget {
         },
         failure: () {
           showDialog<String>(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return Dialog(

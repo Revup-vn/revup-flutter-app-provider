@@ -30,6 +30,7 @@ class UpdateServiceBuilder extends StatelessWidget {
       listener: (context, state) => state.maybeWhen(
         failure: () {
           showDialog<String>(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return Dialog(
@@ -70,6 +71,7 @@ class UpdateServiceBuilder extends StatelessWidget {
         },
         sumbitSuccess: () {
           showDialog<String>(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return Dialog(
@@ -111,6 +113,7 @@ class UpdateServiceBuilder extends StatelessWidget {
         },
         deleteSuccess: () {
           showDialog<String>(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return Dialog(
