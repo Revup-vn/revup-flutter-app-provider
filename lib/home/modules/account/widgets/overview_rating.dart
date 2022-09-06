@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 class OverviewRating extends StatelessWidget {
   const OverviewRating({
@@ -20,7 +19,7 @@ class OverviewRating extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           AutoSizeText(
-            rating.isNaN || rating == 0 ? '0' : rating.toString(),
+            rating.isNaN || rating == 0 ? '0' : rating.toStringAsFixed(1),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ) ??

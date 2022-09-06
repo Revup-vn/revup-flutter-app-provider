@@ -227,7 +227,9 @@ class _RequestMapLiveState extends State<RequestMapLive> {
                 myLocationEnabled: true,
                 onMapCreated: (GoogleMapController controller) {
                   mapController = controller;
-                  initPolylines();
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    initPolylines();
+                  });
                 },
                 zoomControlsEnabled: false,
                 markers: Set<Marker>.from(markers),

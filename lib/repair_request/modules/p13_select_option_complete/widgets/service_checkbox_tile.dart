@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../models/pending_service_model.dart';
@@ -34,7 +33,11 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
               Row(
                 children: [
                   AutoSizeText(
-                    context.formatMoney(widget.pendingService.price),
+                    context.formatMoney(widget.pendingService.price +
+                        (widget.pendingService.products.isEmpty
+                            ? 0
+                            : widget.pendingService.products.fold(
+                                0, (p, e) => p + e.unitPrice * e.quantity))),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   Checkbox(
