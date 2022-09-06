@@ -5,11 +5,11 @@ import 'package:revup_core/core.dart';
 
 import '../../../../shared/utils/utils_function.dart';
 import '../../../models/pending_service_model.dart';
-import '../bloc/info_request_bloc.dart';
-import 'info_request_view.u.dart';
+import '../bloc/start_repair_bloc.dart';
+import 'start_repair_view.u.dart';
 
-class InfoRequestPage extends StatelessWidget {
-  const InfoRequestPage({
+class StartRepairPage extends StatelessWidget {
+  const StartRepairPage({
     super.key,
     required this.consumer,
     required this.recordId,
@@ -33,7 +33,7 @@ class InfoRequestPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => InfoRequestBloc(
+          create: (_) => StartRepairBloc(
             recordId,
             context.read(),
             context.read(),

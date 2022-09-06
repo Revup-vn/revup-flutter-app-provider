@@ -10,7 +10,7 @@ import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
 import '../../../models/pending_service_model.dart';
 import '../../../request.dart';
-import '../bloc/info_request_bloc.dart';
+import '../bloc/start_repair_bloc.dart';
 import '../widgets/action_button.dart';
 import '../widgets/widgets.dart';
 
@@ -43,14 +43,11 @@ class _InfoRequestViewState extends State<InfoRequestView> {
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
-        case NotificationType.NormalMessage:
-          final subType = p0.payload.payload['subType'] as String;
-          if (subType == 'ConsumerSelected') {
-            if (mounted) {
-              setState(() {
-                ready = true;
-              });
-            }
+        case NotificationType.VerifiedArrival:
+          if (mounted) {
+            setState(() {
+              ready = true;
+            });
           }
           break;
         // ignore: no_default_cases
@@ -63,14 +60,14 @@ class _InfoRequestViewState extends State<InfoRequestView> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final blocPage = context.watch<InfoRequestBloc>();
+    final blocPage = context.watch<StartRepairBloc>();
     blocPage.state.whenOrNull(
       initial: () async {
-        blocPage.add(const InfoRequestEvent.started());
+        blocPage.add(const StartRepairEvent.started());
       },
     );
-
-    return BlocBuilder<InfoRequestBloc, InfoRequestState>(
+    final notiCubit = context.read<NotificationCubit>();
+    return BlocBuilder<StartRepairBloc, StartRepairState>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (
@@ -197,46 +194,38 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                   ),
                 ),
                 LayoutBuilder(
-                  builder: (context, _) {
+                  builder: (buildcontext, _) {
                     return ActionButton(
-                      text: l10n.startLabel,
+                      text: l10n.startRepairLabel,
                       onPressed: !ready
                           ? null
                           : () {
+                              // update record to started
                               blocPage.add(
-                                InfoRequestEvent.confirmDeparted(
-                                  onRoute: () => context.router.pushAndPopUntil(
-                                    MapRouteRoute(
-                                      recordId: record.id,
-                                      consumerId: record.cid,
-                                      consumer: widget.consumer,
-                                      distance: widget.distance,
-                                      pendingAmount: widget.pendingAmount,
-                                      pendingService: widget.pendingService,
-                                    ),
-                                    predicate: (route) =>
-                                        route.settings.name == HomeRoute.name,
+                                StartRepairEvent.confirmStarted(
+                                  onRoute: () => context.router.push(
+                                    P12DetailRoute(recordId: record.id),
                                   ),
-                                  sendMessage: (token) => context
-                                      .read<NotificationCubit>()
-                                      .sendMessageToToken(
-                                        SendMessage(
-                                          title: 'Revup',
-                                          body: l10n.startMovingLabel,
-                                          token: token,
-                                          icon: kRevupIconApp,
-                                          payload: MessageData(
-                                            type:
-                                                NotificationType.NormalMessage,
-                                            payload: <String, dynamic>{
-                                              'subType': 'ProviderDeparted',
-                                              'providerId': record.pid,
-                                            },
-                                          ),
-                                        ),
+                                  sendMessage: (token, recordId) =>
+                                      notiCubit.sendMessageToToken(
+                                    SendMessage(
+                                      title: 'Revup',
+                                      body: '',
+                                      token: token,
+                                      icon: kRevupIconApp,
+                                      payload: MessageData(
+                                        type: NotificationType.NormalMessage,
+                                        payload: <String, dynamic>{
+                                          'subType': 'StartRepair',
+                                          'recordId': recordId,
+                                        },
                                       ),
+                                    ),
+                                  ),
                                 ),
                               );
+                              // context.router.replace(HomeRoute(user:
+                              // user));
                             },
                     );
                   },
