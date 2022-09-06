@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:revup_core/core.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../../../shared/widgets/widgets.dart';
@@ -21,6 +21,7 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final formatterDate = DateFormat('dd/MM/yyyy HH:mm');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +49,7 @@ class HistoryItem extends StatelessWidget {
                     height: 16,
                   ),
                   AutoSizeText(
-                    context.formatDate(data.timeCreated),
+                    formatterDate.format(data.timeCreated),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme

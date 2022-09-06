@@ -12,6 +12,7 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
+import '../../shared/widgets/custom_dialog.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
@@ -203,102 +204,83 @@ class LoginPage extends StatelessWidget {
                   );
                 } else {
                   context.loaderOverlay.hide();
-                  unawaited(showDialog<String>(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        backgroundColor: Colors.transparent,
-                        insetPadding: const EdgeInsets.all(10),
-                        child: Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.surface,
-                              ),
-                              width: double.infinity,
-                              height: 200,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Center(
-                                    child: Icon(
-                                      Icons.warning,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiary,
-                                    ),
-                                  ),
-                                  AutoSizeText(
-                                    context.l10n.accountNotActiveLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                  ),
-                                  AutoSizeText(
-                                    context.l10n.canLoginLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                  ),
-                                  AutoSizeText(
-                                    context.l10n.loginFailDescLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                  ),
-                                ],
+                  unawaited(
+                    showDialog<String>(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) {
+                        return SimpleDialogCustom(
+                          height: 250,
+                          content: [
+                            Center(
+                              child: Icon(
+                                Icons.warning,
+                                color: Theme.of(context).colorScheme.onTertiary,
                               ),
                             ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: TextButton(
-                                onPressed: () async {
-                                  final boxAuthType =
-                                      await Hive.openBox<dynamic>('authType');
-                                  await boxAuthType.put(
-                                    'auth',
-                                    authType.map(
-                                      google: (value) =>
-                                          AuthType.google(user: value.user)
-                                              .toJson(),
-                                      phone: (value) =>
-                                          AuthType.phone(user: value.user)
-                                              .toJson(),
-                                      email: (value) =>
-                                          AuthType.email(user: value.user)
-                                              .toJson(),
-                                    ),
-                                  );
-
-                                  await context.router.pushAndPopUntil(
-                                    HomeRoute(user: authType.user),
-                                    predicate: (_) => true,
-                                  );
-                                },
-                                child: const AutoSizeText('Ok'),
-                              ),
+                            AutoSizeText(
+                              context.l10n.accountNotActiveLabel,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                            ),
+                            AutoSizeText(
+                              context.l10n.canLoginLabel,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                            ),
+                            AutoSizeText(
+                              context.l10n.loginFailDescLabel,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
                             ),
                           ],
-                        ),
-                      );
-                    },
-                  ));
+                          button: [
+                            TextButton(
+                              onPressed: () async {
+                                final boxAuthType =
+                                    await Hive.openBox<dynamic>('authType');
+                                await boxAuthType.put(
+                                  'auth',
+                                  authType.map(
+                                    google: (value) =>
+                                        AuthType.google(user: value.user)
+                                            .toJson(),
+                                    phone: (value) =>
+                                        AuthType.phone(user: value.user)
+                                            .toJson(),
+                                    email: (value) =>
+                                        AuthType.email(user: value.user)
+                                            .toJson(),
+                                  ),
+                                );
+
+                                await context.router.pushAndPopUntil(
+                                  HomeRoute(user: authType.user),
+                                  predicate: (_) => true,
+                                );
+                              },
+                              child: const AutoSizeText('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  );
                 }
                 return null;
               },
@@ -399,6 +381,7 @@ class LoginPage extends StatelessWidget {
     }
     context.loaderOverlay.hide();
     showDialog<String>(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return Dialog(

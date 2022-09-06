@@ -114,4 +114,10 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
 
     return unit;
   }
+
+  @override
+  Future<void> close() async {
+    await _s?.cancel();
+    return super.close();
+  }
 }
