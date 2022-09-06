@@ -51,7 +51,9 @@ class _RequestMapStaticState extends State<RequestMapStatic> {
       padding: const EdgeInsets.only(bottom: 320),
       initialCameraPosition: _initialLocation,
       onMapCreated: (GoogleMapController controller) {
-        fitPolylineToView(widget.directions.polylinePoints, controller);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          fitPolylineToView(widget.directions.polylinePoints, controller);
+        });
       },
       markers: Set<Marker>.from(markers),
       polylines: {
