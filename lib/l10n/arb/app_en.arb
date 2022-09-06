@@ -274,8 +274,12 @@
   "notSupportLabel": "We currently don't support this feature. We will release soon",
   "consumerAbortLabel": "Order has been canceled",
   "availableLabel": "Available",
+  "unknownFailureLabel": "Sorry, an error occurred",
+  "pendingLabel": "Unpaid",
+  "waitingLabel": "Waiting",
+  "noneLabel": "None",
+  "productLabel": "Product",
   "needToUpdateInfoLabel": "Your information may not match. Please reupload your infomation (include business lisence).",
   "needToUpdateInfoDesLabel": "That is the basis for your account to be approved in the fastest way",
-  "understoodLabel": "Understood",
-  "unknownFailureLabel": "Sorry, an error occurred"
+  "understoodLabel": "Understood"
 }

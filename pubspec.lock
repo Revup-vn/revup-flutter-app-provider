@@ -1021,7 +1021,7 @@ packages:
       name: modal_bottom_sheet
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.2"
   nested:
     dependency: transitive
     description:
@@ -1215,11 +1215,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "feature/notify-provider-info-update"
-      resolved-ref: "2f53fca036f301a58ab5fa49cc322d37d4138a85"
+      ref: main
+      resolved-ref: e20bc943dda295c9152e1cf85b5be4e67c815513
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "6.3.7-dev+1"
+    version: "6.3.8-dev"
   rxdart:
     dependency: transitive
     description:

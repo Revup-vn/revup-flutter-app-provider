@@ -119,6 +119,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                                       (value, element) => value + element,
                                     )),
                         isOptional: v.isOptional,
+                        products: v.products,
                       ),
                       paid: (v) => throw NullThrownError(),
                       needToVerify: (v) => NeedToVerifyModel(

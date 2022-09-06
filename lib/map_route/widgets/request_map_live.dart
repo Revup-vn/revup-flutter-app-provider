@@ -186,7 +186,9 @@ class _RequestMapLiveState extends State<RequestMapLive> {
             initialCameraPosition: _initialLocation,
             onMapCreated: (GoogleMapController controller) {
               mapController = controller;
-              initPolylines();
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                initPolylines();
+              });
             },
             myLocationEnabled: true,
             markers: Set<Marker>.from(markers),

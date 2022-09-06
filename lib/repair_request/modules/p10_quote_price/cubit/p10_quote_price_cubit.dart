@@ -6,7 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../../new_request/models/pending_repair_request.dart';
-import '../../../models/need_to_verify_model.dart';
 import '../../../models/pending_service_model.dart';
 
 part 'p10_quote_price_cubit.freezed.dart';
@@ -40,7 +39,7 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
     if (e.size == 0) {
       emit(const P10QuotePriceState.failure());
     } else {
-      e.docs
+      final services = e.docs
           .map(_paymentService.parseRawData)
           .fold<IList<PaymentService>>(
             nil(),
@@ -51,54 +50,25 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
           )
           .map(
             (a) => a.map(
-              pending: (v) => PendingServiceModel(
-                name: v.serviceName,
-                price: v.moneyAmount +
-                    (v.products.isEmpty
-                        ? 0
-                        : v.products
-                            .map((e) => e.quantity * e.unitPrice)
-                            .reduce(
-                              (value, element) => value + element,
-                            )),
-                isOptional: v.isOptional,
-              ),
-              paid: (v) => throw NullThrownError(),
-              needToVerify: (v) => NeedToVerifyModel(
-                serviceName: v.serviceName,
-                desc: v.desc,
-              ),
+              pending: (v) => PendingServiceModel.fromDto(paymentService: v),
+              paid: (v) => PendingServiceModel.fromDto(paymentService: v),
+              needToVerify: (v) =>
+                  PendingServiceModel.fromDto(paymentService: v),
             ),
           )
-          .partition((a) => a is NeedToVerifyModel)
-          .apply(
-        (a, b) {
-          emit(
-            P10QuotePriceState.success(
-              pendingService: b.toList().cast<PendingServiceModel>(),
-              needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
-            ),
-          );
-        },
-      );
+          .toList();
+
+      emit(P10QuotePriceState.success(services: services));
     }
   }
 
-  Unit submit(
-    List<NeedToVerifyModel> needToVerify,
-    Function0<void> onRoute,
-  ) {
-    onRoute();
-    return unit;
-  }
-
   Future<Unit> quotePrice(
-    NeedToVerifyModel needToVerifyModel,
+    PendingServiceModel needToVerifyModel,
     int price,
   ) async {
     await _paymentService.update(
       PaymentService.pending(
-        serviceName: needToVerifyModel.serviceName,
+        serviceName: needToVerifyModel.name,
         moneyAmount: price,
         products: [],
         isOptional: true,

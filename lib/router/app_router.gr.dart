@@ -137,15 +137,15 @@ class AppRouter extends _i29.RootStackRouter {
           child: _i8.P13SelectOptionCompletePage(
               key: args.key,
               id: args.id,
-              paid: args.paid,
+              services: args.services,
               vehicle: args.vehicle));
     },
     P16FinishedOrderDetailRoute.name: (routeData) {
       final args = routeData.argsAs<P16FinishedOrderDetailRouteArgs>();
       return _i29.AdaptivePage<void>(
           routeData: routeData,
-          child:
-              _i9.P16FinishedOrderDetailPage(key: args.key, data: args.data));
+          child: _i9.P16FinishedOrderDetailPage(
+              key: args.key, services: args.services));
     },
     AddServiceRoute.name: (routeData) {
       final args = routeData.argsAs<AddServiceRouteArgs>();
@@ -605,31 +605,34 @@ class P13SelectOptionCompleteRoute
   P13SelectOptionCompleteRoute(
       {_i30.Key? key,
       required String id,
-      required List<_i8.PaidServicesModel> paid,
+      required List<_i8.PendingServiceModel> services,
       required String vehicle})
       : super(P13SelectOptionCompleteRoute.name,
             path: '/p13-select-option-complete-page',
             args: P13SelectOptionCompleteRouteArgs(
-                key: key, id: id, paid: paid, vehicle: vehicle));
+                key: key, id: id, services: services, vehicle: vehicle));
 
   static const String name = 'P13SelectOptionCompleteRoute';
 }
 
 class P13SelectOptionCompleteRouteArgs {
   const P13SelectOptionCompleteRouteArgs(
-      {this.key, required this.id, required this.paid, required this.vehicle});
+      {this.key,
+      required this.id,
+      required this.services,
+      required this.vehicle});
 
   final _i30.Key? key;
 
   final String id;
 
-  final List<_i8.PaidServicesModel> paid;
+  final List<_i8.PendingServiceModel> services;
 
   final String vehicle;
 
   @override
   String toString() {
-    return 'P13SelectOptionCompleteRouteArgs{key: $key, id: $id, paid: $paid, vehicle: $vehicle}';
+    return 'P13SelectOptionCompleteRouteArgs{key: $key, id: $id, services: $services, vehicle: $vehicle}';
   }
 }
 
@@ -638,28 +641,25 @@ class P13SelectOptionCompleteRouteArgs {
 class P16FinishedOrderDetailRoute
     extends _i29.PageRouteInfo<P16FinishedOrderDetailRouteArgs> {
   P16FinishedOrderDetailRoute(
-      {_i30.Key? key,
-      required _i32.Tuple2<List<_i8.PendingServiceModel>,
-              List<_i8.PaidServicesModel>>
-          data})
+      {_i30.Key? key, required List<_i8.PendingServiceModel> services})
       : super(P16FinishedOrderDetailRoute.name,
             path: '/p16-finished-order-detail-page',
-            args: P16FinishedOrderDetailRouteArgs(key: key, data: data));
+            args:
+                P16FinishedOrderDetailRouteArgs(key: key, services: services));
 
   static const String name = 'P16FinishedOrderDetailRoute';
 }
 
 class P16FinishedOrderDetailRouteArgs {
-  const P16FinishedOrderDetailRouteArgs({this.key, required this.data});
+  const P16FinishedOrderDetailRouteArgs({this.key, required this.services});
 
   final _i30.Key? key;
 
-  final _i32.Tuple2<List<_i8.PendingServiceModel>, List<_i8.PaidServicesModel>>
-      data;
+  final List<_i8.PendingServiceModel> services;
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailRouteArgs{key: $key, data: $data}';
+    return 'P16FinishedOrderDetailRouteArgs{key: $key, services: $services}';
   }
 }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -20,10 +19,9 @@ class P16FinishedOrderDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: context.watch<P16FinishedOrderDetailBloc>().state.when(
-            loadSuccess: (unpaid, paid) => RecordDetail(
+            loadSuccess: (services) => RecordDetail(
               title: l10n.orderDetailLabel,
-              unpaidServices: unpaid,
-              paidServices: paid,
+              services: services,
             ),
             initial: Container.new,
           ),

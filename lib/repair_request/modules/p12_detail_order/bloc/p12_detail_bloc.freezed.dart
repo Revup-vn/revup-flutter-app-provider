@@ -316,9 +316,7 @@ mixin _$P12DetailState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
-        populated,
+    required TResult Function(List<PendingServiceModel> services) populated,
     required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -326,9 +324,7 @@ mixin _$P12DetailState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -336,9 +332,7 @@ mixin _$P12DetailState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
     required TResult orElse(),
   }) =>
@@ -428,9 +422,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
-        populated,
+    required TResult Function(List<PendingServiceModel> services) populated,
     required TResult Function() failure,
   }) {
     return initial();
@@ -441,9 +433,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
   }) {
     return initial?.call();
@@ -454,9 +444,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -549,9 +537,7 @@ class _$_loading implements _loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
-        populated,
+    required TResult Function(List<PendingServiceModel> services) populated,
     required TResult Function() failure,
   }) {
     return loading();
@@ -562,9 +548,7 @@ class _$_loading implements _loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
   }) {
     return loading?.call();
@@ -575,9 +559,7 @@ class _$_loading implements _loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -634,7 +616,7 @@ abstract class _$$_populatedCopyWith<$Res> {
   factory _$$_populatedCopyWith(
           _$_populated value, $Res Function(_$_populated) then) =
       __$$_populatedCopyWithImpl<$Res>;
-  $Res call({List<PendingServiceModel> unpaid, List<PaidServicesModel> paid});
+  $Res call({List<PendingServiceModel> services});
 }
 
 /// @nodoc
@@ -650,18 +632,13 @@ class __$$_populatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? unpaid = freezed,
-    Object? paid = freezed,
+    Object? services = freezed,
   }) {
     return _then(_$_populated(
-      unpaid: unpaid == freezed
-          ? _value._unpaid
-          : unpaid // ignore: cast_nullable_to_non_nullable
+      services: services == freezed
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
               as List<PendingServiceModel>,
-      paid: paid == freezed
-          ? _value._paid
-          : paid // ignore: cast_nullable_to_non_nullable
-              as List<PaidServicesModel>,
     ));
   }
 }
@@ -669,29 +646,19 @@ class __$$_populatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_populated implements _populated {
-  const _$_populated(
-      {required final List<PendingServiceModel> unpaid,
-      required final List<PaidServicesModel> paid})
-      : _unpaid = unpaid,
-        _paid = paid;
+  const _$_populated({required final List<PendingServiceModel> services})
+      : _services = services;
 
-  final List<PendingServiceModel> _unpaid;
+  final List<PendingServiceModel> _services;
   @override
-  List<PendingServiceModel> get unpaid {
+  List<PendingServiceModel> get services {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_unpaid);
-  }
-
-  final List<PaidServicesModel> _paid;
-  @override
-  List<PaidServicesModel> get paid {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_paid);
+    return EqualUnmodifiableListView(_services);
   }
 
   @override
   String toString() {
-    return 'P12DetailState.populated(unpaid: $unpaid, paid: $paid)';
+    return 'P12DetailState.populated(services: $services)';
   }
 
   @override
@@ -699,15 +666,12 @@ class _$_populated implements _populated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_populated &&
-            const DeepCollectionEquality().equals(other._unpaid, _unpaid) &&
-            const DeepCollectionEquality().equals(other._paid, _paid));
+            const DeepCollectionEquality().equals(other._services, _services));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_unpaid),
-      const DeepCollectionEquality().hash(_paid));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_services));
 
   @JsonKey(ignore: true)
   @override
@@ -719,12 +683,10 @@ class _$_populated implements _populated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
-        populated,
+    required TResult Function(List<PendingServiceModel> services) populated,
     required TResult Function() failure,
   }) {
-    return populated(unpaid, paid);
+    return populated(services);
   }
 
   @override
@@ -732,12 +694,10 @@ class _$_populated implements _populated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
   }) {
-    return populated?.call(unpaid, paid);
+    return populated?.call(services);
   }
 
   @override
@@ -745,14 +705,12 @@ class _$_populated implements _populated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (populated != null) {
-      return populated(unpaid, paid);
+      return populated(services);
     }
     return orElse();
   }
@@ -797,11 +755,9 @@ class _$_populated implements _populated {
 
 abstract class _populated implements P12DetailState {
   const factory _populated(
-      {required final List<PendingServiceModel> unpaid,
-      required final List<PaidServicesModel> paid}) = _$_populated;
+      {required final List<PendingServiceModel> services}) = _$_populated;
 
-  List<PendingServiceModel> get unpaid;
-  List<PaidServicesModel> get paid;
+  List<PendingServiceModel> get services;
   @JsonKey(ignore: true)
   _$$_populatedCopyWith<_$_populated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -848,9 +804,7 @@ class _$_failure implements _failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)
-        populated,
+    required TResult Function(List<PendingServiceModel> services) populated,
     required TResult Function() failure,
   }) {
     return failure();
@@ -861,9 +815,7 @@ class _$_failure implements _failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
   }) {
     return failure?.call();
@@ -874,9 +826,7 @@ class _$_failure implements _failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<PendingServiceModel> unpaid, List<PaidServicesModel> paid)?
-        populated,
+    TResult Function(List<PendingServiceModel> services)? populated,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
