@@ -91,4 +91,10 @@ class HistoryProviderBloc
       },
     );
   }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    return super.close();
+  }
 }

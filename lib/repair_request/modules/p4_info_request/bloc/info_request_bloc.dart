@@ -23,7 +23,11 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     this.storeRepository,
   ) : super(const _Initial()) {
     on<InfoRequestEvent>(_onEvent);
-    _sPosition = _repairRecord.collection().snapshots().listen((event) {
+    _sPosition = _repairRecord
+        .collection()
+        .where('id', isEqualTo: recordId)
+        .snapshots()
+        .listen((event) {
       add(const InfoRequestEvent.started());
     });
   }

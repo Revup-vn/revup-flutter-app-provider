@@ -20,7 +20,11 @@ class DetailServiceBloc extends Bloc<DetailServiceEvent, DetailServiceState> {
     this.productRepos,
   ) : super(const _Initial()) {
     on<DetailServiceEvent>(_onEvent);
-    _s = serviceRepos.collection().snapshots().listen((event) {
+    _s = serviceRepos
+        .collection()
+        .where('name', isEqualTo: serviceName)
+        .snapshots()
+        .listen((event) {
       add(const DetailServiceEvent.started());
     });
     _s2 = productRepos.collection().snapshots().listen((event) {
