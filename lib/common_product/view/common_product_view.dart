@@ -10,6 +10,7 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
+import '../../shared/widgets/custom_dialog.dart';
 import '../widgets/product_checkbox_group.dart';
 
 class CommonProductView extends StatelessWidget {
@@ -74,76 +75,51 @@ class CommonProductView extends StatelessWidget {
                           barrierDismissible: false,
                           context: context,
                           builder: (context) {
-                            return Dialog(
-                              backgroundColor: Colors.transparent,
-                              insetPadding: const EdgeInsets.all(10),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(20),
+                            return SimpleDialogCustom(
+                              height: 150,
+                              content: [
+                                AutoSizeText(
+                                  l10n.chooseNoProduct,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
                                       ),
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .inverseSurface,
-                                    ),
-                                    width: double.infinity,
-                                    height: 150,
-                                    child: Column(
-                                      children: [
-                                        AutoSizeText(
-                                          l10n.chooseNoProduct,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2
-                                              ?.copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onTertiary,
-                                              ),
-                                        ),
-                                        AutoSizeText(
-                                          context.l10n.sureLabel,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2
-                                              ?.copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onTertiary,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                    child: Row(
-                                      children: [
-                                        TextButton(
-                                          onPressed: () {
-                                            complete.complete(saveLst);
+                                ),
+                                AutoSizeText(
+                                  context.l10n.sureLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
+                                      ),
+                                ),
+                              ],
+                              button: [
+                                TextButton(
+                                  onPressed: () {
+                                    complete.complete(saveLst);
 
-                                            var count = 0;
-                                            context.router.popUntil(
-                                              (route) => count++ == 2,
-                                            );
-                                          },
-                                          child: Text(l10n.yesLabel),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            context.router.pop();
-                                          },
-                                          child: Text(l10n.cancelLabel),
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
+                                    var count = 0;
+                                    context.router.popUntil(
+                                      (route) => count++ == 2,
+                                    );
+                                  },
+                                  child: Text(l10n.yesLabel),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    context.router.pop();
+                                  },
+                                  child: Text(l10n.cancelLabel),
+                                )
+                              ],
                             );
                           },
                         );

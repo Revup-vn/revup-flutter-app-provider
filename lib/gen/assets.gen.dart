@@ -22,6 +22,9 @@ class $AssetsScreensGen {
   SvgGenImage get googleOriginal =>
       const SvgGenImage('assets/screens/Google_Original.svg');
 
+  /// File path: assets/screens/brgimg.jpg
+  AssetGenImage get brgimg => const AssetGenImage('assets/screens/brgimg.jpg');
+
   /// File path: assets/screens/empty.svg
   SvgGenImage get empty => const SvgGenImage('assets/screens/empty.svg');
 

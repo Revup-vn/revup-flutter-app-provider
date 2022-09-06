@@ -11,6 +11,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../shared/shared.dart';
+import '../../../shared/widgets/custom_dialog.dart';
 import '../bloc/upload_image_bloc.dart';
 import '../cubit/detail_service_cubit.dart';
 import '../update_service.dart';
@@ -51,78 +52,52 @@ class UpdateServiceView extends StatelessWidget {
                 showDialog<String>(
                   context: context,
                   builder: (buildercontext) {
-                    return Dialog(
-                      backgroundColor: Colors.transparent,
-                      insetPadding: const EdgeInsets.all(10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .tertiaryContainer,
-                            ),
-                            width: double.infinity,
-                            height: 200,
-                            child: Column(
-                              children: [
-                                AutoSizeText(
-                                  context.l10n.sureLabel,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .tertiary,
-                                      ),
-                                ),
-                                AutoSizeText(
-                                  context.l10n.delProductLabel,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .tertiary,
-                                      ),
-                                ),
-                              ],
-                            ),
+                    return SimpleDialogCustom(
+                      height: 200,
+                      content: [
+                        AutoSizeText(
+                          context.l10n.sureLabel,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                        ),
+                        AutoSizeText(
+                          context.l10n.delProductLabel,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                        ),
+                      ],
+                      button: [
+                        TextButton(
+                          onPressed: () {
+                            context.read<UpdateServiceBloc>().add(
+                                  const UpdateServiceEvent.deleted(),
+                                );
+                            context.router.pop();
+                          },
+                          child: AutoSizeText(
+                            context.l10n.doneLabel,
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Row(
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    context.read<UpdateServiceBloc>().add(
-                                          const UpdateServiceEvent.deleted(),
-                                        );
-                                    context.router.pop();
-                                  },
-                                  child: AutoSizeText(
-                                    context.l10n.doneLabel,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    context.router.pop();
-                                  },
-                                  child: AutoSizeText(
-                                    context.l10n.cancelLabel,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.router.pop();
+                          },
+                          child: AutoSizeText(
+                            context.l10n.cancelLabel,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     );
                   },
                 );
