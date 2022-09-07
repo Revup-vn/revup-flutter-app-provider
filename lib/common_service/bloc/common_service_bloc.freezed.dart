@@ -362,7 +362,7 @@ mixin _$CommonServiceState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String errorMessage) failure,
     required TResult Function(List<CommonService> list, String providerID)
         success,
     required TResult Function() submitSuccess,
@@ -372,7 +372,7 @@ mixin _$CommonServiceState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
   }) =>
@@ -381,7 +381,7 @@ mixin _$CommonServiceState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
     required TResult orElse(),
@@ -476,7 +476,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String errorMessage) failure,
     required TResult Function(List<CommonService> list, String providerID)
         success,
     required TResult Function() submitSuccess,
@@ -489,7 +489,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
   }) {
@@ -501,7 +501,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
     required TResult orElse(),
@@ -599,7 +599,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String errorMessage) failure,
     required TResult Function(List<CommonService> list, String providerID)
         success,
     required TResult Function() submitSuccess,
@@ -612,7 +612,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
   }) {
@@ -624,7 +624,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
     required TResult orElse(),
@@ -685,6 +685,7 @@ abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
 }
 
 /// @nodoc
@@ -696,38 +697,62 @@ class __$$_FailureCopyWithImpl<$Res>
 
   @override
   _$_Failure get _value => super._value as _$_Failure;
+
+  @override
+  $Res call({
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_$_Failure(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Failure implements _Failure {
-  const _$_Failure();
+  const _$_Failure({required this.errorMessage});
+
+  @override
+  final String errorMessage;
 
   @override
   String toString() {
-    return 'CommonServiceState.failure()';
+    return 'CommonServiceState.failure(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Failure);
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(errorMessage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String errorMessage) failure,
     required TResult Function(List<CommonService> list, String providerID)
         success,
     required TResult Function() submitSuccess,
   }) {
-    return failure();
+    return failure(errorMessage);
   }
 
   @override
@@ -735,11 +760,11 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
   }) {
-    return failure?.call();
+    return failure?.call(errorMessage);
   }
 
   @override
@@ -747,13 +772,13 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure();
+      return failure(errorMessage);
     }
     return orElse();
   }
@@ -800,7 +825,12 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements CommonServiceState {
-  const factory _Failure() = _$_Failure;
+  const factory _Failure({required final String errorMessage}) = _$_Failure;
+
+  String get errorMessage;
+  @JsonKey(ignore: true)
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -887,7 +917,7 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String errorMessage) failure,
     required TResult Function(List<CommonService> list, String providerID)
         success,
     required TResult Function() submitSuccess,
@@ -900,7 +930,7 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
   }) {
@@ -912,7 +942,7 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
     required TResult orElse(),
@@ -1019,7 +1049,7 @@ class _$_SubmitSuccess implements _SubmitSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String errorMessage) failure,
     required TResult Function(List<CommonService> list, String providerID)
         success,
     required TResult Function() submitSuccess,
@@ -1032,7 +1062,7 @@ class _$_SubmitSuccess implements _SubmitSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
   }) {
@@ -1044,7 +1074,7 @@ class _$_SubmitSuccess implements _SubmitSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String errorMessage)? failure,
     TResult Function(List<CommonService> list, String providerID)? success,
     TResult Function()? submitSuccess,
     required TResult orElse(),

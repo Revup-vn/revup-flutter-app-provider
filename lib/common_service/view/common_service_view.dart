@@ -73,6 +73,50 @@ class CommonServiceView extends StatelessWidget {
             context.router.popUntil((_) => count++ == 2);
           });
         },
+        failure: (errorMessage) {
+          showDialog<String>(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(10),
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 150,
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.cancel,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          AutoSizeText(
+                            errorMessage == 'duplicate'
+                                ? context.l10n.duplicateNameSvLabel
+                                : context.l10n.failLabel,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+          return Future.delayed(const Duration(seconds: 3), () {
+            var count = 0;
+            context.router.popUntil((_) => count++ == 2);
+          });
+        },
       ),
       builder: (context, state) {
         return DismissKeyboard(
@@ -99,9 +143,7 @@ class CommonServiceView extends StatelessWidget {
                         state.when(
                           initial: Container.new,
                           loading: Loading.new,
-                          failure: () => Center(
-                            child: AutoSizeText(l10n.failLabel),
-                          ),
+                          failure: (message) => Container(),
                           success: (list, providerID) => FormBuilder(
                             key: form,
                             child: ServiceCheckboxGroup(
