@@ -255,7 +255,7 @@
   "yesLabel": "Đồng ý",
   "chooseNoService": "Bạn không chọn dịch vụ nào.",
   "noLabel": "Không đồng ý",
-  "addCommonLabel": "Chọn dịch vụ mẫu",
+  "chooseCommonLabel": "Chọn dịch vụ mẫu",
   "moneyUnit": "đ",
   "noServiceLabel": "Bạn không có dịch vụ nào.",
   "addCommonServiceQuestionLabel": "Bạn có muốn sử dụng dịch vụ mẫu không?",
@@ -278,5 +278,10 @@
   "needToUpdateInfoLabel": "Có vẻ như thông tin đăng kí của bạn không đúng. Bạn vui lòng cập nhật lại thông tin (bao gồm ảnh chụp giấy phép kinh doanh).",
   "needToUpdateInfoDesLabel": "Đó là căn cứ để tài khoản của bạn có thể được duyệt một cách nhanh nhất",
   "understoodLabel": "Đã hiểu",
-  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra"
+  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra",
+  "duplicateNameSvLabel": "Tên dịch vụ không được phép để trùng",
+  "addCommonLabel": "Thêm dịch vụ mẫu",
+  "hoursAgoLabel" : "giờ trước",
+  "todayLabel":"hôm nay"
+
 }

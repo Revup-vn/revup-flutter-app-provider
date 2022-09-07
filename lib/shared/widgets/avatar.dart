@@ -1,10 +1,8 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-
-import '../utils/fallbacks.dart';
 import 'default_avatar.dart';
 
 class Avatar extends StatelessWidget {
@@ -33,13 +31,7 @@ class Avatar extends StatelessWidget {
                 ? CachedNetworkImage(
                     fadeInDuration: const Duration(milliseconds: 50),
                     fadeOutDuration: const Duration(milliseconds: 50),
-                    imageUrl: urlImage.isEmpty ? kFallbackImage : urlImage,
-                    placeholder: (context, url) {
-                      return DefaultAvatar(
-                        textSize: Theme.of(context).textTheme.headline1,
-                        userName: userName,
-                      );
-                    },
+                    imageUrl: urlImage,
                     errorWidget: (context, url, dynamic error) {
                       return DefaultAvatar(
                         textSize: Theme.of(context).textTheme.headline1,

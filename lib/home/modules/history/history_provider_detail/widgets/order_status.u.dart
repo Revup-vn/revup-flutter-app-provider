@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:revup_core/core.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../l10n/l10n.dart';
 
@@ -26,6 +26,7 @@ class OrderStatusItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final formatterDate = DateFormat('dd/MM/yyyy HH:mm');
 
     return Container(
       height: 170,
@@ -91,7 +92,7 @@ class OrderStatusItem extends StatelessWidget {
                 ),
                 Expanded(
                   child: AutoSizeText(
-                    context.formatDate(serviceStartBooking),
+                    formatterDate.format(serviceStartBooking),
                     textAlign: TextAlign.end,
                     softWrap: true,
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
@@ -132,7 +133,7 @@ class OrderStatusItem extends StatelessWidget {
                   Expanded(
                     child: AutoSizeText(
                       textAlign: TextAlign.end,
-                      context.formatDate(serviceStartBooking),
+                      formatterDate.format(serviceEndBooking),
                       softWrap: true,
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                 color: Theme.of(context)

@@ -44,14 +44,6 @@ class CardReview extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(48),
                                 child: CachedNetworkImage(
                                   imageUrl: data.imageUrl,
-                                  placeholder: (context, url) {
-                                    return DefaultAvatar(
-                                      textSize: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge,
-                                      userName: data.consumerName,
-                                    );
-                                  },
                                   errorWidget: (context, url, dynamic error) {
                                     return DefaultAvatar(
                                       textSize: Theme.of(context)
@@ -68,39 +60,44 @@ class CardReview extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  AutoSizeText(
-                                    data.consumerName,
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  RatingBar.builder(
-                                    initialRating: data.rating.toDouble(),
-                                    itemSize: 20,
-                                    allowHalfRating: true,
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .inversePrimary,
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        data.consumerName,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelLarge,
+                                        maxLines: 1,
+                                      ),
                                     ),
-                                    onRatingUpdate: (double value) {
-                                      // TODO(namngoc231): rating
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    RatingBar.builder(
+                                      ignoreGestures: true,
+                                      initialRating: data.rating.toDouble(),
+                                      itemSize: 20,
+                                      allowHalfRating: true,
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .inversePrimary,
+                                      ),
+                                      onRatingUpdate: (double value) {},
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -122,9 +119,32 @@ class CardReview extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 child: AutoSizeText(
-                  data.createdTime.day != DateTime.now().day
-                      ? '''${DateTime.now().difference(data.createdTime).inDays} ${l10n.yesterdayLabel}'''
-                      : 'Today',
+                  (Duration(
+                                milliseconds:
+                                    DateTime.now().millisecondsSinceEpoch -
+                                        data.createdTime.millisecondsSinceEpoch,
+                              ).inHours) /
+                              24 <
+                          1
+                      ? Duration(
+                                milliseconds:
+                                    DateTime.now().millisecondsSinceEpoch -
+                                        data.createdTime.millisecondsSinceEpoch,
+                              ).inHours >
+                              1
+                          ? '''
+${Duration(
+                              milliseconds:
+                                  DateTime.now().millisecondsSinceEpoch -
+                                      data.createdTime.millisecondsSinceEpoch,
+                            ).inHours} ${context.l10n.hoursAgoLabel}'''
+                          : context.l10n.todayLabel
+                      : '''
+${((Duration(
+                            milliseconds:
+                                DateTime.now().millisecondsSinceEpoch -
+                                    data.createdTime.millisecondsSinceEpoch,
+                          ).inHours) / 24).floor()} ${context.l10n.yesterdayLabel}''',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),

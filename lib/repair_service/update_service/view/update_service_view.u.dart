@@ -363,7 +363,7 @@ class UpdateServiceView extends StatelessWidget {
                                 errorText: l10n.emptyLabel,
                               ),
                               FormBuilderValidators.match(
-                                r'^[0-9]+$',
+                                r'^[0-9]{1,9}$',
                                 errorText: l10n.invalidFormatLabel,
                               ),
                             ]),

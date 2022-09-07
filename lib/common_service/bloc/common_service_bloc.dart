@@ -65,40 +65,39 @@ class CommonServiceBloc extends Bloc<CommonServiceEvent, CommonServiceState> {
       submited: (
         saveLst,
       ) async {
+        final completer = Completer<Either<StoreFailure, Unit>>();
         emit(const CommonServiceState.loading());
         final finalRes = saveLst.map(
-          (t4) async {
-            return tuple3(
-              t4.value1,
-              await Future.wait(
-                t4.value2.map(
-                  (t2) async {
-                    if (t2.value2.path.isNotEmpty) {
-                      final imgData = Completer<String>();
-                      await uploadImg(
-                        file: StorageFile.profile(
-                          file: t2.value2,
-                        ),
-                        emit: emit,
-                        completer: imgData,
-                      );
-                      final t = await imgData.future;
-                      final x = t.isNotEmpty ? t : t2.value1.img;
-                      return RepairProduct(
-                        name: t2.value1.name,
-                        desc: t2.value1.desc,
-                        img: x,
-                        price: t2.value1.price,
-                      );
-                    } else {
-                      return t2.value1;
-                    }
-                  },
-                ),
+          (t4) async => tuple3(
+            t4.value1,
+            await Future.wait(
+              t4.value2.map(
+                (t2) async {
+                  if (t2.value2.path.isNotEmpty) {
+                    final imgData = Completer<String>();
+                    await uploadImg(
+                      file: StorageFile.profile(
+                        file: t2.value2,
+                      ),
+                      emit: emit,
+                      completer: imgData,
+                    );
+                    final t = await imgData.future;
+                    final x = t.isNotEmpty ? t : t2.value1.img;
+                    return RepairProduct(
+                      name: t2.value1.name,
+                      desc: t2.value1.desc,
+                      img: x,
+                      price: t2.value1.price,
+                    );
+                  } else {
+                    return t2.value1;
+                  }
+                },
               ),
-              t4.value3,
-            );
-          },
+            ),
+            t4.value3,
+          ),
         );
         final a = await Future.wait(finalRes);
         final b = a.map(
@@ -140,42 +139,57 @@ class CommonServiceBloc extends Bloc<CommonServiceEvent, CommonServiceState> {
             }
             final rpC = (await repoRepos.repairCategoryRepo(provider).get(cate))
                 .getOrElse(() => throw NullThrownError());
-            ilist(listCommonService).map(
-              (cmS) async {
-                final t =
-                    await repoRepos.repairServiceRepo(provider, rpC).create(
-                          RepairService(
-                            name: cmS.sName,
-                            fee: cmS.sFee,
-                            img: cmS.sImg,
-                          ),
-                        );
-                t.fold(
-                  (l) => emit(const CommonServiceState.failure()),
-                  (unit) async {
-                    final rpService = (await repoRepos
-                            .repairServiceRepo(provider, rpC)
-                            .get(cmS.sName))
-                        .getOrElse(
-                      () => throw NullThrownError(),
+            return ilist(listCommonService).map(
+              (cmS) async =>
+                  (await repoRepos.repairServiceRepo(provider, rpC).create(
+                            RepairService(
+                              name: cmS.sName,
+                              fee: cmS.sFee,
+                              img: cmS.sImg,
+                            ),
+                          ))
+                      .fold(
+                (l) async => completer.complete(left(l)),
+                (unit) async {
+                  final rpService = (await repoRepos
+                          .repairServiceRepo(provider, rpC)
+                          .get(cmS.sName))
+                      .getOrElse(
+                    () => throw NullThrownError(),
+                  );
+                  ilist(cmS.products).map((rpProduct) async {
+                    final tttt = await repoRepos
+                        .repairProductRepo(
+                          provider,
+                          rpC,
+                          rpService,
+                        )
+                        .create(rpProduct);
+                    tttt.fold(
+                      (l) => completer.complete(left(l)),
+                      (r) => completer.complete(
+                        right(r),
+                      ),
                     );
-                    ilist(cmS.products).map((rpProduct) async {
-                      await repoRepos
-                          .repairProductRepo(
-                            provider,
-                            rpC,
-                            rpService,
-                          )
-                          .create(rpProduct);
-                    });
-                  },
-                );
-              },
+                  });
+                },
+              ),
             );
           },
         );
-        emit(
-          const CommonServiceState.submitSuccess(),
+        final res = await completer.future;
+        res.fold(
+          (l) => emit(
+            CommonServiceState.failure(
+              errorMessage: l.whenOrNull(
+                    duplicatedKey: () => 'duplicate',
+                  ) ??
+                  l.toString(),
+            ),
+          ),
+          (r) => emit(
+            const CommonServiceState.submitSuccess(),
+          ),
         );
       },
     );
@@ -200,7 +214,11 @@ class CommonServiceBloc extends Bloc<CommonServiceEvent, CommonServiceState> {
         orElse: () => false,
         success: (eitherFailuresOrUrls) => eitherFailuresOrUrls.map(
           (a) => a.fold(
-            (l) => emit(const CommonServiceState.failure()),
+            (l) => emit(
+              const CommonServiceState.failure(
+                errorMessage: 'upload-img-fail',
+              ),
+            ),
             (newImgUrl) => completer.complete(newImgUrl),
           ),
         ),

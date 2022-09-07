@@ -96,9 +96,22 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                             BuildRowRepairCompletedItem(
                               title: l10n.collectMoneyCustomersLabel,
                               content: context.formatMoney(
-                                widget.finished.map((e) => e.price).reduce(
-                                      (value, element) => value + element,
-                                    ),
+                                widget.finished.isEmpty
+                                    ? 0
+                                    : widget.finished
+                                        .map((e) =>
+                                            e.price +
+                                            (e.products.isEmpty
+                                                ? 0
+                                                : e.products.fold<int>(
+                                                    0,
+                                                    (p, element) =>
+                                                        p +
+                                                        element.unitPrice *
+                                                            element.quantity)))
+                                        .reduce(
+                                          (value, element) => value + element,
+                                        ),
                               ),
                               textButtonName: l10n.detailLabel,
                               onPressed: () => context.router.push(
