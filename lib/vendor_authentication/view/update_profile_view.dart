@@ -75,8 +75,7 @@ class UpdateProfileView extends StatelessWidget {
                       Avatar(
                         localImg: File(''),
                         urlImage: user.avatarUrl,
-                        userName:
-                            user.lastName.isEmpty ? 'Revup' : user.lastName,
+                        userName: '${user.firstName} ${user.lastName}',
                         callback: () {
                           _showModalButtonSheet(context, 0, list);
                         },
@@ -102,8 +101,7 @@ class UpdateProfileView extends StatelessWidget {
                         Avatar(
                           localImg: file[0],
                           urlImage: user.avatarUrl,
-                          userName:
-                              user.lastName.isEmpty ? 'Revup' : user.lastName,
+                          userName: '${user.firstName} ${user.lastName}',
                           callback: () {
                             _showModalButtonSheet(context, 0, list);
                           },
