@@ -85,6 +85,7 @@ class CardReview extends StatelessWidget {
                               Row(
                                 children: [
                                   RatingBar.builder(
+                                    ignoreGestures: true,
                                     initialRating: data.rating.toDouble(),
                                     itemSize: 20,
                                     allowHalfRating: true,
@@ -94,9 +95,7 @@ class CardReview extends StatelessWidget {
                                           .colorScheme
                                           .inversePrimary,
                                     ),
-                                    onRatingUpdate: (double value) {
-                                      // TODO(namngoc231): rating
-                                    },
+                                    onRatingUpdate: (double value) {},
                                   ),
                                 ],
                               ),
@@ -122,9 +121,32 @@ class CardReview extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 child: AutoSizeText(
-                  data.createdTime.day != DateTime.now().day
-                      ? '''${DateTime.now().difference(data.createdTime).inDays} ${l10n.yesterdayLabel}'''
-                      : 'Today',
+                  (Duration(
+                                milliseconds:
+                                    DateTime.now().millisecondsSinceEpoch -
+                                        data.createdTime.millisecondsSinceEpoch,
+                              ).inHours) /
+                              24 <
+                          1
+                      ? Duration(
+                                milliseconds:
+                                    DateTime.now().millisecondsSinceEpoch -
+                                        data.createdTime.millisecondsSinceEpoch,
+                              ).inHours >
+                              1
+                          ? '''
+${Duration(
+                              milliseconds:
+                                  DateTime.now().millisecondsSinceEpoch -
+                                      data.createdTime.millisecondsSinceEpoch,
+                            ).inHours} ${context.l10n.hoursAgoLabel}'''
+                          : context.l10n.todayLabel
+                      : '''
+${(Duration(
+                            milliseconds:
+                                DateTime.now().millisecondsSinceEpoch -
+                                    data.createdTime.millisecondsSinceEpoch,
+                          ).inHours) / 24} ${context.l10n.yesterdayLabel}''',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),

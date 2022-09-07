@@ -180,7 +180,7 @@
   "weatherLabel": "The weather today",
   "workerRepairing": "Worker is repairing",
   "workerRepairLabel": "Worker doing repairs",
-  "yesterdayLabel": "yesterday",
+  "yesterdayLabel": "days ago",
   "yourFeedbackLabel": "Your feedback",
   "zaloPayLabel": "ZaloPay",
   "zaloPaymentLabel": "Pay with Zalo Pay",
@@ -258,7 +258,7 @@
   "yesLabel": "Yes",
   "chooseNoService": "You choose no service",
   "noLabel": "No",
-  "addCommonLabel": "Choose common service",
+  "chooseCommonLabel": "Choose common service",
   "moneyUnit": "VND",
   "noServiceLabel": "You have no service yet.",
   "addCommonServiceQuestionLabel": "Do you want to use common service?",
@@ -281,5 +281,10 @@
   "productLabel": "Product",
   "needToUpdateInfoLabel": "Your information may not match. Please reupload your infomation (include business lisence).",
   "needToUpdateInfoDesLabel": "That is the basis for your account to be approved in the fastest way",
-  "understoodLabel": "Understood"
+  "understoodLabel": "Understood",
+  "duplicateNameSvLabel": "Service name is not allowed to duplicate",
+  "addCommonLabel": "Add common services",
+  "hoursAgoLabel" : "hours ago",
+  "todayLabel":"today"
+
 }
