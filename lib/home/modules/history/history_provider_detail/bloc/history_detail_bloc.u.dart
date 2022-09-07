@@ -67,7 +67,13 @@ class HistoryProviderDetailBloc
                 .map(
                   (a) => a.maybeMap<Option<int>>(
                     orElse: none,
-                    paid: (value) => some(value.moneyAmount),
+                    paid: (value) => some(
+                      value.moneyAmount +
+                          (value.products.isEmpty
+                              ? 0
+                              : (value.products[0].unitPrice *
+                                  value.products[0].quantity)),
+                    ),
                   ),
                 )
                 .filter((a) => a.isSome())

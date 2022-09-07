@@ -23,7 +23,7 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
 
   Future<Unit> fetchUnpaidServices(VoidCallback onError) async {
     emit(const SelectOptionsState.loading());
-    (await _irs.all())
+    (await _irs.where('service_name', isNotEqualTo: 'transFee'))
         .toOption()
         .map(
           (a) => a
@@ -66,24 +66,27 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
         .getOrElse(() => throw NullThrownError());
 
     // save list completed
-    for (final e in completed) {
-      (await _irs.get(e.name)).fold(
-        (l) => unit,
-        (r) => r
-            .maybeMap<Option<PaymentService>>(
-              pending: (v) => some(
-                PaymentService.pending(
-                  serviceName: v.serviceName,
-                  moneyAmount: v.moneyAmount,
-                  products: v.products,
-                  isOptional: v.isOptional,
-                  isComplete: true,
+
+    if (completed.isNotEmpty) {
+      for (final e in completed) {
+        (await _irs.get(e.name)).fold(
+          (l) => unit,
+          (r) => r
+              .maybeMap<Option<PaymentService>>(
+                pending: (v) => some(
+                  PaymentService.pending(
+                    serviceName: v.serviceName,
+                    moneyAmount: v.moneyAmount,
+                    products: v.products,
+                    isOptional: v.isOptional,
+                    isComplete: true,
+                  ),
                 ),
-              ),
-              orElse: none,
-            )
-            .traverseFuture((a) async => _irs.update(a)),
-      );
+                orElse: none,
+              )
+              .traverseFuture((a) async => _irs.update(a)),
+        );
+      }
     }
     final consumer = (await userRepos.get(repairRecord.cid))
         .fold<Option<AppUser>>(
@@ -94,11 +97,13 @@ class SelectOptionsCubit extends Cubit<SelectOptionsState> {
     final tokens =
         (await storeRepository.userNotificationTokenRepo(consumer).all())
             .map(
-              (r) => r.sort(
-                orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-              ),
+              (r) => r.toList()
+                ..sort(
+                  (a, b) => b.created.millisecondsSinceEpoch
+                      .compareTo(a.created.millisecondsSinceEpoch),
+                ),
             )
-            .fold((l) => throw NullThrownError(), (r) => r.toList());
-    sendMessage(tokens.first.token, repairRecord.pid, rpid);
+            .fold((l) => throw NullThrownError(), (r) => r);
+    sendMessage(tokens[0].token, repairRecord.pid, rpid);
   }
 }

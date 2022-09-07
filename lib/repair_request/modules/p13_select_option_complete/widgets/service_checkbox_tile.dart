@@ -33,11 +33,15 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
               Row(
                 children: [
                   AutoSizeText(
-                    context.formatMoney(widget.pendingService.price +
-                        (widget.pendingService.products.isEmpty
-                            ? 0
-                            : widget.pendingService.products.fold(
-                                0, (p, e) => p + e.unitPrice * e.quantity))),
+                    context.formatMoney(
+                      widget.pendingService.price +
+                          (widget.pendingService.products.isEmpty
+                              ? 0
+                              : widget.pendingService.products.fold(
+                                  0,
+                                  (p, e) => p + e.unitPrice * e.quantity,
+                                )),
+                    ),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   Checkbox(

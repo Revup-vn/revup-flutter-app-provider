@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,9 +13,30 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._userRepos, this.user) : super(const _Initial()) {
     on<HomeEvent>(_onEvent);
+    _s = _userRepos
+        .collection()
+        .where('uuid', isEqualTo: user.uuid)
+        .snapshots()
+        .listen((event) {
+      if (event.docs.isNotEmpty) {
+        final uSer = _userRepos
+            .parseRawData(event.docs.first)
+            .getOrElse(() => throw NullThrownError());
+        add(
+          HomeEvent.changeActiveStatus(
+            status: uSer.maybeMap(
+              orElse: () => false,
+              provider: (value) => value.online,
+            ),
+            providerID: uSer.uuid,
+          ),
+        );
+      }
+    });
   }
   final IStore<AppUser> _userRepos;
   final AppUser user;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
   Future<void> _onEvent(
     HomeEvent event,
     Emitter<HomeState> emit,

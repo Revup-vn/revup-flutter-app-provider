@@ -55,7 +55,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
     final l10n = context.l10n;
 
     return Card(
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       child: Column(
         children: [
           ListTile(
