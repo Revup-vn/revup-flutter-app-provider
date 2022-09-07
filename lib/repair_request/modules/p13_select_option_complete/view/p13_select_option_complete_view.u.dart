@@ -8,6 +8,7 @@ import 'package:revup_core/core.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../router/router.dart';
 import '../../../../shared/shared.dart';
+import '../../../../shared/widgets/custom_dialog.dart';
 import '../../../../shared/widgets/loading.u.dart';
 import '../../../models/models.dart';
 import '../cubit/select_options_cubit.dart';
@@ -56,31 +57,114 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                       final saveLst = form.currentState?.value['data']
                           as List<PendingServiceModel>;
                       if (saveLst.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(l10n.chooseAtLeastCompletedLabel),
+                        showDialog<void>(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (bcontext) => SimpleDialogCustom(
+                            height: 250,
+                            content: [
+                              AutoSizeText(
+                                context.l10n.chooseNoService,
+                                style: Theme.of(context).textTheme.labelLarge,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              AutoSizeText(
+                                context.l10n.sureLabel,
+                                style: Theme.of(context).textTheme.labelLarge,
+                              ),
+                            ],
+                            button: [
+                              TextButton(
+                                onPressed: () {
+                                  bcontext.router.pop();
+                                  context
+                                      .read<SelectOptionsCubit>()
+                                      .submitCompleted(
+                                    id,
+                                    (token, providerId, recordId) {
+                                      context
+                                          .read<NotificationCubit>()
+                                          .sendMessageToToken(
+                                            SendMessage(
+                                              title: 'Revup',
+                                              body: 'Done',
+                                              token: token,
+                                              icon: kRevupIconApp,
+                                              payload: MessageData(
+                                                type: NotificationType
+                                                    .ProviderRepaired,
+                                                payload: <String, dynamic>{
+                                                  'providerId': providerId,
+                                                  'recordId': recordId,
+                                                },
+                                              ),
+                                            ),
+                                          );
+                                    },
+                                    saveLst,
+                                  );
+                                  context.router.push(
+                                    P14RepairCompleteRoute(
+                                      finished: (form.currentState?.value ??
+                                              <String, dynamic>{
+                                                'data': <dynamic>[]
+                                              })['data']
+                                          as List<PendingServiceModel>,
+                                      paid: services
+                                          .where((e) => e.status == 'paid')
+                                          .map(
+                                            (v) => PaidServicesModel.fromDto(
+                                              pendingService: v,
+                                            ),
+                                          )
+                                          .toList(),
+                                      vehicle: vehicle,
+                                      recordId: id,
+                                    ),
+                                  );
+                                },
+                                child: AutoSizeText(
+                                  context.l10n.confirmLabel,
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  bcontext.router.pop();
+                                },
+                                child: AutoSizeText(
+                                  context.l10n.cancelLabel,
+                                ),
+                              ),
+                            ],
                           ),
                         );
                         return;
                       } else {
-                        context.read<SelectOptionsCubit>().submitCompleted(id,
-                            (token, providerId, recordId) {
-                          context.read<NotificationCubit>().sendMessageToToken(
-                                SendMessage(
-                                  title: 'Revup',
-                                  body: 'Done',
-                                  token: token,
-                                  icon: kRevupIconApp,
-                                  payload: MessageData(
-                                    type: NotificationType.ProviderRepaired,
-                                    payload: <String, dynamic>{
-                                      'providerId': providerId,
-                                      'recordId': recordId,
-                                    },
+                        context.read<SelectOptionsCubit>().submitCompleted(
+                          id,
+                          (token, providerId, recordId) {
+                            context
+                                .read<NotificationCubit>()
+                                .sendMessageToToken(
+                                  SendMessage(
+                                    title: 'Revup',
+                                    body: 'Done',
+                                    token: token,
+                                    icon: kRevupIconApp,
+                                    payload: MessageData(
+                                      type: NotificationType.ProviderRepaired,
+                                      payload: <String, dynamic>{
+                                        'providerId': providerId,
+                                        'recordId': recordId,
+                                      },
+                                    ),
                                   ),
-                                ),
-                              );
-                        }, saveLst);
+                                );
+                          },
+                          saveLst,
+                        );
                       }
 
                       context.router.push(

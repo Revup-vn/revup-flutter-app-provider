@@ -167,11 +167,13 @@ class StartRepairBloc extends Bloc<StartRepairEvent, StartRepairState> {
         final tokens =
             (await storeRepository.userNotificationTokenRepo(consumer).all())
                 .map(
-                  (r) => r.sort(
-                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                  ),
+                  (r) => r.toList()
+                    ..sort(
+                      (a, b) => b.created.millisecondsSinceEpoch
+                          .compareTo(a.created.millisecondsSinceEpoch),
+                    ),
                 )
-                .fold((l) => throw NullThrownError(), (r) => r.toList());
+                .fold((l) => throw NullThrownError(), (r) => r);
         // send message to consumer
         sendMessage(tokens.first.token, recordId);
 
@@ -198,11 +200,13 @@ class StartRepairBloc extends Bloc<StartRepairEvent, StartRepairState> {
         final tokens =
             (await storeRepository.userNotificationTokenRepo(consumer).all())
                 .map(
-                  (r) => r.sort(
-                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                  ),
+                  (r) => r.toList()
+                    ..sort(
+                      (a, b) => b.created.millisecondsSinceEpoch
+                          .compareTo(a.created.millisecondsSinceEpoch),
+                    ),
                 )
-                .fold((l) => throw NullThrownError(), (r) => r.toList());
+                .fold((l) => throw NullThrownError(), (r) => r);
         // send message to consumer
         sendMessage(tokens.first.token);
         // route to map route page

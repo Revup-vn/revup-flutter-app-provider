@@ -16,10 +16,10 @@ class HistoryProviderDetailView extends StatelessWidget {
   });
   final HistoryDetailModel data;
   final String rid;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(

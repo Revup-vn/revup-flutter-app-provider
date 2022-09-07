@@ -184,15 +184,17 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         final tokens =
             (await storeRepository.userNotificationTokenRepo(consumer).all())
                 .map(
-                  (r) => r.sort(
-                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                  ),
+                  (r) => r.toList()
+                    ..sort(
+                      (a, b) => b.created.millisecondsSinceEpoch
+                          .compareTo(a.created.millisecondsSinceEpoch),
+                    ),
                 )
-                .fold((l) => throw NullThrownError(), (r) => r.toList());
-        log('TOKEN:${tokens.first.token}');
+                .fold((l) => throw NullThrownError(), (r) => r);
+        log('TOKEN:${tokens[0].token}');
 
         // send notification to consumer
-        await sendMessage(tokens.first.token);
+        await sendMessage(tokens[0].token);
         // route to info request
         onRoute();
       },

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -116,14 +115,15 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
               )
               .all())
           .map(
-            (r) => r.sort(
-              orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-            ),
+            (r) => r.toList()
+              ..sort(
+                (a, b) => b.created.millisecondsSinceEpoch
+                    .compareTo(a.created.millisecondsSinceEpoch),
+              ),
           )
-          .fold((l) => throw NullThrownError(), (r) => r.toList());
-      log('TOKEN:${tokens.first.token}');
+          .fold((l) => throw NullThrownError(), (r) => r);
       sendMessage(
-        tokens.first.token,
+        tokens[0].token,
         repairRecord.pid,
         'completedRepair',
         repairRecord.id,

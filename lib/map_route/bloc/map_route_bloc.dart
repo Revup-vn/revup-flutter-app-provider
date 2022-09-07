@@ -105,12 +105,14 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
         final tokens =
             (await storeRepository.userNotificationTokenRepo(consumer).all())
                 .map(
-                  (r) => r.sort(
-                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                  ),
+                  (r) => r.toList()
+                    ..sort(
+                      (a, b) => b.created.millisecondsSinceEpoch
+                          .compareTo(a.created.millisecondsSinceEpoch),
+                    ),
                 )
-                .fold((l) => throw NullThrownError(), (r) => r.toList());
-        sendMessage(tokens.first.token);
+                .fold((l) => throw NullThrownError(), (r) => r);
+        sendMessage(tokens[0].token);
         onRoute();
       },
     );

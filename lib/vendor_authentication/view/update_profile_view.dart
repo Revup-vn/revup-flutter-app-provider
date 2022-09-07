@@ -262,87 +262,100 @@ class UpdateProfileView extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      AutoSizeText.rich(
-                        TextSpan(
-                          text: l10n.imageCardLabel,
-                          style: Theme.of(context).textTheme.labelLarge,
-                          children: [
-                            TextSpan(
-                              text: '( ${l10n.blsLabel} )',
-                              style: Theme.of(context).textTheme.labelMedium,
-                            )
-                          ],
+                      if (user.maybeMap(
+                        orElse: () => false,
+                        provider: (value) => value.needToUpdateInfo,
+                      ))
+                        AutoSizeText.rich(
+                          TextSpan(
+                            text: l10n.imageCardLabel,
+                            style: Theme.of(context).textTheme.labelLarge,
+                            children: [
+                              TextSpan(
+                                text: '( ${l10n.blsLabel} )',
+                                style: Theme.of(context).textTheme.labelMedium,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Center(
-                            child: Container(
-                              height: 96,
-                              width: 96,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onInverseSurface,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: BlocBuilder<UploadImageBloc,
-                                  UploadImageState>(
-                                builder: (context, state) => state.when(
-                                  initial: () => Center(
-                                    child: IconButton(
-                                      onPressed: () {
-                                        _showModalButtonSheet(context, 2, list);
-                                      },
-                                      icon: Icon(
-                                        Icons.add_photo_alternate_outlined,
-                                        size: 40,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .outline,
+                      if (user.maybeMap(
+                        orElse: () => false,
+                        provider: (value) => value.needToUpdateInfo,
+                      ))
+                        const SizedBox(height: 16),
+                      if (user.maybeMap(
+                        orElse: () => false,
+                        provider: (value) => value.needToUpdateInfo,
+                      ))
+                        Row(
+                          children: [
+                            Center(
+                              child: Container(
+                                height: 96,
+                                width: 96,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onInverseSurface,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: BlocBuilder<UploadImageBloc,
+                                    UploadImageState>(
+                                  builder: (context, state) => state.when(
+                                    initial: () => Center(
+                                      child: IconButton(
+                                        onPressed: () {
+                                          _showModalButtonSheet(
+                                              context, 2, list);
+                                        },
+                                        icon: Icon(
+                                          Icons.add_photo_alternate_outlined,
+                                          size: 40,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .outline,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  choosePhotoSuccess: (file) => Center(
-                                    child: file[2].path.isEmpty
-                                        ? IconButton(
-                                            onPressed: () {
-                                              _showModalButtonSheet(
-                                                context,
-                                                2,
-                                                list,
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons
-                                                  .add_photo_alternate_outlined,
-                                              size: 40,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .outline,
+                                    choosePhotoSuccess: (file) => Center(
+                                      child: file[2].path.isEmpty
+                                          ? IconButton(
+                                              onPressed: () {
+                                                _showModalButtonSheet(
+                                                  context,
+                                                  2,
+                                                  list,
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons
+                                                    .add_photo_alternate_outlined,
+                                                size: 40,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline,
+                                              ),
+                                            )
+                                          : IdImage(
+                                              96,
+                                              file[2],
+                                              callback: () {
+                                                list[2] = File('');
+                                                context
+                                                    .read<UploadImageBloc>()
+                                                    .add(
+                                                      const UploadImageEvent
+                                                          .started(),
+                                                    );
+                                              },
                                             ),
-                                          )
-                                        : IdImage(
-                                            96,
-                                            file[2],
-                                            callback: () {
-                                              list[2] = File('');
-                                              context
-                                                  .read<UploadImageBloc>()
-                                                  .add(
-                                                    const UploadImageEvent
-                                                        .started(),
-                                                  );
-                                            },
-                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
                       const SizedBox(
                         height: 20,
                       ),

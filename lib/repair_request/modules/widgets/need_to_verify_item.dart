@@ -68,7 +68,12 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
                         border: const OutlineInputBorder(),
                         labelText: context.l10n.enterPriceLabel,
                       ),
-                      validator: FormBuilderValidators.numeric(),
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.match(
+                          r'^[0-9]{1,9}$',
+                          errorText: context.l10n.invalidFormatLabel,
+                        ),
+                      ]),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
