@@ -285,6 +285,8 @@
   "duplicateNameSvLabel": "Service name is not allowed to duplicate",
   "addCommonLabel": "Add common services",
   "hoursAgoLabel" : "hours ago",
-  "todayLabel":"today"
+  "todayLabel":"today",
+  "bannedNotiLabel": "You had been banned until",
+  "bannedNoti2Label": "due to violate our term and privacy"
 
 }
