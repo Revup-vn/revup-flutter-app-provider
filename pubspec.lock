@@ -1215,8 +1215,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: e20bc943dda295c9152e1cf85b5be4e67c815513
+      ref: "feature/ban-user"
+      resolved-ref: "8b1adfe861a9c5a2c58af6324322ec5d06669a5a"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
     version: "6.3.8-dev"

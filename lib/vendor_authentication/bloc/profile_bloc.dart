@@ -58,6 +58,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               AppUserDummy.field(AppUserFields.Dob),
               AppUserDummy.field(AppUserFields.FirstName),
               AppUserDummy.field(AppUserFields.LastName),
+              AppUserDummy.field(AppUserFields.IdCardImage),
             ],
           ),
         );
