@@ -471,13 +471,13 @@ class UpdateProfileView extends StatelessWidget {
                                                 '',
                                           ),
                                           bio: data?['bio'].toString() ?? '',
-                                          idCardImage: list[0].isEmpty
+                                          idCardImage: list[2].isEmpty
                                               ? user.mapOrNull(
                                                     provider: (value) =>
                                                         value.idCardImage,
                                                   ) ??
                                                   ''
-                                              : list[0],
+                                              : list[2],
                                         ),
                                       );
                                       context.read<ProfileBloc>().add(
