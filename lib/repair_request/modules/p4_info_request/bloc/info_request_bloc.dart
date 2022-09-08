@@ -68,38 +68,39 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
 
         if (maybeRecord.isNone()) {
           emit(const InfoRequestState.failure());
+        } else {
+          final record = maybeRecord.getOrElse(() => throw NullThrownError());
+
+          final needToVerifyService = (await _paymentService.all())
+              .map<IList<PaymentService>>(
+                (r) => r.filter(
+                  (a) => a.maybeMap(
+                      needToVerify: (_) => true, orElse: () => false),
+                ),
+              )
+              .fold((l) => ilist(<PaymentService>[]), (r) => r);
+          await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
+            _paymentService.collection().snapshots(),
+            onData: (data) {
+              final lst = data.docs
+                  .map(_paymentService.parseRawData)
+                  .fold<IList<PaymentService>>(
+                    nil(),
+                    (p, e) => e.fold(
+                      (l) => p,
+                      (r) => cons(r, p),
+                    ),
+                  );
+
+              return InfoRequestState.success(
+                needToVerifyService: needToVerifyService,
+                record: record,
+                len: lst.length(),
+                isReady: record.recordType != 'arrived',
+              );
+            },
+          );
         }
-        final record = maybeRecord.getOrElse(() => throw NullThrownError());
-
-        final needToVerifyService = (await _paymentService.all())
-            .map<IList<PaymentService>>(
-              (r) => r.filter(
-                (a) =>
-                    a.maybeMap(needToVerify: (_) => true, orElse: () => false),
-              ),
-            )
-            .fold((l) => ilist(<PaymentService>[]), (r) => r);
-        await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
-          _paymentService.collection().snapshots(),
-          onData: (data) {
-            final lst = data.docs
-                .map(_paymentService.parseRawData)
-                .fold<IList<PaymentService>>(
-                  nil(),
-                  (p, e) => e.fold(
-                    (l) => p,
-                    (r) => cons(r, p),
-                  ),
-                );
-
-            return InfoRequestState.success(
-              needToVerifyService: needToVerifyService,
-              record: record,
-              len: lst.length(),
-              isReady: record.recordType != 'arrived',
-            );
-          },
-        );
       },
       confirmArrived: () async {
         final maybeRecord = (await _repairRecord.get(recordId))

@@ -29,6 +29,7 @@ class PendingServiceModel with _$PendingServiceModel {
         needToVerify: (v) => PendingServiceModel(
           name: v.serviceName,
           price: -1,
+          imageUrl: v.imgUrl,
           isOptional: true,
           products: [],
           status: 'waiting',

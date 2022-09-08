@@ -127,7 +127,9 @@ class P12DetailView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           AutoSizeText(
-                                            services[index].name,
+                                            services[index].name == 'transFee'
+                                                ? l10n.feeOfTransportLabel
+                                                : services[index].name,
                                             style: const TextStyle(
                                               fontWeight: FontWeight.normal,
                                             ),

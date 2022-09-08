@@ -100,9 +100,10 @@ class AccountContent extends StatelessWidget {
             ),
             AccountItem(
               accountName: l10n.paymentLabel,
-              accountIcon: const Icon(Icons.payment),
+              accountIcon: const Icon(Icons.wallet),
               callback: () => context.showInfoBar<void>(
-                  content: Text(context.l10n.notSupportLabel)),
+                content: Text(context.l10n.notSupportLabel),
+              ),
             ),
             AccountItem(
               accountName: l10n.organizationLabel,

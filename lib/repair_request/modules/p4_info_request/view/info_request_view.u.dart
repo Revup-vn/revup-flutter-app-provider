@@ -8,6 +8,8 @@ import 'package:revup_core/core.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../router/app_router.gr.dart';
 import '../../../../shared/utils/utils.dart';
+import '../../../../shared/widgets/loading.u.dart';
+import '../../../../shared/widgets/unknown_failure.dart';
 import '../../../models/pending_service_model.dart';
 import '../../../request.dart';
 import '../bloc/info_request_bloc.dart';
@@ -147,7 +149,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                               child: BuildRowItem(
                                 iconData: Icons.build,
                                 text: l10n.serviceLabel,
-                                textBold: '''$len ${l10n.repairItemsLabel}''',
+                                textBold:
+                                    '''${len - 1} ${l10n.repairItemsLabel}''',
                               ),
                             ),
                             GestureDetector(
@@ -244,9 +247,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
               ],
             ),
           ),
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          failure: UnknownFailure.new,
+          orElse: Loading.new,
         );
       },
     );

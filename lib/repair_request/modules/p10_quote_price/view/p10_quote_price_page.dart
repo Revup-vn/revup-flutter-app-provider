@@ -34,6 +34,7 @@ class P10QuotePricePage extends StatelessWidget {
             record,
             pendingService,
             pendingAmount,
+            context.read(),
           )..watch(),
         ),
         BlocProvider(
