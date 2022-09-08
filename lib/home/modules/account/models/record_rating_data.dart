@@ -16,7 +16,7 @@ class RecordRatingData with _$RecordRatingData {
         finished: (record) => RecordRatingData(
           id: record.id,
           cid: record.cid,
-          feedback: record.feedback,
+          feedback: record.feedback!,
         ),
       );
 }

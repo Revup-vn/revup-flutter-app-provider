@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -13,6 +12,7 @@ import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import '../../main_development.dart';
 import '../../router/router.dart';
 import '../../shared/widgets/custom_dialog.dart';
 
@@ -27,24 +27,25 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
         case NotificationType.ConsumerRequestRepair:
-          log('in');
           final recordId = p0.payload.payload['recordId'] as String;
-          context.router.push(
+          appRouter.push(
             NewRequestRoute(
               recordId: recordId,
             ),
           );
+
           break;
 
         case NotificationType.NormalMessage:
           final subType = p0.payload.payload['subType'] as String;
           if (subType == 'accepted') {
             final recordId = p0.payload.payload['recordId'] as String;
-            context.router.push(
+            appRouter.push(
               P12DetailRoute(recordId: recordId),
             );
           } else if (subType == 'ConsumerCanceled') {
@@ -63,7 +64,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ).then(
               (_) {
-                context.router
+                appRouter
                     .popUntil((route) => route.settings.name == HomeRoute.name);
               },
             );
@@ -102,7 +103,7 @@ class _SplashPageState extends State<SplashPage> {
                     ),
               )
               .then(
-                (value) => context.router
+                (value) => appRouter
                     .popUntil((route) => route.settings.name == HomeRoute.name),
               );
           break;

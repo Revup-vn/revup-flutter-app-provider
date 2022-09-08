@@ -38,8 +38,8 @@ class MyReviewBloc extends Bloc<MyReviewEvent, MyReviewState> {
         ))
             .map(
               (r) => r.map(
-                (a) =>
-                    a.maybeMap<Future<Option<Tuple2<AppUser, ReportFeedback>>>>(
+                (a) => a.maybeMap<
+                    Future<Option<Tuple2<AppUser, Option<ReportFeedback>>>>>(
                   orElse: () => Future.value(none()),
                   finished: (v) async => some(
                     tuple2(
@@ -47,13 +47,14 @@ class MyReviewBloc extends Bloc<MyReviewEvent, MyReviewState> {
                         (l) => throw NullThrownError(),
                         (r) => r,
                       ),
-                      v.feedback,
+                      v.feedback != null ? some(v.feedback!) : none(),
                     ),
                   ),
                 ),
               ),
             )
-            .fold<IList<Future<Option<Tuple2<AppUser, ReportFeedback>>>>>(
+            .fold<
+                IList<Future<Option<Tuple2<AppUser, Option<ReportFeedback>>>>>>(
               (l) => throw NullThrownError(),
               (r) => r,
             );
@@ -61,10 +62,23 @@ class MyReviewBloc extends Bloc<MyReviewEvent, MyReviewState> {
         final feedbacks = (await Future.wait(feedbackData.toIterable()))
             .where((e) => e.isSome())
             .map((e) => e.getOrElse(() => throw NullThrownError()))
-            .map((e) => RatingData.fromDtos(e.value1, e.value2));
+            .map(
+              (e) => e,
+            );
+        final listfb = ilist(feedbacks).filter((a) => a.value2.isSome()).map(
+              (a) => tuple2(
+                a.value1,
+                a.value2.getOrElse(
+                  () => throw NullThrownError(),
+                ),
+              ),
+            );
+        final listRating = listfb.map(
+          (a) => RatingData.fromDtos(a.value1, a.value2),
+        );
         emit(
           MyReviewState.loadDataSuccess(
-            data: ilist(feedbacks),
+            data: listRating,
             sortStarRating: 0,
           ),
         );
@@ -78,8 +92,8 @@ class MyReviewBloc extends Bloc<MyReviewEvent, MyReviewState> {
         ))
             .map(
               (r) => r.map(
-                (a) =>
-                    a.maybeMap<Future<Option<Tuple2<AppUser, ReportFeedback>>>>(
+                (a) => a.maybeMap<
+                    Future<Option<Tuple2<AppUser, Option<ReportFeedback>>>>>(
                   orElse: () => Future.value(none()),
                   finished: (v) async => some(
                     tuple2(
@@ -87,13 +101,14 @@ class MyReviewBloc extends Bloc<MyReviewEvent, MyReviewState> {
                         (l) => throw NullThrownError(),
                         (r) => r,
                       ),
-                      v.feedback,
+                      v.feedback != null ? some(v.feedback!) : none(),
                     ),
                   ),
                 ),
               ),
             )
-            .fold<IList<Future<Option<Tuple2<AppUser, ReportFeedback>>>>>(
+            .fold<
+                IList<Future<Option<Tuple2<AppUser, Option<ReportFeedback>>>>>>(
               (l) => throw NullThrownError(),
               (r) => r,
             );
@@ -101,19 +116,32 @@ class MyReviewBloc extends Bloc<MyReviewEvent, MyReviewState> {
         final feedbacks = (await Future.wait(feedbackData.toIterable()))
             .where((e) => e.isSome())
             .map((e) => e.getOrElse(() => throw NullThrownError()))
-            .map((e) => RatingData.fromDtos(e.value1, e.value2));
+            .map(
+              (e) => e,
+            );
+        final listfb = ilist(feedbacks).filter((a) => a.value2.isSome()).map(
+              (a) => tuple2(
+                a.value1,
+                a.value2.getOrElse(
+                  () => throw NullThrownError(),
+                ),
+              ),
+            );
+        final listRating = listfb.map(
+          (a) => RatingData.fromDtos(a.value1, a.value2),
+        );
 
         if (sortStarRating == 0) {
           emit(
             MyReviewState.loadDataSuccess(
-              data: ilist(feedbacks),
+              data: listRating,
               sortStarRating: sortStarRating,
             ),
           );
         } else {
           emit(
             MyReviewState.loadDataSuccess(
-              data: ilist(feedbacks).filter((a) => a.rating == sortStarRating),
+              data: listRating.filter((a) => a.rating == sortStarRating),
               sortStarRating: sortStarRating,
             ),
           );

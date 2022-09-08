@@ -103,7 +103,7 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
           providerName: '${consumer.firstName} ${consumer.lastName}',
           rating: list[0].maybeMap(
             orElse: () => 0,
-            finished: (value) => value.feedback.rating,
+            finished: (value) => value.feedback?.rating ?? 0,
           ),
           serviceType: list[0].vehicle == 'motorbike' ? 0 : 1,
         );
@@ -193,7 +193,7 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
           providerName: '${consumer.firstName} ${consumer.lastName}',
           rating: list[0].maybeMap(
             orElse: () => 0,
-            finished: (value) => value.feedback.rating,
+            finished: (value) => value.feedback?.rating ?? 0,
           ),
           serviceType: list[0].vehicle == 'motorbike' ? 0 : 1,
         );

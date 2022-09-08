@@ -109,11 +109,11 @@ class HistoryProviderDetailBloc
                   ),
                   rating: repairRecord.maybeMap(
                     orElse: () => 0,
-                    finished: (value) => value.feedback.rating,
+                    finished: (value) => value.feedback?.rating ?? 0,
                   ),
                   feedback: repairRecord.maybeMap(
                     orElse: () => '',
-                    finished: (value) => value.feedback.desc,
+                    finished: (value) => value.feedback?.desc ?? '',
                   ),
                   provider: appUser,
                 ),
