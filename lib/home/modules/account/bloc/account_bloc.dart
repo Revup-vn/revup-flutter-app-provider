@@ -48,10 +48,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 .map(
                   (r) => r.map(
                     (a) => a.maybeMap<Future<Option<ReportFeedback>>>(
-                      orElse: () => Future.value(none()),
-                      finished: (v) async => some(
-                        v.feedback,
-                      ),
+                      orElse: () async => none(),
+                      finished: (v) async => (v.feedback != null)
+                          ? some(
+                              v.feedback!,
+                            )
+                          : none(),
                     ),
                   ),
                 )
@@ -98,10 +100,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 .map(
                   (r) => r.map(
                     (a) => a.maybeMap<Future<Option<ReportFeedback>>>(
-                      orElse: () => Future.value(none()),
-                      finished: (v) async => some(
-                        v.feedback,
-                      ),
+                      orElse: () async => none(),
+                      finished: (v) async => (v.feedback != null)
+                          ? some(
+                              v.feedback!,
+                            )
+                          : none(),
                     ),
                   ),
                 )
@@ -150,10 +154,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                   .map(
                     (r) => r.map(
                       (a) => a.maybeMap<Future<Option<ReportFeedback>>>(
-                        orElse: () => Future.value(none()),
-                        finished: (v) async => some(
-                          v.feedback,
-                        ),
+                        orElse: () async => none(),
+                        finished: (v) async => (v.feedback != null)
+                            ? some(
+                                v.feedback!,
+                              )
+                            : none(),
                       ),
                     ),
                   )

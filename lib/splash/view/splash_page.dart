@@ -1,11 +1,14 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
@@ -132,53 +135,137 @@ class _SplashPageState extends State<SplashPage> {
         final notifyCubit = context.read<NotificationCubit>();
         final sr = context.read<StoreRepository>();
         authBloc.state.maybeWhen(
-          authenticated: (authType) async {
-            await notifyCubit.requirePermission();
-            await notifyCubit.registerDevice();
-
-            final token = notifyCubit.state.maybeWhen(
-              registered: (token) => token,
-              failToRegister: () => '',
-              orElse: () => throw NullThrownError(),
+          empty: (isFirstTime) => context.router.pushAndPopUntil(
+            const LoginRoute(),
+            predicate: (_) => false,
+          ),
+          authenticated: (type) async {
+            await Hive.openBox<dynamic>('authType').then(
+              (value) {
+                value.put(
+                  'auth',
+                  type.map(
+                    google: (value) =>
+                        AuthType.google(user: value.user).toJson(),
+                    phone: (value) => AuthType.phone(user: value.user).toJson(),
+                    email: (value) => AuthType.email(user: value.user).toJson(),
+                  ),
+                );
+              },
             );
-            final _iuntr = sr.userNotificationTokenRepo(
-              AppUserDummy.dummyConsumer(authType.user.uuid),
-            );
-            await _iuntr.create(
-              Token(
-                created: DateTime.now(),
-                platform: Platform.operatingSystem,
-                token: token,
-              ),
-            );
-          },
-          orElse: () => false,
-        );
-        context.router.pushAndPopUntil(
-          authBloc.state.maybeWhen(
-            empty: (isFirstTime) => const LoginRoute(),
-            authenticated: (type) {
-              Hive.openBox<dynamic>('authType').then(
-                (value) {
-                  value.put(
-                    'auth',
-                    type.map(
-                      google: (value) =>
-                          AuthType.google(user: value.user).toJson(),
-                      phone: (value) =>
-                          AuthType.phone(user: value.user).toJson(),
-                      email: (value) =>
-                          AuthType.email(user: value.user).toJson(),
-                    ),
+            if (await _isBanned(type.user.uuid)) {
+              final bannedDate = await getBannedDate(type.user.uuid);
+              unawaited(
+                showDialog<String>(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (bcontext) {
+                    final formatterDate = DateFormat('dd/MM/yyyy HH:mm');
+                    return Dialog(
+                      backgroundColor: Colors.transparent,
+                      insetPadding: const EdgeInsets.all(10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                              color:
+                                  Theme.of(context).colorScheme.inverseSurface,
+                            ),
+                            width: double.infinity,
+                            height: 150,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Icon(
+                                      Icons.cancel_outlined,
+                                      color:
+                                          Theme.of(context).colorScheme.error,
+                                    ),
+                                  ),
+                                  AutoSizeText(
+                                    '''
+${context.l10n.bannedNotiLabel} ${formatterDate.format(bannedDate)} ${context.l10n.bannedNoti2Label}''',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surface,
+                                        ),
+                                    maxLines: 2,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailDescLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surface,
+                                        ),
+                                    maxLines: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              );
+              Future.delayed(
+                const Duration(seconds: 5),
+                () {
+                  context
+                      .read<AuthenticateBloc>()
+                      .add(AuthenticateEvent.signOut(authType: type));
+                  context.router.pushAndPopUntil(
+                    const LoginRoute(),
+                    predicate: (_) => false,
                   );
                 },
               );
+            } else {
+              await notifyCubit.requirePermission();
+              await notifyCubit.registerDevice();
 
-              return HomeRoute(user: type.user);
-            },
-            orElse: LoginRoute.new,
+              final token = notifyCubit.state.maybeWhen(
+                registered: (token) => token,
+                failToRegister: () => '',
+                orElse: () => throw NullThrownError(),
+              );
+              final _iuntr = sr.userNotificationTokenRepo(
+                AppUserDummy.dummyConsumer(type.user.uuid),
+              );
+              await _iuntr.create(
+                Token(
+                  created: DateTime.now(),
+                  platform: Platform.operatingSystem,
+                  token: token,
+                ),
+              );
+              return context.router.pushAndPopUntil(
+                HomeRoute(user: type.user),
+                predicate: (_) => false,
+              );
+            }
+          },
+          orElse: () => context.router.pushAndPopUntil(
+            const LoginRoute(),
+            predicate: (_) => false,
           ),
-          predicate: (_) => true,
         );
       },
     );
@@ -197,5 +284,37 @@ class _SplashPageState extends State<SplashPage> {
         ),
       ),
     );
+  }
+
+  Future<bool> _isBanned(String id) async {
+    final value = (await context.read<IStore<AppUser>>().get(id))
+        .getOrElse(() => throw NullThrownError())
+        .mapOrNull(
+          provider: (value) => value,
+        );
+
+    if ((value!.inactiveTo != null &&
+            (value.inactiveTo!.compareTo(DateTime.now()) < 0 == true)) ||
+        (value.inactiveTo == null)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future<DateTime> getBannedDate(String id) async {
+    final value = (await context.read<IStore<AppUser>>().get(id))
+        .getOrElse(() => throw NullThrownError())
+        .mapOrNull(
+          provider: (value) => value,
+        );
+
+    if ((value!.inactiveTo != null &&
+            (value.inactiveTo!.compareTo(DateTime.now()) < 0 == true)) ||
+        (value.inactiveTo == null)) {
+      return DateTime.now();
+    } else {
+      return value.inactiveTo!;
+    }
   }
 }
