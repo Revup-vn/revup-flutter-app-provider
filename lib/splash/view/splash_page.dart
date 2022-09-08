@@ -14,6 +14,7 @@ import 'package:revup_core/core.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../../shared/widgets/custom_dialog.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -49,9 +50,9 @@ class _SplashPageState extends State<SplashPage> {
           } else if (subType == 'ConsumerCanceled') {
             showDialog<void>(
               context: context,
-              builder: (context) => AlertDialog(
-                content: Text(context.l10n.consumerAbortLabel),
-                actions: [
+              builder: (context) => SimpleDialogCustom(
+                content: [Text(context.l10n.consumerAbortLabel)],
+                button: [
                   TextButton(
                     onPressed: () {
                       context.router.pop();
@@ -73,9 +74,9 @@ class _SplashPageState extends State<SplashPage> {
         case NotificationType.ProviderDecline:
           showDialog<void>(
             context: context,
-            builder: (context) => AlertDialog(
-              content: Text(context.l10n.userDismissed),
-              actions: [
+            builder: (context) => SimpleDialogCustom(
+              content: [Text(context.l10n.userDismissed)],
+              button: [
                 TextButton(
                   onPressed: () => context.router.pop(),
                   child: Text(context.l10n.confirmLabel),
