@@ -7,6 +7,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
@@ -82,8 +83,9 @@ class LoginPage extends StatelessWidget {
                                       .textTheme
                                       .bodyText2
                                       ?.copyWith(
-                                        color:
-                                            Theme.of(context).colorScheme.error,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .inverseSurface,
                                       ),
                                   maxLines: 1,
                                 ),
@@ -93,8 +95,9 @@ class LoginPage extends StatelessWidget {
                                       .textTheme
                                       .bodyText2
                                       ?.copyWith(
-                                        color:
-                                            Theme.of(context).colorScheme.error,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .inverseSurface,
                                       ),
                                   maxLines: 1,
                                 ),
@@ -119,167 +122,259 @@ class LoginPage extends StatelessWidget {
               },
               provider: (value) async {
                 context.loaderOverlay.hide();
-                await notifyCubit.requirePermission();
-                await notifyCubit.registerDevice();
-                final token = notifyCubit.state.maybeWhen(
-                  registered: (token) => token,
-                  failToRegister: () => '',
-                  orElse: () => throw NullThrownError(),
-                );
-                final _iuntr = sr.userNotificationTokenRepo(
-                  AppUserDummy.dummyConsumer(authType.user.uuid),
-                );
-                await _iuntr.create(
-                  Token(
-                    created: DateTime.now(),
-                    platform: Platform.operatingSystem,
-                    token: token,
-                  ),
-                );
-                if (value.active == true) {
-                  context.loaderOverlay.hide();
-                  unawaited(showDialog<String>(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        backgroundColor: Colors.transparent,
-                        insetPadding: const EdgeInsets.all(10),
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 200,
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.done,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onTertiary,
-                                  ),
-                                  AutoSizeText(
-                                    context.l10n.loginSuccessLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onTertiary,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ));
-
-                  return Future.delayed(
-                    const Duration(seconds: 3),
-                    () async {
-                      final boxAuthType =
-                          await Hive.openBox<dynamic>('authType');
-                      await boxAuthType.put(
-                        'auth',
-                        authType.map(
-                          google: (value) =>
-                              AuthType.google(user: value.user).toJson(),
-                          phone: (value) =>
-                              AuthType.phone(user: value.user).toJson(),
-                          email: (value) =>
-                              AuthType.email(user: value.user).toJson(),
-                        ),
-                      );
-
-                      await context.router.pushAndPopUntil(
-                        HomeRoute(user: authType.user),
-                        predicate: (_) => true,
-                      );
-                      return null;
-                    },
+                if ((value.inactiveTo != null &&
+                        (value.inactiveTo!.compareTo(DateTime.now()) < 0 ==
+                            true)) ||
+                    (value.inactiveTo == null)) {
+                  await notifyCubit.requirePermission();
+                  await notifyCubit.registerDevice();
+                  final token = notifyCubit.state.maybeWhen(
+                    registered: (token) => token,
+                    failToRegister: () => '',
+                    orElse: () => throw NullThrownError(),
                   );
+                  final _iuntr = sr.userNotificationTokenRepo(
+                    AppUserDummy.dummyConsumer(authType.user.uuid),
+                  );
+                  await _iuntr.create(
+                    Token(
+                      created: DateTime.now(),
+                      platform: Platform.operatingSystem,
+                      token: token,
+                    ),
+                  );
+                  if (value.active == true) {
+                    context.loaderOverlay.hide();
+                    unawaited(
+                      showDialog<String>(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            backgroundColor: Colors.transparent,
+                            insetPadding: const EdgeInsets.all(10),
+                            child: Stack(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 200,
+                                  child: Column(
+                                    children: [
+                                      Icon(
+                                        Icons.done,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
+                                      ),
+                                      AutoSizeText(
+                                        context.l10n.loginSuccessLabel,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onTertiary,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    );
+
+                    return Future.delayed(
+                      const Duration(seconds: 3),
+                      () async {
+                        final boxAuthType =
+                            await Hive.openBox<dynamic>('authType');
+                        await boxAuthType.put(
+                          'auth',
+                          authType.map(
+                            google: (value) =>
+                                AuthType.google(user: value.user).toJson(),
+                            phone: (value) =>
+                                AuthType.phone(user: value.user).toJson(),
+                            email: (value) =>
+                                AuthType.email(user: value.user).toJson(),
+                          ),
+                        );
+
+                        await context.router.pushAndPopUntil(
+                          HomeRoute(user: authType.user),
+                          predicate: (_) => true,
+                        );
+                        return null;
+                      },
+                    );
+                  } else {
+                    context.loaderOverlay.hide();
+                    unawaited(
+                      showDialog<String>(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return SimpleDialogCustom(
+                            height: 250,
+                            content: [
+                              Center(
+                                child: Icon(
+                                  Icons.warning,
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                ),
+                              ),
+                              AutoSizeText(
+                                context.l10n.accountNotActiveLabel,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                              ),
+                              AutoSizeText(
+                                context.l10n.canLoginLabel,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                              ),
+                              AutoSizeText(
+                                context.l10n.loginFailDescLabel,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                              ),
+                            ],
+                            button: [
+                              TextButton(
+                                onPressed: () async {
+                                  final boxAuthType =
+                                      await Hive.openBox<dynamic>('authType');
+                                  await boxAuthType.put(
+                                    'auth',
+                                    authType.map(
+                                      google: (value) =>
+                                          AuthType.google(user: value.user)
+                                              .toJson(),
+                                      phone: (value) =>
+                                          AuthType.phone(user: value.user)
+                                              .toJson(),
+                                      email: (value) =>
+                                          AuthType.email(user: value.user)
+                                              .toJson(),
+                                    ),
+                                  );
+
+                                  await context.router.pushAndPopUntil(
+                                    HomeRoute(user: authType.user),
+                                    predicate: (_) => true,
+                                  );
+                                },
+                                child: const AutoSizeText('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    );
+                  }
                 } else {
+                  final formatterDate = DateFormat('dd/MM/yyyy HH:mm');
+
                   context.loaderOverlay.hide();
                   unawaited(
                     showDialog<String>(
                       barrierDismissible: false,
                       context: context,
-                      builder: (context) {
-                        return SimpleDialogCustom(
-                          height: 250,
-                          content: [
-                            Center(
-                              child: Icon(
-                                Icons.warning,
-                                color: Theme.of(context).colorScheme.onTertiary,
+                      builder: (bcontext) {
+                        return Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: const EdgeInsets.all(10),
+                          child: Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inverseSurface,
+                                ),
+                                width: double.infinity,
+                                height: 150,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Center(
+                                        child: Icon(
+                                          Icons.cancel_outlined,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                      ),
+                                      AutoSizeText(
+                                        '''${context.l10n.bannedNotiLabel} ${formatterDate.format(value.inactiveTo!)} ${context.l10n.bannedNoti2Label}''',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .surface,
+                                            ),
+                                        maxLines: 2,
+                                      ),
+                                      AutoSizeText(
+                                        context.l10n.loginFailDescLabel,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .surface,
+                                            ),
+                                        maxLines: 1,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                            AutoSizeText(
-                              context.l10n.accountNotActiveLabel,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
-                            ),
-                            AutoSizeText(
-                              context.l10n.canLoginLabel,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
-                            ),
-                            AutoSizeText(
-                              context.l10n.loginFailDescLabel,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
-                            ),
-                          ],
-                          button: [
-                            TextButton(
-                              onPressed: () async {
-                                final boxAuthType =
-                                    await Hive.openBox<dynamic>('authType');
-                                await boxAuthType.put(
-                                  'auth',
-                                  authType.map(
-                                    google: (value) =>
-                                        AuthType.google(user: value.user)
-                                            .toJson(),
-                                    phone: (value) =>
-                                        AuthType.phone(user: value.user)
-                                            .toJson(),
-                                    email: (value) =>
-                                        AuthType.email(user: value.user)
-                                            .toJson(),
-                                  ),
-                                );
-
-                                await context.router.pushAndPopUntil(
-                                  HomeRoute(user: authType.user),
-                                  predicate: (_) => true,
-                                );
-                              },
-                              child: const AutoSizeText('OK'),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       },
                     ),
+                  );
+                  Future.delayed(
+                    const Duration(seconds: 5),
+                    () {
+                      context
+                          .read<AuthenticateBloc>()
+                          .add(AuthenticateEvent.signOut(authType: authType));
+                      context.router.pop();
+                    },
                   );
                 }
                 return null;

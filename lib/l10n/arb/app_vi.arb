@@ -284,5 +284,7 @@
   "hoursAgoLabel": "giờ trước",
   "todayLabel": "hôm nay",
   "backToHomePageLabel": "Trở về trang chủ",
-  "walletLabel": "Wallet"
+  "walletLabel": "Wallet",
+  "bannedNotiLabel": "Bạn đã bị cấm cho tới ngày",
+  "bannedNoti2Label": "Vì đã vi phạm các tiêu chí của chúng tôi"
 }

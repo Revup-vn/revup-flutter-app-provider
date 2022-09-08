@@ -284,8 +284,10 @@
   "understoodLabel": "Understood",
   "duplicateNameSvLabel": "Service name is not allowed to duplicate",
   "addCommonLabel": "Add common services",
+  "backToHomePageLabel": "Back to Home Page",
+  "walletLabel": "Wallet",
   "hoursAgoLabel": "hours ago",
   "todayLabel": "today",
-  "backToHomePageLabel": "Back to Home Page",
-  "walletLabel": "Wallet"
+  "bannedNotiLabel": "You had been banned until",
+  "bannedNoti2Label": "due to violate our term and privacy"
 }
