@@ -17,8 +17,10 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
     this.record,
     this.pendingService,
     this.pendingAmount,
+    this.sr,
   ) : super(const _Initial());
   final IStore<PaymentService> _paymentService;
+  final StoreRepository sr;
   final PendingRepairRequest record;
   final IList<PendingServiceModel> pendingService;
   final int pendingAmount;
@@ -39,6 +41,15 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
     if (e.size == 0) {
       emit(const P10QuotePriceState.failure());
     } else {
+      final svProvider = (await sr
+              .repairServiceRepo(
+                AppUserDummy.dummyProvider(record.pid),
+                RepairCategoryDummy.dummy(
+                  record.vehicle == 'car' ? 'Oto' : 'Xe máy',
+                ),
+              )
+              .all())
+          .fold<IList<RepairService>>((l) => nil(), (r) => r);
       final services = e.docs
           .map(_paymentService.parseRawData)
           .fold<IList<PaymentService>>(
@@ -49,13 +60,16 @@ class P10QuotePriceCubit extends Cubit<P10QuotePriceState> {
             ),
           )
           .map(
-            (a) => a.map(
-              pending: (v) => PendingServiceModel.fromDto(paymentService: v),
-              paid: (v) => PendingServiceModel.fromDto(paymentService: v),
-              needToVerify: (v) =>
-                  PendingServiceModel.fromDto(paymentService: v),
+            (a) => PendingServiceModel.fromDto(paymentService: a),
+          )
+          .map(
+            (a) => a.copyWith(
+              imageUrl: svProvider
+                  .find((e) => a.name == e.name)
+                  .fold(() => a.imageUrl, (t) => t.img),
             ),
           )
+          .sort(orderBy(StringOrder.reverse(), (a) => a.status))
           .toList();
 
       emit(P10QuotePriceState.success(services: services));

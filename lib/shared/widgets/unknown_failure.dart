@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,12 @@ class UnknownFailure extends StatelessWidget {
                     ) ??
                 const TextStyle(fontWeight: FontWeight.bold),
           ),
+          TextButton(
+            onPressed: () {
+              context.router.popUntilRouteWithName('HomeRoute');
+            },
+            child: Text(l10n.backToHomePageLabel),
+          )
         ],
       ),
     );

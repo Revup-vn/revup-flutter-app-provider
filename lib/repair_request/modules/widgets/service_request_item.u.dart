@@ -16,7 +16,8 @@ class ServiceRequestItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final excludeTransFee =
+        pendingService.where((e) => e.name != 'transFee').toList();
     return Column(
       children: [
         SizedBox(
@@ -39,18 +40,18 @@ class ServiceRequestItem extends StatelessWidget {
           height: 6,
         ),
         ...List.generate(
-          pendingService.length,
+          excludeTransFee.length,
           (index) => SizedBox(
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 AutoSizeText(
-                  pendingService[index].name,
+                  excludeTransFee[index].name,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 AutoSizeText(
-                  context.formatMoney(pendingService[index].price),
+                  context.formatMoney(excludeTransFee[index].price),
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ],

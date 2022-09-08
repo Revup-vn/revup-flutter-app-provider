@@ -6,8 +6,9 @@ import 'configs/firebase_options.dart';
 import 'l10n/l10n.dart';
 import 'router/router.dart';
 
+final appRouter = AppRouter();
+
 void main() {
-  final appRouter = AppRouter();
   bootstrap(
     route: tuple2(appRouter, appRouter.defaultRouteParser()),
     localizationsDelegates: const [

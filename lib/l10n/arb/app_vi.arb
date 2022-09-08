@@ -281,9 +281,10 @@
   "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra",
   "duplicateNameSvLabel": "Tên dịch vụ không được phép để trùng",
   "addCommonLabel": "Thêm dịch vụ mẫu",
-  "hoursAgoLabel" : "giờ trước",
-  "todayLabel":"hôm nay",
+  "hoursAgoLabel": "giờ trước",
+  "todayLabel": "hôm nay",
+  "backToHomePageLabel": "Trở về trang chủ",
+  "walletLabel": "Wallet",
   "bannedNotiLabel": "Bạn đã bị cấm cho tới ngày",
   "bannedNoti2Label": "Vì đã vi phạm các tiêu chí của chúng tôi"
-
 }

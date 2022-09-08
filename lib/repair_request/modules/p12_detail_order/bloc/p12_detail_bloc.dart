@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../models/paid_services_model.dart';
 import '../../../models/pending_service_model.dart';
 
 part 'p12_detail_bloc.freezed.dart';
@@ -45,6 +44,7 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
                 ),
               ),
             )
+            .sort(orderBy(StringOrder.reverse(), (a) => a.status))
             .toList();
         emit(P12DetailState.populated(services: services));
       },

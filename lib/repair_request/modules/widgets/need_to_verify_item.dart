@@ -32,7 +32,8 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
         await quotePriceDialog().then((value) async {
           await cubit.quotePrice(
             widget.needToVerify,
-            int.parse(value ?? ''),
+            (value ?? '').isEmpty ? 0 : int.parse(value ?? ''),
+            // int.parse(value ?? ''),
           );
         });
       },

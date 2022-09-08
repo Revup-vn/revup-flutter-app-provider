@@ -156,7 +156,7 @@ class RequestDetailsStatic extends StatelessWidget {
                               TextSpan(text: l10n.serviceLabel),
                               TextSpan(
                                 text:
-                                    '''${pendingService.length() + needToVerify.length} ${l10n.repairItemsLabel}''',
+                                    '''${pendingService.length() + needToVerify.length - 1} ${l10n.repairItemsLabel}''',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),

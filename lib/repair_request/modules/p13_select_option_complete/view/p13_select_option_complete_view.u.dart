@@ -54,9 +54,9 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                     ),
                     onPressed: () {
                       form.currentState?.save();
-                      final saveLst = form.currentState?.value['data']
+                      final completedLst = form.currentState?.value['data']
                           as List<PendingServiceModel>;
-                      if (saveLst.isEmpty) {
+                      if (completedLst.isEmpty) {
                         showDialog<void>(
                           barrierDismissible: false,
                           context: context,
@@ -103,7 +103,7 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                                             ),
                                           );
                                     },
-                                    saveLst,
+                                    completedLst,
                                   );
                                   context.router.push(
                                     P14RepairCompleteRoute(
@@ -163,7 +163,7 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                                   ),
                                 );
                           },
-                          saveLst,
+                          completedLst,
                         );
                       }
 

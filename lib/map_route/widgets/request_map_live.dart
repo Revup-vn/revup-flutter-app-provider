@@ -159,9 +159,9 @@ class _RequestMapLiveState extends State<RequestMapLive> {
       toLat: toLat,
       toLng: toLng,
     );
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {});
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    setState(() {});
+    // });
   }
 
   @override
