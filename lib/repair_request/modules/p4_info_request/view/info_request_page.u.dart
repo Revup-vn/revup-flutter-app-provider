@@ -43,16 +43,13 @@ class InfoRequestPage extends StatelessWidget {
           ),
         ),
       ],
-      child: Scaffold(
-        appBar: AppBar(),
-        body: InfoRequestView(
-          consumer: consumer,
-          distance: distance,
-          pendingService: pendingService,
-          pendingAmount: pendingAmount,
-          userRepos: context.read(),
-          user: user,
-        ),
+      child: InfoRequestView(
+        consumer: consumer,
+        distance: distance,
+        pendingService: pendingService,
+        pendingAmount: pendingAmount,
+        userRepos: context.read(),
+        user: user,
       ),
     );
   }

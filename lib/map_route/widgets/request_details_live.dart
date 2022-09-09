@@ -52,15 +52,20 @@ class RequestDetailsLive extends StatelessWidget {
                 // send message provider arrival
                 context.read<MapRouteBloc>().add(
                       MapRouteEvent.providerStarted(
-                        onRoute: () => context.router.popAndPush(
-                          StartRepairRoute(
-                            consumer: consumer,
-                            recordId: recordId,
-                            distance: distance,
-                            pendingService: pendingService,
-                            pendingAmount: pendingAmount,
-                          ),
-                        ), // route to doing repair page
+                        onRoute: () {
+                          context.router.popAndPush(
+                            StartRepairRoute(
+                              consumer: consumer,
+                              recordId: recordId,
+                              distance: distance,
+                              pendingService: pendingService,
+                              pendingAmount: pendingAmount,
+                            ),
+                          );
+                          context.router.removeWhere(
+                            (route) => route.name == MapRouteRoute.name,
+                          );
+                        }, // route to doing repair page
                         sendMessage: (token) => cubitNotify.sendMessageToToken(
                           SendMessage(
                             title: 'Revup',

@@ -194,7 +194,7 @@ class RequestDetailsStatic extends StatelessWidget {
                   context.read<NewRequestBloc>().add(
                         NewRequestEvent.accepted(
                           record: record,
-                          onRoute: () => context.router.replace(
+                          onRoute: () => context.router.pushAndPopUntil(
                             InfoRequestRoute(
                               consumer: consumer,
                               recordId: record.id,
@@ -202,6 +202,8 @@ class RequestDetailsStatic extends StatelessWidget {
                               pendingService: pendingService,
                               pendingAmount: pendingAmount,
                             ),
+                            predicate: (route) =>
+                                route.settings.name == HomeRoute.name,
                           ),
                           sendMessage: (token) =>
                               cubitNotify.sendMessageToToken(

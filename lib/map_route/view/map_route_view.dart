@@ -40,47 +40,50 @@ class MapRouteView extends StatelessWidget {
     final user = getUser(context.read<AuthenticateBloc>().state)
         .getOrElse(() => throw NullThrownError());
 
-    return BlocBuilder<MapRouteBloc, MapRouteState>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          success: (directions, fromMaker, toMarker, recordId) {
-            return Stack(
-              children: <Widget>[
-                RequestMapLive(
-                  directions: directions,
-                  fromMaker: fromMaker,
-                  toMarker: toMarker,
-                  userStore: context.read(),
-                  user: user,
-                ),
-                Positioned(
-                  right: 16,
-                  bottom: 128,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _openMapsFor(
-                        fromMaker,
-                        toMarker,
-                        context.l10n.repairLocationLabel,
-                        context.l10n.currentLocationLabel,
-                      );
-                    },
-                    child: const Icon(Icons.navigation_rounded),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: BlocBuilder<MapRouteBloc, MapRouteState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            success: (directions, fromMaker, toMarker, recordId) {
+              return Stack(
+                children: <Widget>[
+                  RequestMapLive(
+                    directions: directions,
+                    fromMaker: fromMaker,
+                    toMarker: toMarker,
+                    userStore: context.read(),
+                    user: user,
                   ),
-                ),
-                RequestDetailsLive(
-                  recordId,
-                  consumer,
-                  distance,
-                  pendingService,
-                  pendingAmount,
-                ),
-              ],
-            );
-          },
-          orElse: Loading.new,
-        );
-      },
+                  Positioned(
+                    right: 16,
+                    bottom: 128,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _openMapsFor(
+                          fromMaker,
+                          toMarker,
+                          context.l10n.repairLocationLabel,
+                          context.l10n.currentLocationLabel,
+                        );
+                      },
+                      child: const Icon(Icons.navigation_rounded),
+                    ),
+                  ),
+                  RequestDetailsLive(
+                    recordId,
+                    consumer,
+                    distance,
+                    pendingService,
+                    pendingAmount,
+                  ),
+                ],
+              );
+            },
+            orElse: Loading.new,
+          );
+        },
+      ),
     );
   }
 

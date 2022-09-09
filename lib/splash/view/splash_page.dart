@@ -49,24 +49,22 @@ class _SplashPageState extends State<SplashPage> {
               P12DetailRoute(recordId: recordId),
             );
           } else if (subType == 'ConsumerCanceled') {
+            appRouter
+                .popUntil((route) => route.settings.name == HomeRoute.name);
             showDialog<void>(
               context: context,
-              builder: (context) => SimpleDialogCustom(
-                content: [Text(context.l10n.consumerAbortLabel)],
+              builder: (bcontext) => SimpleDialogCustom(
+                height: 150,
+                content: [Text(context.l10n.userDismissed)],
                 button: [
                   TextButton(
                     onPressed: () {
-                      context.router.pop();
+                      bcontext.router.pop();
                     },
                     child: Text(context.l10n.confirmLabel),
                   ),
                 ],
               ),
-            ).then(
-              (_) {
-                appRouter
-                    .popUntil((route) => route.settings.name == HomeRoute.name);
-              },
             );
           } else {
             break;
@@ -76,6 +74,7 @@ class _SplashPageState extends State<SplashPage> {
           showDialog<void>(
             context: context,
             builder: (context) => SimpleDialogCustom(
+              height: 150,
               content: [Text(context.l10n.userDismissed)],
               button: [
                 TextButton(
@@ -137,10 +136,12 @@ class _SplashPageState extends State<SplashPage> {
         final notifyCubit = context.read<NotificationCubit>();
         final sr = context.read<StoreRepository>();
         authBloc.state.maybeWhen(
-          empty: (isFirstTime) => context.router.pushAndPopUntil(
-            const LoginRoute(),
-            predicate: (_) => false,
-          ),
+          empty: (isFirstTime) async {
+            await context.router.pushAndPopUntil(
+              const LoginRoute(),
+              predicate: (_) => false,
+            );
+          },
           authenticated: (type) async {
             await Hive.openBox<dynamic>('authType').then(
               (value) {
@@ -258,16 +259,17 @@ ${context.l10n.bannedNotiLabel} ${formatterDate.format(bannedDate)} ${context.l1
                   token: token,
                 ),
               );
-              return context.router.pushAndPopUntil(
+              await context.router.push(
                 HomeRoute(user: type.user),
-                predicate: (_) => false,
               );
             }
           },
-          orElse: () => context.router.pushAndPopUntil(
-            const LoginRoute(),
-            predicate: (_) => false,
-          ),
+          orElse: () async {
+            await context.router.pushAndPopUntil(
+              const LoginRoute(),
+              predicate: (_) => false,
+            );
+          },
         );
       },
     );

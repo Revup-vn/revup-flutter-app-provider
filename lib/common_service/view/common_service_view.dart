@@ -188,6 +188,7 @@ class CommonServiceView extends StatelessWidget {
                               context: context,
                               builder: (context) {
                                 return SimpleDialogCustom(
+                                  height: 150,
                                   content: [
                                     AutoSizeText(
                                       l10n.chooseNoService,

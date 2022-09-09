@@ -26,8 +26,9 @@ class P10QuotePriceView extends StatelessWidget {
       switch (type) {
         case NotificationType.NormalMessage:
           final type = p0.payload.payload['type'] as String;
-          final recordId = p0.payload.payload['recordId'] as String;
+
           if (type == 'accepted') {
+            final recordId = p0.payload.payload['recordId'] as String;
             context.router.push(
               P12DetailRoute(recordId: recordId),
             );

@@ -64,6 +64,7 @@ class NewRequestView extends StatelessWidget {
                       showDialog<Unit>(
                         context: context,
                         builder: (context) => SimpleDialogCustom(
+                          height: 150,
                           content: [
                             AutoSizeText(
                               context.l10n.repairRequestSkipLabel,
@@ -90,10 +91,9 @@ class NewRequestView extends StatelessWidget {
                                 blocPage.add(
                                   NewRequestEvent.decline(
                                     record: record,
-                                    onRoute: () => context.router.replace(
-                                      HomeRoute(
-                                        user: user,
-                                      ),
+                                    onRoute: () => context.router.popUntil(
+                                      (route) =>
+                                          route.settings.name == HomeRoute.name,
                                     ),
                                     sendMessage: (token) =>
                                         cubitNotify.sendMessageToToken(
