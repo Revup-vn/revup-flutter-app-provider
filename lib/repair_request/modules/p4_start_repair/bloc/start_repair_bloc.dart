@@ -44,6 +44,47 @@ class StartRepairBloc extends Bloc<StartRepairEvent, StartRepairState> {
     Emitter<StartRepairState> emit,
   ) async {
     await event.when(
+      cancel: (onRoute, sendMessage) async {
+        emit(const StartRepairState.loading());
+        final record = (await _repairRecord.get(recordId)).getOrElse(
+          () => throw NullThrownError(),
+        );
+        await _repairRecord.update(
+          RepairRecord.aborted(
+            id: recordId,
+            cid: record.cid,
+            pid: record.pid,
+            created: record.created,
+            desc: record.desc,
+            vehicle: record.vehicle,
+            money: record.money,
+            from: record.from,
+            to: record.to,
+          ),
+          record,
+        );
+        await _userRepos.updateFields(
+          AppUserDummy.dummyProvider(record.pid),
+          ilist(
+            [AppUserDummy.field(AppUserFields.Online)],
+          ),
+        );
+        final tokens = (await storeRepository
+                .userNotificationTokenRepo(
+                  AppUserDummy.dummyConsumer(record.cid),
+                )
+                .all())
+            .map(
+              (r) => r.toList()
+                ..sort(
+                  (a, b) => b.created.millisecondsSinceEpoch
+                      .compareTo(a.created.millisecondsSinceEpoch),
+                ),
+            )
+            .fold((l) => throw NullThrownError(), (r) => r);
+        sendMessage(tokens[0].token, recordId);
+        onRoute();
+      },
       started: () async {
         emit(const StartRepairState.loading());
         (await _repairRecord.get(recordId)).map(
