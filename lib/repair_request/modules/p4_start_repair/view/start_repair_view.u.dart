@@ -92,7 +92,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
         blocPage.add(const StartRepairEvent.started());
       },
     );
-    var willPop = true;
+    var willPop = false;
     final routerFake = context.router;
     final notiCubit = context.read<NotificationCubit>();
     return WillPopScope(

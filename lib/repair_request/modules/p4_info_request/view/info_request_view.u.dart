@@ -127,7 +127,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
     final routerFake = context.router;
     final l10n = context.l10n;
     final blocPage = context.watch<InfoRequestBloc>();
-    var willPop = true;
+    var willPop = false;
     blocPage.state.whenOrNull(
       initial: () async {
         blocPage.add(const InfoRequestEvent.started());

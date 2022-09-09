@@ -32,13 +32,11 @@ class P14RepairCompleteView extends StatefulWidget {
 
 class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
   late bool _isEnabled;
-  late bool willPop;
   @override
   void initState() {
     super.initState();
 
     _isEnabled = false;
-    willPop = true;
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
@@ -61,7 +59,6 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                     if (mounted) {
                       setState(() {
                         _isEnabled = true;
-                        willPop = false;
                       });
                     }
                   },
@@ -88,10 +85,10 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
         return state.when(
           initial: () {
             return WillPopScope(
-              onWillPop: () async => willPop,
+              onWillPop: () async => false,
               child: Scaffold(
                 appBar: AppBar(
-                  automaticallyImplyLeading: willPop,
+                  automaticallyImplyLeading: false,
                 ),
                 body: Column(
                   children: [

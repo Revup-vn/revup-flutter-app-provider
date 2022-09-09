@@ -24,7 +24,7 @@ class CommonProductView extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        var isPop = true;
+        var isPop = false;
         form.currentState?.save();
         final saveLst = form.currentState?.value['product'] != null
             ? form.currentState?.value['product']
@@ -41,15 +41,11 @@ class CommonProductView extends StatelessWidget {
                 content: [
                   AutoSizeText(
                     l10n.chooseNoProduct,
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                          color: Theme.of(context).colorScheme.onTertiary,
-                        ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   AutoSizeText(
                     context.l10n.sureLabel,
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                          color: Theme.of(context).colorScheme.onTertiary,
-                        ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ],
                 button: [

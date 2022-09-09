@@ -154,9 +154,8 @@ class _SplashPageState extends State<SplashPage> {
         final sr = context.read<StoreRepository>();
         authBloc.state.maybeWhen(
           empty: (isFirstTime) async {
-            await context.router.pushAndPopUntil(
+            await context.router.push(
               const LoginRoute(),
-              predicate: (_) => false,
             );
           },
           authenticated: (type) async {
@@ -251,9 +250,8 @@ ${context.l10n.bannedNotiLabel} ${formatterDate.format(bannedDate)} ${context.l1
                   context
                       .read<AuthenticateBloc>()
                       .add(AuthenticateEvent.signOut(authType: type));
-                  context.router.pushAndPopUntil(
+                  context.router.push(
                     const LoginRoute(),
-                    predicate: (_) => false,
                   );
                 },
               );
@@ -282,9 +280,8 @@ ${context.l10n.bannedNotiLabel} ${formatterDate.format(bannedDate)} ${context.l1
             }
           },
           orElse: () async {
-            await context.router.pushAndPopUntil(
+            await context.router.push(
               const LoginRoute(),
-              predicate: (_) => false,
             );
           },
         );
