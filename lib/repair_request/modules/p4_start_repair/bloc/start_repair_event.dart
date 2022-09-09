@@ -13,5 +13,9 @@ class StartRepairEvent with _$StartRepairEvent {
     required Function0<void> onRoute,
     required Function1<String, void> sendMessage,
   }) = _ConfirmDeparted;
+  const factory StartRepairEvent.cancel({
+    required Function0<void> onRoute,
+    required Function2<String, String, void> sendMessage,
+  }) = _Cancel;
   const factory StartRepairEvent.confirmArrived() = _ConfirmArrived;
 }

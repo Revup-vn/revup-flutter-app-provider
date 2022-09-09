@@ -28,12 +28,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    context.read<NotificationCubit>().addForegroundListener((p0) {
+    context.read<NotificationCubit>().addForegroundListener((p0) async {
       final type = p0.payload.type;
       switch (type) {
         case NotificationType.ConsumerRequestRepair:
           final recordId = p0.payload.payload['recordId'] as String;
-          appRouter.push(
+          await appRouter.push(
             NewRequestRoute(
               recordId: recordId,
             ),
@@ -45,13 +45,24 @@ class _SplashPageState extends State<SplashPage> {
           final subType = p0.payload.payload['subType'] as String;
           if (subType == 'accepted') {
             final recordId = p0.payload.payload['recordId'] as String;
-            appRouter.push(
+            await appRouter.push(
               P12DetailRoute(recordId: recordId),
             );
           } else if (subType == 'ConsumerCanceled') {
+            final providerId = p0.payload.payload['providerId'] as String;
+            if (providerId.isEmpty) {
+              await updateActive(
+                context.read<AuthenticateBloc>().state.maybeWhen(
+                      orElse: () => '',
+                      authenticated: (value) => value.user.uuid,
+                    ),
+              );
+            } else {
+              await updateActive(providerId);
+            }
             appRouter
                 .popUntil((route) => route.settings.name == HomeRoute.name);
-            showDialog<void>(
+            await showDialog<void>(
               context: context,
               builder: (bcontext) => SimpleDialogCustom(
                 height: 150,
@@ -71,7 +82,13 @@ class _SplashPageState extends State<SplashPage> {
           }
           break;
         case NotificationType.ProviderDecline:
-          showDialog<void>(
+          await updateActive(
+            context.read<AuthenticateBloc>().state.maybeWhen(
+                  orElse: () => '',
+                  authenticated: (value) => value.user.uuid,
+                ),
+          );
+          await showDialog<void>(
             context: context,
             builder: (context) => SimpleDialogCustom(
               height: 150,
@@ -304,6 +321,13 @@ ${context.l10n.bannedNotiLabel} ${formatterDate.format(bannedDate)} ${context.l1
     } else {
       return true;
     }
+  }
+
+  Future<void> updateActive(String id) async {
+    context.read<IStore<AppUser>>().updateFields(
+          AppUserDummy.dummyProvider(id),
+          ilist([AppUserDummy.field(AppUserFields.Online)]),
+        );
   }
 
   Future<DateTime> getBannedDate(String id) async {

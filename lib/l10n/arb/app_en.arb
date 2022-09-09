@@ -291,7 +291,7 @@
   "bannedNotiLabel": "You had been banned until",
   "bannedNoti2Label": "due to violate our term and privacy",
   "cancelThisLabel": "If you cancel this order you can not take any of transit fee",
-  "selectedProductLabel": "Consumer selected products. Please take a look and confirm to start repair",
+  "selectedProductLabel": "Consumer selected products. Please take a look and confirm then start",
   "cancelByUserLabel": "User aborted the request. We will take action on violated request",
   "sorryLabel": "We are very sorry for that"
 
