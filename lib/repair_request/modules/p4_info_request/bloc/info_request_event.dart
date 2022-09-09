@@ -13,5 +13,9 @@ class InfoRequestEvent with _$InfoRequestEvent {
     required Function0<void> onRoute,
     required Function1<String, void> sendMessage,
   }) = _ConfirmDeparted;
+  const factory InfoRequestEvent.cancel({
+    required Function0<void> onRoute,
+    required Function2<String, String, void> sendMessage,
+  }) = _Cancel;
   const factory InfoRequestEvent.confirmArrived() = _ConfirmArrived;
 }
