@@ -30,11 +30,12 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
     return TextButton(
       onPressed: () async {
         await quotePriceDialog().then((value) async {
-          await cubit.quotePrice(
-            widget.needToVerify,
-            (value ?? '').isEmpty ? 0 : int.parse(value ?? ''),
-            // int.parse(value ?? ''),
-          );
+          if (value?.isNotEmpty ?? false) {
+            await cubit.quotePrice(
+              widget.needToVerify,
+              int.parse(value ?? ''),
+            );
+          }
         });
       },
       child: AutoSizeText(
@@ -48,6 +49,7 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
 
   Future<String?> quotePriceDialog() => showDialog<String>(
         context: context,
+        barrierDismissible: false,
         builder: (_) => Dialog(
           backgroundColor: Theme.of(context).colorScheme.background,
           insetPadding: const EdgeInsets.all(16),

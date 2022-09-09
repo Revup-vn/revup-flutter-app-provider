@@ -14,5 +14,6 @@ class NewRequestState with _$NewRequestState {
     required List<PendingServiceModel> pendingService,
     required List<NeedToVerifyModel> needToVerifyService,
     required int pendingAmount,
+    required int len,
   }) = _Success;
 }

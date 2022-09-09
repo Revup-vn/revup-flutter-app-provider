@@ -23,6 +23,7 @@ class RequestDetailsStatic extends StatelessWidget {
     required this.pendingService,
     required this.needToVerify,
     required this.pendingAmount,
+    required this.len,
   });
   final AppUser consumer;
   final PendingRepairRequest record;
@@ -30,6 +31,7 @@ class RequestDetailsStatic extends StatelessWidget {
   final IList<PendingServiceModel> pendingService;
   final List<NeedToVerifyModel> needToVerify;
   final int pendingAmount;
+  final int len;
 
   @override
   Widget build(BuildContext context) {
@@ -155,8 +157,7 @@ class RequestDetailsStatic extends StatelessWidget {
                             children: [
                               TextSpan(text: l10n.serviceLabel),
                               TextSpan(
-                                text:
-                                    '''${pendingService.length() + needToVerify.length - 1} ${l10n.repairItemsLabel}''',
+                                text: '''$len ${l10n.repairItemsLabel}''',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),

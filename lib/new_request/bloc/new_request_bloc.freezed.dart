@@ -608,7 +608,8 @@ mixin _$NewRequestState {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)
+            int pendingAmount,
+            int len)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -625,7 +626,8 @@ mixin _$NewRequestState {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -642,7 +644,8 @@ mixin _$NewRequestState {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
     required TResult orElse(),
   }) =>
@@ -741,7 +744,8 @@ class _$_Initial implements _Initial {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)
+            int pendingAmount,
+            int len)
         success,
   }) {
     return initial();
@@ -761,7 +765,8 @@ class _$_Initial implements _Initial {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
   }) {
     return initial?.call();
@@ -781,7 +786,8 @@ class _$_Initial implements _Initial {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
     required TResult orElse(),
   }) {
@@ -883,7 +889,8 @@ class _$_Loading implements _Loading {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)
+            int pendingAmount,
+            int len)
         success,
   }) {
     return loading();
@@ -903,7 +910,8 @@ class _$_Loading implements _Loading {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
   }) {
     return loading?.call();
@@ -923,7 +931,8 @@ class _$_Loading implements _Loading {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
     required TResult orElse(),
   }) {
@@ -1025,7 +1034,8 @@ class _$_Failure implements _Failure {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)
+            int pendingAmount,
+            int len)
         success,
   }) {
     return failure();
@@ -1045,7 +1055,8 @@ class _$_Failure implements _Failure {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
   }) {
     return failure?.call();
@@ -1065,7 +1076,8 @@ class _$_Failure implements _Failure {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
     required TResult orElse(),
   }) {
@@ -1130,7 +1142,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
       PendingRepairRequest record,
       List<PendingServiceModel> pendingService,
       List<NeedToVerifyModel> needToVerifyService,
-      int pendingAmount});
+      int pendingAmount,
+      int len});
 
   $DirectionsCopyWith<$Res> get directions;
   $AppUserCopyWith<$Res> get consumer;
@@ -1156,6 +1169,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
     Object? pendingService = freezed,
     Object? needToVerifyService = freezed,
     Object? pendingAmount = freezed,
+    Object? len = freezed,
   }) {
     return _then(_$_Success(
       directions: directions == freezed
@@ -1189,6 +1203,10 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$NewRequestStateCopyWithImpl<$Res>
       pendingAmount: pendingAmount == freezed
           ? _value.pendingAmount
           : pendingAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      len: len == freezed
+          ? _value.len
+          : len // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -1226,7 +1244,8 @@ class _$_Success implements _Success {
       required this.record,
       required final List<PendingServiceModel> pendingService,
       required final List<NeedToVerifyModel> needToVerifyService,
-      required this.pendingAmount})
+      required this.pendingAmount,
+      required this.len})
       : _pendingService = pendingService,
         _needToVerifyService = needToVerifyService;
 
@@ -1256,10 +1275,12 @@ class _$_Success implements _Success {
 
   @override
   final int pendingAmount;
+  @override
+  final int len;
 
   @override
   String toString() {
-    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, pendingService: $pendingService, needToVerifyService: $needToVerifyService, pendingAmount: $pendingAmount)';
+    return 'NewRequestState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, consumer: $consumer, record: $record, pendingService: $pendingService, needToVerifyService: $needToVerifyService, pendingAmount: $pendingAmount, len: $len)';
   }
 
   @override
@@ -1279,7 +1300,8 @@ class _$_Success implements _Success {
             const DeepCollectionEquality()
                 .equals(other._needToVerifyService, _needToVerifyService) &&
             const DeepCollectionEquality()
-                .equals(other.pendingAmount, pendingAmount));
+                .equals(other.pendingAmount, pendingAmount) &&
+            const DeepCollectionEquality().equals(other.len, len));
   }
 
   @override
@@ -1292,7 +1314,8 @@ class _$_Success implements _Success {
       const DeepCollectionEquality().hash(record),
       const DeepCollectionEquality().hash(_pendingService),
       const DeepCollectionEquality().hash(_needToVerifyService),
-      const DeepCollectionEquality().hash(pendingAmount));
+      const DeepCollectionEquality().hash(pendingAmount),
+      const DeepCollectionEquality().hash(len));
 
   @JsonKey(ignore: true)
   @override
@@ -1313,11 +1336,12 @@ class _$_Success implements _Success {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)
+            int pendingAmount,
+            int len)
         success,
   }) {
     return success(directions, fromMarker, toMarker, consumer, record,
-        pendingService, needToVerifyService, pendingAmount);
+        pendingService, needToVerifyService, pendingAmount, len);
   }
 
   @override
@@ -1334,11 +1358,12 @@ class _$_Success implements _Success {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
   }) {
     return success?.call(directions, fromMarker, toMarker, consumer, record,
-        pendingService, needToVerifyService, pendingAmount);
+        pendingService, needToVerifyService, pendingAmount, len);
   }
 
   @override
@@ -1355,13 +1380,14 @@ class _$_Success implements _Success {
             PendingRepairRequest record,
             List<PendingServiceModel> pendingService,
             List<NeedToVerifyModel> needToVerifyService,
-            int pendingAmount)?
+            int pendingAmount,
+            int len)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
       return success(directions, fromMarker, toMarker, consumer, record,
-          pendingService, needToVerifyService, pendingAmount);
+          pendingService, needToVerifyService, pendingAmount, len);
     }
     return orElse();
   }
@@ -1413,7 +1439,8 @@ abstract class _Success implements NewRequestState {
       required final PendingRepairRequest record,
       required final List<PendingServiceModel> pendingService,
       required final List<NeedToVerifyModel> needToVerifyService,
-      required final int pendingAmount}) = _$_Success;
+      required final int pendingAmount,
+      required final int len}) = _$_Success;
 
   Directions get directions;
   Marker get fromMarker;
@@ -1423,6 +1450,7 @@ abstract class _Success implements NewRequestState {
   List<PendingServiceModel> get pendingService;
   List<NeedToVerifyModel> get needToVerifyService;
   int get pendingAmount;
+  int get len;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
