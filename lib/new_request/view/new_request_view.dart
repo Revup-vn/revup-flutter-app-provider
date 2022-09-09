@@ -44,6 +44,7 @@ class NewRequestView extends StatelessWidget {
             pendingService,
             needToVerify,
             pendingAmount,
+            len,
           ) {
             return Stack(
               children: <Widget>[
@@ -131,6 +132,7 @@ class NewRequestView extends StatelessWidget {
                   pendingService: ilist(pendingService),
                   needToVerify: needToVerify,
                   pendingAmount: pendingAmount,
+                  len: len,
                 ),
               ],
             );

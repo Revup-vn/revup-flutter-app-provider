@@ -296,7 +296,7 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                     iconData: Icons.build,
                                     text: l10n.serviceLabel,
                                     textBold:
-                                        '''${len - 1} ${l10n.repairItemsLabel}''',
+                                        '''$len ${l10n.repairItemsLabel}''',
                                   ),
                                 ),
                                 GestureDetector(

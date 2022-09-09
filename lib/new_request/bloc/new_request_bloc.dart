@@ -23,6 +23,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
     this._userStore,
     this.storeRepository,
     this.recordId,
+    this.userId,
   ) : super(const _Initial()) {
     on<NewRequestEvent>(_onEvent);
   }
@@ -30,6 +31,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
   final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
   final String recordId;
+  final String userId;
 
   FutureOr<void> _onEvent(
     NewRequestEvent event,
@@ -95,6 +97,16 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
             )
             .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
 
+        final len = (await (storeRepository.repairPaymentRepo(
+          RepairRecordDummy.dummyPending(recordId),
+        )).all())
+            .map((r) => r.filter((a) => a.map(
+                pending: (v) => true,
+                paid: (v) => false,
+                needToVerify: (v) => true)))
+            .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
+            .length();
+
         (await storeRepository.repairPaymentRepo(repairRecord).all())
             .map<IList<PaymentService>>(
               (r) => r.filter(
@@ -141,6 +153,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                       pendingService: b.toList().cast<PendingServiceModel>(),
                       needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
                       pendingAmount: pendingAmount,
+                      len: len,
                     ),
                   );
                 },
@@ -232,6 +245,20 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         log('TOKEN:${tokens.first.token}');
         // send notification to consumer
         sendMessage(tokens.first.token);
+
+        // set provider to online status
+        _userStore.updateFields(
+          AppUserDummy.dummyProvider(
+            userId,
+          ).maybeMap(
+            orElse: () => throw NullThrownError(),
+            provider: (p) => p.copyWith(
+              online: true,
+            ),
+          ),
+          cons(AppUserDummy.field(AppUserFields.Online), nil()),
+        );
+
         // route to home page
         onRoute();
       },
