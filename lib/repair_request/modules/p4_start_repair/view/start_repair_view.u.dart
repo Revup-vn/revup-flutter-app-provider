@@ -47,11 +47,34 @@ class _InfoRequestViewState extends State<InfoRequestView> {
       final type = p0.payload.type;
       switch (type) {
         case NotificationType.VerifiedArrival:
-          if (mounted) {
-            setState(() {
-              ready = true;
-            });
-          }
+          showDialog<void>(
+            barrierDismissible: false,
+            context: context,
+            builder: (bcontext) => SimpleDialogCustom(
+              height: 150,
+              content: [
+                AutoSizeText(
+                  context.l10n.arrivedStartWorkingLabel,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ],
+              button: [
+                TextButton(
+                  onPressed: () {
+                    bcontext.router.pop();
+                    if (mounted) {
+                      setState(() {
+                        ready = true;
+                      });
+                    }
+                  },
+                  child: AutoSizeText(
+                    context.l10n.understoodLabel,
+                  ),
+                ),
+              ],
+            ),
+          );
           break;
         // ignore: no_default_cases
         default:
@@ -142,7 +165,15 @@ class _InfoRequestViewState extends State<InfoRequestView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              willPop = false;
+              context.router.pop();
+            },
+          ),
+        ),
         body: BlocBuilder<StartRepairBloc, StartRepairState>(
           builder: (context, state) {
             return state.maybeWhen(
@@ -285,9 +316,16 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                   willPop = false;
                                   blocPage.add(
                                     StartRepairEvent.confirmStarted(
-                                      onRoute: () => context.router.push(
-                                        P12DetailRoute(recordId: record.id),
-                                      ),
+                                      onRoute: () {
+                                        context.router.push(
+                                          P12DetailRoute(recordId: record.id),
+                                        );
+                                        context.router.removeWhere(
+                                          (route) =>
+                                              route.name ==
+                                              StartRepairRoute.name,
+                                        );
+                                      },
                                       sendMessage: (token, recordId) =>
                                           notiCubit.sendMessageToToken(
                                         SendMessage(
