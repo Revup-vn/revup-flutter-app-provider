@@ -192,25 +192,13 @@ class CommonServiceView extends StatelessWidget {
                                   content: [
                                     AutoSizeText(
                                       l10n.chooseNoService,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onTertiary,
-                                          ),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
                                     ),
                                     AutoSizeText(
                                       context.l10n.sureLabel,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onTertiary,
-                                          ),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ],
                                   button: [

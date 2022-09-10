@@ -61,7 +61,6 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                     if (mounted) {
                       setState(() {
                         _isEnabled = true;
-                        willPop = false;
                       });
                     }
                   },
@@ -88,10 +87,10 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
         return state.when(
           initial: () {
             return WillPopScope(
-              onWillPop: () async => willPop,
+              onWillPop: () async => false,
               child: Scaffold(
                 appBar: AppBar(
-                  automaticallyImplyLeading: willPop,
+                  automaticallyImplyLeading: false,
                 ),
                 body: Column(
                   children: [

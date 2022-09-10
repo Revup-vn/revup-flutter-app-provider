@@ -1231,8 +1231,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "hotfix/feedback"
-      resolved-ref: c3e01519ca1ffd5049f44fbe6b54a5aa306e8014
+      ref: main
+      resolved-ref: "7d8933cd437ec2f3a4906ecdc4e10d22ebd4e4f2"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
     version: "6.3.10-dev"
