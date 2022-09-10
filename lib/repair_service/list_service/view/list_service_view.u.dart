@@ -93,7 +93,7 @@ class ListServiceView extends StatelessWidget {
                             onPressed: () {
                               showDialog<String>(
                                 context: context,
-                                builder: (context) {
+                                builder: (bcontext) {
                                   return SimpleDialogCustom(
                                     height: 150,
                                     content: [
@@ -115,7 +115,7 @@ class ListServiceView extends StatelessWidget {
                                     button: [
                                       TextButton(
                                         onPressed: () async {
-                                          await context.router.pop();
+                                          await bcontext.router.pop();
                                           await context.router.push(
                                             CommonServiceRoute(
                                               providerID: providerID,
@@ -124,18 +124,7 @@ class ListServiceView extends StatelessWidget {
                                           );
                                         },
                                         child: AutoSizeText(
-                                          context.l10n.yesLabel,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          context.router.pop();
-                                        },
-                                        child: AutoSizeText(
-                                          context.l10n.cancelLabel,
+                                          context.l10n.understoodLabel,
                                         ),
                                       ),
                                     ],
@@ -143,7 +132,7 @@ class ListServiceView extends StatelessWidget {
                                 },
                               );
                             },
-                            child: AutoSizeText(context.l10n.addCommonLabel),
+                            child: AutoSizeText(context.l10n.chooseCommonLabel),
                           ),
                         ),
                       ],

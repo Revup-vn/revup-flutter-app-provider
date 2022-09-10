@@ -51,6 +51,7 @@ class CommonProductView extends StatelessWidget {
                 button: [
                   TextButton(
                     onPressed: () {
+                      isPop = true;
                       complete.complete(saveLst);
                       bcontext.router.pop();
                     },
@@ -68,6 +69,7 @@ class CommonProductView extends StatelessWidget {
             },
           );
         } else {
+          isPop = true;
           complete.complete(saveLst);
         }
         return isPop;
@@ -78,7 +80,7 @@ class CommonProductView extends StatelessWidget {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: AutoSizeText(
-                l10n.addCommonLabel,
+                l10n.addCommonProductLabel,
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall
@@ -113,8 +115,6 @@ class CommonProductView extends StatelessWidget {
                         BoxDecoration(color: Theme.of(context).cardColor),
                     child: ElevatedButton(
                       onPressed: () {
-                        // get value from form
-
                         context.router.pop();
                       },
                       style: Theme.of(context).elevatedButtonTheme.style,

@@ -364,7 +364,7 @@ class SignUpContent extends StatelessWidget {
                                                 .error,
                                           ),
                                           AutoSizeText(
-                                            context.l10n.idImgRequiredLabel,
+                                            context.l10n.blsLabel,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText2
