@@ -51,6 +51,12 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
     );
   }
 
+  @override
+  Future<void> close() async {
+    await _s?.cancel();
+    return super.close();
+  }
+
   final IStore<PaymentService> _ips;
   final String id;
   final IStore<RepairRecord> _irr;

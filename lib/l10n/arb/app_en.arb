@@ -85,7 +85,7 @@
   "loginPageTitle": "Welcome to revup!",
   "logoutLabel": "Logout",
   "messagesCallForCustomersLabel": "Đối tác có thể trao đổi qua tin nhắn và cuộc gọi video với khách hàng để có sự chuẩn bị tốt nhất nhé!",
-  "messagesCheckInformation": "Partners please double check the information, the images above are correct, then slide to complete the application.",
+  "messagesCheckInformation": "Partners please double check the information, the images above are correct, then complete the order.",
   "messagesForCustomersLabel": "Partners can exchange via text messages and video calls with customers for the best preparation!",
   "messagesSelectItemLabel": "The partner selects the completed item and sends it to the customer, then wait a bit for the customer to confirm",
   "minutesLabel": "minutes",
@@ -290,5 +290,6 @@
   "sorryLabel": "We are very sorry for that",
   "arrivedStartWorkingLabel": "Arrived? let's start repairing now",
   "consumerPaidLabel": "Consumer paided! Let's finish now",
-  "addCommonProductLabel": "Thêm sản phẩm có sẵn"
+  "addCommonProductLabel": "Add common service",
+  "userDismissedNoTransFeeLabel": "You missed a request from a consumer nearby. User aborted the request."
 }

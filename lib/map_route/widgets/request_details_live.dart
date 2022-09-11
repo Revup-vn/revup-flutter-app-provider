@@ -28,6 +28,8 @@ class RequestDetailsLive extends StatelessWidget {
   final int pendingAmount;
   @override
   Widget build(BuildContext context) {
+    final cubitNotify = context.read<NotificationCubit>();
+
     return Positioned(
       bottom: 0,
       left: 0,
@@ -48,39 +50,40 @@ class RequestDetailsLive extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // send message provider arrival
+                context.read<RealtimeLocationCubit>().close();
                 context.read<MapRouteBloc>().add(
                       MapRouteEvent.providerStarted(
                         onRoute: () {
-                          context.router.popAndPush(
-                            StartRepairRoute(
-                              consumer: consumer,
-                              recordId: recordId,
-                              distance: distance,
-                              pendingService: pendingService,
-                              pendingAmount: pendingAmount,
-                            ),
-                          );
-                          context.router.removeWhere(
-                            (route) => route.name == MapRouteRoute.name,
-                          );
-                        }, // route to doing repair page
-                        sendMessage: (token) async => context
-                            .read<NotificationCubit>()
-                            .sendMessageToToken(
-                              SendMessage(
-                                title: 'Revup',
-                                body: context.l10n.startMovingLabel,
-                                token: token,
-                                icon: kRevupIconApp,
-                                payload: MessageData(
-                                  type: NotificationType.VerifiedArrival,
-                                  payload: <String, dynamic>{},
-                                ),
+                          Future<dynamic>.delayed(
+                              const Duration(milliseconds: 300), () {
+                            context.router.popAndPush(
+                              StartRepairRoute(
+                                consumer: consumer,
+                                recordId: recordId,
+                                distance: distance,
+                                pendingService: pendingService,
+                                pendingAmount: pendingAmount,
                               ),
+                            );
+                            context.router.removeWhere(
+                              (route) => route.name == MapRouteRoute.name,
+                            );
+                          });
+                        }, // route to doing repair page
+                        sendMessage: (token) => cubitNotify.sendMessageToToken(
+                          SendMessage(
+                            title: 'Revup',
+                            body: context.l10n.startMovingLabel,
+                            token: token,
+                            icon: kRevupIconApp,
+                            payload: MessageData(
+                              type: NotificationType.VerifiedArrival,
+                              payload: <String, dynamic>{},
                             ),
+                          ),
+                        ),
                       ),
                     );
-                context.read<RealtimeLocationCubit>().close();
               },
               child: Text(context.l10n.providerArrivedLabel),
             ),

@@ -34,7 +34,6 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
   ) async {
     await event.when(
       started: () async {
-        emit(const MapRouteState.loading());
         final repairRecord = (await _repairRecord.get(recordId))
             .map<Option<RepairRecord>>(
               (r) => r.maybeMap(
@@ -69,7 +68,6 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
         );
       },
       providerStarted: (onRoute, sendMessage) async {
-        emit(const MapRouteState.loading());
         final record = (await _repairRecord.get(recordId))
             .map<Option<RepairRecord>>(
               (r) => r.maybeMap(

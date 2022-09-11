@@ -26,6 +26,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     _sPosition = _repairRecord
         .collection()
         .where('id', isEqualTo: recordId)
+        .where('type', isNotEqualTo: '3')
         .snapshots()
         .listen((event) {
       add(const InfoRequestEvent.started());
@@ -87,13 +88,6 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
       },
       started: () async {
         emit(const InfoRequestState.loading());
-        (await _repairRecord.get(recordId)).map(
-          (r) => r.maybeMap(
-            orElse: () => emit(const InfoRequestState.failure()),
-            accepted: (value) => value,
-            arrived: (value) => value,
-          ),
-        );
 
         final maybeRecord = (await _repairRecord.get(recordId))
             .map(

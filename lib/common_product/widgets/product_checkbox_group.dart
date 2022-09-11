@@ -7,8 +7,8 @@ import 'package:revup_core/core.dart';
 
 import 'product_checkbox_tile.dart';
 
-class ServiceCheckboxGroup extends StatelessWidget {
-  const ServiceCheckboxGroup({
+class ProductCheckboxGroup extends StatelessWidget {
+  const ProductCheckboxGroup({
     super.key,
     required this.serviceList,
     required this.formField,
@@ -26,7 +26,7 @@ class ServiceCheckboxGroup extends StatelessWidget {
         itemCount: serviceList.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return ServiceCheckboxTile(
+          return ProductCheckboxTile(
             onTap: () {},
             serviceData: serviceList[index],
             index: index,

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
+import '../../shared/widgets/custom_dialog.dart';
 
 class ChangeLanguageView extends StatelessWidget {
   const ChangeLanguageView({super.key});
@@ -25,13 +25,15 @@ class ChangeLanguageView extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.only(left: 16, right: 16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextButton(
-                onPressed: () {
+                onPressed: () async {
                   context
                       .read<LanguageCubit>()
                       .set(const LanguageState.vietnamese());
-                  context.router.pop();
+                  await _showDialog(context);
+                  await context.router.pop();
                 },
                 child: AutoSizeText(
                   context.l10n.vietnameseLabel,
@@ -39,11 +41,12 @@ class ChangeLanguageView extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
                   context
                       .read<LanguageCubit>()
                       .set(const LanguageState.english());
-                  context.router.pop();
+                  await _showDialog(context);
+                  await context.router.pop();
                 },
                 child: AutoSizeText(
                   context.l10n.englishLabel,
@@ -53,6 +56,34 @@ class ChangeLanguageView extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Future<void> _showDialog(BuildContext context) async {
+    await showDialog<void>(
+      barrierDismissible: false,
+      context: context,
+      builder: (bcontext) => SimpleDialogCustom(
+        height: 100,
+        content: [
+          Center(
+            child: AutoSizeText(
+              context.l10n.sureLabel,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+          ),
+        ],
+        button: [
+          TextButton(
+            onPressed: () {
+              bcontext.router.pop();
+            },
+            child: AutoSizeText(
+              context.l10n.understoodLabel,
+            ),
+          ),
+        ],
       ),
     );
   }

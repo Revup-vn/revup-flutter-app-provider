@@ -10,7 +10,6 @@ import '../../repair_request/modules/p4_info_request/cubit/realtime_location_cub
 import '../../repair_request/request.dart';
 import '../../shared/utils/utils_function.dart';
 import '../../shared/widgets/loading.u.dart';
-import '../../shared/widgets/unknown_failure.dart';
 import '../bloc/map_route_bloc.dart';
 import '../widgets/request_details_live.dart';
 import '../widgets/request_map_live.dart';
@@ -41,53 +40,50 @@ class MapRouteView extends StatelessWidget {
     final user = getUser(context.read<AuthenticateBloc>().state)
         .getOrElse(() => throw NullThrownError());
 
-    return BlocBuilder<MapRouteBloc, MapRouteState>(
-      builder: (context, state) {
-        return state.when(
-            initial: Container.new,
-            loading: Loading.new,
-            failure: UnknownFailure.new,
-            success: (directions, fromMarker, toMarker, recordId) {
-              return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                  body: Stack(
-                    children: <Widget>[
-                      RequestMapLive(
-                        directions: directions,
-                        fromMaker: fromMarker,
-                        toMarker: toMarker,
-                        userStore: context.read(),
-                        user: user,
-                      ),
-                      Positioned(
-                        right: 16,
-                        bottom: 128,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _openMapsFor(
-                              fromMarker,
-                              toMarker,
-                              context.l10n.repairLocationLabel,
-                              context.l10n.currentLocationLabel,
-                            );
-                          },
-                          child: const Icon(Icons.navigation_rounded),
-                        ),
-                      ),
-                      RequestDetailsLive(
-                        recordId,
-                        consumer,
-                        distance,
-                        pendingService,
-                        pendingAmount,
-                      ),
-                    ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: BlocBuilder<MapRouteBloc, MapRouteState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            success: (directions, fromMaker, toMarker, recordId) {
+              return Stack(
+                children: <Widget>[
+                  RequestMapLive(
+                    directions: directions,
+                    fromMaker: fromMaker,
+                    toMarker: toMarker,
+                    userStore: context.read(),
+                    user: user,
                   ),
-                ),
+                  Positioned(
+                    right: 16,
+                    bottom: 128,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _openMapsFor(
+                          fromMaker,
+                          toMarker,
+                          context.l10n.repairLocationLabel,
+                          context.l10n.currentLocationLabel,
+                        );
+                      },
+                      child: const Icon(Icons.navigation_rounded),
+                    ),
+                  ),
+                  RequestDetailsLive(
+                    recordId,
+                    consumer,
+                    distance,
+                    pendingService,
+                    pendingAmount,
+                  ),
+                ],
               );
-            });
-      },
+            },
+            orElse: Loading.new,
+          );
+        },
+      ),
     );
   }
 

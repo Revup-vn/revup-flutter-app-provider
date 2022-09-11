@@ -96,8 +96,6 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
             started: val.started,
             completed: DateTime.now(),
             imgs: imgLinks,
-            feedback:
-                ReportFeedbackDummy.dummy(), // Consumer will overwrite this
             from: val.from,
             to: val.to,
           ),

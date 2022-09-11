@@ -15,8 +15,8 @@ import 'package:revup_core/core.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 
-class ServiceCheckboxTile extends StatefulWidget {
-  const ServiceCheckboxTile({
+class ProductCheckboxTile extends StatefulWidget {
+  const ProductCheckboxTile({
     super.key,
     required this.serviceData,
     this.onTap,
@@ -31,10 +31,10 @@ class ServiceCheckboxTile extends StatefulWidget {
   final GlobalKey<FormBuilderState> formField;
 
   @override
-  State<ServiceCheckboxTile> createState() => _ServiceCheckboxTileState();
+  State<ProductCheckboxTile> createState() => _ProductCheckboxTileState();
 }
 
-class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
+class _ProductCheckboxTileState extends State<ProductCheckboxTile> {
   bool isChecked = false;
   bool isOnlineImg = true;
   File img = File('');

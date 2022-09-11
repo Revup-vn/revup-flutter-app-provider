@@ -77,8 +77,44 @@ class _SplashPageState extends State<SplashPage> {
                 ],
               ),
             );
-          } else {
-            break;
+          } else if (subType == 'Canceled') {
+            await updateActive(
+              context.read<AuthenticateBloc>().state.maybeWhen(
+                    orElse: () => '',
+                    authenticated: (value) => value.user.uuid,
+                  ),
+            );
+            await showDialog<void>(
+              barrierDismissible: false,
+              context: context,
+              builder: (bcontext) => SimpleDialogCustom(
+                height: 200,
+                content: [
+                  AutoSizeText(
+                    context.l10n.cancelByUserLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  AutoSizeText(
+                    context.l10n.sorryLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
+                button: [
+                  TextButton(
+                    onPressed: () {
+                      if (mounted) {
+                        context.router.popUntil(
+                          (route) => route.settings.name == HomeRoute.name,
+                        );
+                      }
+                    },
+                    child: AutoSizeText(
+                      context.l10n.understoodLabel,
+                    ),
+                  ),
+                ],
+              ),
+            );
           }
           break;
         case NotificationType.ProviderDecline:
@@ -92,7 +128,7 @@ class _SplashPageState extends State<SplashPage> {
             context: context,
             builder: (context) => SimpleDialogCustom(
               height: 150,
-              content: [Text(context.l10n.userDismissed)],
+              content: [Text(context.l10n.userDismissedNoTransFeeLabel)],
               button: [
                 TextButton(
                   onPressed: () => context.router.pop(),
