@@ -28,8 +28,6 @@ class RequestDetailsLive extends StatelessWidget {
   final int pendingAmount;
   @override
   Widget build(BuildContext context) {
-    final cubitNotify = context.read<NotificationCubit>();
-
     return Positioned(
       bottom: 0,
       left: 0,
@@ -66,18 +64,20 @@ class RequestDetailsLive extends StatelessWidget {
                             (route) => route.name == MapRouteRoute.name,
                           );
                         }, // route to doing repair page
-                        sendMessage: (token) => cubitNotify.sendMessageToToken(
-                          SendMessage(
-                            title: 'Revup',
-                            body: context.l10n.startMovingLabel,
-                            token: token,
-                            icon: kRevupIconApp,
-                            payload: MessageData(
-                              type: NotificationType.VerifiedArrival,
-                              payload: <String, dynamic>{},
+                        sendMessage: (token) async => context
+                            .read<NotificationCubit>()
+                            .sendMessageToToken(
+                              SendMessage(
+                                title: 'Revup',
+                                body: context.l10n.startMovingLabel,
+                                token: token,
+                                icon: kRevupIconApp,
+                                payload: MessageData(
+                                  type: NotificationType.VerifiedArrival,
+                                  payload: <String, dynamic>{},
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
                       ),
                     );
                 context.read<RealtimeLocationCubit>().close();

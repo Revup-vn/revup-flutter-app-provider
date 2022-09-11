@@ -8,7 +8,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../new_request/models/pending_repair_request.dart';
-import '../../../models/pending_service_model.dart';
 
 part 'info_request_bloc.freezed.dart';
 part 'info_request_event.dart';
@@ -117,19 +116,12 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
               .map<IList<PaymentService>>(
                 (r) => r.filter(
                   (a) => a.maybeMap(
-                      needToVerify: (_) => true, orElse: () => false),
+                    needToVerify: (_) => true,
+                    orElse: () => false,
+                  ),
                 ),
               )
               .fold((l) => ilist(<PaymentService>[]), (r) => r);
-          final len = (await (storeRepository.repairPaymentRepo(
-            RepairRecordDummy.dummyPending(recordId),
-          )).all())
-              .map((r) => r.filter((a) => a.map(
-                  pending: (v) => true,
-                  paid: (v) => false,
-                  needToVerify: (v) => true)))
-              .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
-              .length();
           await emit.forEach<QuerySnapshot<Map<String, dynamic>>>(
             _paymentService.collection().snapshots(),
             onData: (data) {
@@ -146,7 +138,15 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
               return InfoRequestState.success(
                 needToVerifyService: needToVerifyService,
                 record: record,
-                len: len,
+                len: lst
+                    .filter(
+                      (a) => a.map(
+                        pending: (v) => v.serviceName != 'transFee',
+                        paid: (v) => false,
+                        needToVerify: (v) => true,
+                      ),
+                    )
+                    .length(),
                 isReady: record.recordType != 'arrived',
               );
             },

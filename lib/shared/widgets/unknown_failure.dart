@@ -11,28 +11,30 @@ class UnknownFailure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Assets.screens.sadMood.svg(width: 250, height: 250),
-          const SizedBox(
-            height: 16,
-          ),
-          AutoSizeText(
-            l10n.unknownFailureLabel,
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ) ??
-                const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          TextButton(
-            onPressed: () {
-              context.router.popUntilRouteWithName('HomeRoute');
-            },
-            child: Text(l10n.backToHomePageLabel),
-          )
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.screens.sadMood.svg(width: 250, height: 250),
+            const SizedBox(
+              height: 16,
+            ),
+            AutoSizeText(
+              l10n.unknownFailureLabel,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ) ??
+                  const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            TextButton(
+              onPressed: () {
+                context.router.popUntilRouteWithName('HomeRoute');
+              },
+              child: Text(l10n.backToHomePageLabel),
+            )
+          ],
+        ),
       ),
     );
   }

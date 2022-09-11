@@ -36,6 +36,7 @@ class P12DetailView extends StatelessWidget {
             l10n.underRepairLabel,
             maxLines: 1,
           ),
+          automaticallyImplyLeading: false,
           actions: [
             TextButton(
               onPressed: () => context.read<P12DetailBloc>().state.maybeWhen(
@@ -225,10 +226,6 @@ class P12DetailView extends StatelessWidget {
                                     ),
                                   );
                                 },
-                              ),
-                              const Divider(
-                                height: 1,
-                                thickness: 1,
                               ),
                               const SizedBox(
                                 height: 16,
