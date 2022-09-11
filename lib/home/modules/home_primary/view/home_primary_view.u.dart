@@ -10,7 +10,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../repair_service/list_service/list_service.dart';
 import '../../../../router/router.dart';
 import '../../../../shared/utils/utils_function.dart';
 import '../../../../shared/widgets/default_avatar.dart';
@@ -380,7 +379,8 @@ class HomePrimaryView extends StatelessWidget {
                       autoplay: true,
                       duration: 500,
                       layout: SwiperLayout.STACK,
-                      itemCount: listService.length,
+                      itemCount:
+                          listService.length > 5 ? 5 : listService.length,
                       itemBuilder: (context, index) {
                         return CartService(
                           isActive: listService[index].isActive,
@@ -405,9 +405,10 @@ class HomePrimaryView extends StatelessWidget {
                     recentOrderEmpty: (aS, listService, ads) => Swiper(
                       autoplay: true,
                       layout: SwiperLayout.STACK,
-                      itemCount: listService.length,
+                      itemCount:
+                          listService.length > 5 ? 5 : listService.length,
                       itemBuilder: (context, index) {
-                        return CartServiceReview(
+                        return CartService(
                           isActive: listService[index].isActive,
                           imgUrl: listService[index].imgUrl,
                           serviceName: listService[index].name,

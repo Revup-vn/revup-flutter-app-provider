@@ -53,24 +53,32 @@ class CartService extends StatelessWidget {
                 const SizedBox(
                   width: 20,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AutoSizeText(
-                      serviceName,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    AutoSizeText(
-                      priceRange,
-                      maxLines: 1,
-                      style: Theme.of(context).textTheme.bodyText2,
-                      minFontSize: 5,
-                    ),
-                  ],
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              serviceName,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      AutoSizeText(
+                        priceRange,
+                        maxLines: 1,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        minFontSize: 5,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

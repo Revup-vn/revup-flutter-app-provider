@@ -7,6 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
@@ -97,6 +98,17 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                       ),
                     ),
                   ),
+                  validator: FormBuilderValidators.compose(
+                    [
+                      FormBuilderValidators.required(
+                        errorText: l10n.emptyLabel,
+                      ),
+                      FormBuilderValidators.match(
+                        r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                        errorText: l10n.invalidFormatLabel,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -114,6 +126,15 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                     ),
                     suffixText: l10n.moneyUnit,
                   ),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: l10n.emptyLabel,
+                    ),
+                    FormBuilderValidators.match(
+                      r'^[0-9]{1,9}$',
+                      errorText: l10n.invalidFormatLabel,
+                    ),
+                  ]),
                 ),
                 const SizedBox(
                   height: 20,
