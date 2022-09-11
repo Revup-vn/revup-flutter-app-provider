@@ -51,15 +51,27 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
       final listRecentOrder =
           (await recordRepos.where('pid', isEqualTo: userId))
               .map((r) => r)
-              .fold<IList<RepairRecord>>(
-                (l) => nil<RepairRecord>(),
-                (r) => r.sort(
-                  orderBy(
-                    StringOrder.reverse(),
-                    (a) => a.created.toString(),
-                  ),
-                ),
+              .fold<IList<Option<RepairRecord>>>(
+                (l) => nil<Option<RepairRecord>>(),
+                (r) => r
+                    .sort(
+                      orderBy(
+                        StringOrder.reverse(),
+                        (a) => a.created.toString(),
+                      ),
+                    )
+                    .map(
+                      (a) => a.maybeMap(
+                        orElse: none,
+                        finished: some,
+                      ),
+                    ),
+              )
+              .filter((a) => a.isSome())
+              .map(
+                (a) => a.getOrElse(() => throw NullThrownError()),
               );
+
       final listSv = (await storeRepos.repairCategoryRepo(user).all()).map(
         (r) => r.map(
           (a) async => (await storeRepos.repairServiceRepo(user, a).all())
@@ -165,7 +177,6 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
           .map(
             (a) => a.maybeMap<Option<RepairRecord>>(
               orElse: none,
-              aborted: some,
               finished: some,
             ),
           )

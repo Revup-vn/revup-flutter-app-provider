@@ -40,11 +40,7 @@ class NewRequestPage extends StatelessWidget {
           ),
         ),
       ],
-      child: const Scaffold(
-        resizeToAvoidBottomInset: false,
-        extendBodyBehindAppBar: true,
-        body: NewRequestView(),
-      ),
+      child: const NewRequestView(),
     );
   }
 }

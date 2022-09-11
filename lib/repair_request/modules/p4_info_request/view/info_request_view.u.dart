@@ -45,8 +45,10 @@ class _InfoRequestViewState extends State<InfoRequestView> {
   @override
   void initState() {
     super.initState();
+
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
+
       switch (type) {
         case NotificationType.NormalMessage:
           final subType = p0.payload.payload['subType'] as String;
@@ -70,39 +72,6 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                         setState(() {
                           ready = true;
                         });
-                      }
-                    },
-                    child: AutoSizeText(
-                      context.l10n.understoodLabel,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
-          if (subType == 'Canceled') {
-            showDialog<void>(
-              barrierDismissible: false,
-              context: context,
-              builder: (bcontext) => SimpleDialogCustom(
-                height: 200,
-                content: [
-                  AutoSizeText(
-                    context.l10n.cancelByUserLabel,
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                  AutoSizeText(
-                    context.l10n.sorryLabel,
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ],
-                button: [
-                  TextButton(
-                    onPressed: () {
-                      if (mounted) {
-                        context.router.popUntil(
-                          (route) => route.settings.name == HomeRoute.name,
-                        );
                       }
                     },
                     child: AutoSizeText(
@@ -357,20 +326,27 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                   willPop = false;
                                   blocPage.add(
                                     InfoRequestEvent.confirmDeparted(
-                                      onRoute: () =>
-                                          context.router.pushAndPopUntil(
-                                        MapRouteRoute(
-                                          recordId: record.id,
-                                          consumerId: record.cid,
-                                          consumer: widget.consumer,
-                                          distance: widget.distance,
-                                          pendingAmount: widget.pendingAmount,
-                                          pendingService: widget.pendingService,
-                                        ),
-                                        predicate: (route) =>
-                                            route.settings.name ==
-                                            HomeRoute.name,
-                                      ),
+                                      onRoute: () {
+                                        context.router.pushAndPopUntil(
+                                          MapRouteRoute(
+                                            recordId: record.id,
+                                            consumerId: record.cid,
+                                            consumer: widget.consumer,
+                                            distance: widget.distance,
+                                            pendingAmount: widget.pendingAmount,
+                                            pendingService:
+                                                widget.pendingService,
+                                          ),
+                                          predicate: (route) =>
+                                              route.settings.name ==
+                                              HomeRoute.name,
+                                        );
+                                        context.router.removeWhere(
+                                          (route) =>
+                                              route.name ==
+                                              InfoRequestRoute.name,
+                                        );
+                                      },
                                       sendMessage: (token) => context
                                           .read<NotificationCubit>()
                                           .sendMessageToToken(
@@ -405,10 +381,5 @@ class _InfoRequestViewState extends State<InfoRequestView> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

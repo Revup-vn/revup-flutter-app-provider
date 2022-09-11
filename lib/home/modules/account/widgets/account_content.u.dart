@@ -143,23 +143,29 @@ class AccountContent extends StatelessWidget {
             AccountItem(
               accountName: l10n.faqsLabel,
               accountIcon: const Icon(Icons.quiz),
-              callback: () => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: AutoSizeText(context.l10n.notSupportLabel),
-                ),
-              ),
+              callback: () {
+                context.router.push(
+                  const FAQsRoute(),
+                );
+              },
             ),
             AccountItem(
               accountName: l10n.termsOfServiceLabel,
               accountIcon: const Icon(Icons.fact_check),
-              callback: () =>
-                  context.showToast<void>(context.l10n.notSupportLabel),
+              callback: () {
+                context.router.push(
+                  const TermsPrivacyRoute(),
+                );
+              },
             ),
             AccountItem(
               accountName: l10n.aboutUsLabel,
               accountIcon: const Icon(Icons.people),
-              callback: () =>
-                  context.showToast<void>(context.l10n.notSupportLabel),
+              callback: () {
+                context.router.push(
+                  const AboutUsRoute(),
+                );
+              },
             ),
             AccountItem(
               accountName: l10n.logoutLabel,
