@@ -4,6 +4,10 @@ import '../analytics/view/analytics_page.dart';
 import '../change_language/view/change_language_page.dart';
 import '../common_product/view/common_product_page.dart';
 import '../common_service/view/common_service_page.dart';
+import '../guide-support/view/about_us_page.u.dart';
+import '../guide-support/view/faqs_page.u.dart';
+import '../guide-support/view/terms_privacy_page.u.dart';
+import '../guide-support/widgets/faqs_item_otp.u.dart';
 import '../home/home.dart';
 import '../home/modules/history/history_provider_detail/view/history_detail_page.u.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
@@ -26,7 +30,6 @@ import '../repair_service/repair_service.dart';
 import '../repair_service/update_service/view/view.dart';
 import '../signup/view/signup_page.u.dart';
 import '../splash/splash.dart';
-import '../test/test.dart';
 import '../vendor_authentication/vender_authentication.dart';
 
 @AdaptiveAutoRouter(
@@ -49,7 +52,10 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: OTPPage),
-    AdaptiveRoute<void>(page: TestPage),
+    AdaptiveRoute<void>(page: AboutUsPage),
+    AdaptiveRoute<void>(page: FAQsPage),
+    AdaptiveRoute<void>(page: FAQsItemOTPPage),
+    AdaptiveRoute<void>(page: TermsPrivacyPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: NewRequestPage),
     AdaptiveRoute<void>(page: P12DetailPage),

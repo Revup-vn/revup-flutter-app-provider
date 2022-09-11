@@ -48,6 +48,10 @@ class $AssetsScreensGen {
   /// File path: assets/screens/setting.svg
   SvgGenImage get setting => const SvgGenImage('assets/screens/setting.svg');
 
+  /// File path: assets/screens/terms-privacy.svg
+  SvgGenImage get termsPrivacy =>
+      const SvgGenImage('assets/screens/terms-privacy.svg');
+
   /// File path: assets/screens/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/screens/welcome.svg');
 }

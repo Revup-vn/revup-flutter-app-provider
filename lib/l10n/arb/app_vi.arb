@@ -287,7 +287,8 @@
   "selectedProductLabel": "Khách đã chọn sản phẩm. Hãy xem qua và xác nhận để bắt đầu",
   "cancelByUserLabel": "Khách đã huỷ yêu cầu. Chúng tôi sẽ trừng phạt những người dùng cố ý vi phạm bằng cách spam yêu cầu",
   "sorryLabel": "Chúng tôi rất xin lỗi về việc này",
-  "arrivedStartWorkingLabel": "Đến rồi thì bắt tay vào việc thôi",
+  "arrivedStartWorkingLabel": "Bắt tay vào việc sửa chữa thôi",
   "consumerPaidLabel": "Khách đã thanh toán. Kết thúc giao dịch thôi",
-  "addCommonProductLabel": "Thêm sản phẩm có sẵn"
+  "addCommonProductLabel": "Thêm sản phẩm có sẵn",
+  "userDismissedNoTransFeeLabel": "Bạn đã lỡ 1 yêu cầu từ người dùng xung quanh"
 }
