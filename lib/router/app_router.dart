@@ -17,6 +17,7 @@ import '../my_review/my_review.dart';
 import '../new_request/view/new_request_page.dart';
 import '../otp/view/otp_page.u.dart';
 import '../permission_page/permission_page.u.dart';
+import '../repair_request/modules/choose_product/view/choose_product_page.dart';
 import '../repair_request/modules/p10_quote_price/view/p10_quote_price_page.dart';
 import '../repair_request/modules/p12_detail_order/view/p12_detail_page.u.dart';
 import '../repair_request/modules/p14_repair_completed/view/p14_repair_completed_page.u.dart';
@@ -24,6 +25,7 @@ import '../repair_request/modules/p16_finished_order_detail/view/p16_finished_or
 import '../repair_request/modules/p3_request_detail/view/p3_request_detail.u.dart';
 import '../repair_request/modules/p4_info_request/view/info_request_page.u.dart';
 import '../repair_request/modules/p4_start_repair/view/start_repair_page.u.dart';
+import '../repair_request/modules/service_suggestion/view/service_suggestion_page.dart';
 import '../repair_request/request.dart';
 import '../repair_service/add-product/view/add_product_page.u.dart';
 import '../repair_service/repair_service.dart';
@@ -67,6 +69,8 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(page: CommonServicePage),
     AdaptiveRoute<void>(page: CommonProductPage),
+    AdaptiveRoute<void>(page: ServiceSuggestionPage),
+    AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

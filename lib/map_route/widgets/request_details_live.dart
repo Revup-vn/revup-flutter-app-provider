@@ -50,21 +50,25 @@ class RequestDetailsLive extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // send message provider arrival
+                context.read<RealtimeLocationCubit>().close();
                 context.read<MapRouteBloc>().add(
                       MapRouteEvent.providerStarted(
                         onRoute: () {
-                          context.router.popAndPush(
-                            StartRepairRoute(
-                              consumer: consumer,
-                              recordId: recordId,
-                              distance: distance,
-                              pendingService: pendingService,
-                              pendingAmount: pendingAmount,
-                            ),
-                          );
-                          context.router.removeWhere(
-                            (route) => route.name == MapRouteRoute.name,
-                          );
+                          Future<dynamic>.delayed(
+                              const Duration(milliseconds: 300), () {
+                            context.router.popAndPush(
+                              StartRepairRoute(
+                                consumer: consumer,
+                                recordId: recordId,
+                                distance: distance,
+                                pendingService: pendingService,
+                                pendingAmount: pendingAmount,
+                              ),
+                            );
+                            context.router.removeWhere(
+                              (route) => route.name == MapRouteRoute.name,
+                            );
+                          });
                         }, // route to doing repair page
                         sendMessage: (token) => cubitNotify.sendMessageToToken(
                           SendMessage(
@@ -80,7 +84,6 @@ class RequestDetailsLive extends StatelessWidget {
                         ),
                       ),
                     );
-                context.read<RealtimeLocationCubit>().close();
               },
               child: Text(context.l10n.providerArrivedLabel),
             ),

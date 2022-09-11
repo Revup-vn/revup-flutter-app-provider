@@ -130,7 +130,7 @@ class RequestDetailsStatic extends StatelessWidget {
                   AutoSizeText.rich(
                     TextSpan(
                       children: [
-                        TextSpan(text: l10n.vehicleTypeLabel),
+                        TextSpan(text: '${l10n.vehicleTypeLabel} '),
                         TextSpan(
                           text: record.vehicle == 'motorbike'
                               ? l10n.motorcycleLabel

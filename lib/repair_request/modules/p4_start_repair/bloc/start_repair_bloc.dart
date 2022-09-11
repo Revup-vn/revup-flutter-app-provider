@@ -138,7 +138,15 @@ class StartRepairBloc extends Bloc<StartRepairEvent, StartRepairState> {
               return StartRepairState.success(
                 needToVerifyService: needToVerifyService,
                 record: record,
-                len: lst.length(),
+                len: lst
+                    .filter(
+                      (a) => a.map(
+                        pending: (v) => v.serviceName != 'transFee',
+                        paid: (v) => false,
+                        needToVerify: (v) => true,
+                      ),
+                    )
+                    .length(),
                 isReady: record.recordType != 'arrived',
               );
             },

@@ -47,25 +47,29 @@ class P14RepairCompletedCubit extends Cubit<P14RepairCompletedState> {
       // Update service status
       final _irp = _sr.repairPaymentRepo(repairRecord);
 
-      for (final e in finished) {
-        (await _irp.get(e.name)).fold(
-          (l) => unit,
-          (r) => r
-              .maybeMap<Option<PaymentService>>(
-                // Must be pending Type
-                pending: (val) => some(
-                  PaymentService.paid(
-                    moneyAmount: val.moneyAmount,
-                    paidIn: DateTime.now(),
-                    products: val.products,
-                    serviceName: val.serviceName,
-                  ),
-                ),
-                orElse: none,
-              )
-              .traverseFuture((a) async => _irp.update(a)),
-        );
-      }
+      // final transFee = maybeTransFee.getOrElse(() => throw NullThrownError());
+      // if (transFee.status != 'paid') {
+      //   finished.add(transFee);
+      // }
+      // for (final e in finished) {
+      //   (await _irp.get(e.name)).fold(
+      //     (l) => unit,
+      //     (r) => r
+      //         .maybeMap<Option<PaymentService>>(
+      //           // Must be pending Type
+      //           pending: (val) => some(
+      //             PaymentService.paid(
+      //               moneyAmount: val.moneyAmount,
+      //               paidIn: DateTime.now(),
+      //               products: val.products,
+      //               serviceName: val.serviceName,
+      //             ),
+      //           ),
+      //           orElse: none,
+      //         )
+      //         .traverseFuture((a) async => _irp.update(a)),
+      //   );
+      // }
 
       // Update record
       await _irr.update(

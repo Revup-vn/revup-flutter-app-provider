@@ -100,10 +100,15 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         final len = (await (storeRepository.repairPaymentRepo(
           RepairRecordDummy.dummyPending(recordId),
         )).all())
-            .map((r) => r.filter((a) => a.map(
-                pending: (v) => true,
-                paid: (v) => false,
-                needToVerify: (v) => true)))
+            .map(
+              (r) => r.filter(
+                (a) => a.map(
+                  pending: (v) => v.serviceName != 'transFee',
+                  paid: (v) => false,
+                  needToVerify: (v) => true,
+                ),
+              ),
+            )
             .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
             .length();
 
@@ -207,7 +212,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         log('TOKEN:${tokens[0].token}');
 
         // send notification to consumer
-        await sendMessage(tokens[0].token);
+        sendMessage(tokens[0].token);
         // route to info request
         onRoute();
       },

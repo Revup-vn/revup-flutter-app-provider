@@ -103,9 +103,11 @@ class NewRequestView extends StatelessWidget {
                                                 route.settings.name ==
                                                 HomeRoute.name,
                                           );
-                                          context.router.removeWhere((route) =>
-                                              route.name ==
-                                              NewRequestRoute.name);
+                                          context.router.removeWhere(
+                                            (route) =>
+                                                route.name ==
+                                                NewRequestRoute.name,
+                                          );
                                         },
                                         sendMessage: (token) =>
                                             cubitNotify.sendMessageToToken(

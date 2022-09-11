@@ -98,7 +98,7 @@ class CommonProductView extends StatelessWidget {
                     children: [
                       FormBuilder(
                         key: form,
-                        child: ServiceCheckboxGroup(
+                        child: ProductCheckboxGroup(
                           serviceList: products,
                           formField: form,
                         ),
