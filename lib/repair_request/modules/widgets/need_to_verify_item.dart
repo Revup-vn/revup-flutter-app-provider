@@ -30,10 +30,10 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
     return TextButton(
       onPressed: () async {
         await quotePriceDialog().then((value) async {
-          if (value?.isNotEmpty ?? false) {
+          if (value?.isNotEmpty == true && value != '') {
             await cubit.quotePrice(
               widget.needToVerify,
-              int.parse(value ?? ''),
+              int.parse(value!),
             );
           }
         });

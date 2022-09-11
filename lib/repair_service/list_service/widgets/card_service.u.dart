@@ -31,73 +31,68 @@ class CartServiceReview extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(bottom: 20, top: 20),
           child: Row(
             children: <Widget>[
+              const SizedBox(
+                width: 20,
+              ),
               Expanded(
-                flex: 8,
+                flex: 2,
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 50,
-                              width: 50,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(48),
-                                child: CachedNetworkImage(
-                                  fadeInDuration:
-                                      const Duration(milliseconds: 50),
-                                  fadeOutDuration:
-                                      const Duration(milliseconds: 50),
-                                  imageUrl: imgUrl.isEmpty
-                                      ? kFallbackServiceImg
-                                      : imgUrl,
-                                  height: 64,
-                                  width: 64,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 10,
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    AutoSizeText(
-                                      serviceName,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelLarge,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: AutoSizeText(
-                                        priceRange,
-                                        maxLines: 1,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2,
-                                        minFontSize: 5,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                        SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(48),
+                            child: CachedNetworkImage(
+                              fadeInDuration: const Duration(milliseconds: 50),
+                              fadeOutDuration: const Duration(milliseconds: 50),
+                              imageUrl:
+                                  imgUrl.isEmpty ? kFallbackServiceImg : imgUrl,
+                              height: 64,
+                              width: 64,
+                              fit: BoxFit.fill,
                             ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 6,
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: AutoSizeText(
+                            serviceName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                            maxLines: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AutoSizeText(
+                            priceRange,
+                            maxLines: 1,
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ),
                       ],
