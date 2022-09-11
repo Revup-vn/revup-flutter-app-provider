@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../shared/shared.dart';
@@ -46,15 +45,17 @@ class ContactItem extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        AutoSizeText(
-          '${consumer.firstName} ${consumer.lastName}',
-          style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(fontWeight: FontWeight.bold) ??
-              const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+        Expanded(
+          child: AutoSizeText(
+            '${consumer.firstName} ${consumer.lastName}',
+            style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontWeight: FontWeight.bold) ??
+                const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
         ),
         const Spacer(),
         BuildIconAction(

@@ -258,6 +258,7 @@ class UpdateProfileView extends StatelessWidget {
                         ),
                         keyboardType: TextInputType.text,
                         name: 'bio',
+                        maxLength: 150,
                       ),
                       const SizedBox(
                         height: 16,
@@ -306,7 +307,10 @@ class UpdateProfileView extends StatelessWidget {
                                       child: IconButton(
                                         onPressed: () {
                                           _showModalButtonSheet(
-                                              context, 2, list);
+                                            context,
+                                            2,
+                                            list,
+                                          );
                                         },
                                         icon: Icon(
                                           Icons.add_photo_alternate_outlined,

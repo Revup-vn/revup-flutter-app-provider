@@ -124,6 +124,7 @@ class SignUpContent extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       FormBuilderTextField(
+                        maxLength: 50,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         style: Theme.of(context).textTheme.labelLarge,
                         decoration: InputDecoration(
@@ -223,6 +224,7 @@ class SignUpContent extends StatelessWidget {
                         ]),
                       ),
                       FormBuilderTextField(
+                        maxLength: 50,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         style: Theme.of(context).textTheme.labelLarge,
                         decoration: InputDecoration(
@@ -244,6 +246,7 @@ class SignUpContent extends StatelessWidget {
                         ]),
                       ),
                       FormBuilderTextField(
+                        maxLength: 150,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         style: Theme.of(context).textTheme.labelLarge,
                         decoration: InputDecoration(

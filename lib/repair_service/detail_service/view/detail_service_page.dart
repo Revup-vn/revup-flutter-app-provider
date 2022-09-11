@@ -82,7 +82,7 @@ class DetailServicePage extends StatelessWidget {
                   ),
                 );
               },
-              child: Text(context.l10n.editProfileLabel),
+              child: Text(context.l10n.updateServiceLabel),
             ),
           ],
         ),

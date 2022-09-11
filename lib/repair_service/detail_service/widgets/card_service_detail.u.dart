@@ -33,81 +33,56 @@ class ServiceProduct extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                flex: 8,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 50,
-                              width: 50,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(48),
-                                child: CachedNetworkImage(
-                                  imageUrl:
-                                      img.isEmpty ? kFallbackProductImg : img,
-                                  height: 64,
-                                  width: 64,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  AutoSizeText(
-                                    serviceName,
-                                    style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.bold,
-                                            ) ??
-                                        const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  AutoSizeText(
-                                    context.formatMoney(priceRange),
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+          child: Center(
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(48),
+                    child: CachedNetworkImage(
+                      fadeInDuration: const Duration(milliseconds: 50),
+                      fadeOutDuration: const Duration(milliseconds: 50),
+                      imageUrl: img.isEmpty ? kFallbackServiceImg : img,
+                      height: 64,
+                      width: 64,
+                      fit: BoxFit.fill,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              Container(
-                alignment: Alignment.topRight,
-                child: const IconButton(
-                  icon: Icon(Icons.create),
-                  onPressed: null,
+                const SizedBox(
+                  width: 20,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              serviceName,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      AutoSizeText(
+                        context.formatMoney(priceRange),
+                        maxLines: 1,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        minFontSize: 5,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
