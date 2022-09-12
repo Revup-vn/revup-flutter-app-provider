@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -14,12 +13,14 @@ class P14RepairCompletePage extends StatelessWidget {
     required this.paid,
     required this.vehicle,
     required this.recordId,
+    required this.transFee,
   });
 
   final List<PendingServiceModel> finished;
   final List<PaidServicesModel> paid;
   final String vehicle;
   final String recordId;
+  final PendingServiceModel transFee;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class P14RepairCompletePage extends StatelessWidget {
         finished: finished,
         paid: paid,
         vehicle: vehicle,
+        transFee: transFee,
       ),
     );
   }

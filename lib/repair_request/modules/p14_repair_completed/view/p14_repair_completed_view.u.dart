@@ -20,11 +20,13 @@ class P14RepairCompleteView extends StatefulWidget {
     required this.finished,
     required this.paid,
     required this.vehicle,
+    required this.transFee,
   });
 
   final List<PendingServiceModel> finished;
   final List<PaidServicesModel> paid;
   final String vehicle;
+  final PendingServiceModel transFee;
 
   @override
   State<P14RepairCompleteView> createState() => _P14RepairCompleteViewState();
@@ -124,26 +126,28 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                               BuildRowRepairCompletedItem(
                                 title: l10n.collectMoneyCustomersLabel,
                                 content: context.formatMoney(
-                                  widget.finished.isEmpty
-                                      ? 0
-                                      : widget.finished
-                                          .map(
-                                            (e) =>
-                                                e.price +
-                                                (e.products.isEmpty
-                                                    ? 0
-                                                    : e.products.fold<int>(
-                                                        0,
-                                                        (p, element) =>
-                                                            p +
-                                                            element.unitPrice *
-                                                                element
-                                                                    .quantity,
-                                                      )),
-                                          )
-                                          .reduce(
-                                            (value, element) => value + element,
-                                          ),
+                                  widget.transFee.price +
+                                      (widget.finished.isEmpty
+                                          ? 0
+                                          : widget.finished
+                                              .map(
+                                                (e) =>
+                                                    e.price +
+                                                    (e.products.isEmpty
+                                                        ? 0
+                                                        : e.products.fold<int>(
+                                                            0,
+                                                            (p, element) =>
+                                                                p +
+                                                                element.unitPrice *
+                                                                    element
+                                                                        .quantity,
+                                                          )),
+                                              )
+                                              .reduce(
+                                                (value, element) =>
+                                                    value + element,
+                                              )),
                                 ),
                                 textButtonName: l10n.detailLabel,
                                 onPressed: () => context.router.push(

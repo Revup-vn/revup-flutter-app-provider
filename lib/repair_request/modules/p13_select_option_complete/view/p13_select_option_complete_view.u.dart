@@ -122,6 +122,11 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                                           .toList(),
                                       vehicle: vehicle,
                                       recordId: id,
+                                      transFee: services.firstWhere(
+                                        (e) =>
+                                            e.name == 'transFee' &&
+                                            e.status != 'paid',
+                                      ),
                                     ),
                                   );
                                 },
@@ -183,6 +188,9 @@ class P13SelectOptionCompleteView extends StatelessWidget {
                               .toList(),
                           vehicle: vehicle,
                           recordId: id,
+                          transFee: services.firstWhere(
+                            (e) => e.name == 'transFee' && e.status != 'paid',
+                          ),
                         ),
                       );
                     },

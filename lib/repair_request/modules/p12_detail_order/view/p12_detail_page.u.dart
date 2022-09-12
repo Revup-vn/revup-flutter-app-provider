@@ -27,6 +27,7 @@ class P12DetailPage extends StatelessWidget {
                 .repairPaymentRepo(RepairRecordDummy.dummyStarted(recordId)),
             recordId,
             context.read(),
+            context.read(),
           ),
         ),
         BlocProvider(
