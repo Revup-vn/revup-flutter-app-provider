@@ -108,7 +108,9 @@ class CardReview extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         AutoSizeText(
-                          data.description,
+                          data.description.isEmpty || data.description == 'null'
+                              ? ''
+                              : data.description,
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ],
