@@ -23,12 +23,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
     this.storeRepository,
   ) : super(const _Initial()) {
     on<InfoRequestEvent>(_onEvent);
-    _sPosition = _repairRecord
-        .collection()
-        .where('id', isEqualTo: recordId)
-        .where('type', isNotEqualTo: '3')
-        .snapshots()
-        .listen((event) {
+    _s = _paymentService.collection().snapshots().listen((event) {
       add(const InfoRequestEvent.started());
     });
   }
@@ -38,7 +33,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
   final IStore<PaymentService> _paymentService;
   final StoreRepository storeRepository;
   final AppUser user;
-  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _sPosition;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
 
   Future<void> _onEvent(
     InfoRequestEvent event,
@@ -266,7 +261,7 @@ class InfoRequestBloc extends Bloc<InfoRequestEvent, InfoRequestState> {
 
   @override
   Future<void> close() async {
-    await _sPosition.cancel();
+    await _s.cancel();
     return super.close();
   }
 }

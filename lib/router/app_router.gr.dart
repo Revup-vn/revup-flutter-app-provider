@@ -138,7 +138,8 @@ class AppRouter extends _i34.RootStackRouter {
               finished: args.finished,
               paid: args.paid,
               vehicle: args.vehicle,
-              recordId: args.recordId));
+              recordId: args.recordId,
+              transFee: args.transFee));
     },
     P13SelectOptionCompleteRoute.name: (routeData) {
       final args = routeData.argsAs<P13SelectOptionCompleteRouteArgs>();
@@ -603,7 +604,8 @@ class P14RepairCompleteRoute
       required List<_i8.PendingServiceModel> finished,
       required List<_i8.PaidServicesModel> paid,
       required String vehicle,
-      required String recordId})
+      required String recordId,
+      required _i8.PendingServiceModel transFee})
       : super(P14RepairCompleteRoute.name,
             path: '/p14-repair-complete-page',
             args: P14RepairCompleteRouteArgs(
@@ -611,7 +613,8 @@ class P14RepairCompleteRoute
                 finished: finished,
                 paid: paid,
                 vehicle: vehicle,
-                recordId: recordId));
+                recordId: recordId,
+                transFee: transFee));
 
   static const String name = 'P14RepairCompleteRoute';
 }
@@ -622,7 +625,8 @@ class P14RepairCompleteRouteArgs {
       required this.finished,
       required this.paid,
       required this.vehicle,
-      required this.recordId});
+      required this.recordId,
+      required this.transFee});
 
   final _i35.Key? key;
 
@@ -634,9 +638,11 @@ class P14RepairCompleteRouteArgs {
 
   final String recordId;
 
+  final _i8.PendingServiceModel transFee;
+
   @override
   String toString() {
-    return 'P14RepairCompleteRouteArgs{key: $key, finished: $finished, paid: $paid, vehicle: $vehicle, recordId: $recordId}';
+    return 'P14RepairCompleteRouteArgs{key: $key, finished: $finished, paid: $paid, vehicle: $vehicle, recordId: $recordId, transFee: $transFee}';
   }
 }
 

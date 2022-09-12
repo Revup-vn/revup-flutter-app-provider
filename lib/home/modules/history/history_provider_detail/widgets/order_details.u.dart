@@ -77,7 +77,7 @@ class OrderDetailsItem extends StatelessWidget {
             height: 6,
           ),
           AutoSizeText(
-            '''${l10n.vehicleTypeLabel}${data.vehicleType == 0 ? l10n.motorcycleLabel : l10n.carLabel}''',
+            '''${l10n.vehicleTypeLabel} ${data.vehicleType == 0 ? l10n.motorcycleLabel : l10n.carLabel}''',
             style: Theme.of(context).textTheme.labelLarge,
           ),
           const SizedBox(
