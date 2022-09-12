@@ -17,7 +17,7 @@ class RatingData with _$RatingData {
       RatingData(
         consumerName: '${user.firstName} ${user.lastName}',
         createdTime: feedback.created,
-        description: feedback.desc,
+        description: feedback.desc.isEmpty ? '' : feedback.desc,
         imageUrl: user.avatarUrl,
         updatedTime: feedback.updated,
         rating: feedback.rating,
