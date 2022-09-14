@@ -119,11 +119,13 @@ class P12DetailView extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      AutoSizeText(
-                                        l10n.transitFeeLabel,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          l10n.transitFeeLabel,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
                                       ),
                                       AutoSizeText(
                                         context.formatMoney(transFee.price),
@@ -131,8 +133,19 @@ class P12DetailView extends StatelessWidget {
                                             .textTheme
                                             .bodyMedium
                                             ?.copyWith(
-                                                fontWeight: FontWeight.bold),
-                                      )
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      const SizedBox(
+                                        width: 2,
+                                      ),
+                                      AutoSizeText(
+                                        transFee.status == 'pending'
+                                            ? context.l10n.pendingLabel
+                                            : context.l10n.paidLabel,
+                                        maxFontSize: 12,
+                                        minFontSize: 8,
+                                      ),
                                     ],
                                   ),
                                 ),

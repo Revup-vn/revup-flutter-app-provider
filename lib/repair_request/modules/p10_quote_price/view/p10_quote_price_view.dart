@@ -41,7 +41,13 @@ class P10QuotePriceView extends StatelessWidget {
       }
     });
     return context.watch<P10QuotePriceCubit>().state.when(
-          success: (services) {
+          success: (serviceList) {
+            final transFee = serviceList.firstWhere(
+              (e) => e.name == 'transFee',
+            );
+            final services = serviceList
+                .where((element) => element.name != 'transFee')
+                .toList();
             return Scaffold(
               appBar: AppBar(
                 title: AutoSizeText(
@@ -62,6 +68,50 @@ class P10QuotePriceView extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 16),
                           child: Column(
                             children: [
+                              SizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        l10n.transitFeeLabel,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                    ),
+                                    AutoSizeText(
+                                      context.formatMoney(transFee.price),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(
+                                      width: 2,
+                                    ),
+                                    AutoSizeText(
+                                      transFee.status == 'pending'
+                                          ? context.l10n.pendingLabel
+                                          : context.l10n.paidLabel,
+                                      maxFontSize: 12,
+                                      minFontSize: 8,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              const Divider(
+                                height: 1,
+                                thickness: 1,
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
@@ -229,11 +279,14 @@ class P10QuotePriceView extends StatelessWidget {
                       0,
                       (p, e) =>
                           p +
-                          (e.price == -1 ? 0 : e.price) +
-                          (e.products.isEmpty
-                              ? 0
-                              : e.products.first.unitPrice *
-                                  e.products.first.quantity),
+                          ((transFee.status == 'pending'
+                                  ? transFee.price
+                                  : -transFee.price) +
+                              (e.price == -1 ? 0 : e.price) +
+                              (e.products.isEmpty
+                                  ? 0
+                                  : e.products.first.unitPrice *
+                                      e.products.first.quantity)),
                     ),
                   ),
                 ],

@@ -15,6 +15,7 @@ void fitPolylineToView(
     if (e.longitude < minLng) minLng = e.longitude;
     if (e.longitude > maxLng) maxLng = e.longitude;
   }
+  Future<void>.delayed(const Duration(milliseconds: 200));
   controller.animateCamera(
     CameraUpdate.newLatLngBounds(
       LatLngBounds(

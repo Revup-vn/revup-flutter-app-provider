@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../models/models.dart';
+import '../bloc/image_picker_bloc.dart';
 import '../cubit/p14_repair_completed_cubit.dart';
 import 'p14_repair_completed_view.u.dart';
 
@@ -39,6 +41,7 @@ class P14RepairCompletePage extends StatelessWidget {
                 ),
           ),
         ),
+        BlocProvider(create: (_) => ImagePickerBloc(ImagePicker())),
       ],
       child: P14RepairCompleteView(
         finished: finished,

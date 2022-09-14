@@ -5,5 +5,6 @@ class P16FinishedOrderDetailState with _$P16FinishedOrderDetailState {
   const factory P16FinishedOrderDetailState.initial() = _Initial;
   const factory P16FinishedOrderDetailState.loadSuccess({
     required List<PendingServiceModel> services,
+    required PendingServiceModel transFee,
   }) = _success;
 }
