@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../l10n/l10n.dart';
 import '../../../../new_request/models/pending_repair_request.dart';
@@ -18,11 +17,13 @@ class P3RequestDetailPage extends StatelessWidget {
     required this.pendingService,
     required this.needToVerify,
     required this.pendingAmount,
+    required this.transFee,
   });
   final PendingRepairRequest record;
   final IList<PendingServiceModel> pendingService;
   final List<NeedToVerifyModel> needToVerify;
   final int pendingAmount;
+  final PendingServiceModel transFee;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +86,7 @@ class P3RequestDetailPage extends StatelessWidget {
                         needToVerify: needToVerify,
                       ),
                     AdditionalCoststItem(
-                      record: record,
+                      transFee: transFee,
                     ),
                   ],
                 ),

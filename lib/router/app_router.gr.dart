@@ -115,7 +115,8 @@ class AppRouter extends _i34.RootStackRouter {
               record: args.record,
               pendingService: args.pendingService,
               needToVerify: args.needToVerify,
-              pendingAmount: args.pendingAmount));
+              pendingAmount: args.pendingAmount,
+              transFee: args.transFee));
     },
     InfoRequestRoute.name: (routeData) {
       final args = routeData.argsAs<InfoRequestRouteArgs>();
@@ -156,7 +157,7 @@ class AppRouter extends _i34.RootStackRouter {
       return _i34.AdaptivePage<void>(
           routeData: routeData,
           child: _i9.P16FinishedOrderDetailPage(
-              key: args.key, services: args.services));
+              key: args.key, services: args.services, transFee: args.transFee));
     },
     AddServiceRoute.name: (routeData) {
       final args = routeData.argsAs<AddServiceRouteArgs>();
@@ -508,7 +509,8 @@ class P3RequestDetailRoute
       required _i38.PendingRepairRequest record,
       required _i37.IList<_i8.PendingServiceModel> pendingService,
       required List<_i8.NeedToVerifyModel> needToVerify,
-      required int pendingAmount})
+      required int pendingAmount,
+      required _i8.PendingServiceModel transFee})
       : super(P3RequestDetailRoute.name,
             path: '/p3-request-detail-page',
             args: P3RequestDetailRouteArgs(
@@ -516,7 +518,8 @@ class P3RequestDetailRoute
                 record: record,
                 pendingService: pendingService,
                 needToVerify: needToVerify,
-                pendingAmount: pendingAmount));
+                pendingAmount: pendingAmount,
+                transFee: transFee));
 
   static const String name = 'P3RequestDetailRoute';
 }
@@ -527,7 +530,8 @@ class P3RequestDetailRouteArgs {
       required this.record,
       required this.pendingService,
       required this.needToVerify,
-      required this.pendingAmount});
+      required this.pendingAmount,
+      required this.transFee});
 
   final _i35.Key? key;
 
@@ -539,9 +543,11 @@ class P3RequestDetailRouteArgs {
 
   final int pendingAmount;
 
+  final _i8.PendingServiceModel transFee;
+
   @override
   String toString() {
-    return 'P3RequestDetailRouteArgs{key: $key, record: $record, pendingService: $pendingService, needToVerify: $needToVerify, pendingAmount: $pendingAmount}';
+    return 'P3RequestDetailRouteArgs{key: $key, record: $record, pendingService: $pendingService, needToVerify: $needToVerify, pendingAmount: $pendingAmount, transFee: $transFee}';
   }
 }
 
@@ -689,25 +695,30 @@ class P13SelectOptionCompleteRouteArgs {
 class P16FinishedOrderDetailRoute
     extends _i34.PageRouteInfo<P16FinishedOrderDetailRouteArgs> {
   P16FinishedOrderDetailRoute(
-      {_i35.Key? key, required List<_i8.PendingServiceModel> services})
+      {_i35.Key? key,
+      required List<_i8.PendingServiceModel> services,
+      required _i8.PendingServiceModel transFee})
       : super(P16FinishedOrderDetailRoute.name,
             path: '/p16-finished-order-detail-page',
-            args:
-                P16FinishedOrderDetailRouteArgs(key: key, services: services));
+            args: P16FinishedOrderDetailRouteArgs(
+                key: key, services: services, transFee: transFee));
 
   static const String name = 'P16FinishedOrderDetailRoute';
 }
 
 class P16FinishedOrderDetailRouteArgs {
-  const P16FinishedOrderDetailRouteArgs({this.key, required this.services});
+  const P16FinishedOrderDetailRouteArgs(
+      {this.key, required this.services, required this.transFee});
 
   final _i35.Key? key;
 
   final List<_i8.PendingServiceModel> services;
 
+  final _i8.PendingServiceModel transFee;
+
   @override
   String toString() {
-    return 'P16FinishedOrderDetailRouteArgs{key: $key, services: $services}';
+    return 'P16FinishedOrderDetailRouteArgs{key: $key, services: $services, transFee: $transFee}';
   }
 }
 

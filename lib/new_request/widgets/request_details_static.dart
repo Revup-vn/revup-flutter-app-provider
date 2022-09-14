@@ -24,6 +24,7 @@ class RequestDetailsStatic extends StatelessWidget {
     required this.needToVerify,
     required this.pendingAmount,
     required this.len,
+    required this.transFee,
   });
   final AppUser consumer;
   final PendingRepairRequest record;
@@ -32,6 +33,7 @@ class RequestDetailsStatic extends StatelessWidget {
   final List<NeedToVerifyModel> needToVerify;
   final int pendingAmount;
   final int len;
+  final PendingServiceModel transFee;
 
   @override
   Widget build(BuildContext context) {
@@ -177,6 +179,7 @@ class RequestDetailsStatic extends StatelessWidget {
                           pendingService: pendingService,
                           needToVerify: needToVerify,
                           pendingAmount: pendingAmount,
+                          transFee: transFee,
                         ),
                       );
                     },

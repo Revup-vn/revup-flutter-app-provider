@@ -116,11 +116,9 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                               ),
                               const SizedBox(height: 10),
                               UploadPhotosItem(
-                                onUpdatedImageTile: (fs) => fs.then(
-                                  (value) => context
-                                      .read<P14RepairCompletedCubit>()
-                                      .setImgs(value),
-                                ), // Set Imgs
+                                onUpdatedImageTile: (fs) => context
+                                    .read<P14RepairCompletedCubit>()
+                                    .setImgs(fs),
                               ),
                               const SizedBox(height: 10),
                               BuildRowRepairCompletedItem(
@@ -153,6 +151,7 @@ class _P14RepairCompleteViewState extends State<P14RepairCompleteView> {
                                 onPressed: () => context.router.push(
                                   P16FinishedOrderDetailRoute(
                                     services: widget.finished,
+                                    transFee: widget.transFee,
                                   ),
                                 ),
                               ),

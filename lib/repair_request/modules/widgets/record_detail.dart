@@ -14,15 +14,20 @@ class RecordDetail extends StatelessWidget {
   const RecordDetail({
     super.key,
     required this.title,
-    required this.services,
+    required this.serviceList,
   });
 
   final String title;
-  final List<PendingServiceModel> services;
+  final List<PendingServiceModel> serviceList;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final transFee = serviceList.firstWhere(
+      (e) => e.name == 'transFee',
+    );
+    final services =
+        serviceList.where((element) => element.name != 'transFee').toList();
     return Column(
       children: [
         Expanded(
@@ -34,6 +39,46 @@ class RecordDetail extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Column(
                   children: [
+                    SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Expanded(
+                            child: AutoSizeText(
+                              l10n.transitFeeLabel,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ),
+                          AutoSizeText(
+                            context.formatMoney(transFee.price),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            width: 2,
+                          ),
+                          AutoSizeText(
+                            transFee.status == 'pending'
+                                ? context.l10n.pendingLabel
+                                : context.l10n.paidLabel,
+                            maxFontSize: 12,
+                            minFontSize: 8,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Divider(
+                      height: 1,
+                      thickness: 1,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -189,10 +234,14 @@ class RecordDetail extends StatelessWidget {
             0,
             (p, e) =>
                 p +
-                (e.price == -1 ? 0 : e.price) +
-                (e.products.isEmpty
-                    ? 0
-                    : e.products.first.unitPrice * e.products.first.quantity),
+                ((transFee.status == 'pending'
+                        ? transFee.price
+                        : -transFee.price) +
+                    (e.price == -1 ? 0 : e.price) +
+                    (e.products.isEmpty
+                        ? 0
+                        : e.products.first.unitPrice *
+                            e.products.first.quantity)),
           ),
         ),
       ],

@@ -50,6 +50,7 @@ class NewRequestView extends StatelessWidget {
                 needToVerify,
                 pendingAmount,
                 len,
+                transFee,
               ) {
                 return Stack(
                   children: <Widget>[
@@ -146,6 +147,7 @@ class NewRequestView extends StatelessWidget {
                       needToVerify: needToVerify,
                       pendingAmount: pendingAmount,
                       len: len,
+                      transFee: transFee,
                     ),
                   ],
                 );

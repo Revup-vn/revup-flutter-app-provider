@@ -55,20 +55,20 @@ class RequestDetailsLive extends StatelessWidget {
                       MapRouteEvent.providerStarted(
                         onRoute: () {
                           Future<dynamic>.delayed(
-                              const Duration(milliseconds: 300), () {
-                            context.router.popAndPush(
-                              StartRepairRoute(
-                                consumer: consumer,
-                                recordId: recordId,
-                                distance: distance,
-                                pendingService: pendingService,
-                                pendingAmount: pendingAmount,
-                              ),
-                            );
-                            context.router.removeWhere(
-                              (route) => route.name == MapRouteRoute.name,
-                            );
-                          });
+                            const Duration(milliseconds: 100),
+                          );
+                          context.router.popAndPush(
+                            StartRepairRoute(
+                              consumer: consumer,
+                              recordId: recordId,
+                              distance: distance,
+                              pendingService: pendingService,
+                              pendingAmount: pendingAmount,
+                            ),
+                          );
+                          context.router.removeWhere(
+                            (route) => route.name == MapRouteRoute.name,
+                          );
                         }, // route to doing repair page
                         sendMessage: (token) => cubitNotify.sendMessageToToken(
                           SendMessage(
