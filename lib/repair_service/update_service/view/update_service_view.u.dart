@@ -324,6 +324,7 @@ class UpdateServiceView extends StatelessWidget {
                           FormBuilderTextField(
                             name: 'serviceName',
                             initialValue: data.serviceName,
+                            maxLength: 50,
                             //enabled: false,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -337,7 +338,7 @@ class UpdateServiceView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -356,6 +357,7 @@ class UpdateServiceView extends StatelessWidget {
                               border: const OutlineInputBorder(),
                               hintText: l10n.enterMountLabel,
                             ),
+                            maxLength: 9,
                             style: Theme.of(context).textTheme.labelLarge,
                             keyboardType: TextInputType.number,
                             validator: FormBuilderValidators.compose([
@@ -363,7 +365,7 @@ class UpdateServiceView extends StatelessWidget {
                                 errorText: l10n.emptyLabel,
                               ),
                               FormBuilderValidators.match(
-                                r'^[0-9]{1,9}$',
+                                r'^[0-9]+$',
                                 errorText: l10n.invalidFormatLabel,
                               ),
                             ]),

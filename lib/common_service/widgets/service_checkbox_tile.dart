@@ -93,6 +93,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
             title: Column(
               children: [
                 FormBuilderTextField(
+                  maxLength: 50,
                   enabled: !isChecked,
                   name: widget.serviceData.sName,
                   initialValue: widget.serviceData.sName,
@@ -110,7 +111,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                         errorText: l10n.emptyLabel,
                       ),
                       FormBuilderValidators.match(
-                        r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                        r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                         errorText: l10n.invalidFormatLabel,
                       ),
                     ],
@@ -121,6 +122,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 ),
                 FormBuilderTextField(
                   enabled: !isChecked,
+                  maxLength: 9,
                   name: 'fee${widget.serviceData.sName}',
                   initialValue: widget.serviceData.sFee.toString(),
                   decoration: InputDecoration(
@@ -137,7 +139,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                       errorText: l10n.emptyLabel,
                     ),
                     FormBuilderValidators.match(
-                      r'^[0-9]{1,9}$',
+                      r'^[0-9]+$',
                       errorText: l10n.invalidFormatLabel,
                     ),
                   ]),
