@@ -364,6 +364,7 @@ class AddProductView extends StatelessWidget {
                             initialValue: productModel.productName,
                             //enabled: productModel.productName.isEmpty,
                             name: 'productName',
+                            maxLength: 50,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               hintText: l10n.enterServiceNameLabel,
@@ -376,7 +377,7 @@ class AddProductView extends StatelessWidget {
                                   errorText: l10n.emptyLabel,
                                 ),
                                 FormBuilderValidators.match(
-                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                                  r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                                   errorText: l10n.invalidFormatLabel,
                                 ),
                               ],
@@ -391,6 +392,7 @@ class AddProductView extends StatelessWidget {
                           FormBuilderTextField(
                             initialValue: productModel.productFee.toString(),
                             name: 'fee',
+                            maxLength: 9,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               hintText: l10n.enterMountLabel,
@@ -402,7 +404,7 @@ class AddProductView extends StatelessWidget {
                                 errorText: l10n.emptyLabel,
                               ),
                               FormBuilderValidators.match(
-                                r'^[0-9]{1,9}$',
+                                r'^[0-9]+$',
                                 errorText: l10n.invalidFormatLabel,
                               ),
                             ]),

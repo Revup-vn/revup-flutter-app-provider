@@ -67,13 +67,14 @@ class _NeedToVerifyItemState extends State<NeedToVerifyItem> {
                     FormBuilderTextField(
                       name: 'price',
                       key: _price,
+                      maxLength: 9,
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         labelText: context.l10n.enterPriceLabel,
                       ),
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.match(
-                          r'^[0-9]{1,9}$',
+                          r'^[0-9]+$',
                           errorText: context.l10n.invalidFormatLabel,
                         ),
                       ]),

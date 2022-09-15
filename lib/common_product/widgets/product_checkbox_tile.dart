@@ -87,6 +87,7 @@ class _ProductCheckboxTileState extends State<ProductCheckboxTile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FormBuilderTextField(
+                  maxLength: 50,
                   enabled: !isChecked,
                   name: widget.serviceData.name,
                   initialValue: widget.serviceData.name,
@@ -104,7 +105,7 @@ class _ProductCheckboxTileState extends State<ProductCheckboxTile> {
                         errorText: l10n.emptyLabel,
                       ),
                       FormBuilderValidators.match(
-                        r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                        r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                         errorText: l10n.invalidFormatLabel,
                       ),
                     ],
@@ -114,6 +115,7 @@ class _ProductCheckboxTileState extends State<ProductCheckboxTile> {
                   height: 20,
                 ),
                 FormBuilderTextField(
+                  maxLength: 9,
                   enabled: !isChecked,
                   name: 'price${widget.serviceData.name}',
                   initialValue: widget.serviceData.price.toString(),
@@ -131,7 +133,7 @@ class _ProductCheckboxTileState extends State<ProductCheckboxTile> {
                       errorText: l10n.emptyLabel,
                     ),
                     FormBuilderValidators.match(
-                      r'^[0-9]{1,9}$',
+                      r'^[0-9]+$',
                       errorText: l10n.invalidFormatLabel,
                     ),
                   ]),

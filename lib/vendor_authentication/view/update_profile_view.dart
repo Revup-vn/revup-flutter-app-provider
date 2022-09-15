@@ -125,6 +125,7 @@ class UpdateProfileView extends StatelessWidget {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         initialValue: '${user.firstName} ${user.lastName}',
                         style: Theme.of(context).textTheme.labelLarge,
+                        maxLength: 50,
                         decoration: InputDecoration(
                           labelText: l10n.fullNameLabel,
                           labelStyle: Theme.of(context)

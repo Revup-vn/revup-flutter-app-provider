@@ -153,6 +153,7 @@ class AddServiceView extends StatelessWidget {
                           border: const OutlineInputBorder(),
                           hintText: l10n.enterServiceNameLabel,
                         ),
+                        maxLength: 50,
                         style: Theme.of(context).textTheme.labelLarge,
                         keyboardType: TextInputType.multiline,
                         validator: FormBuilderValidators.compose(
@@ -161,7 +162,7 @@ class AddServiceView extends StatelessWidget {
                               errorText: l10n.emptyLabel,
                             ),
                             FormBuilderValidators.match(
-                              r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                              r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]+$',
                               errorText: l10n.invalidFormatLabel,
                             ),
                           ],
@@ -179,6 +180,7 @@ class AddServiceView extends StatelessWidget {
                           border: const OutlineInputBorder(),
                           hintText: l10n.enterMountLabel,
                         ),
+                        maxLength: 9,
                         style: Theme.of(context).textTheme.labelLarge,
                         keyboardType: TextInputType.number,
                         validator: FormBuilderValidators.compose([
@@ -186,7 +188,7 @@ class AddServiceView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[0-9]{1,9}$',
+                            r'^[0-9]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
