@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'p16_finished_order_detail_bloc.dart';
+part of 'image_picker_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,63 +15,62 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$P16FinishedOrderDetailEvent {
+mixin _$ImagePickerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() populateData,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? populateData,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? populateData,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_fetchedData value) populateData,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? populateData,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? populateData,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $P16FinishedOrderDetailEventCopyWith<$Res> {
-  factory $P16FinishedOrderDetailEventCopyWith(
-          P16FinishedOrderDetailEvent value,
-          $Res Function(P16FinishedOrderDetailEvent) then) =
-      _$P16FinishedOrderDetailEventCopyWithImpl<$Res>;
+abstract class $ImagePickerEventCopyWith<$Res> {
+  factory $ImagePickerEventCopyWith(
+          ImagePickerEvent value, $Res Function(ImagePickerEvent) then) =
+      _$ImagePickerEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$P16FinishedOrderDetailEventCopyWithImpl<$Res>
-    implements $P16FinishedOrderDetailEventCopyWith<$Res> {
-  _$P16FinishedOrderDetailEventCopyWithImpl(this._value, this._then);
+class _$ImagePickerEventCopyWithImpl<$Res>
+    implements $ImagePickerEventCopyWith<$Res> {
+  _$ImagePickerEventCopyWithImpl(this._value, this._then);
 
-  final P16FinishedOrderDetailEvent _value;
+  final ImagePickerEvent _value;
   // ignore: unused_field
-  final $Res Function(P16FinishedOrderDetailEvent) _then;
+  final $Res Function(ImagePickerEvent) _then;
 }
 
 /// @nodoc
@@ -83,7 +82,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_StartedCopyWithImpl<$Res>
-    extends _$P16FinishedOrderDetailEventCopyWithImpl<$Res>
+    extends _$ImagePickerEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -99,7 +98,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailEvent.started()';
+    return 'ImagePickerEvent.started()';
   }
 
   @override
@@ -115,7 +114,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() populateData,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return started();
   }
@@ -124,7 +123,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? populateData,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return started?.call();
   }
@@ -133,7 +132,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? populateData,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -146,7 +145,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_fetchedData value) populateData,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return started(this);
   }
@@ -155,7 +154,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? populateData,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return started?.call(this);
   }
@@ -164,7 +163,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? populateData,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -174,75 +173,100 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements P16FinishedOrderDetailEvent {
+abstract class _Started implements ImagePickerEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_fetchedDataCopyWith<$Res> {
-  factory _$$_fetchedDataCopyWith(
-          _$_fetchedData value, $Res Function(_$_fetchedData) then) =
-      __$$_fetchedDataCopyWithImpl<$Res>;
+abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
+  factory _$$_ImageUploadSelectedCopyWith(_$_ImageUploadSelected value,
+          $Res Function(_$_ImageUploadSelected) then) =
+      __$$_ImageUploadSelectedCopyWithImpl<$Res>;
+  $Res call({ImageSource source});
 }
 
 /// @nodoc
-class __$$_fetchedDataCopyWithImpl<$Res>
-    extends _$P16FinishedOrderDetailEventCopyWithImpl<$Res>
-    implements _$$_fetchedDataCopyWith<$Res> {
-  __$$_fetchedDataCopyWithImpl(
-      _$_fetchedData _value, $Res Function(_$_fetchedData) _then)
-      : super(_value, (v) => _then(v as _$_fetchedData));
+class __$$_ImageUploadSelectedCopyWithImpl<$Res>
+    extends _$ImagePickerEventCopyWithImpl<$Res>
+    implements _$$_ImageUploadSelectedCopyWith<$Res> {
+  __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
+      $Res Function(_$_ImageUploadSelected) _then)
+      : super(_value, (v) => _then(v as _$_ImageUploadSelected));
 
   @override
-  _$_fetchedData get _value => super._value as _$_fetchedData;
+  _$_ImageUploadSelected get _value => super._value as _$_ImageUploadSelected;
+
+  @override
+  $Res call({
+    Object? source = freezed,
+  }) {
+    return _then(_$_ImageUploadSelected(
+      source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_fetchedData implements _fetchedData {
-  const _$_fetchedData();
+class _$_ImageUploadSelected implements _ImageUploadSelected {
+  const _$_ImageUploadSelected(this.source);
+
+  @override
+  final ImageSource source;
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailEvent.populateData()';
+    return 'ImagePickerEvent.imageUploadSelected(source: $source)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_fetchedData);
+        (other.runtimeType == runtimeType &&
+            other is _$_ImageUploadSelected &&
+            const DeepCollectionEquality().equals(other.source, source));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      __$$_ImageUploadSelectedCopyWithImpl<_$_ImageUploadSelected>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() populateData,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
-    return populateData();
+    return imageUploadSelected(source);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? populateData,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
-    return populateData?.call();
+    return imageUploadSelected?.call(source);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? populateData,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
-    if (populateData != null) {
-      return populateData();
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(source);
     }
     return orElse();
   }
@@ -251,102 +275,101 @@ class _$_fetchedData implements _fetchedData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_fetchedData value) populateData,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
-    return populateData(this);
+    return imageUploadSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? populateData,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
-    return populateData?.call(this);
+    return imageUploadSelected?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_fetchedData value)? populateData,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
-    if (populateData != null) {
-      return populateData(this);
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class _fetchedData implements P16FinishedOrderDetailEvent {
-  const factory _fetchedData() = _$_fetchedData;
+abstract class _ImageUploadSelected implements ImagePickerEvent {
+  const factory _ImageUploadSelected(final ImageSource source) =
+      _$_ImageUploadSelected;
+
+  ImageSource get source;
+  @JsonKey(ignore: true)
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$P16FinishedOrderDetailState {
+mixin _$ImagePickerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)
-        loadSuccess,
+    required TResult Function(File image) choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)?
-        loadSuccess,
+    TResult Function(File image)? choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)?
-        loadSuccess,
+    TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_success value) loadSuccess,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $P16FinishedOrderDetailStateCopyWith<$Res> {
-  factory $P16FinishedOrderDetailStateCopyWith(
-          P16FinishedOrderDetailState value,
-          $Res Function(P16FinishedOrderDetailState) then) =
-      _$P16FinishedOrderDetailStateCopyWithImpl<$Res>;
+abstract class $ImagePickerStateCopyWith<$Res> {
+  factory $ImagePickerStateCopyWith(
+          ImagePickerState value, $Res Function(ImagePickerState) then) =
+      _$ImagePickerStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$P16FinishedOrderDetailStateCopyWithImpl<$Res>
-    implements $P16FinishedOrderDetailStateCopyWith<$Res> {
-  _$P16FinishedOrderDetailStateCopyWithImpl(this._value, this._then);
+class _$ImagePickerStateCopyWithImpl<$Res>
+    implements $ImagePickerStateCopyWith<$Res> {
+  _$ImagePickerStateCopyWithImpl(this._value, this._then);
 
-  final P16FinishedOrderDetailState _value;
+  final ImagePickerState _value;
   // ignore: unused_field
-  final $Res Function(P16FinishedOrderDetailState) _then;
+  final $Res Function(ImagePickerState) _then;
 }
 
 /// @nodoc
@@ -358,7 +381,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$P16FinishedOrderDetailStateCopyWithImpl<$Res>
+    extends _$ImagePickerStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -374,7 +397,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailState.initial()';
+    return 'ImagePickerState.initial()';
   }
 
   @override
@@ -390,9 +413,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)
-        loadSuccess,
+    required TResult Function(File image) choosePhotoSuccess,
   }) {
     return initial();
   }
@@ -401,9 +422,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)?
-        loadSuccess,
+    TResult Function(File image)? choosePhotoSuccess,
   }) {
     return initial?.call();
   }
@@ -412,9 +431,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)?
-        loadSuccess,
+    TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -427,7 +444,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_success value) loadSuccess,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) {
     return initial(this);
   }
@@ -436,7 +453,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) {
     return initial?.call(this);
   }
@@ -445,7 +462,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -455,131 +472,100 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements P16FinishedOrderDetailState {
+abstract class _Initial implements ImagePickerState {
   const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$_successCopyWith<$Res> {
-  factory _$$_successCopyWith(
-          _$_success value, $Res Function(_$_success) then) =
-      __$$_successCopyWithImpl<$Res>;
-  $Res call({List<PendingServiceModel> services, PendingServiceModel transFee});
-
-  $PendingServiceModelCopyWith<$Res> get transFee;
+abstract class _$$_ChoosePhotoSuccessCopyWith<$Res> {
+  factory _$$_ChoosePhotoSuccessCopyWith(_$_ChoosePhotoSuccess value,
+          $Res Function(_$_ChoosePhotoSuccess) then) =
+      __$$_ChoosePhotoSuccessCopyWithImpl<$Res>;
+  $Res call({File image});
 }
 
 /// @nodoc
-class __$$_successCopyWithImpl<$Res>
-    extends _$P16FinishedOrderDetailStateCopyWithImpl<$Res>
-    implements _$$_successCopyWith<$Res> {
-  __$$_successCopyWithImpl(_$_success _value, $Res Function(_$_success) _then)
-      : super(_value, (v) => _then(v as _$_success));
+class __$$_ChoosePhotoSuccessCopyWithImpl<$Res>
+    extends _$ImagePickerStateCopyWithImpl<$Res>
+    implements _$$_ChoosePhotoSuccessCopyWith<$Res> {
+  __$$_ChoosePhotoSuccessCopyWithImpl(
+      _$_ChoosePhotoSuccess _value, $Res Function(_$_ChoosePhotoSuccess) _then)
+      : super(_value, (v) => _then(v as _$_ChoosePhotoSuccess));
 
   @override
-  _$_success get _value => super._value as _$_success;
+  _$_ChoosePhotoSuccess get _value => super._value as _$_ChoosePhotoSuccess;
 
   @override
   $Res call({
-    Object? services = freezed,
-    Object? transFee = freezed,
+    Object? image = freezed,
   }) {
-    return _then(_$_success(
-      services: services == freezed
-          ? _value._services
-          : services // ignore: cast_nullable_to_non_nullable
-              as List<PendingServiceModel>,
-      transFee: transFee == freezed
-          ? _value.transFee
-          : transFee // ignore: cast_nullable_to_non_nullable
-              as PendingServiceModel,
+    return _then(_$_ChoosePhotoSuccess(
+      image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
     ));
-  }
-
-  @override
-  $PendingServiceModelCopyWith<$Res> get transFee {
-    return $PendingServiceModelCopyWith<$Res>(_value.transFee, (value) {
-      return _then(_value.copyWith(transFee: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$_success implements _success {
-  const _$_success(
-      {required final List<PendingServiceModel> services,
-      required this.transFee})
-      : _services = services;
-
-  final List<PendingServiceModel> _services;
-  @override
-  List<PendingServiceModel> get services {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_services);
-  }
+class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
+  const _$_ChoosePhotoSuccess(this.image);
 
   @override
-  final PendingServiceModel transFee;
+  final File image;
 
   @override
   String toString() {
-    return 'P16FinishedOrderDetailState.loadSuccess(services: $services, transFee: $transFee)';
+    return 'ImagePickerState.choosePhotoSuccess(image: $image)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_success &&
-            const DeepCollectionEquality().equals(other._services, _services) &&
-            const DeepCollectionEquality().equals(other.transFee, transFee));
+            other is _$_ChoosePhotoSuccess &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_services),
-      const DeepCollectionEquality().hash(transFee));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
-  _$$_successCopyWith<_$_success> get copyWith =>
-      __$$_successCopyWithImpl<_$_success>(this, _$identity);
+  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
+      __$$_ChoosePhotoSuccessCopyWithImpl<_$_ChoosePhotoSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)
-        loadSuccess,
+    required TResult Function(File image) choosePhotoSuccess,
   }) {
-    return loadSuccess(services, transFee);
+    return choosePhotoSuccess(image);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)?
-        loadSuccess,
+    TResult Function(File image)? choosePhotoSuccess,
   }) {
-    return loadSuccess?.call(services, transFee);
+    return choosePhotoSuccess?.call(image);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            List<PendingServiceModel> services, PendingServiceModel transFee)?
-        loadSuccess,
+    TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
-    if (loadSuccess != null) {
-      return loadSuccess(services, transFee);
+    if (choosePhotoSuccess != null) {
+      return choosePhotoSuccess(image);
     }
     return orElse();
   }
@@ -588,42 +574,39 @@ class _$_success implements _success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_success value) loadSuccess,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) {
-    return loadSuccess(this);
+    return choosePhotoSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) {
-    return loadSuccess?.call(this);
+    return choosePhotoSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_success value)? loadSuccess,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
-    if (loadSuccess != null) {
-      return loadSuccess(this);
+    if (choosePhotoSuccess != null) {
+      return choosePhotoSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _success implements P16FinishedOrderDetailState {
-  const factory _success(
-      {required final List<PendingServiceModel> services,
-      required final PendingServiceModel transFee}) = _$_success;
+abstract class _ChoosePhotoSuccess implements ImagePickerState {
+  const factory _ChoosePhotoSuccess(final File image) = _$_ChoosePhotoSuccess;
 
-  List<PendingServiceModel> get services;
-  PendingServiceModel get transFee;
+  File get image;
   @JsonKey(ignore: true)
-  _$$_successCopyWith<_$_success> get copyWith =>
+  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

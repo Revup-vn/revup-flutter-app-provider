@@ -61,9 +61,12 @@ class HistoryProviderDetailBloc
                   list.complete,
                 );
             final listPaymentService = await list.future;
-            final listServiceName =
-                listPaymentService.map((a) => a.serviceName).toList();
+            final listServiceName = listPaymentService
+                .map((a) => a.serviceName)
+                .filter((a) => a != 'transFee')
+                .toList();
             final listFee = listPaymentService
+                .filter((a) => a.serviceName != 'transFee')
                 .map(
                   (a) => a.maybeMap<Option<int>>(
                     orElse: none,
@@ -86,6 +89,17 @@ class HistoryProviderDetailBloc
                   0,
                   (previousValue, element) => previousValue + element,
                 );
+            final transFee = listPaymentService
+                .filter((a) => a.serviceName == 'transFee')
+                .headOption
+                .fold(
+                  () => 0,
+                  (a) => a.maybeMap(
+                    paid: (v) => v.moneyAmount,
+                    orElse: () => 0,
+                  ),
+                );
+
             completer.complete(
               right(
                 HistoryDetailModel(
@@ -105,7 +119,7 @@ class HistoryProviderDetailBloc
                     serviceName: listServiceName,
                     address: appUser.addr,
                     totalServiceFee: totalFee,
-                    feeTransport: repairRecord.money,
+                    feeTransport: transFee,
                   ),
                   rating: repairRecord.maybeMap(
                     orElse: () => 0,

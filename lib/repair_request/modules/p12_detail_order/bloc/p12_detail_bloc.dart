@@ -12,7 +12,7 @@ part 'p12_detail_event.dart';
 part 'p12_detail_state.dart';
 
 class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
-  P12DetailBloc(this._ips, this.id, this._irr)
+  P12DetailBloc(this._ips, this.id, this._irr, this.sr)
       : super(const P12DetailState.initial()) {
     on<P12DetailEvent>(_onEvent);
     _s = _ips.collection().snapshots().listen((event) {
@@ -30,23 +30,55 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
         (r) => onRoute(r.vehicle),
       ),
       fetched: () async {
-        final services = (await _ips.all())
-            .toOption()
-            .fold<IList<PendingServiceModel>>(
-              nil,
-              (a) => a.map(
-                (a) => a.map(
-                  pending: (v) =>
-                      PendingServiceModel.fromDto(paymentService: v),
-                  paid: (v) => PendingServiceModel.fromDto(paymentService: v),
-                  needToVerify: (v) =>
-                      PendingServiceModel.fromDto(paymentService: v),
-                ),
+        final maybeRepairRecord = (await _irr.get(id))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                orElse: none,
+                started: some,
               ),
             )
-            .sort(orderBy(StringOrder.reverse(), (a) => a.status))
-            .toList();
-        emit(P12DetailState.populated(services: services));
+            .fold<Option<RepairRecord>>((l) => none(), (r) => r);
+        if (maybeRepairRecord.isNone()) {
+          emit(const P12DetailState.failure());
+        } else {
+          final record =
+              maybeRepairRecord.getOrElse(() => throw NullThrownError());
+          final services = (await _ips.all())
+              .toOption()
+              .fold<IList<PendingServiceModel>>(
+                nil,
+                (a) => a.map(
+                  (a) => a.map(
+                    pending: (v) =>
+                        PendingServiceModel.fromDto(paymentService: v),
+                    paid: (v) => PendingServiceModel.fromDto(paymentService: v),
+                    needToVerify: (v) =>
+                        PendingServiceModel.fromDto(paymentService: v),
+                  ),
+                ),
+              )
+              .sort(orderBy(StringOrder.reverse(), (a) => a.status))
+              .toList();
+          final svProvider = (await sr
+                  .repairServiceRepo(
+                    AppUserDummy.dummyProvider(record.pid),
+                    RepairCategoryDummy.dummy(
+                      record.vehicle == 'car' ? 'Oto' : 'Xe máy',
+                    ),
+                  )
+                  .all())
+              .fold<IList<RepairService>>((l) => nil(), (r) => r);
+          final listServiceImg = services
+              .map(
+                (e) => e.copyWith(
+                  imageUrl: svProvider
+                      .find((a) => a.name == e.name)
+                      .fold(() => e.imageUrl, (a) => a.img),
+                ),
+              )
+              .toList();
+          emit(P12DetailState.populated(services: listServiceImg));
+        }
       },
     );
   }
@@ -60,5 +92,6 @@ class P12DetailBloc extends Bloc<P12DetailEvent, P12DetailState> {
   final IStore<PaymentService> _ips;
   final String id;
   final IStore<RepairRecord> _irr;
+  final StoreRepository sr;
   late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
 }

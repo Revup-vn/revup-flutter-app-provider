@@ -9,13 +9,15 @@ class P16FinishedOrderDetailPage extends StatelessWidget {
   const P16FinishedOrderDetailPage({
     super.key,
     required this.services,
+    required this.transFee,
   });
 
   final List<PendingServiceModel> services;
+  final PendingServiceModel transFee;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => P16FinishedOrderDetailBloc(services),
+      create: (_) => P16FinishedOrderDetailBloc(services, transFee),
       child: const P16FinishedOrderDetail(),
     );
   }

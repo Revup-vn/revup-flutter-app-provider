@@ -79,6 +79,8 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                     (a) => a.maybeMap(
                       pending: (v) =>
                           some(PendingServiceModel.fromDto(paymentService: v)),
+                      paid: (v) =>
+                          some(PendingServiceModel.fromDto(paymentService: v)),
                       orElse: none,
                     ),
                   ),
@@ -90,12 +92,25 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                 .map(
                   (a) => a.getOrElse(() => throw NullThrownError()),
                 );
-
+        final transFee = pendingService.toList().firstWhere(
+              (a) => a.name == 'transFee',
+            );
         final pendingAmount = pendingService
-            .map(
-              (a) => a.price,
-            )
-            .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
+            .toList()
+            .where((element) => element.name != 'transFee')
+            .fold(
+              0,
+              (p, e) =>
+                  p +
+                  ((transFee.status == 'pending'
+                          ? transFee.price
+                          : -transFee.price) +
+                      (e.price == -1 ? 0 : e.price) +
+                      (e.products.isEmpty
+                          ? 0
+                          : e.products.first.unitPrice *
+                              e.products.first.quantity)),
+            );
 
         final len = (await (storeRepository.repairPaymentRepo(
           RepairRecordDummy.dummyPending(recordId),
@@ -159,6 +174,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
                       needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
                       pendingAmount: pendingAmount,
                       len: len,
+                      transFee: transFee,
                     ),
                   );
                 },

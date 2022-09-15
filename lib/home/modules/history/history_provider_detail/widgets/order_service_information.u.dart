@@ -140,7 +140,7 @@ class OrderServiceInformationItem extends StatelessWidget {
                           ),
                           Expanded(
                             child: AutoSizeText(
-                              '${l10n.addressLabel}: ${user.addr}',
+                              '${l10n.addressLabel} ${user.addr}',
                               style: Theme.of(context).textTheme.labelLarge,
                               maxLines: 3,
                             ),

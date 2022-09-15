@@ -19,10 +19,12 @@ class P16FinishedOrderDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: context.watch<P16FinishedOrderDetailBloc>().state.when(
-            loadSuccess: (services) => RecordDetail(
-              title: l10n.orderDetailLabel,
-              services: services,
-            ),
+            loadSuccess: (services, transFee) {
+              return RecordDetail(
+                title: l10n.orderDetailLabel,
+                serviceList: services,
+              );
+            },
             initial: Container.new,
           ),
     );

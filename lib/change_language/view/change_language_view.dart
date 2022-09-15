@@ -69,7 +69,7 @@ class ChangeLanguageView extends StatelessWidget {
         content: [
           Center(
             child: AutoSizeText(
-              context.l10n.sureLabel,
+              context.l10n.changeLangSuccessLabel,
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),

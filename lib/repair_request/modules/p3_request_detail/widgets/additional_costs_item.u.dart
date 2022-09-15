@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../../../new_request/models/pending_repair_request.dart';
+import '../../../models/pending_service_model.dart';
 
 class AdditionalCoststItem extends StatelessWidget {
   const AdditionalCoststItem({
     super.key,
-    required this.record,
+    required this.transFee,
   });
-  final PendingRepairRequest record;
+  final PendingServiceModel transFee;
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +42,25 @@ class AdditionalCoststItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              AutoSizeText(
-                l10n.transitFeeLabel,
-                style: Theme.of(context).textTheme.labelLarge,
+              Expanded(
+                child: AutoSizeText(
+                  l10n.transitFeeLabel,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
               ),
               AutoSizeText(
-                context.formatMoney(record.money),
+                context.formatMoney(transFee.price),
                 style: Theme.of(context).textTheme.labelLarge,
+              ),
+              const SizedBox(
+                width: 2,
+              ),
+              AutoSizeText(
+                transFee.status == 'pending'
+                    ? context.l10n.pendingLabel
+                    : context.l10n.paidLabel,
+                maxFontSize: 12,
+                minFontSize: 8,
               ),
             ],
           ),
