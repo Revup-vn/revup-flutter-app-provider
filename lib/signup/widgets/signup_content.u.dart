@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
 
+import '../../configs/video_call_config.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/shared.dart';
 import '../bloc/signup_bloc.u.dart';
@@ -425,7 +427,11 @@ class SignUpContent extends StatelessWidget {
                               final ilistFile = ilist(list);
                               final ilistStorageFile = ilistFile
                                   .map((a) => StorageFile.profile(file: a));
-
+                              final cubeUser = CubeUser(
+                                login: '+84$phoneNumber',
+                                password: DEFAULT_PASS,
+                              );
+                              await signUp(cubeUser);
                               if (ilistStorageFile.length() != 0) {
                                 await cubit
                                     .uploadImg(files: ilistStorageFile)

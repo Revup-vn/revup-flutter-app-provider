@@ -33,6 +33,8 @@ import '../repair_service/update_service/view/view.dart';
 import '../signup/view/signup_page.u.dart';
 import '../splash/splash.dart';
 import '../vendor_authentication/vender_authentication.dart';
+import '../video_call/view/coversation_page.dart';
+import '../video_call/view/incoming_call_page.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -71,6 +73,8 @@ import '../vendor_authentication/vender_authentication.dart';
     AdaptiveRoute<void>(page: CommonProductPage),
     AdaptiveRoute<void>(page: ServiceSuggestionPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
+    AdaptiveRoute<void>(page: IncomingCallPage),
+    AdaptiveRoute<void>(page: ConversationPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
