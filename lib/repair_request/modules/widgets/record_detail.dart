@@ -216,10 +216,11 @@ class RecordDetail extends StatelessWidget {
                         );
                       },
                     ),
-                    const Divider(
-                      height: 1,
-                      thickness: 1,
-                    ),
+                    if (services.isNotEmpty)
+                      const Divider(
+                        height: 1,
+                        thickness: 1,
+                      ),
                     const SizedBox(
                       height: 16,
                     ),
@@ -231,18 +232,16 @@ class RecordDetail extends StatelessWidget {
         ),
         TotalServicePriceItem(
           pendingAmount: services.fold(
-            0,
-            (p, e) =>
-                p +
-                ((transFee.status == 'pending'
-                        ? transFee.price
-                        : -transFee.price) +
-                    (e.price == -1 ? 0 : e.price) +
-                    (e.products.isEmpty
-                        ? 0
-                        : e.products.first.unitPrice *
-                            e.products.first.quantity)),
-          ),
+                0,
+                (p, e) =>
+                    p +
+                    ((e.price == -1 ? 0 : e.price) +
+                        (e.products.isEmpty
+                            ? 0
+                            : e.products.first.unitPrice *
+                                e.products.first.quantity)),
+              ) +
+              (transFee.status == 'pending' ? transFee.price : -transFee.price),
         ),
       ],
     );

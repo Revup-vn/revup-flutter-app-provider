@@ -276,18 +276,18 @@ class P10QuotePriceView extends StatelessWidget {
                   ),
                   TotalServicePriceItem(
                     pendingAmount: services.fold(
-                      0,
-                      (p, e) =>
-                          p +
-                          ((transFee.status == 'pending'
-                                  ? transFee.price
-                                  : -transFee.price) +
-                              (e.price == -1 ? 0 : e.price) +
-                              (e.products.isEmpty
-                                  ? 0
-                                  : e.products.first.unitPrice *
-                                      e.products.first.quantity)),
-                    ),
+                          0,
+                          (p, e) =>
+                              p +
+                              ((e.price == -1 ? 0 : e.price) +
+                                  (e.products.isEmpty
+                                      ? 0
+                                      : e.products.first.unitPrice *
+                                          e.products.first.quantity)),
+                        ) +
+                        (transFee.status == 'pending'
+                            ? transFee.price
+                            : -transFee.price),
                   ),
                 ],
               ),
