@@ -96,21 +96,19 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
               (a) => a.name == 'transFee',
             );
         final pendingAmount = pendingService
-            .toList()
-            .where((element) => element.name != 'transFee')
-            .fold(
-              0,
-              (p, e) =>
-                  p +
-                  ((transFee.status == 'pending'
-                          ? transFee.price
-                          : -transFee.price) +
-                      (e.price == -1 ? 0 : e.price) +
-                      (e.products.isEmpty
-                          ? 0
-                          : e.products.first.unitPrice *
-                              e.products.first.quantity)),
-            );
+                .toList()
+                .where((element) => element.name != 'transFee')
+                .fold(
+                  0,
+                  (p, e) =>
+                      p +
+                      ((e.price == -1 ? 0 : e.price) +
+                          (e.products.isEmpty
+                              ? 0
+                              : e.products.first.unitPrice *
+                                  e.products.first.quantity)),
+                ) +
+            (transFee.status == 'pending' ? transFee.price : -transFee.price);
 
         final len = (await (storeRepository.repairPaymentRepo(
           RepairRecordDummy.dummyPending(recordId),

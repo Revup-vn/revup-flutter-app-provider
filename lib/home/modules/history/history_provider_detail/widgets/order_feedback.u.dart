@@ -116,7 +116,7 @@ class OrderFeedbackItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AutoSizeText(
-                      feedback,
+                      feedback.isEmpty || feedback == 'null' ? '' : feedback,
                     ),
                   ),
                 ],
