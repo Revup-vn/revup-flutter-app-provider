@@ -101,6 +101,6 @@ class IncomingCallPage extends StatelessWidget {
   }
 
   Future<bool> _onBackPressed(BuildContext context) {
-    return Future.value(false);
+    return Future.value(true);
   }
 }

@@ -274,7 +274,7 @@ class ConversationPageState extends State<ConversationPage>
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _onBackPressed(context),
+      onWillPop: () async => true,
       child: Scaffold(
         body: Stack(clipBehavior: Clip.none, children: [
           if (_isVideoCall())
