@@ -292,5 +292,9 @@
   "consumerPaidLabel": "Consumer paided! Let's finish now",
   "addCommonProductLabel": "Add common service",
   "userDismissedNoTransFeeLabel": "You missed a request from a consumer nearby. User aborted the request.",
-  "changeLangSuccessLabel": "Thay đổi ngôn ngữ thành công. Hãy khởi động lại ứng dụng để thấy sự thay đổi"
+  "changeLangSuccessLabel": "Thay đổi ngôn ngữ thành công. Hãy khởi động lại ứng dụng để thấy sự thay đổi",
+  "incomingVideoLabal": "Incoming Video Call",
+  "yourProviderLabel": "Your consumer",
+  "rejectCallLabel": "RejectCall",
+  "acceptCallLabel": "AcceptCall"
 }

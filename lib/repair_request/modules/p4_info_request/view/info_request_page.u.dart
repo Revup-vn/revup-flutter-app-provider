@@ -46,7 +46,6 @@ class InfoRequestPage extends StatelessWidget {
         BlocProvider<VideoCallBloc>(
           create: (context) => VideoCallBloc(
             consumer.uuid,
-            user.uuid,
             context,
             context.read(),
           ),

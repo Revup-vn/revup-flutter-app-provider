@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../shared/utils/utils_function.dart';
+import '../../../../video_call/bloc/video_call_bloc.dart';
 import '../../../models/pending_service_model.dart';
 import '../bloc/start_repair_bloc.dart';
 import 'start_repair_view.u.dart';
@@ -42,6 +43,14 @@ class StartRepairPage extends StatelessWidget {
             context.read(),
           ),
         ),
+        BlocProvider<VideoCallBloc>(
+          create: (context) => VideoCallBloc(
+            consumer.uuid,
+            context,
+            context.read(),
+          ),
+          child: Container(),
+        )
       ],
       child: InfoRequestView(
         consumer: consumer,

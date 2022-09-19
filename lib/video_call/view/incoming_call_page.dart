@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../video_call_manager/call_mange.u.dart';
 
 class IncomingCallPage extends StatelessWidget {
@@ -24,20 +25,16 @@ class IncomingCallPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(36),
                 child: Text(
-                  _getCallTitle(),
+                  context.l10n.incomingVideoLabal,
                   style: const TextStyle(
                     fontSize: 28,
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 36, bottom: 8),
-                child: Text('User name', style: TextStyle(fontSize: 20)),
-              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 86),
                 child: Text(
-                  _callSession.opponentsIds.join(', '),
+                  context.l10n.yourProviderLabel,
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
@@ -47,7 +44,7 @@ class IncomingCallPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 36),
                     child: FloatingActionButton(
-                      heroTag: 'RejectCall',
+                      heroTag: context.l10n.rejectCallLabel,
                       backgroundColor: Colors.red,
                       onPressed: () => _rejectCall(context, _callSession),
                       child: const Icon(
@@ -59,7 +56,7 @@ class IncomingCallPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 36),
                     child: FloatingActionButton(
-                      heroTag: 'AcceptCall',
+                      heroTag: context.l10n.acceptCallLabel,
                       backgroundColor: Colors.green,
                       onPressed: () => _acceptCall(context, _callSession),
                       child: const Icon(
@@ -75,21 +72,6 @@ class IncomingCallPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _getCallTitle() {
-    var callType = '';
-
-    switch (_callSession.callType) {
-      case CallType.VIDEO_CALL:
-        callType = 'Video';
-        break;
-      case CallType.AUDIO_CALL:
-        callType = 'Audio';
-        break;
-    }
-
-    return 'Incoming $callType call';
   }
 
   void _acceptCall(BuildContext context, P2PSession callSession) {
