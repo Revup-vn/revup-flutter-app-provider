@@ -380,7 +380,7 @@ class UpdateProfileView extends StatelessWidget {
                                   .fold<String>(
                                     '',
                                     (previousValue, element) =>
-                                        '$previousValue $element',
+                                        '${previousValue.trim()} ${element.trim()}',
                                   )
                                   .trim();
                             }

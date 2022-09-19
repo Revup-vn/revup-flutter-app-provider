@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../../shared/shared.dart';
 import '../../../../shared/utils/utils_function.dart';
+import '../../../../video_call/bloc/video_call_bloc.dart';
 import 'build_icon_action.u.dart';
 
 class ContactItem extends StatelessWidget {
@@ -68,7 +70,9 @@ class ContactItem extends StatelessWidget {
         BuildIconAction(
           iconData: Icons.video_camera_back_outlined,
           callback: () {
-            // TODO(namngoc231): video call comsumer
+            context
+                .read<VideoCallBloc>()
+                .add(const VideoCallEvent.callStarted());
           },
         ),
       ],

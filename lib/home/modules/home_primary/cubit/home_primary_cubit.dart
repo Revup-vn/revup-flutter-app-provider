@@ -84,19 +84,21 @@ class HomePrimaryCubit extends Cubit<HomePrimaryState> {
           r.toList(),
         ),
       );
-      final data = l
-          .fold<IList<RepairService>>(
-            l.toList()[0],
-            (previousValue, element) => previousValue.plus(element),
-          )
-          .map(
-            (sv) => MyServiceData(
-              fee: sv.fee,
-              imgUrl: sv.img ?? '',
-              name: sv.name,
-              isActive: sv.active,
-            ),
-          );
+      final data = l.isNotEmpty
+          ? l
+              .fold<IList<RepairService>>(
+                l.toList()[0],
+                (previousValue, element) => previousValue.plus(element),
+              )
+              .map(
+                (sv) => MyServiceData(
+                  fee: sv.fee,
+                  imgUrl: sv.img ?? '',
+                  name: sv.name,
+                  isActive: sv.active,
+                ),
+              )
+          : nil<MyServiceData>();
       final list = listRecentOrder.toList();
       if (list.isEmpty) {
         emit(

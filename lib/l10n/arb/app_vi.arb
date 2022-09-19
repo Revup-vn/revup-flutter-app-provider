@@ -291,5 +291,9 @@
   "consumerPaidLabel": "Khách đã thanh toán. Kết thúc giao dịch thôi",
   "addCommonProductLabel": "Thêm sản phẩm có sẵn",
   "userDismissedNoTransFeeLabel": "Bạn đã lỡ 1 yêu cầu từ người dùng xung quanh",
-  "changeLangSuccessLabel": "Change language successfully. Please restart your application to see the change"
+  "changeLangSuccessLabel": "Change language successfully. Please restart your application to see the change",
+  "incomingVideoLabal": "Cuộc gọi video đến",
+  "yourProviderLabel": "Khách hàng của bạn",
+  "rejectCallLabel": "Từ Chối",
+  "acceptCallLabel": "Chấp Nhận"
 }

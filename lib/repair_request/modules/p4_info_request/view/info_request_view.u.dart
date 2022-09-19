@@ -204,7 +204,8 @@ class _InfoRequestViewState extends State<InfoRequestView> {
                                         .textTheme
                                         .headlineSmall
                                         ?.copyWith(
-                                            fontWeight: FontWeight.bold) ??
+                                          fontWeight: FontWeight.bold,
+                                        ) ??
                                     const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),

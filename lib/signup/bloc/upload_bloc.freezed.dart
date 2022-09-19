@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'signup_bloc.u.dart';
+part of 'upload_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SignupEvent {
+mixin _$UploadEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -63,19 +63,19 @@ mixin _$SignupEvent {
 }
 
 /// @nodoc
-abstract class $SignupEventCopyWith<$Res> {
-  factory $SignupEventCopyWith(
-          SignupEvent value, $Res Function(SignupEvent) then) =
-      _$SignupEventCopyWithImpl<$Res>;
+abstract class $UploadEventCopyWith<$Res> {
+  factory $UploadEventCopyWith(
+          UploadEvent value, $Res Function(UploadEvent) then) =
+      _$UploadEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignupEventCopyWithImpl<$Res> implements $SignupEventCopyWith<$Res> {
-  _$SignupEventCopyWithImpl(this._value, this._then);
+class _$UploadEventCopyWithImpl<$Res> implements $UploadEventCopyWith<$Res> {
+  _$UploadEventCopyWithImpl(this._value, this._then);
 
-  final SignupEvent _value;
+  final UploadEvent _value;
   // ignore: unused_field
-  final $Res Function(SignupEvent) _then;
+  final $Res Function(UploadEvent) _then;
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$SignupEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res> extends _$UploadEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -102,7 +102,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'SignupEvent.started()';
+    return 'UploadEvent.started()';
   }
 
   @override
@@ -183,7 +183,7 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements SignupEvent {
+abstract class _Started implements UploadEvent {
   const factory _Started() = _$_Started;
 }
 
@@ -198,7 +198,7 @@ abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ImageUploadSelectedCopyWithImpl<$Res>
-    extends _$SignupEventCopyWithImpl<$Res>
+    extends _$UploadEventCopyWithImpl<$Res>
     implements _$$_ImageUploadSelectedCopyWith<$Res> {
   __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
       $Res Function(_$_ImageUploadSelected) _then)
@@ -253,7 +253,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
 
   @override
   String toString() {
-    return 'SignupEvent.imageUploadSelected(source: $source, currentListStorage: $currentListStorage, typeUpload: $typeUpload)';
+    return 'UploadEvent.imageUploadSelected(source: $source, currentListStorage: $currentListStorage, typeUpload: $typeUpload)';
   }
 
   @override
@@ -350,7 +350,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   }
 }
 
-abstract class _ImageUploadSelected implements SignupEvent {
+abstract class _ImageUploadSelected implements UploadEvent {
   const factory _ImageUploadSelected(
       {required final ImageSource source,
       required final List<File> currentListStorage,
@@ -365,7 +365,7 @@ abstract class _ImageUploadSelected implements SignupEvent {
 }
 
 /// @nodoc
-mixin _$SignupState {
+mixin _$UploadState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -407,19 +407,19 @@ mixin _$SignupState {
 }
 
 /// @nodoc
-abstract class $SignupStateCopyWith<$Res> {
-  factory $SignupStateCopyWith(
-          SignupState value, $Res Function(SignupState) then) =
-      _$SignupStateCopyWithImpl<$Res>;
+abstract class $UploadStateCopyWith<$Res> {
+  factory $UploadStateCopyWith(
+          UploadState value, $Res Function(UploadState) then) =
+      _$UploadStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignupStateCopyWithImpl<$Res> implements $SignupStateCopyWith<$Res> {
-  _$SignupStateCopyWithImpl(this._value, this._then);
+class _$UploadStateCopyWithImpl<$Res> implements $UploadStateCopyWith<$Res> {
+  _$UploadStateCopyWithImpl(this._value, this._then);
 
-  final SignupState _value;
+  final UploadState _value;
   // ignore: unused_field
-  final $Res Function(SignupState) _then;
+  final $Res Function(UploadState) _then;
 }
 
 /// @nodoc
@@ -430,7 +430,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res> extends _$UploadStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -446,7 +446,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'SignupState.initial()';
+    return 'UploadState.initial()';
   }
 
   @override
@@ -521,7 +521,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements SignupState {
+abstract class _Initial implements UploadState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -535,7 +535,7 @@ abstract class _$$_ChoosePhotoSuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ChoosePhotoSuccessCopyWithImpl<$Res>
-    extends _$SignupStateCopyWithImpl<$Res>
+    extends _$UploadStateCopyWithImpl<$Res>
     implements _$$_ChoosePhotoSuccessCopyWith<$Res> {
   __$$_ChoosePhotoSuccessCopyWithImpl(
       _$_ChoosePhotoSuccess _value, $Res Function(_$_ChoosePhotoSuccess) _then)
@@ -571,7 +571,7 @@ class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
 
   @override
   String toString() {
-    return 'SignupState.choosePhotoSuccess(file: $file)';
+    return 'UploadState.choosePhotoSuccess(file: $file)';
   }
 
   @override
@@ -655,7 +655,7 @@ class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
   }
 }
 
-abstract class _ChoosePhotoSuccess implements SignupState {
+abstract class _ChoosePhotoSuccess implements UploadState {
   const factory _ChoosePhotoSuccess({required final List<File> file}) =
       _$_ChoosePhotoSuccess;
 

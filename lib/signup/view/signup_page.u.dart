@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
 
-import '../bloc/signup_bloc.u.dart';
-import '../cubit/signup_cubit.u.dart';
+import '../bloc/bloc/sign_up_bloc.dart';
+import '../bloc/upload_bloc.dart';
 import 'signup_view.u.dart';
 
 class SignupPage extends StatelessWidget {
@@ -28,14 +27,20 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SignupBloc>(
-          create: (context) => SignupBloc(ImagePicker()),
+        BlocProvider<UploadBloc>(
+          create: (context) => UploadBloc(ImagePicker()),
         ),
         BlocProvider(
-          create: (context) => SignupCubit(context.read()),
+          create: (context) => SignUpBloc(context.read()),
         ),
       ],
-      child: SignupView(completer, phoneNumber, photoURL, uid, email),
+      child: SignupView(
+        completer,
+        phoneNumber,
+        photoURL,
+        uid,
+        email,
+      ),
     );
   }
 }

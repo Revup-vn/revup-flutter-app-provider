@@ -375,59 +375,81 @@ class HomePrimaryView extends StatelessWidget {
                       alignment: Alignment.center,
                       child: AutoSizeText(l10n.emptyLabel),
                     ),
-                    loaded: (user, recentOrder, listService, ads) => Swiper(
-                      autoplay: true,
-                      duration: 500,
-                      layout: SwiperLayout.STACK,
-                      itemCount:
-                          listService.length > 5 ? 5 : listService.length,
-                      itemBuilder: (context, index) {
-                        return CartService(
-                          isActive: listService[index].isActive,
-                          imgUrl: listService[index].imgUrl,
-                          serviceName: listService[index].name,
-                          priceRange:
-                              context.formatMoney(listService[index].fee),
-                          callback: () {
-                            context.router.push(
-                              ListServiceRoute(
-                                providerID: getUser(
-                                  context.read<AuthenticateBloc>().state,
-                                ).getOrElse(() => throw NullThrownError()).uuid,
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      itemWidth: 400,
-                      itemHeight: 140,
-                    ),
-                    recentOrderEmpty: (aS, listService, ads) => Swiper(
-                      autoplay: true,
-                      layout: SwiperLayout.STACK,
-                      itemCount:
-                          listService.length > 5 ? 5 : listService.length,
-                      itemBuilder: (context, index) {
-                        return CartService(
-                          isActive: listService[index].isActive,
-                          imgUrl: listService[index].imgUrl,
-                          serviceName: listService[index].name,
-                          priceRange:
-                              context.formatMoney(listService[index].fee),
-                          callback: () {
-                            context.router.push(
-                              ListServiceRoute(
-                                providerID: getUser(
-                                  context.read<AuthenticateBloc>().state,
-                                ).getOrElse(() => throw NullThrownError()).uuid,
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      itemWidth: 400,
-                      itemHeight: 140,
-                    ),
+                    loaded: (user, recentOrder, listService, ads) => listService
+                            .isNotEmpty
+                        ? Swiper(
+                            autoplay: true,
+                            duration: 500,
+                            layout: SwiperLayout.STACK,
+                            itemCount:
+                                listService.length > 5 ? 5 : listService.length,
+                            itemBuilder: (context, index) {
+                              return CartService(
+                                isActive: listService[index].isActive,
+                                imgUrl: listService[index].imgUrl,
+                                serviceName: listService[index].name,
+                                priceRange:
+                                    context.formatMoney(listService[index].fee),
+                                callback: () {
+                                  context.router.push(
+                                    ListServiceRoute(
+                                      providerID: getUser(
+                                        context.read<AuthenticateBloc>().state,
+                                      )
+                                          .getOrElse(
+                                              () => throw NullThrownError())
+                                          .uuid,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            itemWidth: 400,
+                            itemHeight: 140,
+                          )
+                        : Container(
+                            height: 140,
+                            color: Theme.of(context).colorScheme.tertiary,
+                            alignment: Alignment.center,
+                            child: AutoSizeText(l10n.emptyLabel),
+                          ),
+                    recentOrderEmpty: (aS, listService, ads) => listService
+                            .isNotEmpty
+                        ? Swiper(
+                            autoplay: true,
+                            layout: SwiperLayout.STACK,
+                            itemCount:
+                                listService.length > 5 ? 5 : listService.length,
+                            itemBuilder: (context, index) {
+                              return CartService(
+                                isActive: listService[index].isActive,
+                                imgUrl: listService[index].imgUrl,
+                                serviceName: listService[index].name,
+                                priceRange:
+                                    context.formatMoney(listService[index].fee),
+                                callback: () {
+                                  context.router.push(
+                                    ListServiceRoute(
+                                      providerID: getUser(
+                                        context.read<AuthenticateBloc>().state,
+                                      )
+                                          .getOrElse(
+                                              () => throw NullThrownError())
+                                          .uuid,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            itemWidth: 400,
+                            itemHeight: 140,
+                          )
+                        : Container(
+                            height: 140,
+                            color: Theme.of(context).colorScheme.tertiary,
+                            alignment: Alignment.center,
+                            child: AutoSizeText(l10n.emptyLabel),
+                          ),
                   ),
                 ],
               );
