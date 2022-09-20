@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
@@ -38,6 +39,8 @@ class LoginEnterPhoneView extends StatelessWidget {
           onPressed: () {
             context.loaderOverlay.hide();
             context.router.pop();
+            context.read<GoogleSignIn>().disconnect();
+            context.read<GoogleSignIn>().signOut();
             context.read<AuthenticateBloc>().add(
                   const AuthenticateEvent.reset(),
                 );
