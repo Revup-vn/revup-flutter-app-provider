@@ -126,8 +126,17 @@ class LoginPage extends StatelessWidget {
               },
               provider: (value) async {
                 context.loaderOverlay.hide();
-                if (!CubeSessionManager.instance.isActiveSessionValid()) {
-                  final userr = CubeUser(
+                final userr = CubeUser(
+                  login: authType.user
+                      .mapOrNull(
+                        provider: (value) => value.vac,
+                      )
+                      ?.username,
+                  password: DEFAULT_PASS,
+                );
+                await createSession(userr).then((suser) async {
+                  final sUser = CubeUser(
+                    id: suser.id,
                     login: authType.user
                         .mapOrNull(
                           provider: (value) => value.vac,
@@ -135,21 +144,9 @@ class LoginPage extends StatelessWidget {
                         ?.username,
                     password: DEFAULT_PASS,
                   );
-                  await createSession(userr).then((suser) async {
-                    await Hive.openBox<dynamic>('vacID')
-                        .then((box) => box.put('id', userr.id));
-                    final sUser = CubeUser(
-                      id: suser.id,
-                      login: authType.user
-                          .mapOrNull(
-                            provider: (value) => value.vac,
-                          )
-                          ?.username,
-                      password: DEFAULT_PASS,
-                    );
-                    await _loginToCubeChat(context, sUser);
-                  });
-                }
+                  await _loginToCubeChat(context, sUser);
+                });
+
                 if ((value.inactiveTo != null &&
                         (value.inactiveTo!.compareTo(DateTime.now()) < 0 ==
                             true)) ||
