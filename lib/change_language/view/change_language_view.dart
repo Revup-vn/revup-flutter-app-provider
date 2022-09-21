@@ -65,7 +65,7 @@ class ChangeLanguageView extends StatelessWidget {
       barrierDismissible: false,
       context: context,
       builder: (bcontext) => SimpleDialogCustom(
-        height: 100,
+        height: 150,
         content: [
           Center(
             child: AutoSizeText(
@@ -80,7 +80,7 @@ class ChangeLanguageView extends StatelessWidget {
               bcontext.router.pop();
             },
             child: AutoSizeText(
-              context.l10n.understoodLabel,
+              context.l10n.understoodReLabel,
             ),
           ),
         ],
