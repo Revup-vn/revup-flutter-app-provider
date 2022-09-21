@@ -7,6 +7,7 @@ import 'package:connectycube_sdk/connectycube_sdk.dart' hide NotificationType;
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
@@ -293,6 +294,8 @@ ${context.l10n.bannedNotiLabel} ${formatterDate.format(bannedDate)} ${context.l1
               Future.delayed(
                 const Duration(seconds: 5),
                 () {
+                  context.read<GoogleSignIn>().disconnect();
+                  context.read<GoogleSignIn>().signOut();
                   context
                       .read<AuthenticateBloc>()
                       .add(AuthenticateEvent.signOut(authType: type));

@@ -296,5 +296,6 @@
   "incomingVideoLabal": "Incoming Video Call",
   "yourProviderLabel": "Your consumer",
   "rejectCallLabel": "RejectCall",
-  "acceptCallLabel": "AcceptCall"
+  "acceptCallLabel": "AcceptCall",
+  "understoodReLabel": "Đã hiểu"
 }

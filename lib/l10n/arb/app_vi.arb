@@ -295,5 +295,6 @@
   "incomingVideoLabal": "Cuộc gọi video đến",
   "yourProviderLabel": "Khách hàng của bạn",
   "rejectCallLabel": "Từ Chối",
-  "acceptCallLabel": "Chấp Nhận"
+  "acceptCallLabel": "Chấp Nhận",
+  "understoodReLabel": "Understood"
 }
