@@ -123,17 +123,19 @@ class ConversationPageState extends State<ConversationPage>
   Future<Widget> _buildLocalVideoItem() async {
     if (localRenderer == null) {
       localRenderer = RTCVideoRenderer();
-      await localRenderer!.initialize();
+      await localRenderer?.initialize();
     }
 
     localRenderer?.srcObject = _localMediaStream;
 
     _localVideoView = Expanded(
-      child: RTCVideoView(
-        localRenderer!,
-        objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-        mirror: true,
-      ),
+      child: localRenderer != null
+          ? RTCVideoView(
+              localRenderer!,
+              objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+              mirror: true,
+            )
+          : Container(),
     );
     needRebuildLocalVideoView = false;
 
@@ -155,7 +157,8 @@ class ConversationPageState extends State<ConversationPage>
                 } else {
                   return Expanded(child: Container());
                 }
-              })
+              },
+            )
           : _localVideoView != null
               ? _localVideoView!
               : Expanded(child: Container()));
