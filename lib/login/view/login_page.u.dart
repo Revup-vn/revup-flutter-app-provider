@@ -125,7 +125,6 @@ class LoginPage extends StatelessWidget {
                 return null;
               },
               provider: (value) async {
-                context.loaderOverlay.hide();
                 final userr = CubeUser(
                   login: authType.user
                       .mapOrNull(
@@ -146,7 +145,7 @@ class LoginPage extends StatelessWidget {
                   );
                   await _loginToCubeChat(context, sUser);
                 });
-
+                context.loaderOverlay.hide();
                 if ((value.inactiveTo != null &&
                         (value.inactiveTo!.compareTo(DateTime.now()) < 0 ==
                             true)) ||
