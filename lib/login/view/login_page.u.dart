@@ -143,7 +143,7 @@ class LoginPage extends StatelessWidget {
                         ?.username,
                     password: DEFAULT_PASS,
                   );
-                  await _loginToCubeChat(context, sUser);
+                  unawaited(_loginToCubeChat(context, sUser));
                 });
                 context.loaderOverlay.hide();
                 if ((value.inactiveTo != null &&
